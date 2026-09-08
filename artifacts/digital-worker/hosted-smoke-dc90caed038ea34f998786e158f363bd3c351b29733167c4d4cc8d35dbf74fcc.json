@@ -1,0 +1,66 @@
+{
+  "schema": "digital-worker-hosted-smoke-v1",
+  "checkedAt": "2026-09-08T17:41:44.847Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "deployedCommit": "d570ce703cd3d7421d371fe0d34aac36d913c639",
+  "deployment": "dep-dag4fpvqj5pc738uqjpg",
+  "pass": true,
+  "cookieFlags": true,
+  "caseAnswer": {
+    "disposition": "answer",
+    "citations": 3,
+    "method": "deterministic-case-composition",
+    "latencyMs": 6.241992999974173,
+    "estimatedCostUsd": 0
+  },
+  "idempotentAnswerReplay": true,
+  "conversationPersisted": true,
+  "providerPause": {
+    "disposition": "pause",
+    "reasonCodes": [
+      "PROVIDER_NOT_CONFIGURED"
+    ],
+    "requests": 0
+  },
+  "compiledLinuxParsers": [
+    {
+      "format": "txt",
+      "passages": 2,
+      "pages": 0,
+      "exactLocations": true,
+      "originalPreserved": true,
+      "latencyMs": 1353
+    },
+    {
+      "format": "md",
+      "passages": 2,
+      "pages": 0,
+      "exactLocations": true,
+      "originalPreserved": true,
+      "latencyMs": 1526
+    },
+    {
+      "format": "pdf",
+      "passages": 2,
+      "pages": 2,
+      "exactLocations": true,
+      "originalPreserved": true,
+      "latencyMs": 3301
+    },
+    {
+      "format": "docx",
+      "passages": 4,
+      "pages": 0,
+      "exactLocations": true,
+      "originalPreserved": true,
+      "latencyMs": 1590
+    }
+  ],
+  "originalsDeletedAfterSmoke": true,
+  "effects": 0,
+  "limitations": [
+    "One isolated synthetic smoke session, not a load or uptime test.",
+    "No live model or new embedding requests; no live quality measurement.",
+    "Session cookie and CSRF token were retained only in process memory and are excluded from this record."
+  ]
+}

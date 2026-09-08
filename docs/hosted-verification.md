@@ -2,6 +2,22 @@
 
 [Open Pathway Agent](https://case-resolution-agent.onrender.com).
 
+## September 8 digital-worker release
+
+The digital-worker increment is live on the existing Free Render service. Deployment `dep-dag4fpvqj5pc738uqjpg` ran verified source `d570ce703cd3d7421d371fe0d34aac36d913c639` and succeeded in 39.3 seconds at 11:38 AM MDT. Render built 235 files and validated 160 preserved vectors. Additive migrations 009–011 were applied through the administrator migration workflow; the runtime role remains restricted. Automatic deployment remains Off.
+
+The release adds durable multi-turn conversation, focused clarification, four audience summaries, editable unsent drafts, five synthetic interaction channels, and bounded TXT/Markdown/PDF/DOCX ingestion. Studio separates metadata review, reviewer decisions, immutable publication, assignment and retirement. The guide and visible Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
+
+All 203 local automated checks, original reference evaluation/probes and 108 cached retrieval comparisons passed. The final manifest preserved all 91 retained artifacts. Browser acceptance completed the cached hybrid workflow through Manager clarification, Office verification and receiving acknowledgment with one dispatch attempt per effect. A separately assigned upload supported explicitly selected lexical retrieval; retirement paused its next query while retaining the exact prior evidence hash. All 21 route/width combinations plus tablet/mobile ingestion had no overflow. Keyboard navigation, readable dates and route error cleanup passed.
+
+Post-deployment HTTPS/private-path/origin checks passed. The public API smoke verified idempotent three-citation answers, persistent memory, zero effects and an explicit provider-not-configured pause. All four formats parsed in Render’s compiled Linux worker with exact passage locations and byte-identical original downloads. Observed upload-plus-download durations were TXT 1.35s, Markdown 1.53s, PDF 3.30s and DOCX 1.59s; these small fixtures are not a performance benchmark. The public browser verified the guide, cited answer/refresh and PDF upload/refresh, with desktop/tablet/mobile inspection.
+
+Live synthesis is implemented but remains unmeasured and unavailable in this deployment because the provider settings are absent. Default composition and current cached synthetic questions incur no new model cost. The uninterrupted new-upload → semantic retrieval → live synthesis journey requires the private configuration action in the [digital-worker runbook](digital-worker-runbook.md#optional-model-configuration). The explicit lexical branch is labeled separately and does not establish model quality.
+
+Records: [hosted browser](../artifacts/digital-worker/hosted-browser-3d3249adfc137c275a73e57a64eef1f57dd6433c71ef87f8eb90c909ccad0a0f.json), [automated suite](../artifacts/digital-worker/verification-3d85b9880263436e76a9167e47f8f96b6dde90d680382f4b2070286777001792.json), [local browser](../artifacts/digital-worker/local-browser-bfadf80cf14bc76b8c8df1c2ece4b2a41288b8b2c7f5eea8f97d1cc9b83d545d.json), [hosted API/parsers](../artifacts/digital-worker/hosted-smoke-dc90caed038ea34f998786e158f363bd3c351b29733167c4d4cc8d35dbf74fcc.json), [HTTPS](../artifacts/digital-worker/hosted-https-418e1e560ecd3a2cc684466ab227a4ec8605708f465f20cb5e1c42cd841608d3.json), and [deployment](../artifacts/digital-worker/render-deployment-49e48d4066e262535db22100b973233ecf844ea74d86f39560c55c230e221e93.json).
+
+## Initial portfolio release — historical acceptance
+
 The first Render deployment succeeded on September 8, 2026. The container, hosted database and browser acceptance checks passed. This is a synthetic portfolio application with simulated external effects, preserved real synthetic embedding vectors and deterministic evidence explanations. It is not a production pharmaceutical system.
 
 ## Release identity

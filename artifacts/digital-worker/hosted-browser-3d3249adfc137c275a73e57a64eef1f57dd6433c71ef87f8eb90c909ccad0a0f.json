@@ -1,0 +1,59 @@
+{
+  "schema": "digital-worker-hosted-browser-v1",
+  "checkedAt": "2026-09-08T17:45:28.254752+00:00",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "commit": "d570ce703cd3d7421d371fe0d34aac36d913c639",
+  "checks": {
+    "launchOpensTwelveStepGuide": true,
+    "exactThreeSourceCaseAnswer": true,
+    "answerIdenticalAfterRefresh": true,
+    "actualPdfUploadAndTwoLocatedPages": true,
+    "uploadPersistsAfterRefresh": true,
+    "modelChoiceShowsExplicitPause": true,
+    "noSilentFallback": true,
+    "visibleEvaluationMatches203TestRecord": true,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "responsive": [
+    {
+      "route": "agent",
+      "width": 1440,
+      "inspected": true
+    },
+    {
+      "route": "studio-upload",
+      "width": 768,
+      "documentWidth": 768
+    },
+    {
+      "route": "evaluation",
+      "width": 375,
+      "documentWidth": 375
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "output/playwright/worker-hosted-agent-1440.png",
+      "sha256": "784009672a3315f38285593aa09c7bc7d38d7abfd4f2b7b717f02d1ba87635f7"
+    },
+    {
+      "path": "output/playwright/worker-hosted-evaluation-375.png",
+      "sha256": "6b1fe00b13a40d36cde4d7312becaeddddf31b862603f23e75b193bc5208fa71"
+    },
+    {
+      "path": "output/playwright/worker-hosted-mobile-viewport.png",
+      "sha256": "f1003fd94be785b57b65136366a549e1e795a53697bc7a4c10624d210dbc75ad"
+    },
+    {
+      "path": "output/playwright/worker-hosted-upload-768.png",
+      "sha256": "9015ba3057b0db4d34453eb95b6df1c520b4b9053f47eec65c9f6f2216e8e2cc"
+    }
+  ],
+  "limitations": [
+    "This is a hosted smoke pass, not a repeat of the complete local authority/workflow suite.",
+    "No live model or embedding calls were made.",
+    "The complete new-upload semantic/synthesis journey remains provider-gated.",
+    "Two browser locator mistakes were corrected; no application console errors occurred."
+  ]
+}

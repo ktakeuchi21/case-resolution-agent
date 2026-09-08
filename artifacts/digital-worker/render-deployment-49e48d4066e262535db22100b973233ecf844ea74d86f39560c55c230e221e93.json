@@ -1,0 +1,37 @@
+{
+  "schema": "digital-worker-render-deployment-v1",
+  "recordedAt": "2026-09-08T17:44:04.939012+00:00",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "serviceId": "srv-dag1p2v40ujc73delf20",
+  "deploymentId": "dep-dag4fpvqj5pc738uqjpg",
+  "commit": "d570ce703cd3d7421d371fe0d34aac36d913c639",
+  "status": "Deploy succeeded | Live",
+  "deployDurationSeconds": 39.3,
+  "instance": "existing Free Docker service, Oregon",
+  "build": {
+    "files": 235,
+    "validatedEmbeddingRecords": 160
+  },
+  "databaseMigrations": {
+    "applied": [
+      "009_agent_memory.sql",
+      "010_knowledge_studio.sql",
+      "011_temporary_vectors.sql"
+    ],
+    "appliedAt": "2026-09-08T17:08:30Z",
+    "priorMigrationsUnchanged": true
+  },
+  "provider": {
+    "openAiKeySettingPresent": false,
+    "liveGenerationSettingPresent": false,
+    "liveQualityMeasured": false
+  },
+  "publicChecks": {
+    "httpsReport": "hosted-https-418e1e560ecd3a2cc684466ab227a4ec8605708f465f20cb5e1c42cd841608d3.json",
+    "apiAndParsersReport": "hosted-smoke-dc90caed038ea34f998786e158f363bd3c351b29733167c4d4cc8d35dbf74fcc.json"
+  },
+  "limitations": [
+    "Digest was not exposed in the inspected deployment summary.",
+    "Provider configuration and a separate measured live-quality run remain necessary for general synthesis and uncached semantic questions."
+  ]
+}
