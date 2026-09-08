@@ -103,6 +103,7 @@ test('provider transport uses bounded structured output and redacts failure payl
  let reservations = 0, calls = 0;
  const p = new OpenAISynthesisProvider('unit-test-key-not-a-secret', async () => { reservations++; }, async (_url, init) => {
   calls++; const wire = JSON.parse(String(init?.body)); assert.equal(wire.store, false); assert.equal(wire.text.format.strict, true); assert.equal(wire.tools, undefined);
+  assert.deepEqual(wire.text.format.schema.properties.claims.items.properties.supports.items.properties.reference.enum,[...new Set([...input.facts.map(f=>f.reference),...input.sources.map(s=>s.reference)])]);
   return new Response('private server detail', { status: 503 });
  });
  await assert.rejects(p.complete(input), /PROVIDER_UNAVAILABLE/); assert.equal(reservations, 1); assert.equal(calls, 1);

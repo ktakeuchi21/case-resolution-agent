@@ -26,7 +26,7 @@ async page => {
   await page.locator('.agent-turn').last().getByRole('button',{name:'Inspect supporting evidence',exact:true}).click();
   check('advanced generation provenance can be opened',await page.locator('.agent-turn').last().locator('.worker-turn > .advanced').getAttribute('open')!==null);
   await page.locator('.agent-turn').last().getByText('Generation audit and raw output',{exact:true}).click();
-  check('prompt and structured verification remain inspectable',(await page.locator('.agent-turn').last().innerText()).includes('pathway-synthesis-v4'));
+  check('prompt and structured verification remain inspectable',(await page.locator('.agent-turn').last().innerText()).includes('pathway-synthesis-v5'));
   await page.locator('.agent-turn').last().locator('.readable-citation summary').first().click();check('exact supporting passage can be inspected',await page.locator('.agent-turn').last().locator('.readable-citation blockquote').first().isVisible());
   await page.context().grantPermissions(['clipboard-read','clipboard-write']);await page.locator('.agent-turn').last().getByRole('button',{name:'Copy',exact:true}).click();
   check('copy exports the work product',await page.evaluate(async()=> (await navigator.clipboard.readText()).includes('CRM activity note')));
