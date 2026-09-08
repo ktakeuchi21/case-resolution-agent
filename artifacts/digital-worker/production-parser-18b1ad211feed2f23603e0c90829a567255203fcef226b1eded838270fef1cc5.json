@@ -1,0 +1,38 @@
+{
+  "schema": "production-parser-smoke-v1",
+  "timestamp": "2026-09-08T17:08:42.035Z",
+  "results": [
+    {
+      "format": "txt",
+      "pass": true,
+      "passages": 2,
+      "pages": 0,
+      "latencyMs": 120.27449999999996,
+      "worker": "compiled JavaScript"
+    },
+    {
+      "format": "md",
+      "pass": true,
+      "passages": 2,
+      "pages": 0,
+      "latencyMs": 98.200041,
+      "worker": "compiled JavaScript"
+    },
+    {
+      "format": "pdf",
+      "pass": true,
+      "passages": 2,
+      "pages": 2,
+      "latencyMs": 641.110833,
+      "worker": "compiled JavaScript"
+    },
+    {
+      "format": "docx",
+      "pass": true,
+      "passages": 4,
+      "pages": 0,
+      "latencyMs": 100.83204200000011,
+      "worker": "compiled JavaScript"
+    }
+  ]
+}

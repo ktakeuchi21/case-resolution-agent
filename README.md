@@ -1,8 +1,10 @@
 # Pathway Agent
 
+September digital worker increment: [product and architecture](docs/digital-worker.md), [operator runbook](docs/digital-worker-runbook.md), and [implementation ledger](docs/digital-worker-execution.md). The in-app Guided journey and Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
+
 A browser-based persistent AI operations agent that helps HCP offices resolve specialty-therapy access dependencies using governed Knowledge Packs, with visible evidence, bounded authority, and human ownership of exceptions.
 
-**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. Hybrid retrieval is unchanged; public requests use preserved real vectors and visibly labeled extractive explanations, with no model charges. No real outreach, patient data or payer approval is involved.
+**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Default answers use labeled case/evidence rules and preserved vectors; uncached semantic questions and optional live synthesis pause until privately configured. No real outreach, patient data or payer approval is involved.
 
 ## Run the browser demonstration
 
@@ -15,7 +17,7 @@ npm run db:migrate
 node src/app/server.ts
 ```
 
-Open `http://127.0.0.1:3000` and choose **Launch guided demo**. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
+Open `http://127.0.0.1:3000`, choose **Launch guided demo**, then **Guided journey** for the twelve-step document-to-case story. Without a provider, use the guide’s explicit sandbox exploration branch and the original cached case. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
 
 Start with the [portfolio narrative](docs/portfolio-narrative.md), [demo walkthrough](docs/demo-walkthrough.md), [hosted release verification](docs/hosted-verification.md), and [production runbook](docs/production-runbook.md). `npm run build` creates the source-free production package. `npm test`, `npm run test:generation`, `npm run test:app`, `npm run test:postgres` and `npm run test:workflow` verify separate boundaries. `npm run eval:postgres` replays preserved quality evidence without new provider calls.
 
@@ -33,11 +35,11 @@ Earlier headless artifacts remain frozen. Do not use artifact-writing historical
 8. [Roadmap and portfolio plan](docs/roadmap.md) — revised sequence and next concrete session.
 9. [Decision log](docs/decisions.md) — decisions, changed assumptions and tensions with Phase 1.
 
-## Recommended first prototype
+## Demonstrated product story
 
-First demonstrate governed knowledge configuration: upload, inspect, test, approve, publish, retrieve with traceable passages, and retire. Compare two packs in a playground, reject sandbox operational actions, and show an approved pack supporting SC-01's missing-document recommendation. The strongest moment is retiring that source: subsequent reliance stops while historical evidence remains inspectable.
+The Knowledge Studio demonstrates governed knowledge configuration: upload, inspect, test, approve, publish, retrieve with traceable passages, and retire. Compare two packs in a playground, reject sandbox operational actions, and show an approved pack supporting SC-01's missing-document recommendation. The strongest moment is retiring that source: subsequent reliance stops while historical evidence remains inspectable.
 
-Then recover the stalled prior authorization end to end: scheduled follow-up through a simulated channel, case memory, document intake, human verification, receiving-system acknowledgment, and resumable exception handoff.
+The case worker then follows the documentation dependency through: scheduled follow-up through a simulated channel, case memory, document intake, human verification, receiving-system acknowledgment, and resumable exception handoff.
 
 The completed outcome is a resolved documentation dependency with receipt evidence. Coverage remains pending until a separately sourced payer decision arrives.
 
@@ -47,4 +49,4 @@ Treat the foundation as product intent; Knowledge Studio as the knowledge lifecy
 
 When a decision changes, add a dated decision-log entry, update affected documents and acceptance criteria in the same change, and record supporting evidence. Preserve superseded decisions rather than silently rewriting history. Research sources inform product design; they do not become runtime action permissions. Synthetic knowledge is a separate corpus.
 
-The original headless phases and browser application are implemented. The public browser release is verified; next investigations require separate evidence for retention/restore, an independent retrieval holdout and generation utility. See [the active roadmap](docs/roadmap.md#active-public-synthetic-portfolio-mvp).
+The original headless phases remain frozen. Current digital-worker implementation, measured results and provider limitations are recorded in the [digital-worker architecture](docs/digital-worker.md) and [execution ledger](docs/digital-worker-execution.md). Live generation utility, independent retrieval holdouts, production retention/restore and enterprise integrations require separate evidence.

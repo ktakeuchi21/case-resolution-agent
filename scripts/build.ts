@@ -16,7 +16,7 @@ const walk = (directory: string): string[] => readdirSync(directory, { withFileT
 try {
   const compile = spawnSync(process.execPath, [join(root, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.build.json', '--outDir', stage], { cwd: root, stdio: 'inherit' });
   if (compile.status !== 0) throw new Error('Production TypeScript compilation failed.');
-  const assets: Record<string, Set<string>> = { web: new Set(['.html','.js','.css','.svg','.png','.webp','.woff2']), fixtures: new Set(['.json']), migrations: new Set(['.sql']), config: new Set(['.crt']) };
+  const assets: Record<string, Set<string>> = { web: new Set(['.html','.js','.css','.svg','.png','.webp','.woff2','.json']), fixtures: new Set(['.json']), migrations: new Set(['.sql']), config: new Set(['.crt']) };
   for (const [directory, extensions] of Object.entries(assets)) {
     for (const source of walk(join(root, directory))) {
       if (basename(source).startsWith('.')) continue;

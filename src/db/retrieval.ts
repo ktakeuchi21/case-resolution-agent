@@ -14,6 +14,9 @@ import { Database, insert, scoped, validateRow } from './database.ts';
 import type { Scope } from './database.ts';
 import { loadRegistry } from './registry.ts';
 import { randomUUID } from 'node:crypto';
+import { Registry } from '../registry.ts';
+import { LocalSemanticProvider } from '../providers/semantic.ts';
+import { MemoryEmbeddingCache } from '../providers/embedding.ts';
 import { PostgresEmbeddingCache, PostgresSemanticProvider, cachedOnlyProvider } from './vector.ts';
 
 export const DegradedAcknowledgment=z.strictObject({actorId:Id,policyId:Id.nullable(),timestamp:Timestamp,expiresAt:Timestamp,
@@ -40,6 +43,20 @@ export class PersistentRetrieval {
  constructor(db:Database,scope:Scope,clock:()=>string=()=>new Date().toISOString()){this.db=db;this.scope=scope;this.clock=clock;}
  async run(actor:string,input:unknown,options:RunOptions={}){
   return this.db.transaction(this.scope,c=>this.runInTransaction(c,actor,input,options));
+ }
+ /** Temporary exploration uses the same deterministic pipeline through this
+  * entry point, with an explicitly scoped ephemeral registry and cache. It
+  * returns evidence for TTL storage; no upload enters immutable tables here. */
+ async exploreTemporary(actor:string,input:unknown,registry:Registry,options:{mode:'hybrid'|'semantic'|'lexical';acknowledgeLexical?:boolean;embeddingProvider?:EmbeddingProvider;cacheSource?:EmbeddingCache}){
+  const request=RetrievalRequest.parse(input);
+  if(this.scope.environment!=='sandbox'||request.mode!=='sandbox'||registry.user(actor).tenantId!==this.scope.tenant||registry.corpus.documents.some(d=>d.provenance.mode!=='sandbox'||d.provenance.tenantId!==this.scope.tenant))throw new Error('TEMPORARY_SCOPE_MISMATCH');
+  if(options.mode==='lexical'&&!options.acknowledgeLexical)throw new Error('DEGRADED_ACKNOWLEDGMENT_REQUIRED');
+  const config=RetrievalConfiguration.parse({mode:options.mode,embedding:options.embeddingProvider?.identity});
+  const embeddings=new CachedEmbeddings(options.embeddingProvider??cachedOnlyProvider(config.embedding),options.cacheSource??new MemoryEmbeddingCache());
+  const semantic=new LocalSemanticProvider(embeddings,config);
+  const provider=options.mode==='lexical'?new LocalLexicalProvider():options.mode==='semantic'?semantic:new LocalHybridProvider(new LocalLexicalProvider(),semantic,config);
+  const record=await new KnowledgePipeline(registry,provider,new EvidenceStore(),this.clock).run(actor,request);
+  return {record,diagnostics:{effectiveMode:options.mode,requestedMode:options.mode,acknowledgedLexical:options.mode==='lexical',silentFallback:false,temporary:true,embeddingUsage:embeddings.usage}};
  }
  /** Trusted composition only: caller must hold Database.transaction(scope) through commit. */
  async runInTransaction(c:PoolClient,actor:string,input:unknown,options:RunOptions={}){

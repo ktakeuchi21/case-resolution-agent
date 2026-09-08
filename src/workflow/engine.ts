@@ -40,7 +40,8 @@ export class WorkflowEngine {
  }
  private stopWork(x:Context){this.cancelTimers(x,true);for(const e of x.s.effects)if(['proposed','authorized','queued'].includes(e.status)){e.status='cancelled';this.event(x,'effect_cancelled',e.id);}}
  private pause(x:Context,reasons:string[]){
-  if(x.s.state!=='PAUSED')x.s.resumeState=x.s.state;x.s.pauseReasons=[...new Set(reasons)];this.cancelTimers(x);this.state(x,'PAUSED');this.event(x,'paused',x.s.id,reasons.join(','));this.task(x,'authority',reasons.join(','),x.s.resumeState);
+  const unique=[...new Set(reasons.flatMap(reason=>reason.split(',')))];
+  if(x.s.state!=='PAUSED')x.s.resumeState=x.s.state;x.s.pauseReasons=unique;this.cancelTimers(x);this.state(x,'PAUSED');this.event(x,'paused',x.s.id,unique.join(','));this.task(x,'authority',unique.join(','),x.s.resumeState);
  }
  private escalate(x:Context,reason:string,failed=false){this.stopWork(x);for(const t of x.s.tasks)if(t.status==='open')t.status='cancelled';this.state(x,failed?'FAILED':'ESCALATED');this.event(x,'escalated',x.s.id,reason);this.task(x,'exception',reason);}
  private require(value:unknown,reason:string):asserts value {if(!value)throw new Error(reason);}

@@ -35,15 +35,21 @@
     "build": "node scripts/build.ts",
     "start": "node dist/src/app/server.js",
     "test:app": "node --test --test-concurrency=1 tests/app/*.test.ts",
-    "test:generation": "node --test tests/generation/*.test.ts"
+    "test:generation": "node --test tests/generation/*.test.ts",
+    "test:agent": "node --test tests/agent/*.test.ts",
+    "test:studio": "node --test tests/studio/*.test.ts"
   },
   "dependencies": {
+    "pdfjs-dist": "6.3.289",
     "pg": "8.16.3",
+    "saxes": "6.0.0",
+    "yauzl": "3.4.0",
     "zod": "4.5.4"
   },
   "devDependencies": {
     "@types/node": "24.13.3",
     "@types/pg": "8.15.5",
+    "@types/yauzl": "2.10.3",
     "typescript": "5.9.3"
   }
 }

@@ -24,4 +24,5 @@ services:
         value: supabase-pg17-vector082
       - key: PATHWAY_DATABASE_CA_FILE
         value: /app/dist/config/supabase-ca.crt
-# Admin database credentials and OPENAI_API_KEY deliberately do not belong in this public service.
+# Administrator database credentials never belong in this public service.
+# Optional live generation settings are configured privately by the operator; see docs/digital-worker-runbook.md.

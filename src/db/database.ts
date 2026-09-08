@@ -36,6 +36,17 @@ export class Database {
   readonly pool: pg.Pool;
   constructor(config: PoolConfig = connection()) { this.pool=new pg.Pool(config); this.pool.on('error',()=>{ /* Never emit raw driver errors/credentials. Next operation fails explicitly. */ }); }
   async close() { await this.pool.end(); }
+  // Bind an already-open application transaction to the same RLS and serialization
+  // boundary used by transaction(). Caller owns commit/rollback.
+  async bindScope(c: PoolClient, scope: Scope) {
+    Scope.parse(scope);
+    if (databaseProfile().hosted) { await inspectDatabaseProfile(c); await c.query('SET LOCAL search_path = pg_catalog, public, extensions'); }
+    const role=await c.query("SELECT rolsuper,rolbypassrls,EXISTS(SELECT 1 FROM pg_namespace n WHERE n.nspname='pathway' AND n.nspowner=r.oid) AS owns_schema FROM pg_roles r WHERE rolname=current_user");
+    if(role.rows[0]?.rolsuper || role.rows[0]?.rolbypassrls || role.rows[0]?.owns_schema) throw new Error('Runtime role must not bypass RLS');
+    await c.query("SELECT set_config('pathway.workspace',$1,true),set_config('pathway.tenant',$2,true),set_config('pathway.environment',$3,true)",scoped(scope));
+    await c.query("SET LOCAL statement_timeout='30s'");
+    await c.query('SELECT pg_advisory_xact_lock(hashtextextended($1,0))',[scoped(scope).join('/')]);
+  }
   async transaction<T>(scope: Scope, fn: (client: PoolClient) => Promise<T>, lock = true): Promise<T> {
     Scope.parse(scope); const c=await this.pool.connect();
     try {

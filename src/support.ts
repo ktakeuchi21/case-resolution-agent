@@ -29,7 +29,12 @@ export function assessSupport(registry: Registry, request: RetrievalRequest, ret
   });
   if (request.mode === 'sandbox') {
     const p = retrieved.find(p => p.statements.length > 0);
-    return p ? output('supported', ['SUPPORTED', 'SANDBOX_EXPLORATION_ONLY'], [p]) : output('missing', ['NO_EVIDENCE'], []);
+    if(p)return output('supported', ['SUPPORTED', 'SANDBOX_EXPLORATION_ONLY'], [p]);
+    // Temporary unannotated uploads can be quoted for exploration only. This
+    // does not fabricate reviewed facts or create any governed authority.
+    const exploratory = retrieved.slice(0, 3);
+    if(exploratory.length){const result=output('supported',['SUPPORTED','SANDBOX_EXPLORATION_ONLY'],exploratory);result.claims=exploratory.map(p=>({text:p.text,passageIds:[p.id]}));return result;}
+    return output('missing', ['NO_EVIDENCE'], []);
   }
   const kinds = request.task === 'source_summary' ? [...new Set(retrieved.flatMap(p => p.statements.map(s => s.kind)))] : required[request.task];
   for (const kind of kinds) {

@@ -10,13 +10,14 @@ import { FIXED_TIME } from '../../src/registry.ts';
 import { artifact } from '../../scripts/db/parity.ts';
 import { db,fixture,unit } from './helpers.ts';
 import { databaseProfile } from '../../src/db/profile.ts';
+import { readdirSync } from 'node:fs';
 const owner=new pg.Pool(connection(true));after(async()=>{await db.close();await owner.end();});
 
 test('ordered migrations succeed on a new empty database and seed is deterministic',{skip:databaseProfile().hosted?'Hosted empty-schema migration is verified by the explicit bootstrap; do not create extra cloud databases.':false},async()=>{
  const database='pathway_verify_'+randomUUID().replaceAll('-','');assert(/^[a-z0-9_]+$/.test(database));
  await owner.query(`CREATE DATABASE ${database}`);
  const adminConfig={...connection(true),database},appConfig={...connection(),database};
- const first=await migrate(adminConfig),second=await migrate(adminConfig);assert.deepEqual(first,second);assert.equal(first.length,8);
+ const first=await migrate(adminConfig),second=await migrate(adminConfig);assert.deepEqual(first,second);assert.deepEqual(first.map(r=>r.name),readdirSync('migrations').filter(f=>/^\d+.*\.sql$/.test(f)).sort());
  const fresh=new Database(appConfig);
  try{
   const a=await seed(fresh,'empty-test'),b=await seed(fresh,'empty-test');assert.deepEqual(a,b);

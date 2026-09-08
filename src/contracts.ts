@@ -42,7 +42,7 @@ export const DocumentVersion = z.strictObject({
   authorityDomain: z.enum(['payer_process', 'case_facts', 'program_intake', 'communication']),
   scope: Scope, audiences: z.array(Audience).min(1), channels: z.array(Channel).min(1),
   permittedUses: z.array(Use), prohibitedUses: z.array(Use),
-  securityStatus: z.enum(['fixture_checked', 'quarantined']),
+  securityStatus: z.enum(['fixture_checked', 'review_screened', 'quarantined']),
 }).superRefine((v, ctx) => {
   if (v.effectiveFrom && v.expiresAt && Date.parse(v.effectiveFrom) >= Date.parse(v.expiresAt)) {
     ctx.addIssue({ code: 'custom', message: 'Expiration must follow effective date' });

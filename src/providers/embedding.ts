@@ -23,7 +23,7 @@ export function validateVector(vector: number[], dimensions: number): void {
     throw new Error('Invalid embedding vector');
   }
 }
-function validated(input: unknown, key: string): VectorRecord {
+export function validateEmbeddingRecord(input: unknown, key: string): VectorRecord {
   const row = VectorRecord.parse(input);
   validateVector(row.vector, row.identity.dimensions);
   if (row.key !== key || row.vectorHash !== hash(row.vector) || row.configurationHash !== hash(row.identity) ||
@@ -32,9 +32,9 @@ function validated(input: unknown, key: string): VectorRecord {
 }
 export class MemoryEmbeddingCache implements EmbeddingCache {
   #rows = new Map<string, VectorRecord>();
-  async get(key: string) { const row = this.#rows.get(Hash.parse(key)); return row ? validated(structuredClone(row), key) : null; }
+  async get(key: string) { const row = this.#rows.get(Hash.parse(key)); return row ? validateEmbeddingRecord(structuredClone(row), key) : null; }
   async put(record: VectorRecord) {
-    const row = validated(record, record.key);
+    const row = validateEmbeddingRecord(record, record.key);
     const prior = this.#rows.get(row.key);
     if (prior && prior.vectorHash !== row.vectorHash) throw new Error('Embedding cache collision');
     if (!prior) this.#rows.set(row.key, structuredClone(row));
@@ -46,11 +46,11 @@ export class FileEmbeddingCache implements EmbeddingCache {
   constructor(directory: string) { this.#directory = directory; }
   async get(key: string): Promise<VectorRecord | null> {
     const file = join(this.#directory, `${Hash.parse(key)}.json`);
-    try { return validated(JSON.parse(readFileSync(file, 'utf8')), key); }
+    try { return validateEmbeddingRecord(JSON.parse(readFileSync(file, 'utf8')), key); }
     catch (error) { if ((error as NodeJS.ErrnoException).code === 'ENOENT') return null; throw error; }
   }
   async put(record: VectorRecord): Promise<void> {
-    const row = validated(record, record.key);
+    const row = validateEmbeddingRecord(record, record.key);
     mkdirSync(this.#directory, { recursive: true, mode: 0o700 });
     try { writeFileSync(join(this.#directory, `${row.key}.json`), JSON.stringify(row) + '\n', { flag: 'wx', mode: 0o600 }); }
     catch (error) {
@@ -77,7 +77,7 @@ export class CachedEmbeddings {
     const inputHash = textHash(text), contextHash = hash(context);
     const key = hash({ configurationHash: this.configurationHash, inputHash, contextHash });
     const found = await this.cache.get(key);
-    if (found) { this.usage.cacheHits++; return validated(found, key); }
+    if (found) { this.usage.cacheHits++; return validateEmbeddingRecord(found, key); }
     const inflight = this.#inflight.get(key);
     if (inflight) { this.usage.cacheHits++; return structuredClone(await inflight); }
     const job = (async () => {
@@ -86,7 +86,7 @@ export class CachedEmbeddings {
       if (result.vectors.length !== 1 || !Number.isInteger(result.inputTokens) || result.inputTokens < 0) throw new Error('Embedding response contract violation');
       validateVector(result.vectors[0]!, this.provider.identity.dimensions);
       this.usage.inputTokens += result.inputTokens;
-      const record = validated({ key, identity: this.provider.identity, configurationHash: this.configurationHash, inputHash, contextHash,
+      const record = validateEmbeddingRecord({ key, identity: this.provider.identity, configurationHash: this.configurationHash, inputHash, contextHash,
         embeddedAt: Timestamp.parse(this.#clock()), vector: result.vectors[0]!, vectorHash: hash(result.vectors[0]!) }, key);
       await this.cache.put(record);
       // A concurrent process may already have installed an identical vector with its timestamp.

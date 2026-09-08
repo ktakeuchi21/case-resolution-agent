@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "checkedAt": "2026-09-08T17:34:40.860361+00:00",
+  "environment": "local production build, PostgreSQL, isolated synthetic browser sessions",
+  "automatedReport": "verification-3d85b9880263436e76a9167e47f8f96b6dde90d680382f4b2070286777001792.json",
+  "checks": {
+    "dragDropAndParsing": true,
+    "metadataAndReview": true,
+    "separatePublishAndAssign": true,
+    "freeformCachedAnswerWithThreeExactCitations": true,
+    "persistentVoiceInteractionAndCuedSentiment": true,
+    "crmSummary": true,
+    "officeEmailDraftAndImmutableEdit": true,
+    "focusedClarificationAndFreshRetrieval": true,
+    "conversationSurvivesCompiledServerRestart": true,
+    "newConversationPreservesCaseAndArchivedHistory": true,
+    "operationalManagerPauseAndResumption": true,
+    "officeVerificationAndAcknowledgment": true,
+    "officeCannotResolveManagerTask": true,
+    "managerCannotSimulateReceipt": true,
+    "finalWorkflowState": "PA_PENDING",
+    "finalWorkflowRevision": 11,
+    "outreachDispatchAttempts": 1,
+    "transferDispatchAttempts": 1,
+    "providerUnavailableHasNoFallback": true,
+    "explicitLexicalSandboxCannotAuthorizeWork": true,
+    "assignedUploadGovernedLexicalAnswer": true,
+    "missingSupportingEvidenceAbstention": true,
+    "retirementBlocksSameQuestion": true,
+    "retirementControlDisabled": true,
+    "historicalAnswerUnchanged": true,
+    "missingMetadataSourceDiscovery": true,
+    "parserSignatureErrorVisible": true,
+    "routeErrorClearedOnNavigation": true,
+    "timelineIsoDatesReadable": true,
+    "keyboardStudioArrowNavigation": true,
+    "keyboardFocusOutline": "3px"
+  },
+  "retirementEvidence": {
+    "id": "EV-8093d000860467c45bf9cfc53d3177a2ded7dc235e328d7d01b4a6f507692b9f",
+    "beforeAndAfterHash": "8093d000860467c45bf9cfc53d3177a2ded7dc235e328d7d01b4a6f507692b9f",
+    "historicalDisposition": "answer",
+    "newDisposition": "pause"
+  },
+  "responsive": [
+    {
+      "width": 1440,
+      "route": "case-workspace",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "pathway-agent",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "knowledge-studio",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "evidence-inspector",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "human-review",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "guided-journey",
+      "documentWidth": 1440
+    },
+    {
+      "width": 1440,
+      "route": "evaluation",
+      "documentWidth": 1440
+    },
+    {
+      "width": 768,
+      "route": "case-workspace",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "pathway-agent",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "knowledge-studio",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "evidence-inspector",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "human-review",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "guided-journey",
+      "documentWidth": 768
+    },
+    {
+      "width": 768,
+      "route": "evaluation",
+      "documentWidth": 768
+    },
+    {
+      "width": 375,
+      "route": "case-workspace",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "pathway-agent",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "knowledge-studio",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "evidence-inspector",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "human-review",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "guided-journey",
+      "documentWidth": 375
+    },
+    {
+      "width": 375,
+      "route": "evaluation",
+      "documentWidth": 375
+    },
+    {
+      "width": 768,
+      "route": "studio-upload-review",
+      "documentWidth": 768
+    },
+    {
+      "width": 375,
+      "route": "studio-upload-review",
+      "documentWidth": 375
+    }
+  ],
+  "console": {
+    "completedCaseErrors": 0,
+    "completedCaseWarnings": 0,
+    "studioExpectedFailedResponse": "One intentional malformed-PDF validation request; error displayed and cleared on navigation."
+  },
+  "screenshots": [
+    {
+      "path": "output/playwright/worker-final-1440-case-workspace.png",
+      "sha256": "2f3c7cc58d3dceb2ddad65ce7cb087bfd9224336bc7be3e702d1ad15065628ba"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-evaluation.png",
+      "sha256": "ec0aff5b5022e76f01544e9730428fb6aac6632f866609bab85d8b8dd4b08e7b"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-evidence-inspector.png",
+      "sha256": "b1e0b6170fedbe53d6777f430e094fb5743b86bba4f24b962887a0f938012135"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-guided-journey.png",
+      "sha256": "31d2359351bd19d0dbfcaf5e697205f56be13b8de1440b568451a2ab56a68343"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-human-review.png",
+      "sha256": "a41e95ebe08e69cfec0d7877c5bdccfcddc74768790270bb504f93883dfe9984"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-knowledge-studio.png",
+      "sha256": "564bfccece8676f236ef9e44ae63f48c5d7b4ee9ad73f2ac8bfe6c2b47994dc0"
+    },
+    {
+      "path": "output/playwright/worker-final-1440-pathway-agent.png",
+      "sha256": "6cea3d90c13552802bd74b24e0f332e1f4ce0ccded23c9fa81f8759df2d99461"
+    },
+    {
+      "path": "output/playwright/worker-final-375-case-workspace.png",
+      "sha256": "77ebb991dedc18ecb863f9adc26b7014d7796a4d78ff9c606e8c2c6e445f9cb8"
+    },
+    {
+      "path": "output/playwright/worker-final-375-evaluation.png",
+      "sha256": "18af8c71e72ea824a818b9842059a44b487a5df6b95f230625b55c6c68395007"
+    },
+    {
+      "path": "output/playwright/worker-final-375-evidence-inspector.png",
+      "sha256": "adcab888900c9c8d26aa1a079af5c5afdd2e369715ad541ef8eb76de1dcdce9c"
+    },
+    {
+      "path": "output/playwright/worker-final-375-guided-journey.png",
+      "sha256": "e0a3fd517762e2379a4ba929bbcf7f5c19f75005ba50d4ad83d61a6d95774e0e"
+    },
+    {
+      "path": "output/playwright/worker-final-375-human-review.png",
+      "sha256": "d8059f36752fe758afea26a672c5cf03b055703cdc58d44dda1dfb8bb5875730"
+    },
+    {
+      "path": "output/playwright/worker-final-375-knowledge-studio.png",
+      "sha256": "2e666a513e0841c627afbfa1eccda3dfc0fccf6fe83a5b5608d1d93001d1588b"
+    },
+    {
+      "path": "output/playwright/worker-final-375-pathway-agent.png",
+      "sha256": "5e3ebcb3342bf9d576c998cc70cb9ee56144cf593641bc6de8f1f049bd728643"
+    },
+    {
+      "path": "output/playwright/worker-final-768-case-workspace.png",
+      "sha256": "9eaee6bdef7bfa7999c0593899ec604f1db5236b4fd9357356aa060d4ba4c206"
+    },
+    {
+      "path": "output/playwright/worker-final-768-evaluation.png",
+      "sha256": "f64d5b49275bd1238e532f72e202bcec2c01fc4a2e54d76dd44d23ca3afb9fa0"
+    },
+    {
+      "path": "output/playwright/worker-final-768-evidence-inspector.png",
+      "sha256": "e3463aa988e4e13882eae02a895704800a20c095a15c2ecbc750e2466ea72648"
+    },
+    {
+      "path": "output/playwright/worker-final-768-guided-journey.png",
+      "sha256": "429eb78e22c33ef32c387c74bd05a40c7b273aace8ab4dc613be4ef824d0a59e"
+    },
+    {
+      "path": "output/playwright/worker-final-768-human-review.png",
+      "sha256": "8eed56b674486be89d4def78166d60f9f3a1c062695cf1b4a2e5ca0bbe8301e4"
+    },
+    {
+      "path": "output/playwright/worker-final-768-knowledge-studio.png",
+      "sha256": "fb8042e7241d0c02b00c39f1cf3b2479de767acb46934d7d515396878803aa2c"
+    },
+    {
+      "path": "output/playwright/worker-final-768-pathway-agent.png",
+      "sha256": "e9e6f12ce79773c2621ee213ae6c06b2964d7e6e254029518eaa04da1997f0d5"
+    },
+    {
+      "path": "output/playwright/worker-upload-768.png",
+      "sha256": "a51041fd87361dc7ded60e7a3a6de65dd975d8ad80e541b9af3fd93c03687fe9"
+    },
+    {
+      "path": "output/playwright/worker-upload-375.png",
+      "sha256": "66ca588a94eda53183dd87a4f4b87c7d171103dff6123c0bfed97a8d07068f63"
+    },
+    {
+      "path": "output/playwright/worker-completed-workflow.png",
+      "sha256": "8efb5a7e54bffa978d8c3875fe020448a323a922132f4fb17d3e9f1d91718594"
+    },
+    {
+      "path": "output/playwright/worker-retired-source-mobile.png",
+      "sha256": "c223b53556d684fb2a0eff97c1e6f0bded02b1f431a9368d848f1ac1ee33260a"
+    }
+  ],
+  "limitations": [
+    "Live synthesis and uncached semantic/hybrid ingestion journey not exercised: provider secret/settings absent.",
+    "Uploaded-source authority lifecycle measured with explicitly selected lexical retrieval, separately from original cached hybrid workflow.",
+    "Contract tests cover five channels and four audiences; browser exercised voice interaction, email draft and CRM summary.",
+    "Browser automation had locator/wait errors corrected from current UI; these are not application failures."
+  ]
+}

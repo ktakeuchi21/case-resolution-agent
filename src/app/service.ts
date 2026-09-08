@@ -20,6 +20,10 @@ import { hash,manifestDigest,withoutHash,textHash } from '../integrity.ts';
 import { generate,GenerationResult } from '../generation/index.ts';
 import { HttpError,Sessions } from './session.ts';
 import type { Session } from './session.ts';
+import { AgentService } from '../agent/service.ts';
+import { configuredProviders, providerConfiguration } from '../agent/runtime.ts';
+import { buildContext } from '../agent/context.ts';
+import { StudioService } from '../studio/service.ts';
 export const roles=['office','manager','supervisor','knowledge_reviewer'] as const;
 const commands=['assess','dispatch','ambiguity','receive','resolve','ack','checkpoint','cancel','retire','supersede','publish','assign','reset','role'] as const;
 export const Action=z.strictObject({action:z.enum(commands),idempotencyKey:Id,taskId:Id.optional(),option:z.enum(['release_collection','verify_and_approve','retry','escalate','reject']).optional(),role:z.enum(roles).optional(),documentHash:Hash.optional(),recipient:z.literal('sim-receiver-101').optional(),releaseId:Id.optional()});
@@ -31,7 +35,9 @@ const ChatReceipt=z.strictObject({answer:GenerationResult,record:EvidenceRecord,
 export const uploadFixtures=corpus.versions.filter(v=>v.id.startsWith('SB-')).map(v=>({name:v.id==='SB-INJECT.v1'?'synthetic-injection-check.txt':'synthetic-note-guide.txt',text:v.originalText,description:v.id==='SB-INJECT.v1'?'Synthetic adversarial document: instructions stay untrusted content.':'Unapproved synthetic replacement: cannot authorize case work.',documentVersionId:v.id}));
 export class Application {
  readonly db:Database;readonly sessions:Sessions;readonly cache=new FileEmbeddingCache(fileURLToPath(new URL('../../fixtures/embeddings/',import.meta.url)));
- constructor(db:Database,sessions:Sessions){this.db=db;this.sessions=sessions;}
+ readonly agent:AgentService;
+ readonly studio:StudioService;
+ constructor(db:Database,sessions:Sessions){this.db=db;this.sessions=sessions;this.agent=new AgentService(db,sessions,this.cache);this.studio=new StudioService(db,sessions,this.cache);}
  scope(s:Session,environment:'governed'|'sandbox'='governed'){if(!s.workspace)throw new HttpError(409,'Launch a guided demo first.');return {workspace:s.workspace,tenant:'T-DEMO',environment};}
  async intent(scope:ReturnType<Application['scope']>,input:z.infer<typeof Intent>){
   return this.db.transaction(scope,async tx=>{
@@ -60,12 +66,17 @@ export class Application {
   const governedRecords=await readRecords('governed'),sandboxRecords=await readRecords('sandbox');
   const records={evidence:[...governedRecords.evidence,...sandboxRecords.evidence],runs:[...governedRecords.runs,...sandboxRecords.runs]};
   const items=(await (itemClient??this.sessions.db.pool).query('SELECT kind,body FROM portfolio.items WHERE workspace=$1 AND (expires_at IS NULL OR expires_at>clock_timestamp()) ORDER BY created_at',[s.workspace])).rows;
-  return {synthetic:true,scenario:s.scenario,clock:new Date(Math.max(s.demo_clock.getTime(),Date.parse(workflow.updatedAt))).toISOString(),role:s.role,roles,workflow,
+  return {synthetic:true,demoId:s.workspace,scenario:s.scenario,clock:new Date(Math.max(s.demo_clock.getTime(),Date.parse(workflow.updatedAt))).toISOString(),role:s.role,roles,workflow,currentAgentContext:buildContext(workflow,null,[]).context,agent:await this.agent.view(s,itemClient),knowledgeStudio:await this.studio.view(s,itemClient),
    timeline:timeline.map(t=>({id:t.id,actor:t.actor,timestamp:t.timestamp,status:t.status,events:t.events,command:{type:t.command.type}})),nextBestAction:nextBestAction(workflow),
    knowledge:{releases:registry.corpus.releases,assignments:registry.corpus.assignments,versions:[...registry.corpus.versions,...sandbox.corpus.versions],documents:[...registry.corpus.documents,...sandbox.corpus.documents],activeAssignmentId:registry.corpus.cases.find(c=>c.id==='DEMO-101')!.assignmentId,events:registry.events,collections:sandbox.corpus.collections,
     uploads:items.filter(i=>i.kind==='upload').map(i=>i.body),studio:items.filter(i=>i.kind==='studio').map(i=>i.body)},...records,answers:items.filter(i=>i.kind==='answer').map(i=>GenerationResult.parse(i.body)),
-   limits:{syntheticOnly:true,maxUploadBytes:8192,sessionExpiresAt:s.expires_at.toISOString(),remainingResets:5-s.reset_count,liveModelCallsEnabled:false},
+   limits:{syntheticOnly:true,maxUploadBytes:8192,sessionExpiresAt:s.expires_at.toISOString(),remainingResets:5-s.reset_count,liveModelCallsEnabled:providerConfiguration().enabled},
    questions:[baseRequest().question,'Which clinician-authenticated encounter narrative remains outstanding?','Which signed office note document is requested?',failureProbe]};
+ }
+ async historicalEvidence(s:Session,input:unknown){
+  const id=Id.parse(input);
+  for(const environment of ['governed','sandbox'] as const){const scope=this.scope(s,environment);const record=await this.db.transaction(scope,async c=>{const row=(await c.query('SELECT body,body_hash FROM pathway.evidence WHERE workspace=$1 AND tenant=$2 AND environment=$3 AND id=$4',[...scoped(scope),id])).rows[0];return row?validateRow(row,EvidenceRecord):null;});if(record)return record;}
+  throw new HttpError(404,'This evidence record is unavailable in your session.');
  }
  async action(session:Session,input:unknown){const a=Action.parse(input);return this.sessions.exclusive(session,async(s,c)=>{
   const key='action.'+hash({session:s.token_hash,key:a.idempotencyKey}),fingerprint=hash(a);
@@ -73,7 +84,7 @@ export class Application {
   const old=(await c.query('SELECT fingerprint,workspace FROM portfolio.requests WHERE session_hash=$1 AND key=$2',[s.token_hash,key])).rows[0];
   if(old){if(old.fingerprint!==fingerprint)throw new HttpError(409,'This request ID belongs to a different action.');if(old.workspace!==s.workspace&&a.action!=='reset')throw new HttpError(409,'That request belongs to a previous demo.');return this.view(s,c);}
   if(s.actions>=150)throw new HttpError(429,'Session action budget reached. Start a fresh session later.');
-  const id='web.'+hash({key,action:a.action}).slice(0,32),scope=this.scope(s),repo=new WorkflowRepository(this.db,scope),options={retrieval:{cacheSource:this.cache}};
+  const id='web.'+hash({key,action:a.action}).slice(0,32),scope=this.scope(s),repo=new WorkflowRepository(this.db,scope),options={retrieval:{cacheSource:this.cache,embeddingProvider:configuredProviders(this.sessions,s.token_hash).embeddingProvider}};
   const snapshot=(await repo.read('avery','SC-01')).at(-1)!.snapshot;
   s={...s,demo_clock:new Date(Math.max(s.demo_clock.getTime(),Date.parse(snapshot.updatedAt)))};
   const now=s.demo_clock.toISOString(),engine=new WorkflowEngine(this.db,scope,()=>now);

@@ -1,0 +1,95 @@
+{
+  "schema": "pathway-digital-worker-verification-v1",
+  "timestamp": "2026-09-08T16:47:22.884Z",
+  "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
+  "summary": "Verification has an incomplete or failing check. See the recorded suites.",
+  "suites": [
+    {
+      "name": "TypeScript contracts",
+      "command": "npm run typecheck",
+      "passed": true,
+      "tests": null,
+      "durationMs": 2537.77,
+      "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
+    },
+    {
+      "name": "Core governance and retrieval",
+      "command": "npm test",
+      "passed": true,
+      "tests": 80,
+      "durationMs": 628.2420420000003,
+      "outputHash": "f3ea381e055c913d567c3935194235fad129c6aa11c40176d63cc9a42dadb0c7"
+    },
+    {
+      "name": "Original generation",
+      "command": "npm run test:generation",
+      "passed": true,
+      "tests": 12,
+      "durationMs": 465.26720799999975,
+      "outputHash": "4101886a3eb113cdfd675baff67be48b8a18ad5ad201b0e5741fd5447a5d0085"
+    },
+    {
+      "name": "Digital worker composition",
+      "command": "npm run test:agent",
+      "passed": true,
+      "tests": 25,
+      "durationMs": 419.6704999999997,
+      "outputHash": "7cf9da8ab98397ef03f5e949b8b2fb4dcbe65a95a0ad29fef4eadc37e7a1fbba"
+    },
+    {
+      "name": "Document parsing and safety",
+      "command": "npm run test:studio",
+      "passed": true,
+      "tests": 8,
+      "durationMs": 3084.7072500000004,
+      "outputHash": "3ad7b4cb0bf01d16b24f54f83daaec8314705399c1ffed01f378aea353c1d430"
+    },
+    {
+      "name": "PostgreSQL persistence",
+      "command": "npm run test:postgres",
+      "passed": true,
+      "tests": 24,
+      "durationMs": 3000.4943329999996,
+      "outputHash": "84f33ccd3341ea644ed385fa252cbaad14d9a6874d41851a0255ff159f40673c"
+    },
+    {
+      "name": "Workflow effects, roles and restart",
+      "command": "npm run test:workflow",
+      "passed": true,
+      "tests": 30,
+      "durationMs": 12881.229833000001,
+      "outputHash": "4495004728db1e61c762a5971bca35fad4db22e72a389490a31603cd97646c89"
+    },
+    {
+      "name": "Application, isolation and Studio",
+      "command": "npm run test:app",
+      "passed": false,
+      "tests": 22,
+      "durationMs": 5738.574124999999,
+      "outputHash": "4f0281b10c9cbeeccf4ec933c90b5756272c353df3b71b484ced38eeeef83cbc"
+    }
+  ],
+  "frozenArtifacts": {
+    "count": 86,
+    "unchanged": true,
+    "manifestHash": "6f0cafb5b72f05f3878e2a120f7cdbb1a9a8d1e755d321c2db4ddca4f2b0becb"
+  },
+  "retrieval": {
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
+    "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
+    "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
+  },
+  "generation": {
+    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-synthesis-v2; replaceable provider interface",
+    "summary": "Deterministic composition, structured provider-contract tests and fail-closed checks were exercised. No live synthesis quality score is claimed.",
+    "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
+  },
+  "limitations": [
+    "All cases, identities and integrations are synthetic. No real outreach, payer approval or clinical authority.",
+    "Live synthesis and new semantic vectors require explicitly configured server credentials and request budgets. Missing or failed providers pause with no silent fallback.",
+    "Model support review is fallible. Exact quote and eligibility checks do not prove every paraphrase is entailed.",
+    "TXT, Markdown, PDF and DOCX parsing is bounded: 1 MB, 20 PDF pages, 64,000 extracted characters and 128 passages. No OCR; PDF tables can have uncertain reading order.",
+    "Content screening and user attestation do not guarantee patient-data detection. Temporary sandbox data expires with the session; approved published sources and governed evidence remain immutable.",
+    "Enterprise identity, real channel integrations, independent healthcare validation, production load, backup restoration and patient outcomes are unverified."
+  ]
+}
