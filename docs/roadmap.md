@@ -1,8 +1,8 @@
 # Implementation roadmap and portfolio plan
 
-Version 0.4 · September 7, 2026 (MDT) · Phase 2B live decision gate reviewed
+Version 0.6 · September 8, 2026 (MDT) · Public synthetic portfolio deployment
 
-Phase 1/1.5, Phase 2A, Phase 2B and the local Phase 2C persistence slice are complete. PostgreSQL now preserves governance and evidence across repository reconstruction; pgvector preserves the validated rankings and outcomes. The next recommendation is a headless synthetic SC-01 workflow state machine. No next-phase implementation has begun. The operational wedge and receipt-based outcome remain unchanged.
+Phases 1–2D and the six-experience synthetic browser application are implemented. The public Render/Supabase deployment is live, with hosted browser acceptance complete. The staged estimates and recommendations below preserve earlier planning history; the current handoff is [the public MVP](#active-public-synthetic-portfolio-mvp). The operational wedge and receipt-based outcome remain unchanged.
 
 | Priority/stage | Work | Exit gate |
 | --- | --- | --- |
@@ -105,9 +105,9 @@ The reason is observed behavior: golden, resumed, duplicate and reconciled-crash
 
 The subsequent user charter supersedes the earlier recommendation to stop before an interface. The six-experience browser application, durable session API, bounded synthetic ingestion, immutable publication/explicit assignment, extractive answers and production package are implemented. Existing phases remain historical baselines. Current validation and remaining release gates are tracked in [MVP execution](mvp-execution.md).
 
-Public deployment is not complete. The owner-selected GitHub repository, Render Free/Oregon draft and dedicated Supabase project are verified. Guarded hosted bootstrap, 71 regression tests, retirement/history/sandbox/concurrency and [hosted frozen parity](../artifacts/phase2c/parity-84c57174e5f418c904098e085b2f6d0fa85bec756f1342225ee98969d65826b1.json) passed. The restricted runtime secret still needs the owner to finish Render’s native file import. Final read-only audits passed. Publish the reviewed deployment changes before deploying; then verify the real HTTPS journey and capture hosted screenshots. Do not substitute a static mock or relax database/provider controls. No live URL, deployed screenshot or live generation result is claimed.
+[The synthetic application is live](https://case-resolution-agent.onrender.com) on Render Free/Oregon with dedicated Supabase persistence. Guarded bootstrap, 71 hosted regression tests, 23 original references, 108 frozen retrieval comparisons, retirement/history/sandbox/concurrency, final access/evidence audits and HTTPS checks passed. The owner completed runtime-secret import and initial deployment. Browser acceptance and inspected deployed screenshots are complete; source/runtime lineage and precise limits are recorded in [hosted verification](hosted-verification.md). No live generation result is claimed.
 
 After the synthetic MVP is publicly verified, the next decisions require separate evidence: durable operator capacity/retention and restore procedures for a long-lived demonstration, independent retrieval holdouts, and measured generation utility. Arbitrary pharmaceutical uploads, real communications, production healthcare identity and full workflow expansion remain outside the portfolio release.
 
 
-September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import and actual deployed HTTPS/browser checks remain pending.
+September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import, deployed HTTPS and browser acceptance passed.

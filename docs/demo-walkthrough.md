@@ -1,6 +1,6 @@
 # Pathway Agent demonstration walkthrough
 
-This tour uses the current visible controls in `web/app.js`. It is a script for the connected application, not a claim that a hosted tour has passed. No verified public URL or deployed screenshots are available yet. Follow [production runbook](production-runbook.md) for local/build setup and [deployment feasibility](deployment-feasibility.md) for hosted prerequisites.
+Open the [live synthetic demonstration](https://case-resolution-agent.onrender.com). This tour uses the current visible controls in `web/app.js`; hosted browser acceptance passed. Follow [production runbook](production-runbook.md) for local/build setup and hosted operations.
 
 Use only supplied synthetic cases and documents. All office communication, document transfer and receiving-system acknowledgments are simulated. The final boundary is **Documentation dependency resolved; prior authorization pending.** The demonstration does not make payer, coverage, clinical or financial-assistance determinations.
 

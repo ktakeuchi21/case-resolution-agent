@@ -1,0 +1,895 @@
+{
+  "schemaVersion": "pathway-hosted-browser-acceptance-v1",
+  "status": "passed",
+  "verifiedAt": "2026-09-08T14:45:25.660428+00:00",
+  "url": "https://case-resolution-agent.onrender.com",
+  "deploymentCommit": "22db28a290a7b5a8e84e2e0d0e56c07105d2c65c",
+  "environment": {
+    "browser": "Chromium via Playwright CLI 0.1.19",
+    "browserContext": "isolated nonpersistent headless context",
+    "syntheticOnly": true,
+    "testWorkspaceReservations": 2,
+    "additionalVisibleContext": "Opened then left untouched after unexpected visible user interaction; excluded from QA evidence. No controls were operated in that context.",
+    "providerRequests": 0,
+    "note": "Existing cached embedding vectors and deterministic extractive explanations; no new paid model or embedding requests were made."
+  },
+  "initialJourney": {
+    "url": "https://case-resolution-agent.onrender.com/#review",
+    "focus": [
+      {
+        "label": "Launch guided demo",
+        "outline": "3px"
+      },
+      {
+        "label": "Identify missing documentation",
+        "outline": "3px"
+      },
+      {
+        "label": "Dispatch simulated follow-up",
+        "outline": "3px"
+      },
+      {
+        "label": "Introduce an ambiguity",
+        "outline": "3px"
+      },
+      {
+        "label": "Human review1",
+        "outline": "3px"
+      }
+    ],
+    "refreshPreservedAwaitingResponse": true,
+    "state": {
+      "workflowId": "SC-01",
+      "revision": 5,
+      "state": "PAUSED",
+      "role": "manager",
+      "tasks": [
+        {
+          "id": "web.f0b0d240dc8f7d6dcd69b273383d566b.task.clarification",
+          "status": "open",
+          "requiredRole": "case_manager"
+        }
+      ],
+      "effects": [
+        {
+          "id": "SC-01.notification.1",
+          "status": "delivered",
+          "attempts": 1
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f",
+          "hash": "e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f"
+        },
+        {
+          "id": "EV-4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff",
+          "hash": "4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff"
+        },
+        {
+          "id": "EV-6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3",
+          "hash": "6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3"
+        }
+      ],
+      "timelineIds": [
+        "176e9533-c194-47e6-bb96-a5695c474f7c",
+        "261aaf2e-9b45-47cd-bf70-8472e69d0dad",
+        "43827ebf-8442-4239-891a-246e8b6a6ee4",
+        "49d38493-87ed-4cc0-91b5-8ed72d1cd876",
+        "6114d807-0b09-41c4-80e0-ad93fa6d2137"
+      ]
+    }
+  },
+  "coordinatedRenderRestart": {
+    "restartConfirmedByParent": "Render Events: Service restarted by you, September 8 2026 at 8:37 AM America/Denver; healthz 200 after restart.",
+    "comparison": {
+      "exactSnapshotPreserved": true,
+      "before": {
+        "workflowId": "SC-01",
+        "revision": 5,
+        "state": "PAUSED",
+        "role": "manager",
+        "tasks": [
+          {
+            "id": "web.f0b0d240dc8f7d6dcd69b273383d566b.task.clarification",
+            "status": "open",
+            "requiredRole": "case_manager"
+          }
+        ],
+        "effects": [
+          {
+            "id": "SC-01.notification.1",
+            "status": "delivered",
+            "attempts": 1
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f",
+            "hash": "e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f"
+          },
+          {
+            "id": "EV-4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff",
+            "hash": "4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff"
+          },
+          {
+            "id": "EV-6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3",
+            "hash": "6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3"
+          }
+        ],
+        "timelineIds": [
+          "176e9533-c194-47e6-bb96-a5695c474f7c",
+          "261aaf2e-9b45-47cd-bf70-8472e69d0dad",
+          "43827ebf-8442-4239-891a-246e8b6a6ee4",
+          "49d38493-87ed-4cc0-91b5-8ed72d1cd876",
+          "6114d807-0b09-41c4-80e0-ad93fa6d2137"
+        ]
+      },
+      "after": {
+        "workflowId": "SC-01",
+        "revision": 5,
+        "state": "PAUSED",
+        "role": "manager",
+        "tasks": [
+          {
+            "id": "web.f0b0d240dc8f7d6dcd69b273383d566b.task.clarification",
+            "status": "open",
+            "requiredRole": "case_manager"
+          }
+        ],
+        "effects": [
+          {
+            "id": "SC-01.notification.1",
+            "status": "delivered",
+            "attempts": 1
+          }
+        ],
+        "evidence": [
+          {
+            "id": "EV-e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f",
+            "hash": "e347b88345ca28c0bfd33ab1483e6edcb3d500396a517927fa4c4e8014a3a81f"
+          },
+          {
+            "id": "EV-4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff",
+            "hash": "4cc991a794f4442b7a60a813da958319b56d1825ecbf2f45e871bf8c112edeff"
+          },
+          {
+            "id": "EV-6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3",
+            "hash": "6fc6e3162f62e86ff4bf9efd91b8ff79ae99c6dbe6f9f1364d94a9b16d4c5df3"
+          }
+        ],
+        "timelineIds": [
+          "176e9533-c194-47e6-bb96-a5695c474f7c",
+          "261aaf2e-9b45-47cd-bf70-8472e69d0dad",
+          "43827ebf-8442-4239-891a-246e8b6a6ee4",
+          "49d38493-87ed-4cc0-91b5-8ed72d1cd876",
+          "6114d807-0b09-41c4-80e0-ad93fa6d2137"
+        ]
+      }
+    }
+  },
+  "humanResumeAndCompletion": {
+    "focus": [
+      {
+        "label": "Clarify and resume collection",
+        "outline": "3px"
+      },
+      {
+        "label": "Case workspace",
+        "outline": "3px"
+      },
+      {
+        "label": "Simulate document receipt",
+        "outline": "3px"
+      },
+      {
+        "label": "Human review1",
+        "outline": "3px"
+      },
+      {
+        "label": "Verify document and approve bound transfer",
+        "outline": "3px"
+      },
+      {
+        "label": "Case workspace",
+        "outline": "3px"
+      },
+      {
+        "label": "Dispatch verified package",
+        "outline": "3px"
+      },
+      {
+        "label": "Simulate receiving acknowledgment",
+        "outline": "3px"
+      }
+    ],
+    "resumed": {
+      "state": "AWAITING_RESPONSE",
+      "notificationCount": 1,
+      "notificationAttempts": [
+        1
+      ],
+      "humanDecisions": 1
+    },
+    "beforeAck": {
+      "state": "AWAITING_ACK",
+      "dependency": "open",
+      "transfer": "delivered"
+    },
+    "final": {
+      "state": "PA_PENDING",
+      "dependency": "resolved",
+      "accessStatus": "PA_PENDING",
+      "effects": [
+        {
+          "kind": "notification",
+          "status": "delivered",
+          "attempts": 1,
+          "authorizationCount": 3
+        },
+        {
+          "kind": "transfer",
+          "status": "acknowledged",
+          "attempts": 1,
+          "authorizationCount": 3
+        }
+      ],
+      "humanDecisions": 2,
+      "evidenceCount": 7,
+      "fourDeterminations": {
+        "evidenceId": "EV-cfdf455b4a8e8c41ce0cbdcc2eb91f614d9048fb7e021235944d7bc220a8b88b",
+        "runId": "b951ab1a-5334-4467-99a0-a531b320334a",
+        "timestamp": "2026-09-10T16:08:00.000Z",
+        "mode": "hybrid",
+        "degraded": false,
+        "releases": [
+          {
+            "id": "KP-ALDER.2026.09.1",
+            "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+          }
+        ],
+        "passages": [
+          {
+            "passageId": "K-PA.v2.s1",
+            "documentVersionId": "K-PA.v2",
+            "documentId": "K-PA",
+            "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+            "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 137,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          },
+          {
+            "passageId": "N-101.v1.s1",
+            "documentVersionId": "N-101.v1",
+            "documentId": "N-101",
+            "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+            "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 128,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          },
+          {
+            "passageId": "CE-101-01.v1.s1",
+            "documentVersionId": "CE-101-01.v1",
+            "documentId": "CE-101-01",
+            "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+            "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 128,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          }
+        ],
+        "support": {
+          "reasonCodes": [
+            "SUPPORTED"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:08:00.000Z",
+          "status": "supported"
+        },
+        "applicability": {
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:08:00.000Z",
+          "status": "applicable"
+        },
+        "communication": {
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:08:00.000Z",
+          "status": "allowed"
+        },
+        "action": {
+          "reasonCodes": [
+            "APPROVAL_REQUIRED"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:08:00.000Z",
+          "status": "requires_approval"
+        }
+      },
+      "completionVisible": true
+    }
+  },
+  "groundedAnswer": {
+    "citationChecks": 24,
+    "citationHashFailures": 0,
+    "answer": {
+      "id": "GEN-790a22916f705566a2336cbe4aef0d00217fbd669b1d155dd1e14f30ee855f85",
+      "evidenceId": "EV-e79f063d2b8894d3aa4b2bb8c3e968739e265ccb4691bf81c32aa0cb33f8d4f5",
+      "evidenceHash": "e79f063d2b8894d3aa4b2bb8c3e968739e265ccb4691bf81c32aa0cb33f8d4f5",
+      "queryHash": "d277e02841e5daeba63e5a58406dd3e00e65fc672489a080e283074488e38ff2",
+      "timestamp": "2026-09-10T16:10:00.000Z",
+      "method": "deterministic-extractive-explanation",
+      "disposition": "answer",
+      "reasonCodes": [
+        "GROUNDED_EXTRACTIVE_ANSWER",
+        "NO_MODEL_USED"
+      ],
+      "message": "These exact source-supported statements explain the recorded evidence. They do not determine payer approval or authorize a workflow action. Deterministic explanation; no language model was called.",
+      "claims": [
+        {
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "passageIds": [
+            "K-PA.v2.s1"
+          ]
+        },
+        {
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "passageIds": [
+            "N-101.v1.s1"
+          ]
+        },
+        {
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "passageIds": [
+            "CE-101-01.v1.s1"
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "sourceSupport": "supported",
+      "applicability": "applicable",
+      "communicationPermission": "allowed",
+      "actionPermission": "allowed",
+      "evidenceTimestamp": "2026-09-10T16:10:00.000Z",
+      "selectedReleaseIds": [
+        "KP-ALDER.2026.09.1"
+      ],
+      "retrievalMode": "hybrid",
+      "audit": {
+        "promptVersion": "pathway-controlled-explanation-v1",
+        "promptHash": "6e9d30a7f9faa0086bd9029966fd65df050259a7275ddfc53dae87dba382e10e",
+        "provider": "pathway",
+        "model": "deterministic-extractive-v1",
+        "latencyMs": 0.6916579999960959,
+        "attempts": 0,
+        "retryPolicy": "no-automatic-retry",
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "estimatedCostUsd": 0,
+        "costBasis": "No model request made.",
+        "execution": "none",
+        "authority": "historical-evidence-explanation-only"
+      }
+    },
+    "workflowState": "PA_PENDING"
+  },
+  "retirement": {
+    "beforeState": "OUTREACH_QUEUED",
+    "afterState": "PAUSED",
+    "pauseReasons": [
+      "SOURCE_RETIRED"
+    ],
+    "dispatchAttempts": [
+      0
+    ],
+    "retirementRecorded": true,
+    "historicalEvidence": [
+      {
+        "id": "EV-4aaef6aa0119cfc696aef8862912e1b2d555d5b3bc2b233c4d49a0f0aaf1d696",
+        "hash": "4aaef6aa0119cfc696aef8862912e1b2d555d5b3bc2b233c4d49a0f0aaf1d696",
+        "exactRecordPreserved": true
+      }
+    ],
+    "newEvidence": [
+      {
+        "id": "EV-7fb8320d7e9d661e0e657a8b9ead3136bc39b1dbaff537c8561933cf2f912746",
+        "disposition": "pause",
+        "action": {
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "supportingPassageIds": [],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:05:00.000Z",
+          "status": "paused"
+        },
+        "exclusions": [
+          {
+            "documentVersionId": "K-CEDAR.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_PAYER",
+              "WRONG_PLAN"
+            ]
+          },
+          {
+            "documentVersionId": "K-COMM.v1",
+            "reasonCodes": [
+              "USE_NOT_PERMITTED"
+            ]
+          },
+          {
+            "documentVersionId": "K-FIN.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA-X.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.expired",
+            "reasonCodes": [
+              "EXPIRED",
+              "REVIEW_OVERDUE"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.superseded",
+            "reasonCodes": [
+              "SUPERSEDED"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.v2",
+            "reasonCodes": [
+              "SOURCE_RETIRED"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.v3",
+            "reasonCodes": [
+              "NOT_YET_EFFECTIVE"
+            ]
+          },
+          {
+            "documentVersionId": "K-TABLE.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED"
+            ]
+          },
+          {
+            "documentVersionId": "K-UNDATED.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED",
+              "METADATA_UNKNOWN"
+            ]
+          },
+          {
+            "documentVersionId": "K-UT.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_STATE"
+            ]
+          },
+          {
+            "documentVersionId": "N-102.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "CASE_ACCESS_DENIED"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "sandboxCannotRestoreAuthority": {
+    "sandbox": {
+      "support": "supported",
+      "applicability": "sandbox_only",
+      "communication": "allowed",
+      "action": "denied",
+      "reasonCodes": [
+        "SANDBOX_ACTION_DENIED"
+      ],
+      "mode": "sandbox"
+    },
+    "governedAfterUpload": {
+      "disposition": "pause",
+      "action": "paused",
+      "reasonCodes": [
+        "SOURCE_RETIRED"
+      ],
+      "retiredSourceExcluded": true
+    },
+    "state": {
+      "workflowState": "PAUSED",
+      "pauseReasons": [
+        "SOURCE_RETIRED"
+      ],
+      "dispatchAttempts": [
+        0
+      ],
+      "uploads": [
+        {
+          "status": "parsed",
+          "name": "synthetic-note-guide.txt"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "EV-8c8c1911ba558ace51d4d0e168e17251d7c1a4e1ff1d1754f854652aea4a8f0a",
+          "hash": "8c8c1911ba558ace51d4d0e168e17251d7c1a4e1ff1d1754f854652aea4a8f0a"
+        },
+        {
+          "id": "EV-7fb8320d7e9d661e0e657a8b9ead3136bc39b1dbaff537c8561933cf2f912746",
+          "hash": "7fb8320d7e9d661e0e657a8b9ead3136bc39b1dbaff537c8561933cf2f912746"
+        },
+        {
+          "id": "EV-4aaef6aa0119cfc696aef8862912e1b2d555d5b3bc2b233c4d49a0f0aaf1d696",
+          "hash": "4aaef6aa0119cfc696aef8862912e1b2d555d5b3bc2b233c4d49a0f0aaf1d696"
+        },
+        {
+          "id": "EV-b479dcacdc19b4d221f8acae0dd77ffec0a8de4ba742006f2ab64307407d0403",
+          "hash": "b479dcacdc19b4d221f8acae0dd77ffec0a8de4ba742006f2ab64307407d0403"
+        }
+      ]
+    }
+  },
+  "responsiveChecks": [
+    {
+      "route": "#home",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#workspace",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#agent",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#studio",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#evidence",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#review",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "#home",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#workspace",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#agent",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#studio",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#evidence",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#review",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "#home",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#workspace",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#agent",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#studio",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#evidence",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#review",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "#home",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "#workspace",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "#agent",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "#studio",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "#evidence",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "#review",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    }
+  ],
+  "humanReviewResponsive": [
+    {
+      "screen": "human-review",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "screen": "human-review",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "screen": "human-review",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "screen": "human-review",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    }
+  ],
+  "browserProtections": {
+    "cookieFlags": [
+      {
+        "httpOnly": true,
+        "secure": true,
+        "sameSite": "Strict"
+      }
+    ],
+    "reducedMotion": {
+      "matched": true,
+      "scrollBehavior": "auto",
+      "buttonTransition": "0s"
+    }
+  },
+  "console": {
+    "errors": 0,
+    "warnings": 0,
+    "unexpectedErrors": 0,
+    "cspErrors": 0
+  },
+  "screenshots": {
+    "docs/screenshots/hosted-20260908-agent-1440.png": {
+      "sha256": "3e82af522db5459eb70f6d6fec0b19c7914a3f1035aae3ac3c5ede240f69873d",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-completed-1440.png": {
+      "sha256": "e3815636be2cea5c8faa106326545a720c9abf8c2121ec84c6dd8779cadc9e08",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-evidence-1440.png": {
+      "sha256": "245fbd7b5f346a78cecf0f3854b9a3b49cf7f2f8d7a19f83208c9f52155131c1",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-human-pause-1440.png": {
+      "sha256": "2ceff4d100d3b9c1116e8171ab5eba8355d3ac8e1090fe7323026a444b95f9db",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-human-pause-375.png": {
+      "sha256": "56ebcbca65f2ea95e76f11e01a9a34d3362e5dbfc40248645170b19f3412bc4b",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-landing-1440.png": {
+      "sha256": "04869225ce769322c2e778193d8293e053a556b0bf5d6515863edddde282ec94",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-retirement-paused-1440.png": {
+      "sha256": "bb08ec1ff70029ca8d8b57fcb31e025f4043568e69ed6a8797ea5ec61baa6640",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-sandbox-denied-1440.png": {
+      "sha256": "f95c6415ee344076f722ffdce48cd19d940227c9a459996c357b87589711ae56",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-studio-1440.png": {
+      "sha256": "e336db296ad04d766d495dee17d9d238f72b0bc491cba78d20ef257d4e205ca9",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-workspace-1440.png": {
+      "sha256": "bfdccc02a6eadca363fd64ecae0feeccbffc3795c0203bf389e68f314fa59abc",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    },
+    "docs/screenshots/hosted-20260908-workspace-375.png": {
+      "sha256": "daeca679ab4e441fd5cfb36d7e9ee35c1d27ba02cb41573fff1be110668acc09",
+      "visuallyInspected": true,
+      "environment": "public HTTPS deployment"
+    }
+  },
+  "verificationScope": {
+    "keyboard": "13 Tab/Enter-activated journey controls, each with 3px outline; synthetic role selection used the native select control.",
+    "refresh": "Awaiting-response refresh and exact post-service-restart checkpoint comparison.",
+    "governance": "Four determinations, citation hashes, retirement exclusion, preserved historical record, sandbox action denial, no duplicate outreach and explicit acknowledgment boundary.",
+    "visual": "All copied screenshots viewed; six application screens measured at 375, 768, 1024 and 1440px.",
+    "limitations": "Synthetic browser acceptance, not clinical validation, production-readiness certification, new provider-quality measurement or load testing."
+  },
+  "pending": []
+}

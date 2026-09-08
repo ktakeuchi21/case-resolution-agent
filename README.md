@@ -2,7 +2,7 @@
 
 A browser-based persistent AI operations agent that helps HCP offices resolve specialty-therapy access dependencies using governed Knowledge Packs, with visible evidence, bounded authority, and human ownership of exceptions.
 
-**Status:** the synthetic browser portfolio application is implemented and verified locally. Public deployment awaits identified Render/Supabase access. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. Hybrid retrieval is unchanged; public requests use preserved real vectors and visibly labeled extractive explanations, with no model charges. No real outreach, patient data or payer approval is involved.
+**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. Hybrid retrieval is unchanged; public requests use preserved real vectors and visibly labeled extractive explanations, with no model charges. No real outreach, patient data or payer approval is involved.
 
 ## Run the browser demonstration
 
@@ -17,7 +17,7 @@ node src/app/server.ts
 
 Open `http://127.0.0.1:3000` and choose **Launch guided demo**. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
 
-Start with the [portfolio narrative](docs/portfolio-narrative.md), [demo walkthrough](docs/demo-walkthrough.md), [MVP verification](docs/mvp-verification.md), and [production runbook](docs/production-runbook.md). `npm run build` creates the source-free production package. `npm test`, `npm run test:generation`, `npm run test:app`, `npm run test:postgres` and `npm run test:workflow` verify separate boundaries. `npm run eval:postgres` replays preserved quality evidence without new provider calls.
+Start with the [portfolio narrative](docs/portfolio-narrative.md), [demo walkthrough](docs/demo-walkthrough.md), [hosted release verification](docs/hosted-verification.md), and [production runbook](docs/production-runbook.md). `npm run build` creates the source-free production package. `npm test`, `npm run test:generation`, `npm run test:app`, `npm run test:postgres` and `npm run test:workflow` verify separate boundaries. `npm run eval:postgres` replays preserved quality evidence without new provider calls.
 
 Earlier headless artifacts remain frozen. Do not use artifact-writing historical demo/benchmark commands just to launch the interface. The live benchmark found lexical31/36 and semantic/hybrid36/36 correct outcomes; cached benchmark ordering prevents an apples-to-apples latency/cost claim. See [the comparison report](docs/phase2b-comparison.md).
 
@@ -47,4 +47,4 @@ Treat the foundation as product intent; Knowledge Studio as the knowledge lifecy
 
 When a decision changes, add a dated decision-log entry, update affected documents and acceptance criteria in the same change, and record supporting evidence. Preserve superseded decisions rather than silently rewriting history. Research sources inform product design; they do not become runtime action permissions. Synthetic knowledge is a separate corpus.
 
-Next recommended: **A, a synthetic headless SC-01 workflow state machine**. Persistence gates now pass locally; deployment hardening remains outstanding. No next-phase implementation has begun. See [the next session](docs/roadmap.md#next-concrete-work-session).
+The original headless phases and browser application are implemented. The public browser release is verified; next investigations require separate evidence for retention/restore, an independent retrieval holdout and generation utility. See [the active roadmap](docs/roadmap.md#active-public-synthetic-portfolio-mvp).

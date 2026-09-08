@@ -1,6 +1,8 @@
 # Synthetic portfolio MVP verification
 
-**Status: local implementation and release verification complete; public deployment awaits account access.** The active user charter extends completed Phase2D into the six-experience portfolio application. All effects remain simulated, all content synthetic, and the stopping boundary remains **Documentation dependency resolved; prior authorization pending.**
+**Current status:** the public synthetic service is live. [Hosted verification](hosted-verification.md) records the later 164 local tests, 71 hosted regression passes, database qualification and live HTTPS/browser checks. The measurements below preserve the earlier local release checkpoint.
+
+**Historical local checkpoint:** local implementation and release verification complete; account access was still pending. The active user charter extends completed Phase2D into the six-experience portfolio application. All effects remain simulated, all content synthetic, and the stopping boundary remains **Documentation dependency resolved; prior authorization pending.**
 
 ## Automated evidence
 

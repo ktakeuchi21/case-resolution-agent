@@ -1,6 +1,6 @@
 # Pathway Agent: evidence, persistence and bounded authority
 
-**Portfolio status:** the browser application and production package are being verified locally. A public deployment, live URL and deployed screenshots have not yet been verified. See [deployment feasibility](deployment-feasibility.md) for the remaining external requirements. Everything in this project is synthetic.
+**Portfolio status:** [Pathway Agent is live](https://case-resolution-agent.onrender.com) on Render with durable Supabase PostgreSQL/pgvector. The container build, database qualification and HTTPS checks passed; hosted browser acceptance passed. Everything in this project is synthetic.
 
 ## Problem → approach → demonstration
 
@@ -55,7 +55,7 @@ flowchart TB
     Receipt --> Workflow
 ```
 
-This diagram describes implemented local application boundaries. The intended hosted topology is a Render Node service and a dedicated Supabase PostgreSQL/pgvector database, pending authenticated-account and compatibility verification. A single synthetic demonstration database is not equivalent to the stronger enterprise isolation proposed in the original architecture.
+This diagram describes the implemented application boundaries deployed as a Render Node service and a dedicated Supabase PostgreSQL/pgvector database. A single synthetic demonstration database is not equivalent to the stronger enterprise isolation proposed in the original architecture.
 
 ## Governed RAG
 
@@ -107,9 +107,9 @@ Pathway Agent does not determine payer approval, coverage, clinical judgment or 
 
 - Built a persistent synthetic patient-access workflow with PostgreSQL journals, structured human review, idempotent simulated handoffs and a bounded documentation-completion goal.
 - Implemented governed hybrid retrieval with pgvector, immutable Knowledge Pack releases and four independent evidence/permission determinations; improved frozen synthetic expected-outcome accuracy from 31/36 with BM25 to 36/36 with semantic and hybrid retrieval.
-- Designed an inspectable portfolio application spanning case operations, evidence-grounded interaction, Knowledge Studio and human resumption, backed by retirement/restart/concurrency regressions and exact citation checks.
+- Designed and deployed an inspectable portfolio application spanning case operations, evidence-grounded interaction, Knowledge Studio and human resumption, verified through hosted restart/retirement/sandbox journeys and exact citation checks.
 
-Do not add “deployed” to these bullets until the public HTTPS journey is verified.
+The public HTTPS journey is verified. These bullets describe a deployed synthetic portfolio application; they do not claim real-world healthcare outcomes.
 
 ## Interview talking points
 
@@ -123,7 +123,7 @@ Do not add “deployed” to these bullets until the public HTTPS journey is ver
 
 ## Visual evidence
 
-Local responsive/browser screenshots and deployed screenshots are separate evidence. No screenshot is linked here until its file and tested environment are verified. The deployed screenshot set remains pending with deployment; a local capture must never be presented as the hosted experience.
+Local responsive/browser screenshots and deployed screenshots are separate evidence. The [hosted verification](hosted-verification.md) links the inspected public-site screenshot set and immutable browser results. Local captures retain their original labels.
 
 Public question privacy boundary: only the reviewed frozen synthetic questions, supplied literal/sandbox prompts and the explicitly labeled cache-failure probe are admitted. Other text is rejected before durable evidence/answer storage; no heuristic patient-data detector is used. The public API counts all attempted writes against a durable150-attempt session cap even when a later application transaction rolls back. Session refreshes share the normal read limiter.
 

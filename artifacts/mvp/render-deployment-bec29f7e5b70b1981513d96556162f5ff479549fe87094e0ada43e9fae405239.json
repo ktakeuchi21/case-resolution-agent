@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "pathway-render-deployment-v1",
+  "recordedAt": "2026-09-08T14:35:51.911012+00:00",
+  "observedVia": "Authenticated Render in-app browser deployment and settings pages",
+  "serviceId": "srv-dag1p2v40ujc73delf20",
+  "deploymentId": "dep-dag1p3f40ujc73delhc0",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "status": "Deploy succeeded | Live",
+  "sourceCommit": "22db28a290a7b5a8e84e2e0d0e56c07105d2c65c",
+  "trigger": "First Deploy",
+  "durationSeconds": 35.8,
+  "deployedLabel": "Sep 8, 2026 at 8:32:45 AM MDT",
+  "runtimeStartedLabel": "08:33:16 AM MDT",
+  "serviceLiveLabel": "08:33:21 AM MDT",
+  "build": {
+    "files": 215,
+    "validatedEmbeddingRecords": 160,
+    "dockerBuildAndContainerStartupObserved": true,
+    "resolvedImageDigest": null
+  },
+  "configuration": {
+    "name": "case-resolution-agent",
+    "runtime": "Docker",
+    "plan": "Free",
+    "region": "Oregon (US West)",
+    "branch": "main",
+    "healthCheckPath": "/healthz",
+    "autoDeploy": "Off",
+    "nonSecretSettingsOnly": true
+  },
+  "limitations": [
+    "Initial successful deployment and container startup, not uptime or load evidence.",
+    "Image digest not exposed in inspected log segment; deployment ID and source commit identify this release.",
+    "Hosted browser end-to-end checks tracked separately."
+  ]
+}
