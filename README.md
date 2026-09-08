@@ -1,10 +1,12 @@
 # Pathway Agent
 
-September digital worker increment: [product and architecture](docs/digital-worker.md), [operator runbook](docs/digital-worker-runbook.md), and [implementation ledger](docs/digital-worker-execution.md). The in-app Guided journey and Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
+Conversation redesign: [experience and contracts](docs/conversation-experience.md), [execution and acceptance](docs/conversation-execution.md). The default journey is choose knowledge, then chat; the twelve-step technical walkthrough remains optional.
+
+Earlier digital worker increment: [product and architecture](docs/digital-worker.md), [operator runbook](docs/digital-worker-runbook.md), and [implementation ledger](docs/digital-worker-execution.md). The in-app Guided journey and Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
 
 A browser-based persistent AI operations agent that helps HCP offices resolve specialty-therapy access dependencies using governed Knowledge Packs, with visible evidence, bounded authority, and human ownership of exceptions.
 
-**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Default answers use labeled case/evidence rules and preserved vectors; uncached semantic questions and optional live synthesis pause until privately configured. No real outreach, patient data or payer approval is involved.
+**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Automatic conversation uses grounded live synthesis when the server provider is configured; otherwise it labels deterministic composition. Missing semantic vectors or failed providers pause explicitly. No real outreach, patient data or payer approval is involved.
 
 ## Run the browser demonstration
 
@@ -17,7 +19,7 @@ npm run db:migrate
 node src/app/server.ts
 ```
 
-Open `http://127.0.0.1:3000`, choose **Launch guided demo**, then **Guided journey** for the twelve-step document-to-case story. Without a provider, use the guide’s explicit sandbox exploration branch and the original cached case. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
+Open `http://127.0.0.1:3000`, choose **Launch guided demo**, then **Use sample knowledge** and ask **What should happen next?** Press Enter to send. Open **Full technical walkthrough** for the twelve-step document-to-case story. Without a provider, use the guide’s explicit sandbox exploration branch and the original cached case. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
 
 Start with the [portfolio narrative](docs/portfolio-narrative.md), [demo walkthrough](docs/demo-walkthrough.md), [hosted release verification](docs/hosted-verification.md), and [production runbook](docs/production-runbook.md). `npm run build` creates the source-free production package. `npm test`, `npm run test:generation`, `npm run test:app`, `npm run test:postgres` and `npm run test:workflow` verify separate boundaries. `npm run eval:postgres` replays preserved quality evidence without new provider calls.
 

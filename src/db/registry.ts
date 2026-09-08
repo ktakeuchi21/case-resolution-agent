@@ -29,21 +29,23 @@ const mapping={documents:'documents',versions:'versions',passages:'passages',pac
 export async function loadRegistry(c:PoolClient,s:Scope):Promise<DurableRegistry> {
  const generation=await c.query('SELECT generation::text,fixture_hash FROM pathway.generations WHERE workspace=$1 AND tenant=$2 AND environment=$3',scoped(s));
  if(!generation.rowCount)throw new Error('WORKSPACE_SCOPE_UNAVAILABLE');
+ // Read scoped immutable tables in one statement. Each row still passes its
+ // schema and hash check, and every call still follows the governance lock.
+ // This removes network round trips without caching authorization snapshots.
+ const tables = [...Object.values(mapping), 'case_revisions', 'user_revisions', 'events'];
+ const rows = await c.query(tables.map(table => `SELECT '${table}' AS kind,body,body_hash,sequence FROM pathway.${table} WHERE workspace=$1 AND tenant=$2 AND environment=$3`).join(' UNION ALL ') + ' ORDER BY kind,sequence', scoped(s));
  const data:Record<string,unknown[]>={};
  for(const [key,table] of Object.entries(mapping)) {
-  const rows=await c.query(`SELECT body,body_hash FROM pathway.${table} WHERE workspace=$1 AND tenant=$2 AND environment=$3 ORDER BY sequence`,scoped(s));
   const schema=Corpus.shape[key as keyof typeof mapping].element;
-  data[key]=rows.rows.map(row=>validateRow(row,schema as z.ZodType<unknown>));
+  data[key]=rows.rows.filter(row=>row.kind===table).map(row=>validateRow(row,schema as z.ZodType<unknown>));
  }
- const revisions=await c.query('SELECT body,body_hash FROM pathway.case_revisions WHERE workspace=$1 AND tenant=$2 AND environment=$3 ORDER BY sequence',scoped(s));
- for(const row of revisions.rows) {
+ for(const row of rows.rows.filter(row=>row.kind==='case_revisions')) {
   const context=validateRow(row,Corpus.shape.cases.element);
   const i=data.cases!.findIndex(x=>(x as {id:string}).id===context.id);if(i<0)throw new Error('Invalid case revision');data.cases![i]=context;
  }
- const userRevisions=await c.query('SELECT body,body_hash FROM pathway.user_revisions WHERE workspace=$1 AND tenant=$2 AND environment=$3 ORDER BY sequence',scoped(s));
- for(const row of userRevisions.rows){const user=validateRow(row,Corpus.shape.users.element);const i=data.users!.findIndex(x=>(x as {id:string}).id===user.id);if(i<0)throw new Error('Invalid user revision');data.users![i]=user;}
- const events=await c.query('SELECT body,body_hash FROM pathway.events WHERE workspace=$1 AND tenant=$2 AND environment=$3 ORDER BY sequence',scoped(s));
- return new DurableRegistry(Corpus.parse(data),events.rows.map(r=>validateRow(r,GovernanceEvent)),generation.rows[0].generation,generation.rows[0].fixture_hash);
+ for(const row of rows.rows.filter(row=>row.kind==='user_revisions')) {const user=validateRow(row,Corpus.shape.users.element);const i=data.users!.findIndex(x=>(x as {id:string}).id===user.id);if(i<0)throw new Error('Invalid user revision');data.users![i]=user;}
+ const events=rows.rows.filter(row=>row.kind==='events');
+ return new DurableRegistry(Corpus.parse(data),events.map(r=>validateRow(r,GovernanceEvent)),generation.rows[0].generation,generation.rows[0].fixture_hash);
 }
 
 // Resolve explicit current case assignment under the caller's governance transaction.

@@ -3,7 +3,7 @@ import type { IncomingMessage,ServerResponse } from 'node:http';
 import type { PoolClient } from 'pg';
 import { Database } from '../db/database.ts';
 export class HttpError extends Error {readonly status:number;constructor(status:number,message:string){super(message);this.status=status;}}
-export interface Session {token_hash:string;csrf:string;workspace:string|null;role:'office'|'manager'|'supervisor'|'knowledge_reviewer';scenario:string;demo_clock:Date;expires_at:Date;reset_count:number;actions:number}
+export interface Session {token_hash:string;csrf:string;workspace:string|null;role:'office'|'manager'|'supervisor'|'knowledge_reviewer';scenario:string;demo_clock:Date;expires_at:Date;reset_count:number;actions:number;notice_acknowledged_at?:Date|null}
 export const digest=(value:string)=>createHash('sha256').update(value).digest('hex');
 export class Sessions {
  readonly db:Database;constructor(db:Database){this.db=db;}

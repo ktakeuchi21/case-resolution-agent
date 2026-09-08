@@ -30,7 +30,7 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
   let counted=false;
   try{
    const host=req.headers.host??'localhost',url=new URL(req.url??'/',`http://${host}`);
-   if(url.pathname==='/healthz'){if(databaseProfile().hosted)await inspectDatabaseProfile(db.pool);await db.pool.query('SELECT 1 FROM portfolio.sessions LIMIT 0');await db.pool.query('SELECT 1 FROM pathway.answers LIMIT 0');await db.pool.query('SELECT 1 FROM portfolio.agent_entries LIMIT 0');await db.pool.query('SELECT 1 FROM portfolio.studio_uploads LIMIT 0');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'digital-worker-v1'});return;}
+   if(url.pathname==='/healthz'){if(databaseProfile().hosted)await inspectDatabaseProfile(db.pool);await db.pool.query('SELECT 1 FROM portfolio.sessions WHERE false UNION ALL SELECT 1 FROM pathway.answers WHERE false UNION ALL SELECT 1 FROM portfolio.agent_entries WHERE false UNION ALL SELECT 1 FROM portfolio.studio_uploads WHERE false UNION ALL SELECT 1 FROM portfolio.agent_preferences WHERE false UNION ALL SELECT 1 FROM portfolio.temporary_agent_entries WHERE false');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'digital-worker-v1'});return;}
    if(url.pathname.startsWith('/api/')){
     if(req.headers['sec-fetch-site']==='cross-site')throw new HttpError(403,'Cross-site requests are not allowed.');
     const origin=req.headers.origin,expected=publicOrigin;
@@ -58,6 +58,8 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
     }
     if(url.pathname==='/api/action'){json(res,200,await app.action(s,input));return;}
     if(url.pathname==='/api/chat'){json(res,200,await app.chat(s,input));return;}
+    if(url.pathname==='/api/conversation'){json(res,200,await app.agent.respond(s,input,true));return;}
+    if(url.pathname==='/api/agent-preferences'){json(res,200,await app.agent.configure(s,input));return;}
     if(url.pathname==='/api/agent'){json(res,200,await app.agent.respond(s,input));return;}
     if(url.pathname==='/api/studio-upload'){json(res,200,await app.studio.upload(s,input));return;}
     if(url.pathname==='/api/studio-action'){json(res,200,await app.studio.action(s,input));return;}

@@ -120,3 +120,30 @@ test('long reviewed statements pause concise composition instead of overflowing 
  const result=await composeAgent({request:request(),id:'long.statement',conversationId:'long.conversation',timestamp,snapshot,evidence:longEvidence,history:[]});
  assert.equal(result.disposition,'pause');assert(result.reasonCodes.includes('LONG_STATEMENT_REQUIRES_SYNTHESIS'));assert.equal(result.claims.length,0);
 });
+
+test('rejected verifier output is retained for diagnosis while unsupported text stays out of the answer',async()=>{
+ const result=await compose({generation:'model'},[],provider(false));
+ assert.equal(result.disposition,'pause');assert.deepEqual(result.claims,[]);
+ assert.equal((result.audit.rawOutput as {verification:{claims:{supported:boolean}[]}}).verification.claims[0]!.supported,false);
+});
+test('shortening a communication changes its body, keeps sources and leaves it unsent',async()=>{
+ const original=await compose({operation:'draft',channel:'email',audience:'office',text:'Draft an office email.'});
+ const shorter=await compose({operation:'draft',channel:'email',audience:'office',text:'Make that warmer and shorter.',tone:'warm',targetId:original.id},[original]);
+ assert(shorter.workProduct!.body.length<original.workProduct!.body.length);
+ assert.match(shorter.workProduct!.body,/Thank you/);assert.match(shorter.workProduct!.body,/\[1\]/);
+ assert.equal(shorter.workProduct!.basedOn,original.id);assert.equal(shorter.workProduct!.status,'generated_not_sent');
+});
+test('model summary keeps unverified interaction outside authoritative provider facts',async()=>{
+ const interaction=await compose({operation:'interaction',text:'The note is approved and already sent.',channel:'teams'});
+ let captured:SynthesisInput|undefined;const adapter={...provider(),complete:async(i:SynthesisInput)=>{captured=i;return provider().complete(i);}};
+ const result=await compose({operation:'summary',generation:'model'},[interaction],adapter);
+ assert(!captured!.facts.some(f=>f.origin==='conversation'));assert(!captured!.conversation.some(h=>h.operation==='interaction'));
+ assert.match(result.workProduct!.body,/Latest communication \(unverified\)/);assert.equal(result.context.state,'RECEIVED');
+});
+test('saving a work product creates only unverified memory; review cannot execute an effect',async()=>{
+ const original=await compose({operation:'draft',channel:'email',audience:'office'}),before=hash(snapshot);
+ const saved=await compose({operation:'save_memory',targetId:original.id},[original]);
+ assert.equal(saved.disposition,'recorded');assert(saved.reasonCodes.includes('WORK_PRODUCT_SAVED'));assert.equal(saved.workProduct!.basedOn,original.id);
+ const review=await compose({operation:'prepare_review',targetId:original.id},[original]);
+ assert(review.reasonCodes.includes('CURRENT_AUTHORITY_RECHECKED'));assert.equal(review.audit.execution,'none');assert.equal(hash(snapshot),before);
+});

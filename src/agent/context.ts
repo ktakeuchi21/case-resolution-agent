@@ -24,14 +24,15 @@ const states: Record<string, string> = {
  CANCELLED: 'The workflow was cancelled. Prior effects and decisions remain in its history.',
  FAILED: 'Bounded automated recovery ended. A human must own the exception.',
 };
-export function buildContext(snapshot: Snapshot, evidence: EvidenceRecord | null, history: AgentResponse[]) {
+export function buildContext(snapshot: Snapshot, evidence: EvidenceRecord | null, history: AgentResponse[], temporary = false) {
+ const sandbox = temporary || evidence?.request.mode === 'sandbox';
  const next = nextBestAction(snapshot), latest = history.filter(h => h.operation === 'interaction').at(-1);
  const known = [states[snapshot.state]!, `Recorded effects: ${snapshot.effects.filter(e => ['delivered', 'acknowledged'].includes(e.status)).length} delivered or acknowledged.`, `Recorded human decisions: ${snapshot.decisions.length}.`];
  const unresolved = [...snapshot.tasks.filter(t => t.status === 'open').map(t => t.question), ...new Set(snapshot.pauseReasons)];
  if (snapshot.state !== 'PA_PENDING') unresolved.push('The documentation dependency has not reached its completion boundary.');
  unresolved.push('Prior authorization is pending; only the external payer can decide it.');
- const facts: Fact[] = known.map((text, i) => ({ id: `workflow.fact.${i}`, text, origin: 'workflow', reference: `workflow:${snapshot.id}:revision:${snapshot.revision}:${i}`, authoritative: true }));
- for (const claim of evidence?.answer.claims ?? []) facts.push({ id: `source.fact.${facts.length}`, text: claim.text, origin: 'governed_source', reference: claim.passageIds[0]!, authoritative: true });
+ const facts: Fact[] = sandbox ? [] : known.map((text, i) => ({ id: `workflow.fact.${i}`, text, origin: 'workflow', reference: `workflow:${snapshot.id}:revision:${snapshot.revision}:${i}`, authoritative: true }));
+ for (const claim of evidence?.answer.claims ?? []) facts.push({ id: `source.fact.${facts.length}`, text: claim.text, origin: sandbox ? 'sandbox_source' : 'governed_source', reference: claim.passageIds[0]!, authoritative: !sandbox });
  // Conversational statements are provided separately and explicitly marked unverified.
  if (latest) facts.push({ id: 'conversation.latest', text: latest.query.slice(0,1000), origin: 'conversation', reference: `conversation:${latest.id}`, authoritative: false });
  const context: AgentResponse['context'] = {
@@ -43,6 +44,9 @@ export function buildContext(snapshot: Snapshot, evidence: EvidenceRecord | null
   permission: { sourceSupport: evidence?.support.status ?? 'not_evaluated', applicability: evidence?.applicability.status ?? 'not_evaluated', communication: evidence?.communication.status ?? 'not_evaluated', action: evidence?.action.status ?? 'not_requested', execution: 'not_requested' },
   requiredAuthorization: next.requiredAuthorization, completionBoundary: BOUNDARY,
  };
+ if (sandbox) {
+  Object.assign(context, { state: 'SANDBOX_EXPLORATION', whatHappened: 'You are exploring a temporary, unreviewed document.', known: ['No source in this conversation is assigned as case authority.'], unresolved: ['Applicability and factual accuracy require separate knowledge review.'], owner: 'You · Document review', checkpoint: null, nextAction: 'Inspect the supporting passages or continue exploring this document', why: 'Sandbox content can explain its own text; it cannot establish case requirements or authorize action.', requiredAuthorization: ['Separate reviewer approval, immutable publication and case assignment are required for operational use.'] });
+ }
  if (evidence && evidence.disposition !== 'answer') {
   context.nextAction = 'Review the evidence pause before dependent work';
   context.why = 'The current retrieval did not establish a supported, applicable answer. Historical answers cannot restore current authority.';

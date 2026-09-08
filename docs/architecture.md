@@ -1,5 +1,7 @@
 # System architecture
 
+September 8 conversation increment: see [the conversation-first experience, contracts and verification status](conversation-experience.md) and [execution record](conversation-execution.md). Earlier phase sections below retain their historical scope.
+
 [Public synthetic deployment](https://case-resolution-agent.onrender.com): Render Node/Docker with dedicated Supabase PostgreSQL/pgvector, constrained visitor sessions and simulated SC-01 effects. [Hosted verification](hosted-verification.md) records database/HTTPS qualification and the current browser acceptance status. Enterprise reference sections retain their stated hypotheses and future scope.
 
 ## Implemented Phase 2D: persistent SC-01

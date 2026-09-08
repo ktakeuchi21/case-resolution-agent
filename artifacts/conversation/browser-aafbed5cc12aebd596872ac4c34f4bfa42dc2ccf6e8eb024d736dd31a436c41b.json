@@ -1,0 +1,64 @@
+{
+  "schema": "pathway-conversation-governance-browser-v1",
+  "timestamp": "2026-09-08T22:00:35.037Z",
+  "environment": "Local production build; provider unavailable sandbox pause; synthetic workflow only",
+  "results": [
+    {
+      "name": "compiled upload parser leads directly to sandbox chat",
+      "pass": true
+    },
+    {
+      "name": "sandbox context states its limited authority",
+      "pass": true
+    },
+    {
+      "name": "upload confirmation is not repeated in chat",
+      "pass": true
+    },
+    {
+      "name": "missing sandbox provider pauses without fallback",
+      "pass": true
+    },
+    {
+      "name": "changing knowledge preserves governed conversation",
+      "pass": true
+    },
+    {
+      "name": "office cannot approve settings",
+      "pass": true
+    },
+    {
+      "name": "approved settings survive refresh",
+      "pass": true
+    },
+    {
+      "name": "operational ambiguity retains a role-bound human task",
+      "pass": true
+    },
+    {
+      "name": "delivery remains separate from acknowledgement",
+      "pass": true
+    },
+    {
+      "name": "workflow still reaches documentation resolved with PA pending",
+      "pass": true
+    },
+    {
+      "name": "retirement control reflects completed action",
+      "pass": true
+    },
+    {
+      "name": "retired source pauses future answer",
+      "pass": true
+    },
+    {
+      "name": "historical exact citations remain unchanged",
+      "pass": true
+    },
+    {
+      "name": "route-specific errors clear on navigation",
+      "pass": true
+    }
+  ],
+  "checkSourceSha256": "697466aac8ca3291ef09bd75a9960e0ea22c5461e7c72fbfc9073210d56bbf58"
+}

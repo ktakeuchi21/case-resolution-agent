@@ -1,5 +1,7 @@
 # Knowledge Studio and governed RAG
 
+September 8 conversation increment: see [the conversation-first experience, contracts and verification status](conversation-experience.md) and [execution record](conversation-execution.md). Earlier phase sections below retain their historical scope.
+
 **Current boundary after Phase 2D:** The local governed corpus now supports a persistent synthetic SC-01 workflow with separate operational grants and approvals. Document receipt is a typed synthetic case event, not arbitrary upload/ingestion or pack promotion. The Studio/ingestion UX below remains proposed. See [SC-01 contract](sc01-state-machine.md).
 
 Version 0.3 · September 7, 2026 · Phase 2A contracts implemented; Studio interface and ingestion lifecycle remain proposed

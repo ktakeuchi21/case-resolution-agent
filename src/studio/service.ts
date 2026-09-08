@@ -23,7 +23,7 @@ export class StudioService {
  constructor(db: Database, sessions: Sessions, cache: EmbeddingCache) { this.db = db; this.sessions = sessions; this.cache = cache; }
  scope(s: Session, environment: Scope['environment'] = 'governed'): Scope { if (!s.workspace) throw new HttpError(409, 'Launch a synthetic case first.'); return { workspace: s.workspace, tenant: 'T-DEMO', environment }; }
  async prune() {
-  for (const table of ['studio_uploads', 'studio_history', 'studio_results','studio_vectors']) await this.sessions.db.pool.query(`DELETE FROM portfolio.${table} WHERE expires_at<=clock_timestamp()`);
+  for (const table of ['studio_uploads', 'studio_history', 'studio_results','studio_vectors','temporary_agent_entries']) await this.sessions.db.pool.query(`DELETE FROM portfolio.${table} WHERE expires_at<=clock_timestamp()`);
  }
  async view(s: Session, client?: PoolClient) {
   const scope = this.scope(s), c = client ?? await this.sessions.db.pool.connect();

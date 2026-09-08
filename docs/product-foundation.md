@@ -1,5 +1,7 @@
 # Product foundation
 
+September 8 conversation increment: see [the conversation-first experience, contracts and verification status](conversation-experience.md) and [execution record](conversation-execution.md). Earlier phase sections below retain their historical scope.
+
 **Phase 2D implementation update:** The local headless SC-01 now demonstrates the bounded operational dependency through simulated delivery, human verification and receiving acknowledgment, with durable pause/resume and failure traces. See [verification](phase2d-verification.md). This supplies synthetic operational evidence only; browser usability, real customer value and payer outcomes remain unmeasured. Earlier phase-specific status paragraphs below are historical.
 
 Version 0.3 · September 7, 2026 · Phase 2A status update; product intent retained

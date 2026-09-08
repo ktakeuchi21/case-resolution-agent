@@ -1,13 +1,18 @@
 import { z } from 'zod';
-import { EvidenceCitation, Hash, Id, Timestamp } from '../contracts.ts';
+import { EvidenceCitation, EvidenceRecord, Hash, Id, Timestamp } from '../contracts.ts';
 
 export const AGENT_VERSION = 'digital-worker-v1';
 export const BOUNDARY = 'Documentation dependency resolved; prior authorization pending.';
+export const ConversationKnowledge = z.strictObject({
+ key: z.string(), kind: z.enum(['sample', 'pack', 'upload']), name: z.string(), sourceCount: z.number().int().nonnegative(),
+ authority: z.enum(['assigned_case_knowledge', 'sandbox_only']), expiresAt: Timestamp.nullable(),
+ sourceNames: z.record(z.string(), z.string()),
+});
 export const AgentChannel = z.enum(['chat', 'email', 'sms', 'voice', 'teams']);
 export const WorkAudience = z.enum(['case_manager', 'office', 'supervisor', 'crm']);
 export const AgentRequest = z.strictObject({
  idempotencyKey: Id, synthetic: z.literal(true),
- operation: z.enum(['ask', 'summary', 'draft', 'interaction', 'clarify', 'edit_draft', 'new_conversation']).default('ask'),
+ operation: z.enum(['ask', 'summary', 'draft', 'interaction', 'clarify', 'edit_draft', 'save_memory', 'prepare_review', 'new_conversation']).default('ask'),
  text: z.string().trim().min(1).max(8000).optional(),
  channel: AgentChannel.default('chat'), audience: WorkAudience.default('case_manager'),
  tone: z.enum(['concise', 'warm', 'formal']).default('concise'),
@@ -15,7 +20,7 @@ export const AgentRequest = z.strictObject({
  generation: z.enum(['evidence', 'model']).default('evidence'),
 });
 export type AgentRequest = z.infer<typeof AgentRequest>;
-export const Fact = z.strictObject({ id: Id, text: z.string().min(1).max(2400), origin: z.enum(['workflow', 'governed_source', 'conversation']), reference: z.string(), authoritative: z.boolean() });
+export const Fact = z.strictObject({ id: Id, text: z.string().min(1).max(2400), origin: z.enum(['workflow', 'governed_source', 'sandbox_source', 'conversation']), reference: z.string(), authoritative: z.boolean() });
 export const Claim = z.strictObject({
  id: Id, kind: z.enum(['fact', 'inference', 'recommendation', 'uncertainty']), text: z.string().min(1).max(700),
  supports: z.array(z.strictObject({ reference: z.string().min(1), quote: z.string().min(1).max(1600) })).min(1).max(6),
@@ -45,6 +50,9 @@ export const AgentResponse = z.strictObject({
  evidenceId: Id.nullable(), evidenceHash: Hash.nullable(),
  reasonCodes: z.array(z.string()), clarification: Clarification.nullable(), analysis: Analysis.nullable(), workProduct: WorkProduct.nullable(),
  inReplyTo: Id.nullable().optional(),
+ knowledge: ConversationKnowledge.optional(),
+ interpretation: z.strictObject({ intent: z.enum(['question','summary','draft','refinement','next_action','evidence','interaction','clarification','human_action']), follows: Id.nullable(), note: z.string(), retrievalQuestion: z.string().nullable() }).optional(),
+ temporaryEvidence: EvidenceRecord.optional(),
  context: z.strictObject({
   state: z.string(), whatHappened: z.string(), known: z.array(z.string()), unresolved: z.array(z.string()),
   latestCommunication: z.string(), owner: z.string(), checkpoint: Timestamp.nullable(), nextAction: z.string(), why: z.string(),

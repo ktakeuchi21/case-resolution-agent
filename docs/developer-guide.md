@@ -1,5 +1,7 @@
 # Running the headless retrieval spikes
 
+September 8 conversation increment: see [the conversation-first experience, contracts and verification status](conversation-experience.md) and [execution record](conversation-execution.md). Earlier phase sections below retain their historical scope.
+
 ## Phase 2D: persistent headless workflow
 
 Read [SC-01 execution contract](sc01-state-machine.md), [verification](phase2d-verification.md) and the [runbook](persistence-runbook.md). With the local database running and the preserved Phase 2B embedding cache available:

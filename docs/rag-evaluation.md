@@ -1,5 +1,7 @@
 # RAG evaluation plan and initial reference set
 
+September 8 conversation increment: see [the conversation-first experience, contracts and verification status](conversation-experience.md) and [execution record](conversation-execution.md). Earlier phase sections below retain their historical scope.
+
 ## Phase 2C durable-adapter results
 
 The PostgreSQL suite reuses the original reference definitions (`referenceCases`) rather than copying/relabeling expectations. All 23 original cases match the in-memory eligible set, exclusion reason codes, outcomes, support/conflict behavior, applicability, communication, action and exact citations. The frozen 36-query set is replayed in lexical, semantic and hybrid modes: **108 comparisons pass with identical ranks**, preserving 31/36, 36/36 and 36/36 correct outcomes. These are cached-vector storage regressions, not a new live-provider quality study.

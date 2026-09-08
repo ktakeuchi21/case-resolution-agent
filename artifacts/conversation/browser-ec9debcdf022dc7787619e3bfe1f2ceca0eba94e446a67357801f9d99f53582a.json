@@ -1,0 +1,136 @@
+{
+  "schema": "pathway-conversation-browser-check-v1",
+  "timestamp": "2026-09-08T21:55:42.369Z",
+  "environment": "Local browser; deterministic composition, no live-quality claim",
+  "results": [
+    {
+      "name": "homepage launch reaches focused knowledge selection",
+      "pass": true
+    },
+    {
+      "name": "sample choice opens chat without confirmation",
+      "pass": true
+    },
+    {
+      "name": "active knowledge is readable and changeable",
+      "pass": true
+    },
+    {
+      "name": "single composer with no per-message attestation",
+      "pass": true
+    },
+    {
+      "name": "Shift+Enter inserts newline",
+      "pass": true
+    },
+    {
+      "name": "Shift+Enter does not send",
+      "pass": true
+    },
+    {
+      "name": "Enter sends exactly one turn",
+      "pass": true
+    },
+    {
+      "name": "composer clears on success",
+      "pass": true
+    },
+    {
+      "name": "focus returns to composer",
+      "pass": true
+    },
+    {
+      "name": "first answer has citations and next action",
+      "pass": true,
+      "detail": {
+        "elapsedMs": 217,
+        "launchToFirstAnswerMs": 743
+      }
+    },
+    {
+      "name": "Why uses preceding context",
+      "pass": true
+    },
+    {
+      "name": "natural summary produces a work product",
+      "pass": true
+    },
+    {
+      "name": "natural email draft is unsent",
+      "pass": true
+    },
+    {
+      "name": "warm refinement uses existing draft",
+      "pass": true
+    },
+    {
+      "name": "SMS conversion stays generic",
+      "pass": true
+    },
+    {
+      "name": "meaningful loading feedback",
+      "pass": true
+    },
+    {
+      "name": "pending composer prevents duplicate submit",
+      "pass": true
+    },
+    {
+      "name": "failure retains unsent draft",
+      "pass": true
+    },
+    {
+      "name": "duplicate pending request prevented",
+      "pass": true
+    },
+    {
+      "name": "inline retry succeeds",
+      "pass": true
+    },
+    {
+      "name": "session acknowledgement survives reload",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 1440",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 768",
+      "pass": true
+    },
+    {
+      "name": "responsive navigation visible at 768",
+      "pass": true
+    },
+    {
+      "name": "navigation labels not clipped at 768",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 375",
+      "pass": true
+    },
+    {
+      "name": "responsive navigation visible at 375",
+      "pass": true
+    },
+    {
+      "name": "navigation labels not clipped at 375",
+      "pass": true
+    }
+  ],
+  "checkSourceSha256": "b3d0f6fb568d6a16bc1f3b004fda14bdc9622d256ea5e66d2b5f332179cb4ab4"
+}
