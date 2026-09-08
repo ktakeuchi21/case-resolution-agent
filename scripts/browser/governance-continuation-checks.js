@@ -12,39 +12,13 @@ async page => {
  await route('agent');const oldPassages=await page.locator('.agent-turn').first().locator('.readable-citation blockquote').allTextContents();
  const state=()=>page.evaluate(async()=>{const s=await (await fetch('/api/state')).json();return {workflow:s.workflow,assignments:s.knowledge.assignments,activeAssignmentId:s.knowledge.activeAssignmentId};});
  const originalState=await state();
+ check('prior conversation has not executed workflow work',originalState.workflow.state==='RECEIVED'&&originalState.workflow.effects.length===0&&originalState.workflow.decisions.length===0&&originalState.workflow.tasks.length===0);
  if(live){
-  const priorCount=await page.locator('.agent-turn').count();await route('knowledge');await page.getByRole('button',{name:'Browse Knowledge Packs',exact:true}).click();await page.locator('[data-chat-pack]:not([disabled])').first().click();await ready();
-  check('permitted pack selection opens chat and preserves history',await page.locator('.knowledge-context').isVisible()&&await page.locator('.agent-turn').count()===priorCount);
-  await route('studio');await page.locator('[data-source="K-PA"]').click();check('source families expose a single selected state',await page.locator('[data-source][aria-pressed="true"]').count()===1&&await page.locator('.library-list input[type="checkbox"]').count()===0);await page.getByRole('button',{name:'Chat with this source’s Knowledge Pack →',exact:true}).first().click();await ready();check('source handoff opens active conversation',page.url().endsWith('#agent'));
-  await route('knowledge');await page.getByRole('button',{name:'Use sample knowledge →',exact:true}).click();await ready();
-  const send=async text=>{const n=await page.locator('.agent-turn').count();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).fill(text);await page.getByRole('textbox',{name:'Message Pathway',exact:true}).press('Enter');await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);await Promise.all(captures);return responses.at(-1);};
-  let response=await send('Is it ready?');check('readiness asks one conversational clarification',response.disposition==='clarify'&&response.clarification.scope==='conversation_only');
-  response=await send('The workflow status.');check('natural reply resolves only conversational ambiguity',response.clarification.status==='resolved'&&response.audit.method==='model-synthesis');
-  response=await send('Record this as a Teams call note.');check('missing transcript asks for content instead of inventing a call',response.reasonCodes.includes('INTERACTION_TEXT_REQUIRED')&&response.analysis===null);
-  response=await send('Still waiting. Please provide an update today.');check('provided Teams text is unverified conversational memory',response.operation==='interaction'&&response.disposition==='recorded'&&response.message.includes('Teams transcript')&&response.analysis.authority==='none');
-  response=await send('Create a CRM note from everything that has happened.');check('live CRM note preserves unverified interaction and target boundary',response.audit.method==='model-synthesis'&&response.workProduct?.audience==='crm'&&response.workProduct.body.includes('unverified')&&response.workProduct.body.includes('Still waiting')&&response.workProduct.body.includes('Target completion boundary:'));
-  await page.locator('.agent-turn').last().getByRole('button',{name:'Inspect supporting evidence',exact:true}).click();
-  check('advanced generation provenance can be opened',await page.locator('.agent-turn').last().locator('.worker-turn > .advanced').getAttribute('open')!==null);
-  await page.locator('.agent-turn').last().getByText('Generation audit and raw output',{exact:true}).click();
-  check('prompt and structured verification remain inspectable',(await page.locator('.agent-turn').last().innerText()).includes('pathway-synthesis-v4'));
-  await page.locator('.agent-turn').last().locator('.readable-citation summary').first().click();check('exact supporting passage can be inspected',await page.locator('.agent-turn').last().locator('.readable-citation blockquote').first().isVisible());
-  await page.context().grantPermissions(['clipboard-read','clipboard-write']);await page.locator('.agent-turn').last().getByRole('button',{name:'Copy',exact:true}).click();
-  check('copy exports the work product',await page.evaluate(async()=> (await navigator.clipboard.readText()).includes('CRM activity note')));
-  await page.locator('.agent-turn').last().getByText('Edit generated text',{exact:true}).click();await page.locator('.agent-turn').last().getByRole('textbox',{name:'Your revised draft',exact:true}).fill('Synthetic revised CRM note. Review the case workspace; no communication has been sent.');
-  let n=await page.locator('.agent-turn').count();await page.locator('.agent-turn').last().getByRole('button',{name:'Save edited version',exact:true}).click();await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);
-  check('editing appends an unsent version',(await page.locator('.agent-turn').last().locator('.product-text').innerText()).startsWith('Synthetic revised CRM note.'));
-  n=await page.locator('.agent-turn').count();await page.locator('.agent-turn').last().getByRole('button',{name:'Save to case memory',exact:true}).click();await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);
-  check('saving memory retains its non-authoritative label',(await page.locator('.agent-turn').last().innerText()).includes('remains unverified'));
-  n=await page.locator('.agent-turn').count();await page.locator('.agent-turn').last().getByRole('button',{name:'Prepare for simulated review',exact:true}).click();await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);
-  check('review preparation rechecks without making a task or effect',(await page.locator('.agent-turn').last().innerText()).includes('No task or effect was created'));
-  response=await send('Draft an office email.');check('current prompt produces a cited unsent email',response.audit.method==='model-synthesis'&&response.workProduct?.channel==='email'&&response.workProduct.status==='generated_not_sent');const length=response.workProduct.body.length;
-  response=await send('Make that warmer and shorter.');check('current prompt preserves conversational refinement',response.audit.method==='model-synthesis'&&response.workProduct?.tone==='warm'&&response.workProduct.body.length<length);
-  await page.setViewportSize({width:375,height:812});response=await send('Send the office email.');
-  check('operational request pauses at separate authorization',response.reasonCodes.includes('SEPARATE_AUTHORIZATION_REQUIRED')&&response.audit.execution==='none');
-  check('newest response is scrolled into the conversation',await page.locator('.conversation-stream').evaluate(n=>Math.abs(n.scrollHeight-n.clientHeight-n.scrollTop)<2));
+  await page.setViewportSize({width:375,height:812});const n=await page.locator('.agent-turn').count();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).fill('Send the office email.');await page.getByRole('textbox',{name:'Message Pathway',exact:true}).press('Enter');await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);
   check('mobile composer stays visible after submission',await page.locator('#agent-text').evaluate(n=>{const r=n.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;}));
+  check('newest response is scrolled into the conversation',await page.locator('.conversation-stream').evaluate(n=>Math.abs(n.scrollHeight-n.clientHeight-n.scrollTop)<2));
+  check('chat actions preserve authoritative workflow',JSON.stringify((await state()).workflow)===JSON.stringify(originalState.workflow));
   await page.screenshot({path:'output/playwright/conversation-mobile-active.png',fullPage:false});await page.setViewportSize({width:1440,height:1000});
-  check('all conversation actions preserve authoritative workflow',JSON.stringify((await state()).workflow)===JSON.stringify(originalState.workflow));
  }
  await route('knowledge');await page.getByRole('button',{name:'Choose or drop a file',exact:true}).click();
  await page.locator('#quick-file').setInputFiles('scripts/browser/fixtures/synthetic-chat-journey.md');
@@ -90,5 +64,5 @@ async page => {
  await page.getByRole('textbox',{name:'Message Pathway',exact:true}).fill('MRN: 123456');await page.getByRole('textbox',{name:'Message Pathway',exact:true}).press('Enter');await page.locator('#composer-error:not([hidden])').waitFor();await route('studio');check('route-specific errors clear on navigation',await page.locator('#composer-error:not([hidden]),#inline-error:not([hidden])').count()===0);
  }catch(caught){error=String(caught);}
  await Promise.all(captures);page.off('response',capture);
- return {schema:'pathway-conversation-governance-browser-v1',timestamp:new Date().toISOString(),environment:live?'Public Render; configured synthesis; isolated synthetic workflow':'Local production build; provider unavailable sandbox pause; synthetic workflow only',results,responses,...(error?{error}:{})};
+ return {schema:'pathway-conversation-governance-continuation-browser-v1',timestamp:new Date().toISOString(),environment:live?'Public Render; configured synthesis; isolated synthetic workflow':'Local production build; provider unavailable sandbox pause; synthetic workflow only',results,responses,...(error?{error}:{})};
 }

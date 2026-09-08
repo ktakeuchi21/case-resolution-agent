@@ -1,0 +1,22 @@
+{
+  "schema": "pathway-composer-visibility-browser-v1",
+  "timestamp": "2026-09-08T22:26:00.306Z",
+  "environment": "Local production build",
+  "results": [
+    {
+      "name": "visible focused composer with newest transcript at 375",
+      "pass": false,
+      "detail": {
+        "width": 375,
+        "height": 812,
+        "top": 881.0078125,
+        "bottom": 951.0078125,
+        "focused": true,
+        "newest": true,
+        "uncovered": true
+      }
+    }
+  ],
+  "error": "Error: composer visibility failed at 375",
+  "checkSourceSha256": "f9794c3465457bbf2d8ca3f73e604509c19cb3fe248be6ff038bb3790378ca0d"
+}

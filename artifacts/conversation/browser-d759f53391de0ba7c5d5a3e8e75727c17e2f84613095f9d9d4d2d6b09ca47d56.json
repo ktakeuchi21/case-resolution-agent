@@ -1,0 +1,47 @@
+{
+  "schema": "pathway-composer-visibility-browser-v1",
+  "timestamp": "2026-09-08T22:27:58.642Z",
+  "environment": "Local production build",
+  "results": [
+    {
+      "name": "visible focused composer with newest transcript at 375",
+      "pass": true,
+      "detail": {
+        "width": 375,
+        "height": 812,
+        "top": 687.0078125,
+        "bottom": 757.0078125,
+        "focused": true,
+        "newest": true,
+        "uncovered": true
+      }
+    },
+    {
+      "name": "visible focused composer with newest transcript at 768",
+      "pass": true,
+      "detail": {
+        "width": 768,
+        "height": 1000,
+        "top": 757.2421875,
+        "bottom": 827.2421875,
+        "focused": true,
+        "newest": true,
+        "uncovered": true
+      }
+    },
+    {
+      "name": "visible focused composer with newest transcript at 1440",
+      "pass": true,
+      "detail": {
+        "width": 1440,
+        "height": 1000,
+        "top": 686.2421875,
+        "bottom": 756.2421875,
+        "focused": true,
+        "newest": true,
+        "uncovered": true
+      }
+    }
+  ],
+  "checkSourceSha256": "290246ae51e127e8244933c9c755b4cff98fc04235ffb46cd7d527b3dfa18e91"
+}

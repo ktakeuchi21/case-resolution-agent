@@ -5,7 +5,7 @@ import pathlib
 import subprocess
 import sys
 name=sys.argv[2] if len(sys.argv)>2 else 'conversation-checks.js'
-if name not in ['conversation-checks.js','governance-checks.js']: raise ValueError('Choose a repository browser check')
+if name not in ['conversation-checks.js','governance-checks.js','governance-continuation-checks.js','composer-visibility-checks.js']: raise ValueError('Choose a repository browser check')
 script=pathlib.Path(__file__).with_name(name).read_text()
 wrapper=pathlib.Path.home()/'.codex/skills/playwright/scripts/playwright_cli.sh'
 result=subprocess.run(['bash',str(wrapper),'-s='+sys.argv[1],'run-code',script],text=True,capture_output=True)

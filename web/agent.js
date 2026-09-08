@@ -37,7 +37,7 @@ export function renderAgent(view) {
 export function bindAgent({view,api,perform,refresh,render,toast}) {
  if(!view)return;
  const $=s=>document.querySelector(s), key=draftKey(view);
- const finishFocus=()=>{if(location.hash!=='#agent')return;render();const stream=$('.conversation-stream');if(stream)stream.scrollTop=stream.scrollHeight;$('#agent-text')?.focus({preventScroll:true});};
+ const finishFocus=()=>{if(location.hash!=='#agent')return;render();const stream=$('.conversation-stream');if(stream)stream.scrollTop=stream.scrollHeight;$('#agent-text')?.focus({preventScroll:true});$('#agent-form')?.scrollIntoView({block:'nearest',behavior:'instant'});};
  const submit=async(payload,legacy=false)=>{
   if(sending)return;
   const fingerprint=JSON.stringify({payload,legacy,key});
