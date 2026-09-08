@@ -1,0 +1,128 @@
+# Decision log
+
+Version 0.2 · September 7, 2026 · Includes Phase 1.5 refinements
+
+Status vocabulary: **working decision** = chosen for current project work, not user ratification of a production policy; **proposed** = awaits evidence or a later implementation choice; **superseded** = retained with replacement reference.
+
+| ID/date | Decision and status | Rationale | Revisit when |
+| --- | --- | --- | --- |
+| D-01 / 2026-09-07 | Working: US, one synthetic product/indication, Colorado, pharmacy benefit, one primary fictional commercial plan | Limits applicability dimensions while keeping filtering meaningful | Discovery identifies a stronger benefit/office setting |
+| D-02 / 2026-09-07 | Working: first workflow resolves a missing-document dependency through receipt | Observable operational outcome with limited authority | A-03 or A-04 fails; document any revised completion promise |
+| D-03 / 2026-09-07 | Working: deterministic action gates, explicit grants, action-bound human approvals | Knowledge and generated reasoning cannot confer authority | Gate implementation changes; never silently weaken boundary |
+| D-04 / 2026-09-07 | Superseded in part by D-14/D-15: original proposal was TypeScript modular application, PostgreSQL durable worker/state, structured lexical-first retrieval | Retain modular application and PostgreSQL; new RAG objective requires actual hybrid retrieval and explicit hosting recommendation | See D-14/D-15 and ADR-001 |
+| D-05 / 2026-09-07 | Working: allow/require approval/deny/pause policy outcomes, rechecked at execution | Distinguishes reviewable actions from uncertainty and prohibited acts | Evaluation exposes a missing state or ambiguous recovery |
+| D-06 / 2026-09-07 | Superseded in part by D-11/D-16: original decision used all-synthetic data/effects and chat first | Operational fixtures/effects remain synthetic; sandbox permits suitable public documents; ingestion/model calls are real | Any proposal for real case data/outreach requires separate scope |
+| D-07 / 2026-09-07 | Working: financial support is intake/handoff; appeal support is administrative preparation | Retains program, clinical, and payer decisions with authorized humans | Validated workflow warrants expansion within explicit limits |
+| D-08 / 2026-09-07 | Working: targeted foundational research; facts separated from assumptions and hypotheses | Prevents design plausibility from becoming a market or compliance claim | Customer discovery or regulatory changes add evidence |
+| D-09 / 2026-09-07 | Sequencing superseded by D-19: original decision put SC-01 state/policy contracts and durable loop first | No interface in Phase 1.5; knowledge contracts/RAG now precede detailed case implementation | See revised roadmap; no change to operational outcome boundary |
+| D-10 / 2026-09-07 | Working: paused routine work does not suppress restricted safety intake | Prevents identity incompleteness from discarding a potential report | Safety/privacy reviewers define organization-specific procedures |
+| D-11 / 2026-09-07 | Working: browser access without installation; isolated Demo Sandbox and Governed Knowledge Studio | User's Phase 1.5 direction makes knowledge acquisition and governance visible; collection selection is not case authority | Discovery shows users confuse modes or temporary retention |
+| D-12 / 2026-09-07 | Working: Knowledge Pack family + immutable release + separate assignment; cases pin exact releases and cannot bypass retirement | A named tested release is understandable; a folder for every context permutation is not maintainable | Pack-authoring/comprehension testing reveals excess complexity |
+| D-13 / 2026-09-07 | Working: separate support, applicability, communication and action decision artifacts | User explicitly requires four determinations; a single model answer cannot grant permissions | Evaluation exposes an omitted decision boundary |
+| D-14 / 2026-09-07 | Working: actual lexical/vector retrieval and bounded model generation in first RAG release; deterministic gates and replays remain | Visible RAG must demonstrate retrieval quality, not scripted citations; exact filtered ranking first, optional reranker after evidence | Provider spike or ablation shows different approach better meets gates |
+| D-15 / 2026-09-07 | Proposed deployment: Render + Supabase for prototype; AWS + RDS/pgvector reference enterprise path, OpenSearch when justified | ADR-001 compares A/B/C; prioritize observable control over infrastructure appearance | Actual cost, capabilities, organizational constraints or workload changes |
+| D-16 / 2026-09-07 | Working: first uploads TXT/Markdown/text-PDF with quotas and quarantine; detect scans/complex extraction, defer OCR execution/DOCX | Arbitrary public uploads introduce parsing and security obligations; unsafe/partial ingestion cannot look successful | A validated use case and parser evaluation justify format expansion |
+| D-17 / 2026-09-07 | Working: 24-hour sandbox expiry, immediate logical revocation, proposed 24-hour application purge; retirement distinct from hard deletion | Temporary collection promise must cover vectors, caches and transcripts; historical audit cannot silently retain deleted content | Actual provider/backup retention or user research requires revised promise |
+| D-18 / 2026-09-07 | Working: application-owned canonical passages/manifests/evidence; capability-declaring retrieval adapter | Product contracts remain portable; insufficient filters/locators must fail rather than broaden scope | Adapter conformance tests reveal a missing capability |
+| D-19 / 2026-09-07 | Working: knowledge-contract/provider spike → ingestion/governance → evaluated RAG → browser surfaces → full SC-01 implementation | Explicit user request pauses the former SC-01 next session; keep missing-document wedge as next operational slice | RAG scope begins crowding out operational proof |
+| D-20 / 2026-09-07 | Working: separate sandbox/governed projects and credentials; uploader cannot self-approve; no direct promotion to live | Labels alone do not isolate data or establish source authority | Threat model or enterprise governance requires stronger isolation/review |
+| D-21 / 2026-09-07 | Working: evidence status and inspectable artifacts, not percentage confidence or private chain-of-thought | Similarity and plausible citations are weak proxies for supported applicable guidance | Calibration research supports a useful narrowly defined score |
+
+## Phase 2A implementation decisions — September 7, 2026
+
+| ID | Working decision | Evidence and tradeoff | Affected decisions / revisit trigger |
+| --- | --- | --- | --- |
+| D-22 | Insert a credential-free headless lexical spike before the full RAG release | User explicitly permits a deterministic local provider. Local BM25 executes real candidate ranking and all required governance traces; no suitable embedding/vector credentials were available | Narrows the immediate D-14/D-19 stage; does not claim the planned hybrid/generation release is complete |
+| D-23 | Ship only the provider lifecycle the spike exercises; use reviewed structured facts for authority/conflicts and extractive answers | Canonical-ID indexing/search is working. Registered conflicts outside top-k block reliance; arbitrary prose contradictions and model behavior are untested | Extends D-15/D-21; add hosted stage/status/removal/reconciliation and generation adapters only when exercised |
+| D-24 | Preserve exact historical evidence in content-addressed append-only local files; keep registry mutations in memory for isolated scenario runs | Retirement sequence, store reopening and tampering checks pass. Hashes detect changes but are not signed/WORM storage; fresh registry resets revocations | Implements a limited retirement/history subset of D-17. Durable revocation storage, auth and retention are required before operational deployment |
+| D-25 | Next choose A: expand real retrieval before B: SC-01 transitions or C: Studio interface | The literal query retrieves 3/3 required passages; one synonymous query retrieves 0/3 and safely abstains. Governance passes do not compensate for that retrieval miss | Changes D-19's next ingestion/governance step. Test an actual semantic/hybrid adapter against paired and unseen cases; do not treat two probes as a benchmark |
+
+Evidence: [23-case evaluation report](../artifacts/phase2a-evaluation.json), [retirement sequence](../artifacts/phase2a-retirement-trace.json), [retrieval probes](../artifacts/phase2a-retrieval-probes.json), [implementation limits](developer-guide.md#what-remains-simulated-or-untested). The code now supplies the previously proposed contract/evaluation artifacts under `src/`, `tests/` and `fixtures/`; no parallel speculative `specs/` implementation is needed.
+
+
+## Development skill layer — September 7, 2026
+
+| ID | Decision | Evidence / revisit trigger |
+| --- | --- | --- |
+| D-26 | Install explicit-only official security reviews and the audited, pinned gstack Codex suite; preserve native Playwright/design tooling. Create one narrow `pathway-governance-review` now, reading canonical contracts/tests at invocation | Phase 2A schemas, reason codes and 44 freshly passing tests already satisfy the proposed creation milestone. The skill reviews developer changes; it is not runtime governance or pharmaceutical authority. Revisit when contracts move or a real review exposes gaps. gstack needs local registration overrides and has an upstream non-Codex health-check failure; browser workflows remain unverified. See [skill setup](skill-setup.md), including installation, validation, opt-outs and uninstall instructions. Product work stays paused until the user reviews the setup. |
+
+
+## Phase 2B retrieval evaluation — September 7, 2026
+
+| ID | Decision | Evidence and revisit trigger |
+| --- | --- | --- |
+| D-27 | Superseded by D-29 after the live run. Historical decision D: continue experimentation; keep BM25 default, implement optional semantic/cosine and equal-contribution RRF without adopting either | Frozen 36-query benchmark: eligible BM25 recall 0.808, 31/36 expected outcomes, five safe misses, no observed unsafe final outcomes. Credentials unavailable: live semantic/hybrid quality, latency/cost and synonym success remain unmeasured. Unit-vector tests prove mechanics only. Revisit after the same frozen live comparison; no reranking/query rewriting without a measured error pattern. See [comparison](phase2b-comparison.md). |
+| D-28 | Refined by D-30 after the live run. After closing the live Phase 2B gate, prioritize durable PostgreSQL governance persistence for Phase 2C; add pgvector only if the retrieval comparison justifies it | File cache/evidence survive reopening, but active revocations still reset with the in-memory registry. Durability is a prerequisite to persistent operational use; generation/UI/SC-01 orchestration would add surfaces before that invariant holds across restart. No hosted database or infrastructure is implemented in this phase. |
+
+## Phase 2B live decision gate — September 7, 2026 (MDT)
+
+| ID | Working decision | Measured evidence, tradeoff and revisit trigger |
+| --- | --- | --- |
+| D-29 | **C: select unthresholded hybrid for the prototype**, RRF 60/depth 50; preserve lexical as an explicitly acknowledged degraded option. Reject cutoff 0.35. Supersedes D-27 | Live frozen 36 queries: lexical 31/36; semantic/hybrid 36/36; cutoff 34/36. All modes have zero measured unsafe outcomes and exact citations. Hybrid eligible recall/precision/MRR 0.9674/0.6217/0.8478, but its recall/precision advantage over semantic comes entirely from Q16; both retrieve all required evidence in 22/23. Hybrid improves first-gold ordering on nine rows and worsens Q06/Q30; broad candidate recall is worse than semantic. This bounded ordering benefit warrants the existing explainable fusion step, not a claim of universally superior quality. Revisit on an independently authored holdout or consequential ranking regression. No reranking/query rewriting justified now. |
+| D-30 | **Phase 2C option 2: local PostgreSQL governance persistence plus pgvector**, exact filtered search and unchanged BM25/RRF. Refines D-28; implementation not started | Semantic recall has measured utility, justifying durable reusable vectors. Active retirement/conflict and assignment state still need restart/concurrency guarantees. No scale evidence warrants ANN or hosted infrastructure. Require canonical/evidence/governance parity, isolation, restart and concurrent-retirement tests; see the exact roadmap scope. Generation, UI, ingestion and SC-01 orchestration remain deferred. |
+
+A failed semantic/hybrid attempt must remain visible and paused. A later lexical retry requires an explicit human acknowledgment or preauthorized bounded system policy, recorded with actor/policy, time, reason, requested/effective configuration and original attempt linkage. All governance checks run again; mode-change authorization does not confer communication/action permission or bypass retirement/conflict/scope controls. This policy is selected but the acknowledgment flow is not implemented. Low-level factory defaults remain lexical in unchanged code; the selected prototype composition must explicitly request hybrid.
+
+The semantic arm incurred 160 requests, 3,435 input tokens and estimated $0.0000687. Later hybrid arms reused its cache; zero incremental cost/lower timings do not establish a fair provider comparison. Candidate diagnostics also warm governed queries. Five stable repeats cover cached vectors/ranking/governance, not fresh provider variability. Cold operational latency, equal-cache cost, production p95 and scale remain unknown.
+
+[The comparison](phase2b-comparison.md) links preserved original lexical/live artifacts, an independent record audit and a separate machine-readable decision. The raw live artifact's D/lexical top-level decision text is hard-coded stale runner output, retained unchanged; D-29 is the reviewed interpretation. No frozen labels, thresholds or product code changed in this review.
+
+## Phase 2C persistence — September 7, 2026 (MDT)
+
+| ID | Working decision | Evidence and revisit trigger |
+| --- | --- | --- |
+| D-31 | Implement D-30 with local PostgreSQL 18.6/pgvector 0.8.6, immutable canonical/evidence rows, scoped RLS/FKs and serialized scope transactions. `PersistentRetrieval` defaults to hybrid; keep old lexical controls unchanged | 24 database tests, original 23-case governance parity, 108 frozen retrieval comparisons and both controlled commit-order demonstrations pass. No ranking differences; raw cosine differs by at most 0.0000017045 due to verified float32 accumulation. Preserve the failed initial numeric check and both Phase 2B baselines. See ADR-002 and Phase 2C verification |
+| D-32 | Recommend next A: headless synthetic SC-01 state transitions, without beginning them | Durable revocations/history and preserved retrieval now provide the necessary evidence boundary. No generation/UI needed to test workflow semantics. Real authentication, credential isolation, backup/restore, fault/load testing and retention remain required before deployment |
+
+D-29's acknowledged-degradation policy is implemented: human per-request acknowledgment or a durable scoped system-policy grant; no silent fallback. Duplicate retrievals are visibly historical and cannot stand in for new reliance after retirement. Source lifecycle corrections append events/new versions instead of rewriting published history. Coarse locking trades throughput for a deterministic local proof; reconsider lock scope only with equivalent concurrency/revocation tests. This is not a hosted security or pharmaceutical validation claim.
+
+## Tensions and explicit resolutions
+
+| Earlier direction | Phase 1.5 tension | Resolution / affected references |
+| --- | --- | --- |
+| D-01 one primary plan and synthetic world | Comparing packs needs materially different supported content | Keep Alder as operational wedge; add Cedar only as a synthetic comparison context in E-01. No real payer content becomes approved |
+| D-02 first operational outcome | A Studio could become a general RAG product | Keep HCP/case-manager outcome and buyer thesis; make Studio an enabling capability, demonstrated through SC-01 evidence (M-11–M-18) |
+| D-04 lexical-first and optional later model | User wants real semantic retrieval and visible RAG quality | D-14 changes first-release baseline; retain lexical-only/semantic-only comparisons and deterministic control tests |
+| D-06 synthetic-only inputs | User permits public uploads | Public/synthetic sandbox only; governed operational corpus remains curated synthetic. A-09/R-14 track feasibility |
+| Operational pack selection | A user could choose a preferred answer or wrong payer | Server enforces assignments and mandatory dependencies; playground comparisons use fresh hypothetical context (D-12/D-13) |
+| Complete historical audit | Temporary collections and source deletion | Retirement preserves authorized history; hard deletion leaves explicit tombstones and removes content, with provider/backup limits disclosed (D-17) |
+| D-09 SC-01 next | New ingestion/governance work increases scope | Explicitly reorder and add work in roadmap; no implication that the earlier schedule still covers it (D-19) |
+| No production infrastructure for appearance | AWS is requested for serious evaluation | Compare A/B/C in ADR-001; choose lightweight prototype, retain conditional enterprise reference rather than deploy both |
+| Visible ingestion of arbitrary documents | Parsing/OCR can become a separate product | Supported-format promise is limited; visible scan/complex-table failures are required, automatic OCR deferred (D-16) |
+
+## Changed assumptions and evidence status
+
+No customer observations or provider benchmark results were added in Phase 1.5. Provider capabilities were researched from official documentation; proposed architecture suitability remains engineering judgment. The expanded A-05/A-07 assumptions now include staffed source review and maintained machine-readable applicability. New A-09–A-14 cover safe/public uploads, pack comprehension, hybrid retrieval benefit, provider conformance, retention/budget feasibility and guest-versus-Studio access. See [research and risks](research-and-risks.md#phase-15-discovery-additions).
+
+## Change procedure
+
+Add a new dated entry recording evidence, affected assumption/requirement IDs, chosen change, tradeoff, and superseded decision. Update foundation, architecture, scenario behavior, roadmap status, and future acceptance traces together where affected. Keep proposed numerical targets distinguishable from observed results.
+
+## Current handoff
+
+Completed through local Phase 2C: PostgreSQL governance persistence, pgvector exact semantic retrieval, default hybrid with unchanged BM25/RRF, explicit degraded operation, immutable evidence/releases, restart and concurrency demonstrations, original/frozen parity and database audit. Canonical Phase 2A/2B artifacts remain byte-identical. No external embedding calls were made in Phase 2C. [Verification](phase2c-verification.md) and [runbook](persistence-runbook.md) give precise checks and limitations. Recommended next: D-32, synthetic headless SC-01 states/events. No next phase, GUI, generated answers, hosted infrastructure, real patient data or operational outreach was implemented.
+
+## Phase 2D SC-01 — September 7, 2026 (MDT)
+
+| ID | Working decision | Evidence, tradeoff and revisit trigger |
+| --- | --- | --- |
+| D-33 | Implement a headless `sc01-v1` journal with durable command/event snapshots, queue projections and simulated integration receipts. Preserve the original retrieval/governance contracts; layer explicit template grants and exact-package approvals above them | 30 workflow checks and eleven required-path traces pass, including both controlled retirement/human-resolution orders, timers, duplicates, rejected acknowledgments, unknown delivery and process reconstruction. Original 67 tests/24 database tests/23 references/108 retrieval comparisons pass. Full snapshots and scope locks simplify this local proof but require measured redesign before large queues or real network dispatch |
+| D-34 | Recommend next **B: thin local vertical-slice interface**, without implementing it | Four intentionally completable paths reach documentation resolved/PA pending; failure paths retain visible safe holds. Exposing the proven timeline, evidence/permissions, human decision and acknowledgment distinctions now tests product comprehension. Do not add generation or ingestion merely to make the interface broader. Revisit if UI testing uncovers state/permission defects; deployment still needs authentication, network-adapter and persistence hardening |
+
+The synthetic operations grant is executable policy, not a new pharmaceutical fact or a fictional source promoted into a frozen Knowledge Pack. The original `send_message` action remains prohibited. Generic notification permission is case/template/channel/recipient/cadence-bound; transfer requires the core `requires_approval` determination and authorized human approval. Every subsequent dependent step rechecks current evidence, including source retirement and case-context changes.
+
+Delivery and acknowledgment remain separate. A dispatched-but-uncommitted simulation leaves durable attempted state and an independent receipt; reconstruction reconciles it using the same logical ID. At-least-once processing with idempotency does not establish exactly-once external delivery. Missed acknowledgment, unknown status and rejection never imply dependency completion or payer approval. [State contract](sc01-state-machine.md) and [verification](phase2d-verification.md) are the current handoff; older phase handoffs above remain historical.
+
+## Public synthetic portfolio MVP — September 7, 2026
+
+| ID | Decision | Evidence and limit |
+| --- | --- | --- |
+| D-35 | Extend Phase 2D into six connected browser experiences under the subsequent execution charter | Same-origin server and PostgreSQL services; original workflow and retrieval contracts preserved. This supersedes D-34's stop-before-implementation boundary, not its governance requirements |
+| D-36 | Use isolated cryptographic visitor sessions with simulated scoped roles and a lifetime storage cap | Public visitors cannot choose workspace/tenant/actor identifiers; CSRF/origin/role/schema/idempotency checks and synthetic-only input limit public attack surfaces. This is not production healthcare authentication |
+| D-37 | Package preserved real synthetic vectors and use explicit deterministic extractive explanations by default | No guest-triggered paid calls. Uncached retrieval pauses. Optional model adapter is contract-tested but public endpoints do not enable it; live generation quality remains unmeasured |
+| D-38 | Accept only supplied TXT fixture bytes; persist actual sandbox collections and explicit owner access | Enforces exclusively synthetic data. Publication and explicit exact-release assignment remain separate governed operations. Changed assignment rechecks current authority and invalidates previous approval context |
+| D-39 | Prepare Render plus a dedicated Supabase PostgreSQL/pgvector database; reduce topology for the bounded demo | One mode-scoped database and explicit demo clock instead of separate hosted mode projects/always-running workers. Account access, hosted migration compatibility, TLS and live E2E remain unverified; no production equivalence claim |
+
+The retained frozen benchmark still supports hybrid as the prototype default, lexical only with acknowledged degradation, no semantic cutoff, and no reranking/query rewriting. The UI does not expose a fallback shortcut. New persistence/UI work adds no evidence for changing the frozen retrieval choice or pharmaceutical rules.
+
+D-40: Public question input is constrained to the reviewed synthetic corpus queries and a labeled unavailable-cache probe. Unknown text is rejected before immutable storage. This enforces the portfolio-only data boundary without claiming reliable automatic PHI detection. Core answer receipts and checkpoint/effect intents commit independently of UI projections; retries recover their exact answer or original timer/effect. Durable HTTP attempt budgets count failures as well as successes. Fault-injection tests verify the critical commit/rollback gaps.

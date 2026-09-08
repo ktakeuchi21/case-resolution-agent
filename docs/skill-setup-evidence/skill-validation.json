@@ -1,0 +1,458 @@
+[
+  {
+    "name": "gstack",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-autoplan",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-autoplan",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-benchmark",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-benchmark",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-benchmark-models",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-benchmark-models",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-browse",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-browse",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-canary",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-canary",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-careful",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-careful",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-claude",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-claude",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-context-restore",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-context-restore",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-context-save",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-context-save",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-cso",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-cso",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-design-consultation",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-design-consultation",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-design-html",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-design-html",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-design-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-design-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-design-shotgun",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-design-shotgun",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-devex-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-devex-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-diagram",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-diagram",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-document-generate",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-document-generate",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-document-release",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-document-release",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-freeze",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-freeze",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-guard",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-guard",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-health",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-health",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-investigate",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-investigate",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ios-clean",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ios-clean",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ios-design-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ios-design-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ios-fix",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ios-fix",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ios-qa",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ios-qa",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ios-sync",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ios-sync",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-land-and-deploy",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-land-and-deploy",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-landing-report",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-landing-report",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-learn",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-learn",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-make-pdf",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-make-pdf",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-office-hours",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-office-hours",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-open-gstack-browser",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-open-gstack-browser",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-pair-agent",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-pair-agent",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-plan-ceo-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-plan-ceo-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-plan-design-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-plan-design-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-plan-devex-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-plan-devex-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-plan-eng-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-plan-eng-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-plan-tune",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-plan-tune",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-qa",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-qa",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-qa-only",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-qa-only",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-retro",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-retro",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-scrape",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-scrape",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-setup-browser-cookies",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-setup-browser-cookies",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-setup-deploy",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-setup-deploy",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-setup-gbrain",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-setup-gbrain",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-ship",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-ship",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-skillify",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-skillify",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-spec",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-spec",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-sync-gbrain",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-sync-gbrain",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-unfreeze",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-unfreeze",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "gstack-upgrade",
+    "path": "/Users/kaitakeuchi/.codex/skills/gstack-upgrade",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "pathway-governance-review",
+    "path": "/Users/kaitakeuchi/.codex/skills/pathway-governance-review",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "security-best-practices",
+    "path": "/Users/kaitakeuchi/.codex/skills/security-best-practices",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  },
+  {
+    "name": "security-threat-model",
+    "path": "/Users/kaitakeuchi/.codex/skills/security-threat-model",
+    "valid": true,
+    "message": "Skill is valid!",
+    "explicit_only": true,
+    "name_matches_directory": true
+  }
+]

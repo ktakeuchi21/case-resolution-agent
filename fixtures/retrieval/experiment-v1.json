@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "phase2b-experiment-v1",
+  "goldSha256": "90bc399a33b66a4ffc147cacb67a671feef241ce75732ba3adf3799eab013546",
+  "corpusSha256": "0f11a6926f73b7242da427872f2b78a3471e0c5c623e1c6c381d8c30f5ce72f5",
+  "frozenBeforeMeasurement": true,
+  "k": 8,
+  "repeats": 5,
+  "candidateDepth": 50,
+  "rrfK": 60,
+  "embedding": {
+    "provider": "openai",
+    "model": "text-embedding-3-small",
+    "dimensions": 1536,
+    "revision": "configured-2026-09-07",
+    "normalization": "none-v1"
+  },
+  "arms": [
+    {
+      "id": "lexical",
+      "mode": "lexical",
+      "semanticMinCosine": null
+    },
+    {
+      "id": "semantic",
+      "mode": "semantic",
+      "semanticMinCosine": null
+    },
+    {
+      "id": "hybrid",
+      "mode": "hybrid",
+      "semanticMinCosine": null
+    },
+    {
+      "id": "hybrid-threshold-sensitivity",
+      "mode": "hybrid",
+      "semanticMinCosine": 0.35
+    }
+  ],
+  "thresholdPolicy": "0.35 is a preregistered sensitivity probe, not a calibrated cutoff or adoption recommendation; never changes mandatory filters. No tuning on challenge set.",
+  "price": {
+    "usdPerMillionInputTokens": 0.02,
+    "checkedAt": "2026-09-07",
+    "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small"
+  }
+}

@@ -1,0 +1,56 @@
+
+> pathway-agent@0.2.0 test
+> node --test tests/*.test.ts
+
+✔ all fixture references, immutable manifests and exact source locations validate (27.683542ms)
+✔ runtime request refuses caller-supplied user, approval and as-of overrides (1.128166ms)
+✔ sandbox request cannot attach a case or operational release (0.149ms)
+✔ scope requires explicit unknown/all/not-applicable values (1.851917ms)
+✔ unknown context is not a wildcard even for an explicit all scope (1.022ms)
+✔ approval cannot be a boolean or unaccountable label (2.944125ms)
+✔ dates require a valid interval, and supersession requires both fields (1.604875ms)
+✔ release contributor cannot self-approve (1.904708ms)
+✔ changed source metadata invalidates an existing release manifest (2.027916ms)
+✔ quote must exist in exact canonical text (1.192208ms)
+✔ incorrect source string offsets are rejected, not silently relocated (1.729125ms)
+✔ structured table preserves header, row and limiting footnote (2.865791ms)
+✔ duplicate version identities cannot overwrite existing sources (1.20775ms)
+✔ a reusable pack cannot contain case-specific evidence (1.743542ms)
+✔ a reusable governed pack cannot contain sandbox evidence even when rehashed (1.789917ms)
+✔ case notice cannot be cross-bound to another case (1.711291ms)
+✔ date boundaries are start-inclusive and end-exclusive across offsets (0.59675ms)
+✔ evidence requires four structured decisions and a tamper-evident record (15.848417ms)
+✔ executable reference cases satisfy independently declared expectations (116.102084ms)
+✔ required retirement, history and sandbox sequence passes in one registry (4.582208ms)
+✔ same immutable corpus, clock and request produce identical evidence in independent instances (5.504ms)
+✔ local ranking uses an eligible subset before scoring (0.773791ms)
+✔ unmatched lexical query returns no evidence rather than a default fixture (1.988ms)
+✔ paraphrase probe exposes lexical recall limits while abstaining safely (4.521875ms)
+✔ switching to summary cannot bypass an applicable authoritative conflict (2.965833ms)
+✔ an authorized passage does not authorize every annotated statement inside it (3.648667ms)
+✔ stale or out-of-scope provider candidates fail closed (2.379917ms)
+✔ provider cannot substitute text hashes for eligible IDs (2.181334ms)
+✔ provider without native prefilter capability is not called (2.3425ms)
+✔ provider exception becomes a structured pause without leaking its payload (2.299041ms)
+✔ retirement during an in-flight search invalidates the answer before release (3.056958ms)
+✔ rewinding the clock does not resurrect actively revoked authority (2.274709ms)
+✔ retirement and conflict registration require the appropriate trusted actor (2.093375ms)
+✔ repeated retirement is idempotent and leaves source bytes untouched (2.655458ms)
+✔ retiring a pinned release pauses rather than silently selecting another (1.952916ms)
+✔ review deadline blocks source use independently of expiration (3.298417ms)
+✔ future publication and verification cannot confer present authority (5.0355ms)
+✔ prohibited use wins over a permitted-use entry (2.459042ms)
+✔ source support does not supply a missing action grant (2.287833ms)
+✔ missing case inventory prevents case-specific determination (2.631333ms)
+✔ arbitrary injection wording remains unexecuted without a detector (2.149042ms)
+✔ published snapshot and records cannot be modified through returned objects (2.1835ms)
+✔ historical evidence survives process-store restart and rejects tampering (5.607833ms)
+✔ registry rejects an unauthenticated identity before source access (1.750292ms)
+ℹ tests 44
+ℹ suites 0
+ℹ pass 44
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 386.642375

@@ -1,0 +1,658 @@
+$ bun run scripts/skill-check.ts
+  Skills:
+  ⚠️  SKILL.md                       — no $B commands found
+  ✅ pair-agent/SKILL.md            — 14 commands, all valid
+  ✅ benchmark/SKILL.md             — 23 commands, all valid
+  ⚠️  design-html/SKILL.md           — no $B commands found
+  ⚠️  plan-tune/SKILL.md             — no $B commands found
+  ⚠️  design-shotgun/SKILL.md        — no $B commands found
+  ⚠️  plan-design-review/SKILL.md    — no $B commands found
+  ⚠️  autoplan/SKILL.md              — no $B commands found
+  ✅ design-consultation/SKILL.md   — 26 commands, all valid
+  ⚠️  learn/SKILL.md                 — no $B commands found
+  ⚠️  freeze/SKILL.md                — no $B commands found
+  ⚠️  ios-qa/SKILL.md                — no $B commands found
+  ⚠️  careful/SKILL.md               — no $B commands found
+  ⚠️  cso/SKILL.md                   — no $B commands found
+  ✅ canary/SKILL.md                — 23 commands, all valid
+  ✅ open-gstack-browser/SKILL.md   — 13 commands, all valid
+  ⚠️  diagram/SKILL.md               — no $B commands found
+  ⚠️  investigate/SKILL.md           — no $B commands found
+  ⚠️  context-restore/SKILL.md       — no $B commands found
+  ⚠️  document-release/SKILL.md      — no $B commands found
+  ⚠️  health/SKILL.md                — no $B commands found
+  ⚠️  gstack-upgrade/SKILL.md        — no $B commands found
+  ✅ land-and-deploy/SKILL.md       — 28 commands, all valid
+  ⚠️  codex/SKILL.md                 — no $B commands found
+  ✅ spec/SKILL.md                  — 5 commands, all valid
+  ✅ qa/SKILL.md                    — 24 commands, all valid
+  ✅ scrape/SKILL.md                — 29 commands, all valid
+  ✅ qa-only/SKILL.md               — 26 commands, all valid
+  ✅ skillify/SKILL.md              — 15 commands, all valid
+  ⚠️  sync-gbrain/SKILL.md           — no $B commands found
+  ✅ setup-browser-cookies/SKILL.md — 4 commands, all valid
+  ⚠️  ios-fix/SKILL.md               — no $B commands found
+  ⚠️  ios-clean/SKILL.md             — no $B commands found
+  ⚠️  setup-gbrain/SKILL.md          — no $B commands found
+  ⚠️  document-generate/SKILL.md     — no $B commands found
+  ⚠️  review/SKILL.md                — no $B commands found
+  ⚠️  plan-ceo-review/SKILL.md       — no $B commands found
+  ✅ office-hours/SKILL.md          — 5 commands, all valid
+  ⚠️  landing-report/SKILL.md        — no $B commands found
+  ⚠️  retro/SKILL.md                 — no $B commands found
+  ⚠️  ios-design-review/SKILL.md     — no $B commands found
+  ✅ devex-review/SKILL.md          — 23 commands, all valid
+  ⚠️  benchmark-models/SKILL.md      — no $B commands found
+  ⚠️  plan-devex-review/SKILL.md     — no $B commands found
+  ⚠️  ios-sync/SKILL.md              — no $B commands found
+  ✅ browse/SKILL.md                — 23 commands, all valid
+  ✅ design-review/SKILL.md         — 23 commands, all valid
+  ✅ ship/SKILL.md                  — 5 commands, all valid
+  ⚠️  plan-eng-review/SKILL.md       — no $B commands found
+  ⚠️  guard/SKILL.md                 — no $B commands found
+  ⚠️  make-pdf/SKILL.md              — no $B commands found
+  ⚠️  unfreeze/SKILL.md              — no $B commands found
+  ⚠️  context-save/SKILL.md          — no $B commands found
+  ✅ setup-deploy/SKILL.md          — 5 commands, all valid
+
+  Templates:
+  ✅ SKILL.md.tmpl                  → SKILL.md
+  ✅ pair-agent/SKILL.md.tmpl       → pair-agent/SKILL.md
+  ✅ benchmark/SKILL.md.tmpl        → benchmark/SKILL.md
+  ✅ design-html/SKILL.md.tmpl      → design-html/SKILL.md
+  ✅ plan-tune/SKILL.md.tmpl        → plan-tune/SKILL.md
+  ✅ design-shotgun/SKILL.md.tmpl   → design-shotgun/SKILL.md
+  ✅ plan-design-review/SKILL.md.tmpl → plan-design-review/SKILL.md
+  ✅ autoplan/SKILL.md.tmpl         → autoplan/SKILL.md
+  ✅ design-consultation/SKILL.md.tmpl → design-consultation/SKILL.md
+  ✅ learn/SKILL.md.tmpl            → learn/SKILL.md
+  ✅ freeze/SKILL.md.tmpl           → freeze/SKILL.md
+  ✅ ios-qa/SKILL.md.tmpl           → ios-qa/SKILL.md
+  ✅ careful/SKILL.md.tmpl          → careful/SKILL.md
+  ✅ cso/SKILL.md.tmpl              → cso/SKILL.md
+  ✅ canary/SKILL.md.tmpl           → canary/SKILL.md
+  ✅ open-gstack-browser/SKILL.md.tmpl → open-gstack-browser/SKILL.md
+  ✅ diagram/SKILL.md.tmpl          → diagram/SKILL.md
+  ✅ investigate/SKILL.md.tmpl      → investigate/SKILL.md
+  ✅ context-restore/SKILL.md.tmpl  → context-restore/SKILL.md
+  ❌ claude/SKILL.md                — generated file missing! Run: bun run gen:skill-docs
+  ✅ document-release/SKILL.md.tmpl → document-release/SKILL.md
+  ✅ health/SKILL.md.tmpl           → health/SKILL.md
+  ✅ gstack-upgrade/SKILL.md.tmpl   → gstack-upgrade/SKILL.md
+  ✅ land-and-deploy/SKILL.md.tmpl  → land-and-deploy/SKILL.md
+  ✅ codex/SKILL.md.tmpl            → codex/SKILL.md
+  ✅ spec/SKILL.md.tmpl             → spec/SKILL.md
+  ✅ qa/SKILL.md.tmpl               → qa/SKILL.md
+  ✅ scrape/SKILL.md.tmpl           → scrape/SKILL.md
+  ✅ qa-only/SKILL.md.tmpl          → qa-only/SKILL.md
+  ✅ skillify/SKILL.md.tmpl         → skillify/SKILL.md
+  ✅ sync-gbrain/SKILL.md.tmpl      → sync-gbrain/SKILL.md
+  ✅ setup-browser-cookies/SKILL.md.tmpl → setup-browser-cookies/SKILL.md
+  ✅ ios-fix/SKILL.md.tmpl          → ios-fix/SKILL.md
+  ✅ ios-clean/SKILL.md.tmpl        → ios-clean/SKILL.md
+  ✅ setup-gbrain/SKILL.md.tmpl     → setup-gbrain/SKILL.md
+  ✅ document-generate/SKILL.md.tmpl → document-generate/SKILL.md
+  ✅ review/SKILL.md.tmpl           → review/SKILL.md
+  ✅ plan-ceo-review/SKILL.md.tmpl  → plan-ceo-review/SKILL.md
+  ✅ office-hours/SKILL.md.tmpl     → office-hours/SKILL.md
+  ✅ landing-report/SKILL.md.tmpl   → landing-report/SKILL.md
+  ✅ retro/SKILL.md.tmpl            → retro/SKILL.md
+  ✅ ios-design-review/SKILL.md.tmpl → ios-design-review/SKILL.md
+  ✅ devex-review/SKILL.md.tmpl     → devex-review/SKILL.md
+  ✅ benchmark-models/SKILL.md.tmpl → benchmark-models/SKILL.md
+  ✅ plan-devex-review/SKILL.md.tmpl → plan-devex-review/SKILL.md
+  ✅ ios-sync/SKILL.md.tmpl         → ios-sync/SKILL.md
+  ✅ browse/SKILL.md.tmpl           → browse/SKILL.md
+  ✅ design-review/SKILL.md.tmpl    → design-review/SKILL.md
+  ✅ ship/SKILL.md.tmpl             → ship/SKILL.md
+  ✅ plan-eng-review/SKILL.md.tmpl  → plan-eng-review/SKILL.md
+  ✅ guard/SKILL.md.tmpl            → guard/SKILL.md
+  ✅ make-pdf/SKILL.md.tmpl         → make-pdf/SKILL.md
+  ✅ unfreeze/SKILL.md.tmpl         → unfreeze/SKILL.md
+  ✅ context-save/SKILL.md.tmpl     → context-save/SKILL.md
+  ✅ setup-deploy/SKILL.md.tmpl     → setup-deploy/SKILL.md
+
+  OpenAI Codex CLI Skills (.agents/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Factory Droid Skills (.factory/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Kiro Skills (.kiro/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  OpenCode Skills (.opencode/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Slate Skills (.slate/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Cursor Skills (.cursor/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  OpenClaw Skills (.openclaw/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Hermes Skills (.hermes/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  GBrain Skills (.gbrain/skills/):
+  ✅ gstack                         — OK
+  ✅ gstack-autoplan                — OK
+  ✅ gstack-benchmark               — OK
+  ✅ gstack-benchmark-models        — OK
+  ✅ gstack-browse                  — OK
+  ✅ gstack-canary                  — OK
+  ✅ gstack-careful                 — OK
+  ✅ gstack-claude                  — OK
+  ✅ gstack-context-restore         — OK
+  ✅ gstack-context-save            — OK
+  ✅ gstack-cso                     — OK
+  ✅ gstack-design-consultation     — OK
+  ✅ gstack-design-html             — OK
+  ✅ gstack-design-review           — OK
+  ✅ gstack-design-shotgun          — OK
+  ✅ gstack-devex-review            — OK
+  ✅ gstack-diagram                 — OK
+  ✅ gstack-document-generate       — OK
+  ✅ gstack-document-release        — OK
+  ✅ gstack-freeze                  — OK
+  ✅ gstack-guard                   — OK
+  ✅ gstack-health                  — OK
+  ✅ gstack-investigate             — OK
+  ✅ gstack-ios-clean               — OK
+  ✅ gstack-ios-design-review       — OK
+  ✅ gstack-ios-fix                 — OK
+  ✅ gstack-ios-qa                  — OK
+  ✅ gstack-ios-sync                — OK
+  ✅ gstack-land-and-deploy         — OK
+  ✅ gstack-landing-report          — OK
+  ✅ gstack-learn                   — OK
+  ✅ gstack-make-pdf                — OK
+  ✅ gstack-office-hours            — OK
+  ✅ gstack-open-gstack-browser     — OK
+  ✅ gstack-pair-agent              — OK
+  ✅ gstack-plan-ceo-review         — OK
+  ✅ gstack-plan-design-review      — OK
+  ✅ gstack-plan-devex-review       — OK
+  ✅ gstack-plan-eng-review         — OK
+  ✅ gstack-plan-tune               — OK
+  ✅ gstack-qa                      — OK
+  ✅ gstack-qa-only                 — OK
+  ✅ gstack-retro                   — OK
+  ✅ gstack-review                  — OK
+  ✅ gstack-scrape                  — OK
+  ✅ gstack-setup-browser-cookies   — OK
+  ✅ gstack-setup-deploy            — OK
+  ✅ gstack-setup-gbrain            — OK
+  ✅ gstack-ship                    — OK
+  ✅ gstack-skillify                — OK
+  ✅ gstack-spec                    — OK
+  ✅ gstack-sync-gbrain             — OK
+  ✅ gstack-unfreeze                — OK
+  ✅ gstack-upgrade                 — OK
+  Total: 54 skills, 0 missing
+
+  Freshness (Claude Code):
+  ✅ All Claude Code generated files are fresh
+
+  Freshness (OpenAI Codex CLI):
+  ✅ All OpenAI Codex CLI generated files are fresh
+
+  Freshness (Factory Droid):
+  ✅ All Factory Droid generated files are fresh
+
+  Freshness (Kiro):
+  ✅ All Kiro generated files are fresh
+
+  Freshness (OpenCode):
+  ✅ All OpenCode generated files are fresh
+
+  Freshness (Slate):
+  ✅ All Slate generated files are fresh
+
+  Freshness (Cursor):
+  ✅ All Cursor generated files are fresh
+
+  Freshness (OpenClaw):
+  ✅ All OpenClaw generated files are fresh
+
+  Freshness (Hermes):
+  ✅ All Hermes generated files are fresh
+
+  Freshness (GBrain):
+  ✅ All GBrain generated files are fresh
+
+error: script "skill:check" exited with code 1

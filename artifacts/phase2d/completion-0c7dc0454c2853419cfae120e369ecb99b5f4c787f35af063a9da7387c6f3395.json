@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "phase2d-completion-v1",
+  "recordedAt": "2026-09-08T04:44:15.975Z",
+  "status": "complete_local_synthetic_scope",
+  "gates": {
+    "typecheck": true,
+    "originalTests": 67,
+    "postgresTests": 24,
+    "workflowTests": 29,
+    "emptyDatabaseMigrations": 6,
+    "deterministicSeed": true,
+    "originalReferences": 23,
+    "retrievalComparisons": 108,
+    "rankingDifferences": 0,
+    "additionalProviderCalls": 0,
+    "scenarios": 11,
+    "childProcessReconstruction": true,
+    "actualDatabaseRestart": true,
+    "workflowAudit": true,
+    "evidenceAndCitationAudit": true,
+    "lint": "not_configured"
+  },
+  "artifacts": {
+    "scenarios": [
+      {
+        "scenario": "golden",
+        "artifact": "artifacts/phase2d/golden-a7e07a92396287422fb5bac01bb2710a1021e34304d3369e1603d1aab6a72fac.json",
+        "state": "PA_PENDING",
+        "pass": true
+      },
+      {
+        "scenario": "human-pause-resume",
+        "artifact": "artifacts/phase2d/human-pause-resume-04d0265cbb60a53059ca83ae39b2d37d268ee2a0b35d7393c15f767dfc8ee4e4.json",
+        "state": "PA_PENDING",
+        "pass": true
+      },
+      {
+        "scenario": "retirement",
+        "artifact": "artifacts/phase2d/retirement-10ce6586f8580245aaf77d528d1139087fad5a2f6f90827b74ed2e91dc81fadf.json",
+        "state": "PAUSED",
+        "pass": true
+      },
+      {
+        "scenario": "duplicates",
+        "artifact": "artifacts/phase2d/duplicates-81d8d8fea0fdde9e1fc33a56e063a8d576614e658cd0ac5e8ba6afce33adf21f.json",
+        "state": "PA_PENDING",
+        "pass": true
+      },
+      {
+        "scenario": "crash-recovery",
+        "artifact": "artifacts/phase2d/crash-recovery-7f14628feb4ceeff91971fbbcc247aa7de5c1b6610bfbde587b525a54c146550.json",
+        "state": "PA_PENDING",
+        "pass": true
+      },
+      {
+        "scenario": "rejection",
+        "artifact": "artifacts/phase2d/rejection-301ac4d1c82ccd8da5329ffc7195022e3ee6793c67ad66d0205dec1353ca4cd1.json",
+        "state": "ESCALATED",
+        "pass": true
+      },
+      {
+        "scenario": "timer",
+        "artifact": "artifacts/phase2d/timer-280e076169f2e0fe8812e4d706230d2578c760ab2a674560844d90d082fe8711.json",
+        "state": "ESCALATED",
+        "pass": true
+      },
+      {
+        "scenario": "provider-failure",
+        "artifact": "artifacts/phase2d/provider-failure-92a5700a51a04d545fcda7edc3621b5495696d2336ae3e1d98e2ec3e0d886a79.json",
+        "state": "OUTREACH_QUEUED",
+        "pass": true
+      },
+      {
+        "scenario": "cancellation",
+        "artifact": "artifacts/phase2d/cancellation-48ae6edc1dec802d00351c2458fd8101225c9088bff5982b8a1082d937a6b67a.json",
+        "state": "CANCELLED",
+        "pass": true
+      },
+      {
+        "scenario": "concurrency-retirement-first",
+        "artifact": "artifacts/phase2d/concurrency-retirement-first-e1efc3602c9341ec643ecd0ee7396716dd6579cca849988c167e0ef98e375808.json",
+        "state": "PAUSED",
+        "pass": true
+      },
+      {
+        "scenario": "concurrency-resolution-first",
+        "artifact": "artifacts/phase2d/concurrency-resolution-first-d2c58c3425603f92c6806e6e6f4db709d727313bd49820139f6747a0c5fd2d26.json",
+        "state": "PAUSED",
+        "pass": true
+      }
+    ],
+    "scenarioVerification": "artifacts/phase2d/scenario-verification-274968d7035fab2963f7f9e505524cc1a06f0d977e5784141175ffda84ced73d.json",
+    "metrics": "artifacts/phase2d/operational-metrics-labeled-55d0e62a95683a915d4085c931fd7a87d5ea6e572b77a86acb8c5670e7e489ba.json",
+    "retrievalParity": "artifacts/phase2c/parity-4931eec5c02594a403c6932605e8db4b2c70300590192cc27bd97c59269e6862.json",
+    "workflowAudit": "artifacts/phase2d/workflow-audit-c5a958385f60ea376a7e704dfc1709bb0882e135a6f936b0a50566d9d29964b4.json",
+    "evidenceAudit": "artifacts/phase2c/database-audit-c4cbc84a8069cf45f154df4254f80f7d8bed461b36fa11565b6913be6cc7b2c8.json",
+    "restart": "artifacts/phase2d/server-restart-aaeedd89f474c353a8428b8e73b5eb7ffb8270d01e3e5a8b229e9e57ccc1bc84.json"
+  },
+  "hygiene": {
+    "schemaVersion": "phase2d-hygiene-v1",
+    "oldFilesVerified": 43,
+    "oldFilesChanged": [],
+    "filesScanned": 153,
+    "secretPatternFindings": 0,
+    "initialScannerFalsePositive": "Existing gstack skill-e2e-ask filename contained an internal sk- substring; inspected JSON path and corrected token-boundary matching, no credential exposed",
+    "ignoreMatchersPassed": true,
+    "environmentExampleEmptySecrets": true,
+    "newArtifactHashesVerified": 17,
+    "repositoryHasGitMetadata": false,
+    "syntheticDataOnly": "Only synthetic SC-01 IDs, hashes, roles and deterministic adapter records introduced",
+    "pass": true
+  },
+  "decision": {
+    "option": "B",
+    "next": "Thin local vertical-slice interface",
+    "reason": "Durable synthetic workflow and safe exception paths pass; next test is whether people understand evidence, permissions, handoff and completion boundaries.",
+    "implemented": false
+  },
+  "limits": [
+    "Synthetic fixture actors, no real authentication",
+    "Deterministic simulated integrations, no real delivery",
+    "September 2026 fixture calendar only",
+    "Coarse scope locks and complete snapshots; queue scale unmeasured",
+    "No fresh embedding-provider variability measurement",
+    "No hosted infrastructure, production backup/load/power-loss verification or production readiness claim"
+  ],
+  "changedProjectFiles": [
+    "AGENTS.md",
+    "package.json",
+    "src/db/database.ts",
+    "src/db/retrieval.ts",
+    "tests/postgres/database.test.ts",
+    "src/workflow/adapters.ts",
+    "src/workflow/contracts.ts",
+    "src/workflow/engine.ts",
+    "src/workflow/fixtures.ts",
+    "src/workflow/observability.ts",
+    "src/workflow/repository.ts",
+    "src/workflow/worker.ts",
+    "scripts/workflow/audit.ts",
+    "scripts/workflow/reconstruct.ts",
+    "scripts/workflow/run.ts",
+    "scripts/workflow/scenarios.ts",
+    "scripts/workflow/tick.ts",
+    "scripts/workflow/verify-restart.ts",
+    "tests/workflow/boundaries.test.ts",
+    "tests/workflow/scenarios.test.ts",
+    "migrations/005_sc01_workflow.sql",
+    "migrations/006_workflow_evidence_links.sql",
+    "docs/sc01-state-machine.md",
+    "docs/phase2d-verification.md",
+    "docs/product-foundation.md",
+    "docs/synthetic-scenarios.md",
+    "docs/knowledge-studio.md",
+    "docs/architecture.md",
+    "docs/developer-guide.md",
+    "docs/data-model.md",
+    "docs/persistence-runbook.md",
+    "docs/roadmap.md",
+    "docs/decisions.md"
+  ],
+  "globalConfigurationChanges": [],
+  "databaseChanges": "Two append-only migrations, new scoped synthetic workspaces and retained empty verification databases; project server restarted with data retained",
+  "pass": true
+}

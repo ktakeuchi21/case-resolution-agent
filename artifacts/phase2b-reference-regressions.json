@@ -1,0 +1,4623 @@
+{
+  "schemaVersion": "phase2a-eval-v1",
+  "provider": {
+    "id": "local-bm25",
+    "version": "v1",
+    "kind": "lexical",
+    "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+  },
+  "claims": {
+    "semanticRetrieval": "not_implemented",
+    "llmInjectionResistance": "not_tested",
+    "governance": "deterministic assertions on synthetic reference fixtures",
+    "lexicalQuality": "no held-out retrieval benchmark; not inferred from governance pass rate",
+    "modelCost": "no model calls; $0 API usage, not a hosted cost estimate",
+    "latency": "not_benchmarked"
+  },
+  "summary": {
+    "cases": 23,
+    "passed": 23,
+    "failed": 0,
+    "reproducibleEvidence": true,
+    "retirementSequence": true,
+    "allPassed": true
+  },
+  "results": [
+    {
+      "id": "T01",
+      "title": "Current source supports SC-01 and a recommendation",
+      "reference": "E-02",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "support": "supported",
+        "applicability": "applicable",
+        "communication": "allowed",
+        "action": "allowed",
+        "evidence": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-44c7ccf1b737c60f77f8d73f91a56f0866c8668937a9f05a5dbc3d4f47dacc98"
+    },
+    {
+      "id": "T02",
+      "title": "Expired, superseded and future versions are excluded",
+      "reference": "E-03",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "allowed",
+        "evidence": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "exclusions": [
+          [
+            "K-PA.expired",
+            "EXPIRED"
+          ],
+          [
+            "K-PA.superseded",
+            "SUPERSEDED"
+          ],
+          [
+            "K-PA.v3",
+            "NOT_YET_EFFECTIVE"
+          ]
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-0b2fd7d76e5f1a80c5f353f7984a4392bb56abbb72085741b643e83bc1440908"
+    },
+    {
+      "id": "T03",
+      "title": "Topically similar wrong payer and plan are excluded",
+      "reference": "E-07",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "allowed",
+        "exclusions": [
+          [
+            "K-CEDAR.v1",
+            "WRONG_PAYER"
+          ],
+          [
+            "K-CEDAR.v1",
+            "WRONG_PLAN"
+          ]
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-d66c8967ec7c72aa48a4b2f9e89a1cfa65b32fa4a1719d898af6a6d9458c8025"
+    },
+    {
+      "id": "T04",
+      "title": "Wrong state is excluded before retrieval",
+      "reference": "E-07 extension",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "allowed",
+        "exclusions": [
+          [
+            "K-UT.v1",
+            "WRONG_STATE"
+          ]
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-5828d4fae7e9578f0e47855bae73858753f38a01c77cabb23f4f777787b6cf01"
+    },
+    {
+      "id": "T05",
+      "title": "Lower-authority conflict cannot override payer evidence",
+      "reference": "E-04 extension",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "allowed",
+        "evidence": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "finding": "LOWER_AUTHORITY_CONFLICT"
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-13859c4776aca0e3fd3109a26c07123998b44cdfd3d686b4ff5400ce56a436e8"
+    },
+    {
+      "id": "T06",
+      "title": "Authoritative conflict outside top-k blocks reliance",
+      "reference": "E-04",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "escalate",
+        "support": "conflicting",
+        "applicability": "unknown",
+        "action": "paused",
+        "finding": "AUTHORITATIVE_CONFLICT"
+      },
+      "retrievedSources": [
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "K-PA-X.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "AUTHORITATIVE_CONFLICT"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "K-PA-X.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "K-PA-X.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "AUTHORITATIVE_CONFLICT"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "K-PA-X.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "AUTHORITATIVE_CONFLICT"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "K-PA-X.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "conflicting"
+      },
+      "disposition": "escalate",
+      "evidenceId": "EV-c1cf28775a16b0976185aa78c1d00c8c976478860167593b72ece06d373999b3"
+    },
+    {
+      "id": "T07",
+      "title": "Missing payer deadline produces abstention",
+      "reference": "E-05",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "abstain",
+        "support": "missing",
+        "action": "not_requested",
+        "evidence": []
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-APL.v1",
+        "CE-101-01.v1",
+        "K-EDU.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "ACTION_NOT_REQUESTED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_requested"
+      },
+      "support": {
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "missing"
+      },
+      "disposition": "abstain",
+      "evidenceId": "EV-280972f48fce98092830eef54c6c0ce46a62484197d7cc5fe566580154f67c2e"
+    },
+    {
+      "id": "T08",
+      "title": "Injection document supports only its reviewed quotation",
+      "reference": "E-08",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "SB-INJECT.v1"
+        ],
+        "disposition": "answer",
+        "applicability": "sandbox_only",
+        "action": "denied",
+        "evidence": [
+          "SB-INJECT.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "SB-INJECT.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "SB-REPLACEMENT.v1",
+          "reasonCodes": [
+            "NOT_IN_COLLECTION"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "SB-INJECT.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-INJECT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "sandbox_only"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "SB-INJECT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SANDBOX_ACTION_DENIED"
+        ],
+        "supportingPassageIds": [
+          "SB-INJECT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED",
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-INJECT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-e4e69e1f019e1a93135e461ab56fd03da41fc056d97843fa2600d52b40b8a871"
+    },
+    {
+      "id": "T09",
+      "title": "Sandbox Q&A never enables a case action",
+      "reference": "E-09",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "SB-INJECT.v1",
+          "SB-REPLACEMENT.v1"
+        ],
+        "disposition": "answer",
+        "support": "supported",
+        "action": "denied"
+      },
+      "retrievedSources": [
+        "SB-REPLACEMENT.v1",
+        "SB-INJECT.v1"
+      ],
+      "excluded": [],
+      "evidenceUsed": [
+        "SB-REPLACEMENT.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "sandbox_only"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SANDBOX_ACTION_DENIED"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED",
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-d6c3856fc1d09fb2864a7e5a42d000d58e69eef8ebbebef2a2b5b063a2b9cf5e"
+    },
+    {
+      "id": "T10",
+      "title": "Retired source pauses next recommendation",
+      "reference": "E-11",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "N-101.v1"
+        ],
+        "disposition": "pause",
+        "action": "paused",
+        "exclusions": [
+          [
+            "K-PA.v2",
+            "SOURCE_RETIRED"
+          ]
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "missing"
+      },
+      "disposition": "pause",
+      "evidenceId": "EV-1bac6578fafb50f0ce909327b5c83dee63eab8b503937ea93997b3712a350e14"
+    },
+    {
+      "id": "T11",
+      "title": "Supported communication does not authorize transfer",
+      "reference": "E-19",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-COMM.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "support": "supported",
+        "communication": "allowed",
+        "action": "requires_approval",
+        "evidence": [
+          "K-COMM.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "K-COMM.v1",
+        "CE-101-01.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-COMM.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-COMM.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-COMM.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "APPROVAL_REQUIRED"
+        ],
+        "supportingPassageIds": [
+          "K-COMM.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "requires_approval"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-COMM.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-d1176101b5029d7d4fad4ce2c9703c496d3925686d2091fe893b048caaeb840a"
+    },
+    {
+      "id": "T12",
+      "title": "Incomplete metadata never becomes operational evidence",
+      "reference": "E-10",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "allowed",
+        "exclusions": [
+          [
+            "K-UNDATED.v1",
+            "METADATA_UNKNOWN"
+          ],
+          [
+            "K-UNDATED.v1",
+            "UNAPPROVED"
+          ]
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-561ee75746d4b4fe58d40e46a18837e91550afe1d1382bd5abc49ba9c149343b"
+    },
+    {
+      "id": "T13",
+      "title": "Wrong-tenant actor cannot discover case sources",
+      "reference": "E-20",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "deny",
+        "communication": "denied",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "USE_NOT_PERMITTED",
+          "CASE_ACCESS_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "USE_NOT_PERMITTED",
+          "CASE_ACCESS_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "USE_NOT_PERMITTED",
+          "CASE_ACCESS_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "USE_NOT_PERMITTED",
+          "CASE_ACCESS_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "deny",
+      "evidenceId": "EV-e60fe02e60d6c42245dbc9bc6740337706e45b63091b3c5e367018fc0f57885f"
+    },
+    {
+      "id": "T14",
+      "title": "User cannot swap an Alder case to Cedar",
+      "reference": "E-07",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "deny",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED",
+          "RELEASE_NOT_ASSIGNED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED",
+          "RELEASE_NOT_ASSIGNED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED",
+          "RELEASE_NOT_ASSIGNED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED",
+          "RELEASE_NOT_ASSIGNED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "deny",
+      "evidenceId": "EV-50e1c6a3eeb7b7d46ee8fb5a571cabe1050cfddebda6d97f593596ea993daddc"
+    },
+    {
+      "id": "T15",
+      "title": "Mandatory pack cannot be deselected",
+      "reference": "E-04 extension",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "deny",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "MANDATORY_PACK_OMITTED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "deny",
+      "evidenceId": "EV-96975e96c5f70ca5ba3e06ebd453b503c82ab17e5c5ec46dbb9a95e397d7ae8b"
+    },
+    {
+      "id": "T16",
+      "title": "SC-02 notice supplies the exact appeal deadline",
+      "reference": "E-13 subset",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-102.v1"
+        ],
+        "disposition": "answer",
+        "action": "not_requested",
+        "evidence": [
+          "N-102.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "N-102.v1",
+        "K-APL.v1",
+        "K-PA.v2"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        },
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "N-102.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "N-102.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "N-102.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "ACTION_NOT_REQUESTED"
+        ],
+        "supportingPassageIds": [
+          "N-102.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_requested"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "N-102.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-8f9b3e07f8fe84010ff42c3a3d02defa9323e9d19c3e734ea8f7ac21e856920e"
+    },
+    {
+      "id": "T17",
+      "title": "SC-03 unknown coverage permits generic intake only",
+      "reference": "E-16",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "K-FIN.v1"
+        ],
+        "disposition": "answer",
+        "action": "not_requested",
+        "evidence": [
+          "K-FIN.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "K-FIN.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-APL.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN",
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-EDU.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "EXPIRED",
+            "REVIEW_OVERDUE",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "SUPERSEDED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "NOT_YET_EFFECTIVE",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-FIN.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-FIN.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-FIN.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "ACTION_NOT_REQUESTED"
+        ],
+        "supportingPassageIds": [
+          "K-FIN.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_requested"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-FIN.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-e840e65390551320bfc9c91b28329ebc6feea6e54dd432cc1fac9751eda50f13"
+    },
+    {
+      "id": "T18",
+      "title": "A clinical/coverage decision is prohibited despite supported evidence",
+      "reference": "E-15 subset",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "disposition": "answer",
+        "action": "denied",
+        "evidence": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "N-101.v1",
+        "K-PA.v2",
+        "K-EDU.v1",
+        "CE-101-01.v1",
+        "K-APL.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "ACTION_PROHIBITED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-d4c12ec1547f6134ef585e0e283b786abdb2452680b7a1fcceaf99b3acd03bbe"
+    },
+    {
+      "id": "T19",
+      "title": "Forbidden communication channel cannot leak passages",
+      "reference": "E-18",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "deny",
+        "communication": "denied",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "CHANNEL_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "CHANNEL_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "CHANNEL_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "CHANNEL_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "deny",
+      "evidenceId": "EV-8bb1c2f8b5a5c28387f7e0966f6f2412b679230d6190e237f295c4536b21a8e9"
+    },
+    {
+      "id": "T20",
+      "title": "Expired pinned release pauses without automatic migration",
+      "reference": "E-25 subset",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "pause",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-12-01T07:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-12-01T07:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-12-01T07:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-12-01T07:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "pause",
+      "evidenceId": "EV-e112763ac5fa52deeded7a721853149525f3c7ba5ccc87686afa8ea91d887e98"
+    },
+    {
+      "id": "T21",
+      "title": "Unknown benefit does not match a plan-specific rule",
+      "reference": "E-06",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "deny",
+        "applicability": "unknown",
+        "action": "paused",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "METADATA_UNKNOWN"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "METADATA_UNKNOWN"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "METADATA_UNKNOWN"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "paused"
+      },
+      "support": {
+        "reasonCodes": [
+          "METADATA_UNKNOWN"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "deny",
+      "evidenceId": "EV-eeb0d5a2f1a175dff78953bcfc50c3256e9a5d76f22af142855c77d520294ebc"
+    },
+    {
+      "id": "T22",
+      "title": "Same question, different valid pack and context",
+      "reference": "E-01 subset",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [
+          "K-CEDAR.v1"
+        ],
+        "disposition": "answer",
+        "action": "not_requested",
+        "evidence": [
+          "K-CEDAR.v1.s1"
+        ]
+      },
+      "retrievedSources": [
+        "K-CEDAR.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-APL.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN",
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-EDU.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "EXPIRED",
+            "REVIEW_OVERDUE",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "SUPERSEDED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "NOT_YET_EFFECTIVE",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        }
+      ],
+      "evidenceUsed": [
+        "K-CEDAR.v1.s1"
+      ],
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-CEDAR.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-CEDAR.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "ACTION_NOT_REQUESTED"
+        ],
+        "supportingPassageIds": [
+          "K-CEDAR.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "not_requested"
+      },
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-CEDAR.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "disposition": "answer",
+      "evidenceId": "EV-b00259dd594cf12686c3621f13fafe76045d99e3291554655528a8d0aeda171f"
+    },
+    {
+      "id": "T23",
+      "title": "An expired sandbox collection cannot answer",
+      "reference": "Collection expiry extension; E-26 deletion not implemented",
+      "pass": true,
+      "errors": [],
+      "expected": {
+        "eligible": [],
+        "disposition": "pause",
+        "action": "denied",
+        "evidence": []
+      },
+      "retrievedSources": [],
+      "excluded": [],
+      "evidenceUsed": [],
+      "applicability": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-11T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "communication": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-11T16:00:00Z",
+        "status": "denied"
+      },
+      "action": {
+        "reasonCodes": [
+          "SANDBOX_ACTION_DENIED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-11T16:00:00Z",
+        "status": "denied"
+      },
+      "support": {
+        "reasonCodes": [
+          "EXPIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-11T16:00:00Z",
+        "status": "not_evaluated"
+      },
+      "disposition": "pause",
+      "evidenceId": "EV-07e0c0febe8d1d1734fa492cef2e56dc572e3de2e7b0de4799d91e7f4c5bcad1"
+    }
+  ],
+  "retirement": {
+    "demonstration": "approved-source-retirement-history-sandbox-boundary",
+    "simulated": [
+      "fixture identity and approvals",
+      "reviewed statement annotations",
+      "no action executor",
+      "no LLM"
+    ],
+    "provider": {
+      "id": "local-bm25",
+      "version": "v1",
+      "kind": "lexical",
+      "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+    },
+    "pass": true,
+    "initial": {
+      "schemaVersion": "phase2a-v1",
+      "timestamp": "2026-09-10T16:00:00Z",
+      "policyVersion": "knowledge-policy-v1",
+      "request": {
+        "id": "DEMO-BEFORE",
+        "mode": "governed",
+        "question": "Which signed office note document is missing for this request?",
+        "channel": "chat",
+        "task": "missing_document",
+        "selectionId": "AS-101",
+        "releaseIds": [
+          "KP-ALDER.2026.09.1"
+        ],
+        "caseId": "DEMO-101",
+        "purpose": "recommend",
+        "requestedAction": "recommend_document",
+        "maxResults": 8
+      },
+      "userContext": {
+        "id": "avery",
+        "tenantId": "T-DEMO",
+        "audience": "hcp",
+        "roles": [
+          "operational"
+        ],
+        "caseIds": [
+          "DEMO-101",
+          "DEMO-102",
+          "DEMO-103",
+          "DEMO-CEDAR"
+        ],
+        "releaseIds": [
+          "KP-ALDER.2026.09.1",
+          "KP-CEDAR.2026.09.1",
+          "KP-SUPPORT.2026.09.1"
+        ],
+        "collectionIds": [],
+        "channels": [
+          "chat",
+          "sms",
+          "email"
+        ],
+        "permittedUses": [
+          "explain",
+          "recommend"
+        ],
+        "actionGrants": [
+          "recommend_document"
+        ]
+      },
+      "caseContext": {
+        "id": "DEMO-101",
+        "tenantId": "T-DEMO",
+        "revision": "case-v1",
+        "attributes": {
+          "product": "DEMO-PX1",
+          "indication": "Condition-Q",
+          "payer": "Alder",
+          "plan": "Alder-Commercial",
+          "state": "CO",
+          "benefit": "pharmacy",
+          "siteOfCare": null
+        },
+        "assignmentId": "AS-101",
+        "evidenceVersionIds": [
+          "N-101.v1",
+          "CE-101-01.v1"
+        ],
+        "accessStatus": "pa_pending"
+      },
+      "registryHash": "c279ce58d5cd67dc7a5fa811f585ab2c17196500dc3f319f5b18ef239b677a59",
+      "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+      "selectedReleases": [
+        {
+          "id": "KP-ALDER.2026.09.1",
+          "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+        }
+      ],
+      "collectionSnapshot": null,
+      "provider": {
+        "id": "local-bm25",
+        "version": "v1",
+        "kind": "lexical",
+        "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+      },
+      "eligibleVersionIds": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "retrieved": [
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "score": 2.2754388,
+          "rank": 1,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "score": 2.22801512,
+          "rank": 2,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-EDU.v1.s1",
+          "documentVersionId": "K-EDU.v1",
+          "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+          "score": 2.19584462,
+          "rank": 3,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "score": 0.8931062,
+          "rank": 4,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-APL.v1.s1",
+          "documentVersionId": "K-APL.v1",
+          "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+          "score": 0.37056196,
+          "rank": 5,
+          "scoreKind": "lexical_bm25"
+        }
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "authorityFindings": [
+        {
+          "reasonCode": "LOWER_AUTHORITY_CONFLICT",
+          "passageIds": [
+            "K-EDU.v1.s1",
+            "K-PA.v2.s1"
+          ],
+          "explanation": "K-EDU.v1 lacks payer_owner authority for payer_process; it cannot establish or override this requirement."
+        }
+      ],
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "supported"
+      },
+      "applicability": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "applicable"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "RECOMMENDATION_ALLOWED"
+        ],
+        "supportingPassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "status": "allowed"
+      },
+      "evidenceUsed": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "answer": {
+        "method": "deterministic-extractive-composition",
+        "claims": [
+          {
+            "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+            "passageIds": [
+              "K-PA.v2.s1"
+            ]
+          },
+          {
+            "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+            "passageIds": [
+              "N-101.v1.s1"
+            ]
+          },
+          {
+            "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+            "passageIds": [
+              "CE-101-01.v1.s1"
+            ]
+          }
+        ],
+        "message": "Source-supported quotations selected by local lexical retrieval; no generated clinical inference.",
+        "operationalKnowledge": true
+      },
+      "actionProposal": {
+        "type": "recommend_document",
+        "caseId": "DEMO-101",
+        "evidencePassageIds": [
+          "K-PA.v2.s1",
+          "N-101.v1.s1",
+          "CE-101-01.v1.s1"
+        ],
+        "status": "permitted_recommendation",
+        "execution": "not_executed"
+      },
+      "escalation": null,
+      "disposition": "answer",
+      "audit": [
+        {
+          "id": "DEMO-BEFORE.access",
+          "type": "access",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "avery"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "618b7e080a559b04761130274595d2ea01d576eeb28d7d553c5d029f8d69d6f9"
+        },
+        {
+          "id": "DEMO-BEFORE.selection",
+          "type": "selection",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "22ea804813c6dea8f03b96b7d2117e796189df33436f8199a8b8c977a1ab5eb5"
+        },
+        {
+          "id": "DEMO-BEFORE.filtering",
+          "type": "filtering",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "CE-101-01.v1",
+            "K-APL.v1",
+            "K-EDU.v1",
+            "K-PA.v2",
+            "N-101.v1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "43997037166b853076cea423b6c75f49cefa0e2af1462a8de8584edf08bc029f"
+        },
+        {
+          "id": "DEMO-BEFORE.retrieval",
+          "type": "retrieval",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "N-101.v1.s1",
+            "K-PA.v2.s1",
+            "K-EDU.v1.s1",
+            "CE-101-01.v1.s1",
+            "K-APL.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "d499f12db7027f36a1af28f3c887404d1f9049b6d96e1e42f08f221cc033be36"
+        },
+        {
+          "id": "DEMO-BEFORE.authority",
+          "type": "authority",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-EDU.v1.s1",
+            "K-PA.v2.s1"
+          ],
+          "reasonCodes": [
+            "LOWER_AUTHORITY_CONFLICT"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "a0da64a368d4e1e3ab65bdd57904a99d4f8c0655392e2f3633a7fef3ec38bf0d"
+        },
+        {
+          "id": "DEMO-BEFORE.support",
+          "type": "support",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "reasonCodes": [
+            "SUPPORTED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "061dc8f81379cbbccbbf747afb480104172ce71eddf42bca44e641a4cbaec77e"
+        },
+        {
+          "id": "DEMO-BEFORE.applicability",
+          "type": "applicability",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "db15fd5276355caae5b3543103661b7db18aebb7a323c65a9a735df354769b63"
+        },
+        {
+          "id": "DEMO-BEFORE.communication",
+          "type": "communication",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "d77c86244ff5ce2d1409c5f59de4cdeebab81457158bf63d12ef6392ab887139"
+        },
+        {
+          "id": "DEMO-BEFORE.action",
+          "type": "action",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "reasonCodes": [
+            "RECOMMENDATION_ALLOWED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "49277a67be69034f2abb09f28f13b607d0fcf8a0f68c9c4314e7dffea6f26d26"
+        },
+        {
+          "id": "DEMO-BEFORE.evidence",
+          "type": "evidence",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "reasonCodes": [
+            "SUPPORTED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "payloadHash": "176d894a21bf69ae3350966faffac9911e98371a575522281d73a761daff52f9"
+        }
+      ],
+      "id": "EV-652d6c7145f69cbfea42cecddf6fbe181fa3a37cdd8905134da9d1938985c965",
+      "recordHash": "652d6c7145f69cbfea42cecddf6fbe181fa3a37cdd8905134da9d1938985c965"
+    },
+    "retirement": {
+      "id": "RV-1",
+      "targetType": "document_version",
+      "targetId": "K-PA.v2",
+      "actorId": "publisher",
+      "timestamp": "2026-09-10T16:05:00Z",
+      "reason": "Synthetic source withdrawn for review",
+      "policyVersion": "knowledge-policy-v1"
+    },
+    "afterRetirement": {
+      "schemaVersion": "phase2a-v1",
+      "timestamp": "2026-09-10T16:06:00Z",
+      "policyVersion": "knowledge-policy-v1",
+      "request": {
+        "id": "DEMO-AFTER",
+        "mode": "governed",
+        "question": "Which signed office note document is missing for this request?",
+        "channel": "chat",
+        "task": "missing_document",
+        "selectionId": "AS-101",
+        "releaseIds": [
+          "KP-ALDER.2026.09.1"
+        ],
+        "caseId": "DEMO-101",
+        "purpose": "recommend",
+        "requestedAction": "recommend_document",
+        "maxResults": 8
+      },
+      "userContext": {
+        "id": "avery",
+        "tenantId": "T-DEMO",
+        "audience": "hcp",
+        "roles": [
+          "operational"
+        ],
+        "caseIds": [
+          "DEMO-101",
+          "DEMO-102",
+          "DEMO-103",
+          "DEMO-CEDAR"
+        ],
+        "releaseIds": [
+          "KP-ALDER.2026.09.1",
+          "KP-CEDAR.2026.09.1",
+          "KP-SUPPORT.2026.09.1"
+        ],
+        "collectionIds": [],
+        "channels": [
+          "chat",
+          "sms",
+          "email"
+        ],
+        "permittedUses": [
+          "explain",
+          "recommend"
+        ],
+        "actionGrants": [
+          "recommend_document"
+        ]
+      },
+      "caseContext": {
+        "id": "DEMO-101",
+        "tenantId": "T-DEMO",
+        "revision": "case-v1",
+        "attributes": {
+          "product": "DEMO-PX1",
+          "indication": "Condition-Q",
+          "payer": "Alder",
+          "plan": "Alder-Commercial",
+          "state": "CO",
+          "benefit": "pharmacy",
+          "siteOfCare": null
+        },
+        "assignmentId": "AS-101",
+        "evidenceVersionIds": [
+          "N-101.v1",
+          "CE-101-01.v1"
+        ],
+        "accessStatus": "pa_pending"
+      },
+      "registryHash": "fce13258bf2fd23a595b20cfc9dd19e04307b430804e3ec4517e6b8f2aff68b8",
+      "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+      "selectedReleases": [
+        {
+          "id": "KP-ALDER.2026.09.1",
+          "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+        }
+      ],
+      "collectionSnapshot": null,
+      "provider": {
+        "id": "local-bm25",
+        "version": "v1",
+        "kind": "lexical",
+        "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+      },
+      "eligibleVersionIds": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "N-101.v1"
+      ],
+      "retrieved": [
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "score": 2.87263453,
+          "rank": 1,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-EDU.v1.s1",
+          "documentVersionId": "K-EDU.v1",
+          "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+          "score": 2.77200599,
+          "rank": 2,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "score": 1.12238566,
+          "rank": 3,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-APL.v1.s1",
+          "documentVersionId": "K-APL.v1",
+          "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+          "score": 0.4534437,
+          "rank": 4,
+          "scoreKind": "lexical_bm25"
+        }
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "authorityFindings": [],
+      "support": {
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "missing"
+      },
+      "applicability": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "paused"
+      },
+      "evidenceUsed": [],
+      "answer": {
+        "method": "deterministic-extractive-composition",
+        "claims": [],
+        "message": "The current knowledge or provider state does not permit this recommendation. Dependent work is paused.",
+        "operationalKnowledge": true
+      },
+      "actionProposal": {
+        "type": "recommend_document",
+        "caseId": "DEMO-101",
+        "evidencePassageIds": [],
+        "status": "paused",
+        "execution": "not_executed"
+      },
+      "escalation": {
+        "id": "DEMO-AFTER.escalation",
+        "category": "missing_knowledge",
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "ownerRole": "knowledge_admin",
+        "status": "proposed_not_dispatched",
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z"
+      },
+      "disposition": "pause",
+      "audit": [
+        {
+          "id": "DEMO-AFTER.access",
+          "type": "access",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "avery"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "618b7e080a559b04761130274595d2ea01d576eeb28d7d553c5d029f8d69d6f9"
+        },
+        {
+          "id": "DEMO-AFTER.selection",
+          "type": "selection",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "22ea804813c6dea8f03b96b7d2117e796189df33436f8199a8b8c977a1ab5eb5"
+        },
+        {
+          "id": "DEMO-AFTER.filtering",
+          "type": "filtering",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "CE-101-01.v1",
+            "K-APL.v1",
+            "K-EDU.v1",
+            "N-101.v1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "cdd538db620f2c6f1fc53a127e7483edbb3b0ea4e811ec4a98f41eaca0d73ec9"
+        },
+        {
+          "id": "DEMO-AFTER.retrieval",
+          "type": "retrieval",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "N-101.v1.s1",
+            "K-EDU.v1.s1",
+            "CE-101-01.v1.s1",
+            "K-APL.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "e19eaaa431095d510481d0c1f6321e5e8ddbbecc0b26a4b75547ef2819e58b6c"
+        },
+        {
+          "id": "DEMO-AFTER.authority",
+          "type": "authority",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "id": "DEMO-AFTER.support",
+          "type": "support",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "8e7950824c96cafc704c9fa21651cb10e7d19c2c9ff27c1c716cc8f97435dc7a"
+        },
+        {
+          "id": "DEMO-AFTER.applicability",
+          "type": "applicability",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "a9c1061d9bcdd3df3dea746933ccd215cc82e2f14e3203ee1d2ac0c7318c220a"
+        },
+        {
+          "id": "DEMO-AFTER.communication",
+          "type": "communication",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "d1b77422c0fef290b215d2ec28941c6fc8154de8821166dba9f8b13bc88e1361"
+        },
+        {
+          "id": "DEMO-AFTER.action",
+          "type": "action",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "a6acffa4d6783a2a5470365f5ae647d5a237307ce011eacc2313dfe9873f2428"
+        },
+        {
+          "id": "DEMO-AFTER.evidence",
+          "type": "evidence",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "id": "EV-feba3ecd93125376d03745659351c514187f268a266a639d924b5083b5b1a4e8",
+      "recordHash": "feba3ecd93125376d03745659351c514187f268a266a639d924b5083b5b1a4e8"
+    },
+    "history": {
+      "evidenceId": "EV-652d6c7145f69cbfea42cecddf6fbe181fa3a37cdd8905134da9d1938985c965",
+      "recordHash": "652d6c7145f69cbfea42cecddf6fbe181fa3a37cdd8905134da9d1938985c965",
+      "unchanged": true,
+      "citationsResolvable": true
+    },
+    "sandboxReplacement": {
+      "schemaVersion": "phase2a-v1",
+      "timestamp": "2026-09-10T16:06:00Z",
+      "policyVersion": "knowledge-policy-v1",
+      "request": {
+        "id": "DEMO-SANDBOX-REPLACEMENT",
+        "mode": "sandbox",
+        "question": "Which signed office note document is requested?",
+        "channel": "chat",
+        "task": "source_summary",
+        "selectionId": "COLLECTION-1",
+        "releaseIds": [],
+        "caseId": null,
+        "purpose": "explore",
+        "requestedAction": "transfer_document",
+        "maxResults": 8
+      },
+      "userContext": {
+        "id": "viewer",
+        "tenantId": "T-DEMO",
+        "audience": "visitor",
+        "roles": [
+          "sandbox"
+        ],
+        "caseIds": [],
+        "releaseIds": [],
+        "collectionIds": [
+          "COLLECTION-1"
+        ],
+        "channels": [
+          "chat"
+        ],
+        "permittedUses": [
+          "explore"
+        ],
+        "actionGrants": []
+      },
+      "caseContext": null,
+      "registryHash": "fce13258bf2fd23a595b20cfc9dd19e04307b430804e3ec4517e6b8f2aff68b8",
+      "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+      "selectedReleases": [],
+      "collectionSnapshot": {
+        "id": "COLLECTION-1",
+        "revision": "collection-v1",
+        "tenantId": "T-DEMO",
+        "ownerId": "viewer",
+        "mode": "sandbox",
+        "name": "Temporary synthetic exploration",
+        "documentVersionIds": [
+          "SB-REPLACEMENT.v1",
+          "SB-INJECT.v1"
+        ],
+        "expiresAt": "2026-09-11T16:00:00Z"
+      },
+      "provider": {
+        "id": "local-bm25",
+        "version": "v1",
+        "kind": "lexical",
+        "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+      },
+      "eligibleVersionIds": [
+        "SB-INJECT.v1",
+        "SB-REPLACEMENT.v1"
+      ],
+      "retrieved": [
+        {
+          "passageId": "SB-REPLACEMENT.v1.s1",
+          "documentVersionId": "SB-REPLACEMENT.v1",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "score": 0.79801477,
+          "rank": 1,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "SB-INJECT.v1.s1",
+          "documentVersionId": "SB-INJECT.v1",
+          "textHash": "2840834c3d1129471ba582b2dfbeba36408e4a7c8ce24c6dfa3f2fdede27baa8",
+          "score": 0.74027132,
+          "rank": 2,
+          "scoreKind": "lexical_bm25"
+        }
+      ],
+      "excluded": [],
+      "authorityFindings": [],
+      "support": {
+        "reasonCodes": [
+          "SUPPORTED",
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "supported"
+      },
+      "applicability": {
+        "reasonCodes": [
+          "SANDBOX_EXPLORATION_ONLY"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "sandbox_only"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SANDBOX_ACTION_DENIED"
+        ],
+        "supportingPassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "denied"
+      },
+      "evidenceUsed": [
+        {
+          "passageId": "SB-REPLACEMENT.v1.s1",
+          "documentVersionId": "SB-REPLACEMENT.v1",
+          "documentId": "SB-REPLACEMENT",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "answer": {
+        "method": "deterministic-extractive-composition",
+        "claims": [
+          {
+            "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+            "passageIds": [
+              "SB-REPLACEMENT.v1.s1"
+            ]
+          }
+        ],
+        "message": "Source-supported quotations selected by local lexical retrieval; no generated clinical inference.",
+        "operationalKnowledge": false
+      },
+      "actionProposal": {
+        "type": "transfer_document",
+        "caseId": null,
+        "evidencePassageIds": [
+          "SB-REPLACEMENT.v1.s1"
+        ],
+        "status": "blocked",
+        "execution": "not_executed"
+      },
+      "escalation": null,
+      "disposition": "answer",
+      "audit": [
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.access",
+          "type": "access",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "viewer"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "8df7bd6e3423e89f2de026dc14d958ceba9be22acf7b9ab451b89c9e02ce1049"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.selection",
+          "type": "selection",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4c45fc1718443d96918b8e00e332cba9d10687e6c1b48eabdcc4cd393a2d73c5"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.filtering",
+          "type": "filtering",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-INJECT.v1",
+            "SB-REPLACEMENT.v1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "d9798dc38f1d72044bf30feaa3ae312ce83acd36982ad9844f2dd88c6baa4002"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.retrieval",
+          "type": "retrieval",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1",
+            "SB-INJECT.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "8d0bdfedd551e7a9dcae00ed6882e2886fd43bae61dc7fe32a695e8a43ff6786"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.authority",
+          "type": "authority",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.support",
+          "type": "support",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1"
+          ],
+          "reasonCodes": [
+            "SUPPORTED",
+            "SANDBOX_EXPLORATION_ONLY"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "115b6f8dcba3be6c1c56ec267832411f10f18f230564b9fa0b14ea7affcfeb6a"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.applicability",
+          "type": "applicability",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1"
+          ],
+          "reasonCodes": [
+            "SANDBOX_EXPLORATION_ONLY"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "abc3980d8cf26cd1ef75dbe62bb36f4f0ccba1211736a0a58f1c53edf7133c61"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.communication",
+          "type": "communication",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "c5af5278fc16c751ae67a8cfd58199b9f36a5dd81fcfc496eb1ca26b04c400c8"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.action",
+          "type": "action",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1"
+          ],
+          "reasonCodes": [
+            "SANDBOX_ACTION_DENIED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "f5edabf6ad96177516ac2e33a57ac58c42468148854fa08237243a06ff68e4a2"
+        },
+        {
+          "id": "DEMO-SANDBOX-REPLACEMENT.evidence",
+          "type": "evidence",
+          "actorId": "viewer",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "SB-REPLACEMENT.v1.s1"
+          ],
+          "reasonCodes": [
+            "SUPPORTED",
+            "SANDBOX_EXPLORATION_ONLY"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "991f5c69b59aeb438328e7141787514ebfa997da0a695cfe23fa300512d81f4c"
+        }
+      ],
+      "id": "EV-686857e998fb9f3adad0ecbbc8d086bb57220fb1223d8484a92bc70ff5ec73a6",
+      "recordHash": "686857e998fb9f3adad0ecbbc8d086bb57220fb1223d8484a92bc70ff5ec73a6"
+    },
+    "retry": {
+      "schemaVersion": "phase2a-v1",
+      "timestamp": "2026-09-10T16:06:00Z",
+      "policyVersion": "knowledge-policy-v1",
+      "request": {
+        "id": "DEMO-RETRY",
+        "mode": "governed",
+        "question": "Which signed office note document is missing for this request?",
+        "channel": "chat",
+        "task": "missing_document",
+        "selectionId": "AS-101",
+        "releaseIds": [
+          "KP-ALDER.2026.09.1"
+        ],
+        "caseId": "DEMO-101",
+        "purpose": "recommend",
+        "requestedAction": "recommend_document",
+        "maxResults": 8
+      },
+      "userContext": {
+        "id": "avery",
+        "tenantId": "T-DEMO",
+        "audience": "hcp",
+        "roles": [
+          "operational"
+        ],
+        "caseIds": [
+          "DEMO-101",
+          "DEMO-102",
+          "DEMO-103",
+          "DEMO-CEDAR"
+        ],
+        "releaseIds": [
+          "KP-ALDER.2026.09.1",
+          "KP-CEDAR.2026.09.1",
+          "KP-SUPPORT.2026.09.1"
+        ],
+        "collectionIds": [],
+        "channels": [
+          "chat",
+          "sms",
+          "email"
+        ],
+        "permittedUses": [
+          "explain",
+          "recommend"
+        ],
+        "actionGrants": [
+          "recommend_document"
+        ]
+      },
+      "caseContext": {
+        "id": "DEMO-101",
+        "tenantId": "T-DEMO",
+        "revision": "case-v1",
+        "attributes": {
+          "product": "DEMO-PX1",
+          "indication": "Condition-Q",
+          "payer": "Alder",
+          "plan": "Alder-Commercial",
+          "state": "CO",
+          "benefit": "pharmacy",
+          "siteOfCare": null
+        },
+        "assignmentId": "AS-101",
+        "evidenceVersionIds": [
+          "N-101.v1",
+          "CE-101-01.v1"
+        ],
+        "accessStatus": "pa_pending"
+      },
+      "registryHash": "fce13258bf2fd23a595b20cfc9dd19e04307b430804e3ec4517e6b8f2aff68b8",
+      "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+      "selectedReleases": [
+        {
+          "id": "KP-ALDER.2026.09.1",
+          "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+        }
+      ],
+      "collectionSnapshot": null,
+      "provider": {
+        "id": "local-bm25",
+        "version": "v1",
+        "kind": "lexical",
+        "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+      },
+      "eligibleVersionIds": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "N-101.v1"
+      ],
+      "retrieved": [
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "score": 2.87263453,
+          "rank": 1,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-EDU.v1.s1",
+          "documentVersionId": "K-EDU.v1",
+          "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+          "score": 2.77200599,
+          "rank": 2,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "score": 1.12238566,
+          "rank": 3,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-APL.v1.s1",
+          "documentVersionId": "K-APL.v1",
+          "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+          "score": 0.4534437,
+          "rank": 4,
+          "scoreKind": "lexical_bm25"
+        }
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "authorityFindings": [],
+      "support": {
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "missing"
+      },
+      "applicability": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "unknown"
+      },
+      "communication": {
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "allowed"
+      },
+      "action": {
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z",
+        "status": "paused"
+      },
+      "evidenceUsed": [],
+      "answer": {
+        "method": "deterministic-extractive-composition",
+        "claims": [],
+        "message": "The current knowledge or provider state does not permit this recommendation. Dependent work is paused.",
+        "operationalKnowledge": true
+      },
+      "actionProposal": {
+        "type": "recommend_document",
+        "caseId": "DEMO-101",
+        "evidencePassageIds": [],
+        "status": "paused",
+        "execution": "not_executed"
+      },
+      "escalation": {
+        "id": "DEMO-RETRY.escalation",
+        "category": "missing_knowledge",
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "supportingPassageIds": [],
+        "ownerRole": "knowledge_admin",
+        "status": "proposed_not_dispatched",
+        "policyVersion": "knowledge-policy-v1",
+        "timestamp": "2026-09-10T16:06:00Z"
+      },
+      "disposition": "pause",
+      "audit": [
+        {
+          "id": "DEMO-RETRY.access",
+          "type": "access",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "avery"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "618b7e080a559b04761130274595d2ea01d576eeb28d7d553c5d029f8d69d6f9"
+        },
+        {
+          "id": "DEMO-RETRY.selection",
+          "type": "selection",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "22ea804813c6dea8f03b96b7d2117e796189df33436f8199a8b8c977a1ab5eb5"
+        },
+        {
+          "id": "DEMO-RETRY.filtering",
+          "type": "filtering",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "CE-101-01.v1",
+            "K-APL.v1",
+            "K-EDU.v1",
+            "N-101.v1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "cdd538db620f2c6f1fc53a127e7483edbb3b0ea4e811ec4a98f41eaca0d73ec9"
+        },
+        {
+          "id": "DEMO-RETRY.retrieval",
+          "type": "retrieval",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [
+            "N-101.v1.s1",
+            "K-EDU.v1.s1",
+            "CE-101-01.v1.s1",
+            "K-APL.v1.s1"
+          ],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "e19eaaa431095d510481d0c1f6321e5e8ddbbecc0b26a4b75547ef2819e58b6c"
+        },
+        {
+          "id": "DEMO-RETRY.authority",
+          "type": "authority",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "id": "DEMO-RETRY.support",
+          "type": "support",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "8e7950824c96cafc704c9fa21651cb10e7d19c2c9ff27c1c716cc8f97435dc7a"
+        },
+        {
+          "id": "DEMO-RETRY.applicability",
+          "type": "applicability",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "a9c1061d9bcdd3df3dea746933ccd215cc82e2f14e3203ee1d2ac0c7318c220a"
+        },
+        {
+          "id": "DEMO-RETRY.communication",
+          "type": "communication",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "d1b77422c0fef290b215d2ec28941c6fc8154de8821166dba9f8b13bc88e1361"
+        },
+        {
+          "id": "DEMO-RETRY.action",
+          "type": "action",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "a6acffa4d6783a2a5470365f5ae647d5a237307ce011eacc2313dfe9873f2428"
+        },
+        {
+          "id": "DEMO-RETRY.evidence",
+          "type": "evidence",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "subjectIds": [],
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:06:00Z",
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      ],
+      "id": "EV-fd49554525a79d6b61aa989a634be30fc30856333a9ac98bfd4badab03d8f898",
+      "recordHash": "fd49554525a79d6b61aa989a634be30fc30856333a9ac98bfd4badab03d8f898"
+    }
+  },
+  "note": "Phase 2A reference cases rerun unchanged under BM25. Semantic/hybrid governance mechanics are covered separately by unit-vector contract tests; not live quality."
+}

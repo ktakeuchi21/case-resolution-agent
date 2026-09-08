@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "phase2c-empty-database-v1",
+  "database": "pathway_verify_dd58c7e33dd742eaab3844d66cb847a3",
+  "migrations": [
+    {
+      "name": "001_governance.sql",
+      "sha256": "42004aef2d00c519dfa20401cfc8250ae1e7525e2a321e148b43f12f851d9489",
+      "applied_at": "2026-09-08T04:05:59.503Z"
+    },
+    {
+      "name": "002_serialization.sql",
+      "sha256": "45cbe23f01345e5b3be27509b4355380a4dbcc72777778250c2b615dd17a594a",
+      "applied_at": "2026-09-08T04:05:59.511Z"
+    },
+    {
+      "name": "003_evidence_links_and_degraded_grants.sql",
+      "sha256": "d1b2bd0d701b544d0ae892cd1c65d401c4eabe0db4087836efbcc5c24818044d",
+      "applied_at": "2026-09-08T04:05:59.518Z"
+    },
+    {
+      "name": "004_correction_links.sql",
+      "sha256": "7dd3c1082a0df2087c6811ed72871feeede394d70b63f1ba45d9f6550358fc78",
+      "applied_at": "2026-09-08T04:05:59.522Z"
+    }
+  ],
+  "seed": {
+    "workspace": "empty-test",
+    "fixtureHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+    "fixtureVersion": "phase2c-synthetic-v1"
+  },
+  "repeatSeedIdentical": true,
+  "hybridRun": "99420ee0-cc30-4a4f-a195-e5283f202ddb",
+  "pass": true,
+  "note": "Disposable verification database retained; no automatic database or volume deletion."
+}

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "phase2a-retrieval-probes-v1",
+  "provider": {
+    "id": "local-bm25",
+    "version": "v1",
+    "kind": "lexical",
+    "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+  },
+  "interpretation": "Two hand-authored diagnostic queries for one case, not a benchmark. Exact vocabulary retrieves the three required passages; the synonymous wording exposes the lexical provider limit. Governance correctly abstains when required evidence is not retrieved.",
+  "recommendation": "A: expand real retrieval behind the same policy boundary; measure paraphrase recall separately from governance correctness.",
+  "results": [
+    {
+      "id": "P1",
+      "question": "Which signed office note document is missing for this request?",
+      "expectedEligibleSources": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "goldPassageIds": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "retrieved": [
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "score": 2.2754388,
+          "rank": 1,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "score": 2.22801512,
+          "rank": 2,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-EDU.v1.s1",
+          "documentVersionId": "K-EDU.v1",
+          "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+          "score": 2.19584462,
+          "rank": 3,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "score": 0.8931062,
+          "rank": 4,
+          "scoreKind": "lexical_bm25"
+        },
+        {
+          "passageId": "K-APL.v1.s1",
+          "documentVersionId": "K-APL.v1",
+          "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+          "score": 0.37056196,
+          "rank": 5,
+          "scoreKind": "lexical_bm25"
+        }
+      ],
+      "goldPassagesRetrieved": 3,
+      "goldPassageCount": 3,
+      "evidenceUsed": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "disposition": "answer",
+      "action": "allowed",
+      "evidenceId": "EV-edc80947aed3ab068d977c262cc4010836659977428dc79db7e8b4492bdaf3d1"
+    },
+    {
+      "id": "P2",
+      "question": "Which clinician-authenticated encounter narrative remains outstanding?",
+      "expectedEligibleSources": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "goldPassageIds": [
+        "K-PA.v2.s1",
+        "N-101.v1.s1",
+        "CE-101-01.v1.s1"
+      ],
+      "retrieved": [],
+      "goldPassagesRetrieved": 0,
+      "goldPassageCount": 3,
+      "evidenceUsed": [],
+      "disposition": "abstain",
+      "action": "paused",
+      "evidenceId": "EV-328538b10887cf2bc9078a98c83db0be41c12e84faa2ff017fe1452529b0b838"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Review account/free-plan capacity before applying. No database or paid worker is provisioned.
+services:
+  - type: web
+    name: pathway-agent-portfolio
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /healthz
+    autoDeployTrigger: "off"
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: "10000"
+      - key: PUBLIC_ORIGIN
+        sync: false
+      - key: PATHWAY_DATABASE_URL
+        sync: false
+# Admin database credentials and OPENAI_API_KEY deliberately do not belong in this public service.

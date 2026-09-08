@@ -1,0 +1,211 @@
+{
+  "schemaVersion": "phase2b-live-artifact-audit-v1",
+  "sourceSha256": "06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d",
+  "runRecordedAt": "2026-09-08T02:47:46.797Z",
+  "recordsVerified": 720,
+  "goldAndConfigurationUnchanged": true,
+  "outputs": [
+    {
+      "mode": "lexical",
+      "recordsVerified": 180,
+      "allRuns": [
+        {
+          "correct": 31,
+          "unsafe": 0,
+          "citations": 50,
+          "exact": 50,
+          "falseAbstentions": 5
+        },
+        {
+          "correct": 31,
+          "unsafe": 0,
+          "citations": 50,
+          "exact": 50,
+          "falseAbstentions": 5
+        },
+        {
+          "correct": 31,
+          "unsafe": 0,
+          "citations": 50,
+          "exact": 50,
+          "falseAbstentions": 5
+        },
+        {
+          "correct": 31,
+          "unsafe": 0,
+          "citations": 50,
+          "exact": 50,
+          "falseAbstentions": 5
+        },
+        {
+          "correct": 31,
+          "unsafe": 0,
+          "citations": 50,
+          "exact": 50,
+          "falseAbstentions": 5
+        }
+      ],
+      "usage": {
+        "cacheHits": 0,
+        "cacheMisses": 0,
+        "requests": 0,
+        "inputTokens": 0
+      },
+      "latencyVerified": true
+    },
+    {
+      "mode": "semantic",
+      "recordsVerified": 180,
+      "allRuns": [
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        }
+      ],
+      "usage": {
+        "cacheHits": 3445,
+        "cacheMisses": 160,
+        "requests": 160,
+        "inputTokens": 3435
+      },
+      "latencyVerified": true
+    },
+    {
+      "mode": "hybrid",
+      "recordsVerified": 180,
+      "allRuns": [
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        },
+        {
+          "correct": 36,
+          "unsafe": 0,
+          "citations": 62,
+          "exact": 62,
+          "falseAbstentions": 0
+        }
+      ],
+      "usage": {
+        "cacheHits": 3605,
+        "cacheMisses": 0,
+        "requests": 0,
+        "inputTokens": 0
+      },
+      "latencyVerified": true
+    },
+    {
+      "mode": "hybrid-threshold-sensitivity",
+      "recordsVerified": 180,
+      "allRuns": [
+        {
+          "correct": 34,
+          "unsafe": 0,
+          "citations": 56,
+          "exact": 56,
+          "falseAbstentions": 2
+        },
+        {
+          "correct": 34,
+          "unsafe": 0,
+          "citations": 56,
+          "exact": 56,
+          "falseAbstentions": 2
+        },
+        {
+          "correct": 34,
+          "unsafe": 0,
+          "citations": 56,
+          "exact": 56,
+          "falseAbstentions": 2
+        },
+        {
+          "correct": 34,
+          "unsafe": 0,
+          "citations": 56,
+          "exact": 56,
+          "falseAbstentions": 2
+        },
+        {
+          "correct": 34,
+          "unsafe": 0,
+          "citations": 56,
+          "exact": 56,
+          "falseAbstentions": 2
+        }
+      ],
+      "usage": {
+        "cacheHits": 3605,
+        "cacheMisses": 0,
+        "requests": 0,
+        "inputTokens": 0
+      },
+      "latencyVerified": true
+    }
+  ],
+  "reference": {
+    "cases": 23,
+    "passed": 23,
+    "failed": 0,
+    "reproducibleEvidence": true,
+    "retirementSequence": true,
+    "allPassed": true
+  },
+  "retirement": true,
+  "additionalEmbeddingRequests": 0
+}

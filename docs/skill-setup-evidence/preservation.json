@@ -1,0 +1,17 @@
+[
+  {
+    "baseline": "pathway-all-existing-skills-hashes.json",
+    "checked": 1279,
+    "changed": []
+  },
+  {
+    "baseline": "pathway-global-settings-before.json",
+    "checked": 8,
+    "changed": []
+  },
+  {
+    "baseline": "pathway-product-before.json",
+    "checked": 23,
+    "changed": []
+  }
+]

@@ -1,0 +1,1430 @@
+Cloning into '/Users/kaitakeuchi/.gstack/repos/gstack'...
+Codex skill profile: gpt
+Source: /Users/kaitakeuchi/.codex/config.toml
+Building browse binary...
+bun install v1.4.2 (744846f84)
+
++ @anthropic-ai/claude-agent-sdk@0.2.117
++ @anthropic-ai/sdk@0.78.0
++ xterm@5.3.0
++ xterm-addon-fit@0.8.0
++ @huggingface/transformers@4.2.0
++ @ngrok/ngrok@1.7.0
++ cross-spawn@7.0.6
++ diff@9.0.0
++ html-to-docx@1.8.0
++ marked@18.0.11
++ playwright@1.62.1
++ socks@2.8.9
+
+228 packages installed [13.18s]
+$ bash scripts/build.sh
+$ mkdir -p extension/lib && cp node_modules/xterm/lib/xterm.js extension/lib/xterm.js && cp node_modules/xterm/css/xterm.css extension/lib/xterm.css && cp node_modules/xterm-addon-fit/lib/xterm-addon-fit.js extension/lib/xterm-addon-fit.js
+$ bun run scripts/gen-skill-docs.ts --host all
+GENERATED: SKILL.md
+GENERATED: pair-agent/SKILL.md
+GENERATED: benchmark/SKILL.md
+GENERATED: design-html/SKILL.md
+GENERATED: plan-tune/SKILL.md
+GENERATED: design-shotgun/SKILL.md
+GENERATED: plan-design-review/SKILL.md
+GENERATED: autoplan/SKILL.md
+GENERATED: design-consultation/SKILL.md
+GENERATED: learn/SKILL.md
+GENERATED: freeze/SKILL.md
+GENERATED: ios-qa/SKILL.md
+GENERATED: careful/SKILL.md
+GENERATED: cso/SKILL.md
+GENERATED: canary/SKILL.md
+GENERATED: open-gstack-browser/SKILL.md
+GENERATED: diagram/SKILL.md
+GENERATED: investigate/SKILL.md
+GENERATED: context-restore/SKILL.md
+GENERATED: document-release/SKILL.md
+GENERATED: health/SKILL.md
+GENERATED: gstack-upgrade/SKILL.md
+GENERATED: land-and-deploy/SKILL.md
+GENERATED: codex/SKILL.md
+GENERATED: spec/SKILL.md
+GENERATED: qa/SKILL.md
+GENERATED: scrape/SKILL.md
+GENERATED: qa-only/SKILL.md
+GENERATED: skillify/SKILL.md
+GENERATED: sync-gbrain/SKILL.md
+GENERATED: setup-browser-cookies/SKILL.md
+GENERATED: ios-fix/SKILL.md
+GENERATED: ios-clean/SKILL.md
+GENERATED: setup-gbrain/SKILL.md
+GENERATED: document-generate/SKILL.md
+GENERATED: review/SKILL.md
+GENERATED: plan-ceo-review/SKILL.md
+GENERATED: office-hours/SKILL.md
+GENERATED: landing-report/SKILL.md
+GENERATED: retro/SKILL.md
+GENERATED: ios-design-review/SKILL.md
+GENERATED: devex-review/SKILL.md
+GENERATED: benchmark-models/SKILL.md
+GENERATED: plan-devex-review/SKILL.md
+GENERATED: ios-sync/SKILL.md
+GENERATED: browse/SKILL.md
+GENERATED: design-review/SKILL.md
+GENERATED: ship/SKILL.md
+GENERATED: plan-eng-review/SKILL.md
+GENERATED: guard/SKILL.md
+GENERATED: make-pdf/SKILL.md
+GENERATED: unfreeze/SKILL.md
+GENERATED: context-save/SKILL.md
+GENERATED: setup-deploy/SKILL.md
+GENERATED: autoplan/sections/ceo-phase.md
+GENERATED: autoplan/sections/design-phase.md
+GENERATED: autoplan/sections/dx-phase.md
+GENERATED: autoplan/sections/eng-phase.md
+GENERATED: autoplan/sections/tasks-aggregator.md
+GENERATED: browse/sections/command-list.md
+GENERATED: codex/sections/challenge-mode.md
+GENERATED: codex/sections/consult-mode.md
+GENERATED: codex/sections/review-mode.md
+GENERATED: cso/sections/audit-phases.md
+GENERATED: design-consultation/sections/proposal-and-preview.md
+GENERATED: design-html/sections/doctrine.md
+GENERATED: design-html/sections/pretext-patterns.md
+GENERATED: design-shotgun/sections/doctrine.md
+GENERATED: document-release/sections/release-body.md
+GENERATED: land-and-deploy/sections/first-run-validation.md
+GENERATED: land-and-deploy/sections/merge-and-deploy.md
+GENERATED: land-and-deploy/sections/readiness-gate.md
+GENERATED: office-hours/sections/design-and-handoff.md
+GENERATED: office-hours/sections/phase-2a-startup-diagnostic.md
+GENERATED: office-hours/sections/phase-2b-builder-brainstorm.md
+GENERATED: plan-ceo-review/sections/review-sections.md
+GENERATED: plan-design-review/sections/review-sections.md
+GENERATED: plan-devex-review/sections/review-sections.md
+GENERATED: plan-eng-review/sections/review-sections.md
+GENERATED: qa/sections/qa-patterns.md
+GENERATED: qa/sections/test-bootstrap.md
+GENERATED: retro/sections/report-format.md
+GENERATED: review/sections/adversarial.md
+GENERATED: review/sections/plan-completion.md
+GENERATED: review/sections/review-army.md
+GENERATED: setup-gbrain/sections/brain-init.md
+GENERATED: setup-gbrain/sections/claude-md-persist.md
+GENERATED: setup-gbrain/sections/engine-remediation.md
+GENERATED: setup-gbrain/sections/transcript-gate.md
+GENERATED: ship/sections/adversarial.md
+GENERATED: ship/sections/apple-release.md
+GENERATED: ship/sections/changelog.md
+GENERATED: ship/sections/greptile.md
+GENERATED: ship/sections/plan-completion.md
+GENERATED: ship/sections/pr-body.md
+GENERATED: ship/sections/review-army.md
+GENERATED: ship/sections/test-coverage.md
+GENERATED: ship/sections/tests.md
+GENERATED: spec/sections/gate-and-file.md
+
+Token Budget (claude host)
+════════════════════════════════════════════════════════════
+  design-review                   1750 lines  ~ 26759 tokens
+  retro                           1253 lines  ~ 17864 tokens
+  office-hours                    1175 lines  ~ 18957 tokens
+  plan-ceo-review                 1165 lines  ~ 19542 tokens
+  plan-devex-review               1146 lines  ~ 16940 tokens
+  plan-design-review              1142 lines  ~ 18016 tokens
+  ship                            1123 lines  ~ 19393 tokens
+  devex-review                    1097 lines  ~ 19025 tokens
+  autoplan                        1086 lines  ~ 15919 tokens
+  setup-gbrain                    1068 lines  ~ 14795 tokens
+  land-and-deploy                 1046 lines  ~ 18030 tokens
+  plan-tune                       1032 lines  ~ 14041 tokens
+  review                           977 lines  ~ 15237 tokens
+  qa-only                          971 lines  ~ 16067 tokens
+  qa                               960 lines  ~ 15061 tokens
+  plan-eng-review/sections/review-sections.md   951 lines  ~ 15040 tokens
+  plan-ceo-review/sections/review-sections.md   945 lines  ~ 15901 tokens
+  design-consultation              943 lines  ~ 16336 tokens
+  cso                              940 lines  ~ 15273 tokens
+  spec                             933 lines  ~ 14257 tokens
+  design-shotgun                   929 lines  ~ 13155 tokens
+  codex                            904 lines  ~ 14505 tokens
+  plan-devex-review/sections/review-sections.md   889 lines  ~ 12153 tokens
+  design-html                      874 lines  ~ 12632 tokens
+  sync-gbrain                      873 lines  ~ 13294 tokens
+  document-generate                871 lines  ~ 11741 tokens
+  skillify                         845 lines  ~ 11601 tokens
+  pair-agent                       778 lines  ~ 11051 tokens
+  plan-eng-review                  744 lines  ~ 14014 tokens
+  canary                           735 lines  ~ 12812 tokens
+  investigate                      729 lines  ~ 11649 tokens
+  health                           695 lines  ~ 10289 tokens
+  ios-qa                           659 lines  ~ 10757 tokens
+  context-save                     647 lines  ~  9555 tokens
+  office-hours/sections/design-and-handoff.md   634 lines  ~  8865 tokens
+  setup-deploy                     628 lines  ~ 10702 tokens
+  plan-design-review/sections/review-sections.md   618 lines  ~  9727 tokens
+  document-release                 599 lines  ~ 10067 tokens
+  learn                            572 lines  ~  8742 tokens
+  document-release/sections/release-body.md   566 lines  ~  6790 tokens
+  context-restore                  562 lines  ~  9102 tokens
+  landing-report                   538 lines  ~  8798 tokens
+  ios-design-review                478 lines  ~  8460 tokens
+  ios-clean                        475 lines  ~  8287 tokens
+  ios-fix                          474 lines  ~  8241 tokens
+  ios-sync                         472 lines  ~  8407 tokens
+  benchmark                        444 lines  ~  6937 tokens
+  browse                           444 lines  ~  7621 tokens
+  ship/sections/review-army.md     428 lines  ~  5971 tokens
+  make-pdf                         425 lines  ~  5049 tokens
+  scrape                           419 lines  ~  6572 tokens
+  design-consultation/sections/proposal-and-preview.md   409 lines  ~  5310 tokens
+  ship/sections/tests.md           407 lines  ~  5384 tokens
+  open-gstack-browser              382 lines  ~  4292 tokens
+  gstack-upgrade                   375 lines  ~  4004 tokens
+  spec/sections/gate-and-file.md   366 lines  ~  4188 tokens
+  ship/sections/plan-completion.md   332 lines  ~  5486 tokens
+  qa/sections/qa-patterns.md       320 lines  ~  4290 tokens
+  diagram                          306 lines  ~  4069 tokens
+  benchmark-models                 282 lines  ~  3641 tokens
+  setup-gbrain/sections/brain-init.md   271 lines  ~  2934 tokens
+  ship/sections/test-coverage.md   267 lines  ~  3857 tokens
+  setup-browser-cookies            260 lines  ~  3041 tokens
+  land-and-deploy/sections/merge-and-deploy.md   260 lines  ~  3820 tokens
+  cso/sections/audit-phases.md     254 lines  ~  3630 tokens
+  land-and-deploy/sections/readiness-gate.md   254 lines  ~  3107 tokens
+  SKILL.md                         233 lines  ~  3607 tokens
+  ship/sections/pr-body.md         230 lines  ~  5417 tokens
+  review/sections/review-army.md   227 lines  ~  2924 tokens
+  ship/sections/adversarial.md     227 lines  ~  4388 tokens
+  codex/sections/consult-mode.md   213 lines  ~  2868 tokens
+  codex/sections/review-mode.md    208 lines  ~  2779 tokens
+  review/sections/plan-completion.md   206 lines  ~  3421 tokens
+  land-and-deploy/sections/first-run-validation.md   204 lines  ~  2684 tokens
+  qa/sections/test-bootstrap.md    190 lines  ~  2883 tokens
+  review/sections/adversarial.md   186 lines  ~  3769 tokens
+  browse/sections/command-list.md   176 lines  ~  3553 tokens
+  office-hours/sections/phase-2a-startup-diagnostic.md   160 lines  ~  3245 tokens
+  design-html/sections/pretext-patterns.md   156 lines  ~  1265 tokens
+  codex/sections/challenge-mode.md   125 lines  ~  1819 tokens
+  retro/sections/report-format.md   121 lines  ~  1247 tokens
+  autoplan/sections/ceo-phase.md   120 lines  ~  1719 tokens
+  autoplan/sections/eng-phase.md   110 lines  ~  1471 tokens
+  freeze                           102 lines  ~   943 tokens
+  autoplan/sections/dx-phase.md    102 lines  ~  1473 tokens
+  guard                             91 lines  ~   848 tokens
+  careful                           88 lines  ~   876 tokens
+  design-html/sections/doctrine.md    87 lines  ~  1177 tokens
+  design-shotgun/sections/doctrine.md    87 lines  ~  1177 tokens
+  autoplan/sections/tasks-aggregator.md    81 lines  ~  1150 tokens
+  setup-gbrain/sections/claude-md-persist.md    80 lines  ~   847 tokens
+  autoplan/sections/design-phase.md    75 lines  ~  1066 tokens
+  setup-gbrain/sections/engine-remediation.md    72 lines  ~   974 tokens
+  setup-gbrain/sections/transcript-gate.md    67 lines  ~   760 tokens
+  ship/sections/apple-release.md    59 lines  ~  4247 tokens
+  ship/sections/greptile.md         56 lines  ~  1212 tokens
+  unfreeze                          49 lines  ~   375 tokens
+  ship/sections/changelog.md        46 lines  ~   465 tokens
+  office-hours/sections/phase-2b-builder-brainstorm.md    40 lines  ~   673 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          50670 lines  ~778374 tokens
+
+GENERATED: .agents/skills/gstack/SKILL.md
+GENERATED: .agents/skills/gstack-pair-agent/SKILL.md
+GENERATED: .agents/skills/gstack-benchmark/SKILL.md
+GENERATED: .agents/skills/gstack-design-html/SKILL.md
+GENERATED: .agents/skills/gstack-plan-tune/SKILL.md
+GENERATED: .agents/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .agents/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-autoplan/SKILL.md
+GENERATED: .agents/skills/gstack-design-consultation/SKILL.md
+GENERATED: .agents/skills/gstack-learn/SKILL.md
+GENERATED: .agents/skills/gstack-freeze/SKILL.md
+GENERATED: .agents/skills/gstack-ios-qa/SKILL.md
+GENERATED: .agents/skills/gstack-careful/SKILL.md
+GENERATED: .agents/skills/gstack-cso/SKILL.md
+GENERATED: .agents/skills/gstack-canary/SKILL.md
+GENERATED: .agents/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .agents/skills/gstack-diagram/SKILL.md
+GENERATED: .agents/skills/gstack-investigate/SKILL.md
+GENERATED: .agents/skills/gstack-context-restore/SKILL.md
+GENERATED: .agents/skills/gstack-claude/SKILL.md
+GENERATED: .agents/skills/gstack-document-release/SKILL.md
+GENERATED: .agents/skills/gstack-health/SKILL.md
+GENERATED: .agents/skills/gstack-upgrade/SKILL.md
+GENERATED: .agents/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .agents/skills/gstack-spec/SKILL.md
+GENERATED: .agents/skills/gstack-qa/SKILL.md
+GENERATED: .agents/skills/gstack-scrape/SKILL.md
+GENERATED: .agents/skills/gstack-qa-only/SKILL.md
+GENERATED: .agents/skills/gstack-skillify/SKILL.md
+GENERATED: .agents/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .agents/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .agents/skills/gstack-ios-fix/SKILL.md
+GENERATED: .agents/skills/gstack-ios-clean/SKILL.md
+GENERATED: .agents/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .agents/skills/gstack-document-generate/SKILL.md
+GENERATED: .agents/skills/gstack-review/SKILL.md
+GENERATED: .agents/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .agents/skills/gstack-office-hours/SKILL.md
+GENERATED: .agents/skills/gstack-landing-report/SKILL.md
+GENERATED: .agents/skills/gstack-retro/SKILL.md
+GENERATED: .agents/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-devex-review/SKILL.md
+GENERATED: .agents/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .agents/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .agents/skills/gstack-ios-sync/SKILL.md
+GENERATED: .agents/skills/gstack-browse/SKILL.md
+GENERATED: .agents/skills/gstack-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .agents/skills/gstack-ship/SKILL.md is 173395 bytes (~43349 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .agents/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .agents/skills/gstack-guard/SKILL.md
+GENERATED: .agents/skills/gstack-make-pdf/SKILL.md
+GENERATED: .agents/skills/gstack-unfreeze/SKILL.md
+GENERATED: .agents/skills/gstack-context-save/SKILL.md
+GENERATED: .agents/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (codex host)
+════════════════════════════════════════════════════════════
+  .agents/skills/gstack-ship      2614 lines  ~ 43349 tokens
+  .agents/skills/gstack-plan-ceo-review  1893 lines  ~ 32429 tokens
+  .agents/skills/gstack-plan-devex-review  1840 lines  ~ 26245 tokens
+  .agents/skills/gstack-office-hours  1838 lines  ~ 29433 tokens
+  .agents/skills/gstack-land-and-deploy  1752 lines  ~ 27428 tokens
+  .agents/skills/gstack-design-review  1653 lines  ~ 25721 tokens
+  .agents/skills/gstack-plan-design-review  1626 lines  ~ 26080 tokens
+  .agents/skills/gstack-autoplan  1547 lines  ~ 22293 tokens
+  .agents/skills/gstack-setup-gbrain  1538 lines  ~ 19776 tokens
+  .agents/skills/gstack-plan-eng-review  1500 lines  ~ 26240 tokens
+  .agents/skills/gstack-qa        1433 lines  ~ 21736 tokens
+  .agents/skills/gstack-retro     1325 lines  ~ 18730 tokens
+  .agents/skills/gstack-spec      1297 lines  ~ 18489 tokens
+  .agents/skills/gstack-design-consultation  1236 lines  ~ 20328 tokens
+  .agents/skills/gstack-cso       1162 lines  ~ 18676 tokens
+  .agents/skills/gstack-review    1147 lines  ~ 18137 tokens
+  .agents/skills/gstack-design-html  1108 lines  ~ 14978 tokens
+  .agents/skills/gstack-devex-review  1106 lines  ~ 19287 tokens
+  .agents/skills/gstack-plan-tune  1039 lines  ~ 14241 tokens
+  .agents/skills/gstack-document-release  1025 lines  ~ 14547 tokens
+  .agents/skills/gstack-design-shotgun   996 lines  ~ 14240 tokens
+  .agents/skills/gstack-qa-only    955 lines  ~ 16070 tokens
+  .agents/skills/gstack-sync-gbrain   883 lines  ~ 13572 tokens
+  .agents/skills/gstack-document-generate   878 lines  ~ 12005 tokens
+  .agents/skills/gstack-skillify   858 lines  ~ 11894 tokens
+  .agents/skills/gstack-claude     796 lines  ~ 10885 tokens
+  .agents/skills/gstack-pair-agent   790 lines  ~ 11346 tokens
+  .agents/skills/gstack-canary     747 lines  ~ 13097 tokens
+  .agents/skills/gstack-health     705 lines  ~ 10576 tokens
+  .agents/skills/gstack-investigate   677 lines  ~ 11424 tokens
+  .agents/skills/gstack-ios-qa     666 lines  ~ 11041 tokens
+  .agents/skills/gstack-context-save   658 lines  ~  9836 tokens
+  .agents/skills/gstack-setup-deploy   638 lines  ~ 10999 tokens
+  .agents/skills/gstack-browse     621 lines  ~ 11259 tokens
+  .agents/skills/gstack-learn      582 lines  ~  9006 tokens
+  .agents/skills/gstack-context-restore   572 lines  ~  9386 tokens
+  .agents/skills/gstack-landing-report   551 lines  ~  9096 tokens
+  .agents/skills/gstack-ios-design-review   489 lines  ~  8759 tokens
+  .agents/skills/gstack-ios-clean   486 lines  ~  8579 tokens
+  .agents/skills/gstack-ios-fix    483 lines  ~  8537 tokens
+  .agents/skills/gstack-ios-sync   482 lines  ~  8692 tokens
+  .agents/skills/gstack-benchmark   455 lines  ~  7264 tokens
+  .agents/skills/gstack-make-pdf   437 lines  ~  5388 tokens
+  .agents/skills/gstack-scrape     432 lines  ~  6895 tokens
+  .agents/skills/gstack-open-gstack-browser   395 lines  ~  4629 tokens
+  .agents/skills/gstack-upgrade    360 lines  ~  3950 tokens
+  .agents/skills/gstack-diagram    318 lines  ~  4387 tokens
+  .agents/skills/gstack-benchmark-models   294 lines  ~  3972 tokens
+  .agents/skills/gstack-setup-browser-cookies   275 lines  ~  3375 tokens
+  .agents/skills/gstack            246 lines  ~  3949 tokens
+  .agents/skills/gstack-freeze      79 lines  ~   893 tokens
+  .agents/skills/gstack-careful     71 lines  ~   878 tokens
+  .agents/skills/gstack-guard       64 lines  ~   781 tokens
+  .agents/skills/gstack-unfreeze    38 lines  ~   333 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          47656 lines  ~735136 tokens
+
+GENERATED: .factory/skills/gstack/SKILL.md
+GENERATED: .factory/skills/gstack-pair-agent/SKILL.md
+GENERATED: .factory/skills/gstack-benchmark/SKILL.md
+GENERATED: .factory/skills/gstack-design-html/SKILL.md
+GENERATED: .factory/skills/gstack-plan-tune/SKILL.md
+GENERATED: .factory/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .factory/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .factory/skills/gstack-autoplan/SKILL.md
+GENERATED: .factory/skills/gstack-design-consultation/SKILL.md
+GENERATED: .factory/skills/gstack-learn/SKILL.md
+GENERATED: .factory/skills/gstack-freeze/SKILL.md
+GENERATED: .factory/skills/gstack-ios-qa/SKILL.md
+GENERATED: .factory/skills/gstack-careful/SKILL.md
+GENERATED: .factory/skills/gstack-cso/SKILL.md
+GENERATED: .factory/skills/gstack-canary/SKILL.md
+GENERATED: .factory/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .factory/skills/gstack-diagram/SKILL.md
+GENERATED: .factory/skills/gstack-investigate/SKILL.md
+GENERATED: .factory/skills/gstack-context-restore/SKILL.md
+GENERATED: .factory/skills/gstack-claude/SKILL.md
+GENERATED: .factory/skills/gstack-document-release/SKILL.md
+GENERATED: .factory/skills/gstack-health/SKILL.md
+GENERATED: .factory/skills/gstack-upgrade/SKILL.md
+GENERATED: .factory/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .factory/skills/gstack-spec/SKILL.md
+GENERATED: .factory/skills/gstack-qa/SKILL.md
+GENERATED: .factory/skills/gstack-scrape/SKILL.md
+GENERATED: .factory/skills/gstack-qa-only/SKILL.md
+GENERATED: .factory/skills/gstack-skillify/SKILL.md
+GENERATED: .factory/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .factory/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .factory/skills/gstack-ios-fix/SKILL.md
+GENERATED: .factory/skills/gstack-ios-clean/SKILL.md
+GENERATED: .factory/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .factory/skills/gstack-document-generate/SKILL.md
+GENERATED: .factory/skills/gstack-review/SKILL.md
+GENERATED: .factory/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .factory/skills/gstack-office-hours/SKILL.md
+GENERATED: .factory/skills/gstack-landing-report/SKILL.md
+GENERATED: .factory/skills/gstack-retro/SKILL.md
+GENERATED: .factory/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .factory/skills/gstack-devex-review/SKILL.md
+GENERATED: .factory/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .factory/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .factory/skills/gstack-ios-sync/SKILL.md
+GENERATED: .factory/skills/gstack-browse/SKILL.md
+GENERATED: .factory/skills/gstack-design-review/SKILL.md
+GENERATED: .factory/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .factory/skills/gstack-ship/SKILL.md is 201270 bytes (~50318 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .factory/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .factory/skills/gstack-guard/SKILL.md
+GENERATED: .factory/skills/gstack-make-pdf/SKILL.md
+GENERATED: .factory/skills/gstack-unfreeze/SKILL.md
+GENERATED: .factory/skills/gstack-context-save/SKILL.md
+GENERATED: .factory/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (factory host)
+════════════════════════════════════════════════════════════
+  .factory/skills/gstack-ship     3049 lines  ~ 50318 tokens
+  .factory/skills/gstack-plan-ceo-review  2063 lines  ~ 34896 tokens
+  .factory/skills/gstack-plan-devex-review  2010 lines  ~ 28712 tokens
+  .factory/skills/gstack-office-hours  1944 lines  ~ 30836 tokens
+  .factory/skills/gstack-design-review  1739 lines  ~ 26672 tokens
+  .factory/skills/gstack-plan-design-review  1738 lines  ~ 27426 tokens
+  .factory/skills/gstack-land-and-deploy  1732 lines  ~ 27113 tokens
+  .factory/skills/gstack-plan-eng-review  1670 lines  ~ 28708 tokens
+  .factory/skills/gstack-review   1558 lines  ~ 24652 tokens
+  .factory/skills/gstack-autoplan  1526 lines  ~ 21971 tokens
+  .factory/skills/gstack-setup-gbrain  1517 lines  ~ 19454 tokens
+  .factory/skills/gstack-qa       1439 lines  ~ 21681 tokens
+  .factory/skills/gstack-retro    1331 lines  ~ 18665 tokens
+  .factory/skills/gstack-design-consultation  1306 lines  ~ 21154 tokens
+  .factory/skills/gstack-spec     1276 lines  ~ 18167 tokens
+  .factory/skills/gstack-cso      1168 lines  ~ 18610 tokens
+  .factory/skills/gstack-document-release  1142 lines  ~ 16552 tokens
+  .factory/skills/gstack-design-html  1087 lines  ~ 14657 tokens
+  .factory/skills/gstack-devex-review  1085 lines  ~ 18965 tokens
+  .factory/skills/gstack-plan-tune  1018 lines  ~ 13919 tokens
+  .factory/skills/gstack-design-shotgun   975 lines  ~ 13919 tokens
+  .factory/skills/gstack-qa-only   961 lines  ~ 16003 tokens
+  .factory/skills/gstack-sync-gbrain   862 lines  ~ 13250 tokens
+  .factory/skills/gstack-document-generate   857 lines  ~ 11686 tokens
+  .factory/skills/gstack-skillify   837 lines  ~ 11572 tokens
+  .factory/skills/gstack-claude    775 lines  ~ 10563 tokens
+  .factory/skills/gstack-pair-agent   769 lines  ~ 11024 tokens
+  .factory/skills/gstack-canary    726 lines  ~ 12775 tokens
+  .factory/skills/gstack-health    684 lines  ~ 10254 tokens
+  .factory/skills/gstack-investigate   683 lines  ~ 11373 tokens
+  .factory/skills/gstack-ios-qa    645 lines  ~ 10719 tokens
+  .factory/skills/gstack-context-save   637 lines  ~  9514 tokens
+  .factory/skills/gstack-setup-deploy   617 lines  ~ 10677 tokens
+  .factory/skills/gstack-browse    600 lines  ~ 10937 tokens
+  .factory/skills/gstack-learn     561 lines  ~  8684 tokens
+  .factory/skills/gstack-context-restore   551 lines  ~  9064 tokens
+  .factory/skills/gstack-landing-report   530 lines  ~  8774 tokens
+  .factory/skills/gstack-ios-design-review   468 lines  ~  8437 tokens
+  .factory/skills/gstack-ios-clean   465 lines  ~  8257 tokens
+  .factory/skills/gstack-ios-fix   462 lines  ~  8215 tokens
+  .factory/skills/gstack-ios-sync   461 lines  ~  8370 tokens
+  .factory/skills/gstack-benchmark   434 lines  ~  6941 tokens
+  .factory/skills/gstack-make-pdf   416 lines  ~  5066 tokens
+  .factory/skills/gstack-scrape    411 lines  ~  6572 tokens
+  .factory/skills/gstack-open-gstack-browser   374 lines  ~  4309 tokens
+  .factory/skills/gstack-upgrade   361 lines  ~  3961 tokens
+  .factory/skills/gstack-diagram   297 lines  ~  4066 tokens
+  .factory/skills/gstack-benchmark-models   273 lines  ~  3651 tokens
+  .factory/skills/gstack-setup-browser-cookies   254 lines  ~  3053 tokens
+  .factory/skills/gstack           225 lines  ~  3627 tokens
+  .factory/skills/gstack-freeze     81 lines  ~   906 tokens
+  .factory/skills/gstack-careful    73 lines  ~   891 tokens
+  .factory/skills/gstack-guard      66 lines  ~   794 tokens
+  .factory/skills/gstack-unfreeze    40 lines  ~   346 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          48829 lines  ~751378 tokens
+
+GENERATED: .kiro/skills/gstack/SKILL.md
+GENERATED: .kiro/skills/gstack-pair-agent/SKILL.md
+GENERATED: .kiro/skills/gstack-benchmark/SKILL.md
+GENERATED: .kiro/skills/gstack-design-html/SKILL.md
+GENERATED: .kiro/skills/gstack-plan-tune/SKILL.md
+GENERATED: .kiro/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .kiro/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .kiro/skills/gstack-autoplan/SKILL.md
+GENERATED: .kiro/skills/gstack-design-consultation/SKILL.md
+GENERATED: .kiro/skills/gstack-learn/SKILL.md
+GENERATED: .kiro/skills/gstack-freeze/SKILL.md
+GENERATED: .kiro/skills/gstack-ios-qa/SKILL.md
+GENERATED: .kiro/skills/gstack-careful/SKILL.md
+GENERATED: .kiro/skills/gstack-cso/SKILL.md
+GENERATED: .kiro/skills/gstack-canary/SKILL.md
+GENERATED: .kiro/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .kiro/skills/gstack-diagram/SKILL.md
+GENERATED: .kiro/skills/gstack-investigate/SKILL.md
+GENERATED: .kiro/skills/gstack-context-restore/SKILL.md
+GENERATED: .kiro/skills/gstack-claude/SKILL.md
+GENERATED: .kiro/skills/gstack-document-release/SKILL.md
+GENERATED: .kiro/skills/gstack-health/SKILL.md
+GENERATED: .kiro/skills/gstack-upgrade/SKILL.md
+GENERATED: .kiro/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .kiro/skills/gstack-spec/SKILL.md
+GENERATED: .kiro/skills/gstack-qa/SKILL.md
+GENERATED: .kiro/skills/gstack-scrape/SKILL.md
+GENERATED: .kiro/skills/gstack-qa-only/SKILL.md
+GENERATED: .kiro/skills/gstack-skillify/SKILL.md
+GENERATED: .kiro/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .kiro/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .kiro/skills/gstack-ios-fix/SKILL.md
+GENERATED: .kiro/skills/gstack-ios-clean/SKILL.md
+GENERATED: .kiro/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .kiro/skills/gstack-document-generate/SKILL.md
+GENERATED: .kiro/skills/gstack-review/SKILL.md
+GENERATED: .kiro/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .kiro/skills/gstack-office-hours/SKILL.md
+GENERATED: .kiro/skills/gstack-landing-report/SKILL.md
+GENERATED: .kiro/skills/gstack-retro/SKILL.md
+GENERATED: .kiro/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .kiro/skills/gstack-devex-review/SKILL.md
+GENERATED: .kiro/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .kiro/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .kiro/skills/gstack-ios-sync/SKILL.md
+GENERATED: .kiro/skills/gstack-browse/SKILL.md
+GENERATED: .kiro/skills/gstack-design-review/SKILL.md
+GENERATED: .kiro/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .kiro/skills/gstack-ship/SKILL.md is 200467 bytes (~50117 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .kiro/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .kiro/skills/gstack-guard/SKILL.md
+GENERATED: .kiro/skills/gstack-make-pdf/SKILL.md
+GENERATED: .kiro/skills/gstack-unfreeze/SKILL.md
+GENERATED: .kiro/skills/gstack-context-save/SKILL.md
+GENERATED: .kiro/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (kiro host)
+════════════════════════════════════════════════════════════
+  .kiro/skills/gstack-ship        3020 lines  ~ 50117 tokens
+  .kiro/skills/gstack-plan-ceo-review  2035 lines  ~ 34658 tokens
+  .kiro/skills/gstack-plan-devex-review  1982 lines  ~ 28494 tokens
+  .kiro/skills/gstack-office-hours  1916 lines  ~ 30594 tokens
+  .kiro/skills/gstack-land-and-deploy  1730 lines  ~ 27115 tokens
+  .kiro/skills/gstack-design-review  1711 lines  ~ 26411 tokens
+  .kiro/skills/gstack-plan-design-review  1710 lines  ~ 27169 tokens
+  .kiro/skills/gstack-plan-eng-review  1642 lines  ~ 28469 tokens
+  .kiro/skills/gstack-review      1530 lines  ~ 24419 tokens
+  .kiro/skills/gstack-autoplan    1525 lines  ~ 22001 tokens
+  .kiro/skills/gstack-setup-gbrain  1516 lines  ~ 19522 tokens
+  .kiro/skills/gstack-qa          1411 lines  ~ 21407 tokens
+  .kiro/skills/gstack-retro       1303 lines  ~ 18404 tokens
+  .kiro/skills/gstack-design-consultation  1278 lines  ~ 20890 tokens
+  .kiro/skills/gstack-spec        1275 lines  ~ 18172 tokens
+  .kiro/skills/gstack-document-release  1141 lines  ~ 16560 tokens
+  .kiro/skills/gstack-cso         1140 lines  ~ 18345 tokens
+  .kiro/skills/gstack-design-html  1086 lines  ~ 14655 tokens
+  .kiro/skills/gstack-devex-review  1084 lines  ~ 18965 tokens
+  .kiro/skills/gstack-plan-tune   1017 lines  ~ 13974 tokens
+  .kiro/skills/gstack-design-shotgun   974 lines  ~ 13913 tokens
+  .kiro/skills/gstack-qa-only      933 lines  ~ 15739 tokens
+  .kiro/skills/gstack-sync-gbrain   861 lines  ~ 13253 tokens
+  .kiro/skills/gstack-document-generate   856 lines  ~ 11681 tokens
+  .kiro/skills/gstack-skillify     836 lines  ~ 11566 tokens
+  .kiro/skills/gstack-claude       774 lines  ~ 10555 tokens
+  .kiro/skills/gstack-pair-agent   768 lines  ~ 11019 tokens
+  .kiro/skills/gstack-canary       725 lines  ~ 12768 tokens
+  .kiro/skills/gstack-health       683 lines  ~ 10246 tokens
+  .kiro/skills/gstack-investigate   655 lines  ~ 11100 tokens
+  .kiro/skills/gstack-ios-qa       644 lines  ~ 10713 tokens
+  .kiro/skills/gstack-context-save   636 lines  ~  9511 tokens
+  .kiro/skills/gstack-setup-deploy   616 lines  ~ 10668 tokens
+  .kiro/skills/gstack-browse       599 lines  ~ 10930 tokens
+  .kiro/skills/gstack-learn        560 lines  ~  8700 tokens
+  .kiro/skills/gstack-context-restore   550 lines  ~  9058 tokens
+  .kiro/skills/gstack-landing-report   529 lines  ~  8768 tokens
+  .kiro/skills/gstack-ios-design-review   467 lines  ~  8428 tokens
+  .kiro/skills/gstack-ios-clean    464 lines  ~  8249 tokens
+  .kiro/skills/gstack-ios-fix      461 lines  ~  8206 tokens
+  .kiro/skills/gstack-ios-sync     460 lines  ~  8364 tokens
+  .kiro/skills/gstack-benchmark    433 lines  ~  6935 tokens
+  .kiro/skills/gstack-make-pdf     415 lines  ~  5057 tokens
+  .kiro/skills/gstack-scrape       410 lines  ~  6564 tokens
+  .kiro/skills/gstack-open-gstack-browser   373 lines  ~  4296 tokens
+  .kiro/skills/gstack-upgrade      360 lines  ~  3956 tokens
+  .kiro/skills/gstack-diagram      296 lines  ~  4063 tokens
+  .kiro/skills/gstack-benchmark-models   272 lines  ~  3641 tokens
+  .kiro/skills/gstack-setup-browser-cookies   253 lines  ~  3043 tokens
+  .kiro/skills/gstack              224 lines  ~  3621 tokens
+  .kiro/skills/gstack-freeze        79 lines  ~   896 tokens
+  .kiro/skills/gstack-careful       71 lines  ~   878 tokens
+  .kiro/skills/gstack-guard         64 lines  ~   783 tokens
+  .kiro/skills/gstack-unfreeze      38 lines  ~   335 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          48391 lines  ~747844 tokens
+
+GENERATED: .opencode/skills/gstack/SKILL.md
+GENERATED: .opencode/skills/gstack-pair-agent/SKILL.md
+GENERATED: .opencode/skills/gstack-benchmark/SKILL.md
+GENERATED: .opencode/skills/gstack-design-html/SKILL.md
+GENERATED: .opencode/skills/gstack-plan-tune/SKILL.md
+GENERATED: .opencode/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .opencode/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .opencode/skills/gstack-autoplan/SKILL.md
+GENERATED: .opencode/skills/gstack-design-consultation/SKILL.md
+GENERATED: .opencode/skills/gstack-learn/SKILL.md
+GENERATED: .opencode/skills/gstack-freeze/SKILL.md
+GENERATED: .opencode/skills/gstack-ios-qa/SKILL.md
+GENERATED: .opencode/skills/gstack-careful/SKILL.md
+GENERATED: .opencode/skills/gstack-cso/SKILL.md
+GENERATED: .opencode/skills/gstack-canary/SKILL.md
+GENERATED: .opencode/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .opencode/skills/gstack-diagram/SKILL.md
+GENERATED: .opencode/skills/gstack-investigate/SKILL.md
+GENERATED: .opencode/skills/gstack-context-restore/SKILL.md
+GENERATED: .opencode/skills/gstack-claude/SKILL.md
+GENERATED: .opencode/skills/gstack-document-release/SKILL.md
+GENERATED: .opencode/skills/gstack-health/SKILL.md
+GENERATED: .opencode/skills/gstack-upgrade/SKILL.md
+GENERATED: .opencode/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .opencode/skills/gstack-spec/SKILL.md
+GENERATED: .opencode/skills/gstack-qa/SKILL.md
+GENERATED: .opencode/skills/gstack-scrape/SKILL.md
+GENERATED: .opencode/skills/gstack-qa-only/SKILL.md
+GENERATED: .opencode/skills/gstack-skillify/SKILL.md
+GENERATED: .opencode/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .opencode/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .opencode/skills/gstack-ios-fix/SKILL.md
+GENERATED: .opencode/skills/gstack-ios-clean/SKILL.md
+GENERATED: .opencode/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .opencode/skills/gstack-document-generate/SKILL.md
+GENERATED: .opencode/skills/gstack-review/SKILL.md
+GENERATED: .opencode/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .opencode/skills/gstack-office-hours/SKILL.md
+GENERATED: .opencode/skills/gstack-landing-report/SKILL.md
+GENERATED: .opencode/skills/gstack-retro/SKILL.md
+GENERATED: .opencode/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .opencode/skills/gstack-devex-review/SKILL.md
+GENERATED: .opencode/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .opencode/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .opencode/skills/gstack-ios-sync/SKILL.md
+GENERATED: .opencode/skills/gstack-browse/SKILL.md
+GENERATED: .opencode/skills/gstack-design-review/SKILL.md
+GENERATED: .opencode/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .opencode/skills/gstack-ship/SKILL.md is 200957 bytes (~50239 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .opencode/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .opencode/skills/gstack-guard/SKILL.md
+GENERATED: .opencode/skills/gstack-make-pdf/SKILL.md
+GENERATED: .opencode/skills/gstack-unfreeze/SKILL.md
+GENERATED: .opencode/skills/gstack-context-save/SKILL.md
+GENERATED: .opencode/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (opencode host)
+════════════════════════════════════════════════════════════
+  .opencode/skills/gstack-ship    3020 lines  ~ 50239 tokens
+  .opencode/skills/gstack-plan-ceo-review  2035 lines  ~ 34698 tokens
+  .opencode/skills/gstack-plan-devex-review  1982 lines  ~ 28559 tokens
+  .opencode/skills/gstack-office-hours  1916 lines  ~ 30633 tokens
+  .opencode/skills/gstack-land-and-deploy  1730 lines  ~ 27145 tokens
+  .opencode/skills/gstack-design-review  1711 lines  ~ 26427 tokens
+  .opencode/skills/gstack-plan-design-review  1710 lines  ~ 27188 tokens
+  .opencode/skills/gstack-plan-eng-review  1642 lines  ~ 28509 tokens
+  .opencode/skills/gstack-review  1530 lines  ~ 24464 tokens
+  .opencode/skills/gstack-autoplan  1525 lines  ~ 22054 tokens
+  .opencode/skills/gstack-setup-gbrain  1516 lines  ~ 19621 tokens
+  .opencode/skills/gstack-qa      1411 lines  ~ 21418 tokens
+  .opencode/skills/gstack-retro   1303 lines  ~ 18422 tokens
+  .opencode/skills/gstack-design-consultation  1278 lines  ~ 20902 tokens
+  .opencode/skills/gstack-spec    1275 lines  ~ 18194 tokens
+  .opencode/skills/gstack-document-release  1141 lines  ~ 16588 tokens
+  .opencode/skills/gstack-cso     1140 lines  ~ 18352 tokens
+  .opencode/skills/gstack-design-html  1086 lines  ~ 14675 tokens
+  .opencode/skills/gstack-devex-review  1084 lines  ~ 18984 tokens
+  .opencode/skills/gstack-plan-tune  1017 lines  ~ 14057 tokens
+  .opencode/skills/gstack-design-shotgun   974 lines  ~ 13927 tokens
+  .opencode/skills/gstack-qa-only   933 lines  ~ 15746 tokens
+  .opencode/skills/gstack-sync-gbrain   861 lines  ~ 13273 tokens
+  .opencode/skills/gstack-document-generate   856 lines  ~ 11692 tokens
+  .opencode/skills/gstack-skillify   836 lines  ~ 11574 tokens
+  .opencode/skills/gstack-claude   774 lines  ~ 10561 tokens
+  .opencode/skills/gstack-pair-agent   768 lines  ~ 11032 tokens
+  .opencode/skills/gstack-canary   725 lines  ~ 12779 tokens
+  .opencode/skills/gstack-health   683 lines  ~ 10251 tokens
+  .opencode/skills/gstack-investigate   655 lines  ~ 11115 tokens
+  .opencode/skills/gstack-ios-qa   644 lines  ~ 10721 tokens
+  .opencode/skills/gstack-context-save   636 lines  ~  9522 tokens
+  .opencode/skills/gstack-setup-deploy   616 lines  ~ 10674 tokens
+  .opencode/skills/gstack-browse   599 lines  ~ 10941 tokens
+  .opencode/skills/gstack-learn    560 lines  ~  8736 tokens
+  .opencode/skills/gstack-context-restore   550 lines  ~  9066 tokens
+  .opencode/skills/gstack-landing-report   529 lines  ~  8776 tokens
+  .opencode/skills/gstack-ios-design-review   467 lines  ~  8434 tokens
+  .opencode/skills/gstack-ios-clean   464 lines  ~  8255 tokens
+  .opencode/skills/gstack-ios-fix   461 lines  ~  8212 tokens
+  .opencode/skills/gstack-ios-sync   460 lines  ~  8373 tokens
+  .opencode/skills/gstack-benchmark   433 lines  ~  6945 tokens
+  .opencode/skills/gstack-make-pdf   415 lines  ~  5064 tokens
+  .opencode/skills/gstack-scrape   410 lines  ~  6571 tokens
+  .opencode/skills/gstack-open-gstack-browser   373 lines  ~  4308 tokens
+  .opencode/skills/gstack-upgrade   360 lines  ~  3996 tokens
+  .opencode/skills/gstack-diagram   296 lines  ~  4078 tokens
+  .opencode/skills/gstack-benchmark-models   272 lines  ~  3649 tokens
+  .opencode/skills/gstack-setup-browser-cookies   253 lines  ~  3051 tokens
+  .opencode/skills/gstack          224 lines  ~  3630 tokens
+  .opencode/skills/gstack-freeze    79 lines  ~   898 tokens
+  .opencode/skills/gstack-careful    71 lines  ~   878 tokens
+  .opencode/skills/gstack-guard     64 lines  ~   786 tokens
+  .opencode/skills/gstack-unfreeze    38 lines  ~   338 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          48391 lines  ~748981 tokens
+
+GENERATED: .slate/skills/gstack/SKILL.md
+GENERATED: .slate/skills/gstack-pair-agent/SKILL.md
+GENERATED: .slate/skills/gstack-benchmark/SKILL.md
+GENERATED: .slate/skills/gstack-design-html/SKILL.md
+GENERATED: .slate/skills/gstack-plan-tune/SKILL.md
+GENERATED: .slate/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .slate/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .slate/skills/gstack-autoplan/SKILL.md
+GENERATED: .slate/skills/gstack-design-consultation/SKILL.md
+GENERATED: .slate/skills/gstack-learn/SKILL.md
+GENERATED: .slate/skills/gstack-freeze/SKILL.md
+GENERATED: .slate/skills/gstack-ios-qa/SKILL.md
+GENERATED: .slate/skills/gstack-careful/SKILL.md
+GENERATED: .slate/skills/gstack-cso/SKILL.md
+GENERATED: .slate/skills/gstack-canary/SKILL.md
+GENERATED: .slate/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .slate/skills/gstack-diagram/SKILL.md
+GENERATED: .slate/skills/gstack-investigate/SKILL.md
+GENERATED: .slate/skills/gstack-context-restore/SKILL.md
+GENERATED: .slate/skills/gstack-claude/SKILL.md
+GENERATED: .slate/skills/gstack-document-release/SKILL.md
+GENERATED: .slate/skills/gstack-health/SKILL.md
+GENERATED: .slate/skills/gstack-upgrade/SKILL.md
+GENERATED: .slate/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .slate/skills/gstack-spec/SKILL.md
+GENERATED: .slate/skills/gstack-qa/SKILL.md
+GENERATED: .slate/skills/gstack-scrape/SKILL.md
+GENERATED: .slate/skills/gstack-qa-only/SKILL.md
+GENERATED: .slate/skills/gstack-skillify/SKILL.md
+GENERATED: .slate/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .slate/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .slate/skills/gstack-ios-fix/SKILL.md
+GENERATED: .slate/skills/gstack-ios-clean/SKILL.md
+GENERATED: .slate/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .slate/skills/gstack-document-generate/SKILL.md
+GENERATED: .slate/skills/gstack-review/SKILL.md
+GENERATED: .slate/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .slate/skills/gstack-office-hours/SKILL.md
+GENERATED: .slate/skills/gstack-landing-report/SKILL.md
+GENERATED: .slate/skills/gstack-retro/SKILL.md
+GENERATED: .slate/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .slate/skills/gstack-devex-review/SKILL.md
+GENERATED: .slate/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .slate/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .slate/skills/gstack-ios-sync/SKILL.md
+GENERATED: .slate/skills/gstack-browse/SKILL.md
+GENERATED: .slate/skills/gstack-design-review/SKILL.md
+GENERATED: .slate/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .slate/skills/gstack-ship/SKILL.md is 200516 bytes (~50129 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .slate/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .slate/skills/gstack-guard/SKILL.md
+GENERATED: .slate/skills/gstack-make-pdf/SKILL.md
+GENERATED: .slate/skills/gstack-unfreeze/SKILL.md
+GENERATED: .slate/skills/gstack-context-save/SKILL.md
+GENERATED: .slate/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (slate host)
+════════════════════════════════════════════════════════════
+  .slate/skills/gstack-ship       3020 lines  ~ 50129 tokens
+  .slate/skills/gstack-plan-ceo-review  2035 lines  ~ 34662 tokens
+  .slate/skills/gstack-plan-devex-review  1982 lines  ~ 28501 tokens
+  .slate/skills/gstack-office-hours  1916 lines  ~ 30599 tokens
+  .slate/skills/gstack-land-and-deploy  1730 lines  ~ 27118 tokens
+  .slate/skills/gstack-design-review  1711 lines  ~ 26414 tokens
+  .slate/skills/gstack-plan-design-review  1710 lines  ~ 27172 tokens
+  .slate/skills/gstack-plan-eng-review  1642 lines  ~ 28474 tokens
+  .slate/skills/gstack-review     1530 lines  ~ 24423 tokens
+  .slate/skills/gstack-autoplan   1525 lines  ~ 22006 tokens
+  .slate/skills/gstack-setup-gbrain  1516 lines  ~ 19531 tokens
+  .slate/skills/gstack-qa         1411 lines  ~ 21409 tokens
+  .slate/skills/gstack-retro      1303 lines  ~ 18407 tokens
+  .slate/skills/gstack-design-consultation  1278 lines  ~ 20892 tokens
+  .slate/skills/gstack-spec       1275 lines  ~ 18175 tokens
+  .slate/skills/gstack-document-release  1141 lines  ~ 16563 tokens
+  .slate/skills/gstack-cso        1140 lines  ~ 18346 tokens
+  .slate/skills/gstack-design-html  1086 lines  ~ 14658 tokens
+  .slate/skills/gstack-devex-review  1084 lines  ~ 18967 tokens
+  .slate/skills/gstack-plan-tune  1017 lines  ~ 13982 tokens
+  .slate/skills/gstack-design-shotgun   974 lines  ~ 13915 tokens
+  .slate/skills/gstack-qa-only     933 lines  ~ 15740 tokens
+  .slate/skills/gstack-sync-gbrain   861 lines  ~ 13255 tokens
+  .slate/skills/gstack-document-generate   856 lines  ~ 11682 tokens
+  .slate/skills/gstack-skillify    836 lines  ~ 11567 tokens
+  .slate/skills/gstack-claude      774 lines  ~ 10556 tokens
+  .slate/skills/gstack-pair-agent   768 lines  ~ 11021 tokens
+  .slate/skills/gstack-canary      725 lines  ~ 12770 tokens
+  .slate/skills/gstack-health      683 lines  ~ 10247 tokens
+  .slate/skills/gstack-investigate   655 lines  ~ 11102 tokens
+  .slate/skills/gstack-ios-qa      644 lines  ~ 10714 tokens
+  .slate/skills/gstack-context-save   636 lines  ~  9512 tokens
+  .slate/skills/gstack-setup-deploy   616 lines  ~ 10669 tokens
+  .slate/skills/gstack-browse      599 lines  ~ 10932 tokens
+  .slate/skills/gstack-learn       560 lines  ~  8704 tokens
+  .slate/skills/gstack-context-restore   550 lines  ~  9059 tokens
+  .slate/skills/gstack-landing-report   529 lines  ~  8769 tokens
+  .slate/skills/gstack-ios-design-review   467 lines  ~  8429 tokens
+  .slate/skills/gstack-ios-clean   464 lines  ~  8250 tokens
+  .slate/skills/gstack-ios-fix     461 lines  ~  8207 tokens
+  .slate/skills/gstack-ios-sync    460 lines  ~  8365 tokens
+  .slate/skills/gstack-benchmark   433 lines  ~  6937 tokens
+  .slate/skills/gstack-make-pdf    415 lines  ~  5058 tokens
+  .slate/skills/gstack-scrape      410 lines  ~  6565 tokens
+  .slate/skills/gstack-open-gstack-browser   373 lines  ~  4298 tokens
+  .slate/skills/gstack-upgrade     360 lines  ~  3963 tokens
+  .slate/skills/gstack-diagram     296 lines  ~  4065 tokens
+  .slate/skills/gstack-benchmark-models   272 lines  ~  3643 tokens
+  .slate/skills/gstack-setup-browser-cookies   253 lines  ~  3045 tokens
+  .slate/skills/gstack             224 lines  ~  3623 tokens
+  .slate/skills/gstack-freeze       79 lines  ~   896 tokens
+  .slate/skills/gstack-careful      71 lines  ~   878 tokens
+  .slate/skills/gstack-guard        64 lines  ~   783 tokens
+  .slate/skills/gstack-unfreeze     38 lines  ~   336 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          48391 lines  ~747983 tokens
+
+GENERATED: .cursor/skills/gstack/SKILL.md
+GENERATED: .cursor/skills/gstack-pair-agent/SKILL.md
+GENERATED: .cursor/skills/gstack-benchmark/SKILL.md
+GENERATED: .cursor/skills/gstack-design-html/SKILL.md
+GENERATED: .cursor/skills/gstack-plan-tune/SKILL.md
+GENERATED: .cursor/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .cursor/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .cursor/skills/gstack-autoplan/SKILL.md
+GENERATED: .cursor/skills/gstack-design-consultation/SKILL.md
+GENERATED: .cursor/skills/gstack-learn/SKILL.md
+GENERATED: .cursor/skills/gstack-freeze/SKILL.md
+GENERATED: .cursor/skills/gstack-ios-qa/SKILL.md
+GENERATED: .cursor/skills/gstack-careful/SKILL.md
+GENERATED: .cursor/skills/gstack-cso/SKILL.md
+GENERATED: .cursor/skills/gstack-canary/SKILL.md
+GENERATED: .cursor/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .cursor/skills/gstack-diagram/SKILL.md
+GENERATED: .cursor/skills/gstack-investigate/SKILL.md
+GENERATED: .cursor/skills/gstack-context-restore/SKILL.md
+GENERATED: .cursor/skills/gstack-claude/SKILL.md
+GENERATED: .cursor/skills/gstack-document-release/SKILL.md
+GENERATED: .cursor/skills/gstack-health/SKILL.md
+GENERATED: .cursor/skills/gstack-upgrade/SKILL.md
+GENERATED: .cursor/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .cursor/skills/gstack-spec/SKILL.md
+GENERATED: .cursor/skills/gstack-qa/SKILL.md
+GENERATED: .cursor/skills/gstack-scrape/SKILL.md
+GENERATED: .cursor/skills/gstack-qa-only/SKILL.md
+GENERATED: .cursor/skills/gstack-skillify/SKILL.md
+GENERATED: .cursor/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .cursor/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .cursor/skills/gstack-ios-fix/SKILL.md
+GENERATED: .cursor/skills/gstack-ios-clean/SKILL.md
+GENERATED: .cursor/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .cursor/skills/gstack-document-generate/SKILL.md
+GENERATED: .cursor/skills/gstack-review/SKILL.md
+GENERATED: .cursor/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .cursor/skills/gstack-office-hours/SKILL.md
+GENERATED: .cursor/skills/gstack-landing-report/SKILL.md
+GENERATED: .cursor/skills/gstack-retro/SKILL.md
+GENERATED: .cursor/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .cursor/skills/gstack-devex-review/SKILL.md
+GENERATED: .cursor/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .cursor/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .cursor/skills/gstack-ios-sync/SKILL.md
+GENERATED: .cursor/skills/gstack-browse/SKILL.md
+GENERATED: .cursor/skills/gstack-design-review/SKILL.md
+GENERATED: .cursor/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .cursor/skills/gstack-ship/SKILL.md is 200565 bytes (~50141 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .cursor/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .cursor/skills/gstack-guard/SKILL.md
+GENERATED: .cursor/skills/gstack-make-pdf/SKILL.md
+GENERATED: .cursor/skills/gstack-unfreeze/SKILL.md
+GENERATED: .cursor/skills/gstack-context-save/SKILL.md
+GENERATED: .cursor/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (cursor host)
+════════════════════════════════════════════════════════════
+  .cursor/skills/gstack-ship      3020 lines  ~ 50141 tokens
+  .cursor/skills/gstack-plan-ceo-review  2035 lines  ~ 34667 tokens
+  .cursor/skills/gstack-plan-devex-review  1982 lines  ~ 28507 tokens
+  .cursor/skills/gstack-office-hours  1916 lines  ~ 30603 tokens
+  .cursor/skills/gstack-land-and-deploy  1730 lines  ~ 27122 tokens
+  .cursor/skills/gstack-design-review  1711 lines  ~ 26416 tokens
+  .cursor/skills/gstack-plan-design-review  1710 lines  ~ 27174 tokens
+  .cursor/skills/gstack-plan-eng-review  1642 lines  ~ 28478 tokens
+  .cursor/skills/gstack-review    1530 lines  ~ 24428 tokens
+  .cursor/skills/gstack-autoplan  1525 lines  ~ 22012 tokens
+  .cursor/skills/gstack-setup-gbrain  1516 lines  ~ 19541 tokens
+  .cursor/skills/gstack-qa        1411 lines  ~ 21411 tokens
+  .cursor/skills/gstack-retro     1303 lines  ~ 18410 tokens
+  .cursor/skills/gstack-design-consultation  1278 lines  ~ 20894 tokens
+  .cursor/skills/gstack-spec      1275 lines  ~ 18177 tokens
+  .cursor/skills/gstack-document-release  1141 lines  ~ 16566 tokens
+  .cursor/skills/gstack-cso       1140 lines  ~ 18348 tokens
+  .cursor/skills/gstack-design-html  1086 lines  ~ 14661 tokens
+  .cursor/skills/gstack-devex-review  1084 lines  ~ 18970 tokens
+  .cursor/skills/gstack-plan-tune  1017 lines  ~ 13990 tokens
+  .cursor/skills/gstack-design-shotgun   974 lines  ~ 13917 tokens
+  .cursor/skills/gstack-qa-only    933 lines  ~ 15742 tokens
+  .cursor/skills/gstack-sync-gbrain   861 lines  ~ 13258 tokens
+  .cursor/skills/gstack-document-generate   856 lines  ~ 11684 tokens
+  .cursor/skills/gstack-skillify   836 lines  ~ 11568 tokens
+  .cursor/skills/gstack-claude     774 lines  ~ 10557 tokens
+  .cursor/skills/gstack-pair-agent   768 lines  ~ 11023 tokens
+  .cursor/skills/gstack-canary     725 lines  ~ 12772 tokens
+  .cursor/skills/gstack-health     683 lines  ~ 10248 tokens
+  .cursor/skills/gstack-investigate   655 lines  ~ 11104 tokens
+  .cursor/skills/gstack-ios-qa     644 lines  ~ 10715 tokens
+  .cursor/skills/gstack-context-save   636 lines  ~  9514 tokens
+  .cursor/skills/gstack-setup-deploy   616 lines  ~ 10670 tokens
+  .cursor/skills/gstack-browse     599 lines  ~ 10934 tokens
+  .cursor/skills/gstack-learn      560 lines  ~  8708 tokens
+  .cursor/skills/gstack-context-restore   550 lines  ~  9060 tokens
+  .cursor/skills/gstack-landing-report   529 lines  ~  8770 tokens
+  .cursor/skills/gstack-ios-design-review   467 lines  ~  8430 tokens
+  .cursor/skills/gstack-ios-clean   464 lines  ~  8251 tokens
+  .cursor/skills/gstack-ios-fix    461 lines  ~  8208 tokens
+  .cursor/skills/gstack-ios-sync   460 lines  ~  8367 tokens
+  .cursor/skills/gstack-benchmark   433 lines  ~  6938 tokens
+  .cursor/skills/gstack-make-pdf   415 lines  ~  5060 tokens
+  .cursor/skills/gstack-scrape     410 lines  ~  6567 tokens
+  .cursor/skills/gstack-open-gstack-browser   373 lines  ~  4301 tokens
+  .cursor/skills/gstack-upgrade    360 lines  ~  3970 tokens
+  .cursor/skills/gstack-diagram    296 lines  ~  4067 tokens
+  .cursor/skills/gstack-benchmark-models   272 lines  ~  3644 tokens
+  .cursor/skills/gstack-setup-browser-cookies   253 lines  ~  3046 tokens
+  .cursor/skills/gstack            224 lines  ~  3624 tokens
+  .cursor/skills/gstack-freeze      79 lines  ~   896 tokens
+  .cursor/skills/gstack-careful     71 lines  ~   878 tokens
+  .cursor/skills/gstack-guard       64 lines  ~   784 tokens
+  .cursor/skills/gstack-unfreeze    38 lines  ~   336 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          48391 lines  ~748127 tokens
+
+GENERATED: .openclaw/skills/gstack/SKILL.md
+GENERATED: .openclaw/skills/gstack-pair-agent/SKILL.md
+GENERATED: .openclaw/skills/gstack-benchmark/SKILL.md
+GENERATED: .openclaw/skills/gstack-design-html/SKILL.md
+GENERATED: .openclaw/skills/gstack-plan-tune/SKILL.md
+GENERATED: .openclaw/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .openclaw/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-autoplan/SKILL.md
+GENERATED: .openclaw/skills/gstack-design-consultation/SKILL.md
+GENERATED: .openclaw/skills/gstack-learn/SKILL.md
+GENERATED: .openclaw/skills/gstack-freeze/SKILL.md
+GENERATED: .openclaw/skills/gstack-ios-qa/SKILL.md
+GENERATED: .openclaw/skills/gstack-careful/SKILL.md
+GENERATED: .openclaw/skills/gstack-cso/SKILL.md
+GENERATED: .openclaw/skills/gstack-canary/SKILL.md
+GENERATED: .openclaw/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .openclaw/skills/gstack-diagram/SKILL.md
+GENERATED: .openclaw/skills/gstack-investigate/SKILL.md
+GENERATED: .openclaw/skills/gstack-context-restore/SKILL.md
+GENERATED: .openclaw/skills/gstack-claude/SKILL.md
+GENERATED: .openclaw/skills/gstack-document-release/SKILL.md
+GENERATED: .openclaw/skills/gstack-health/SKILL.md
+GENERATED: .openclaw/skills/gstack-upgrade/SKILL.md
+GENERATED: .openclaw/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .openclaw/skills/gstack-spec/SKILL.md
+GENERATED: .openclaw/skills/gstack-qa/SKILL.md
+GENERATED: .openclaw/skills/gstack-scrape/SKILL.md
+GENERATED: .openclaw/skills/gstack-qa-only/SKILL.md
+GENERATED: .openclaw/skills/gstack-skillify/SKILL.md
+GENERATED: .openclaw/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .openclaw/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .openclaw/skills/gstack-ios-fix/SKILL.md
+GENERATED: .openclaw/skills/gstack-ios-clean/SKILL.md
+GENERATED: .openclaw/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .openclaw/skills/gstack-document-generate/SKILL.md
+GENERATED: .openclaw/skills/gstack-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-office-hours/SKILL.md
+GENERATED: .openclaw/skills/gstack-landing-report/SKILL.md
+GENERATED: .openclaw/skills/gstack-retro/SKILL.md
+GENERATED: .openclaw/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-devex-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .openclaw/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-ios-sync/SKILL.md
+GENERATED: .openclaw/skills/gstack-browse/SKILL.md
+GENERATED: .openclaw/skills/gstack-design-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .openclaw/skills/gstack-ship/SKILL.md is 174174 bytes (~43544 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .openclaw/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .openclaw/skills/gstack-guard/SKILL.md
+GENERATED: .openclaw/skills/gstack-make-pdf/SKILL.md
+GENERATED: .openclaw/skills/gstack-unfreeze/SKILL.md
+GENERATED: .openclaw/skills/gstack-context-save/SKILL.md
+GENERATED: .openclaw/skills/gstack-setup-deploy/SKILL.md
+GENERATED: openclaw/gstack-lite-CLAUDE.md
+GENERATED: openclaw/gstack-full-CLAUDE.md
+GENERATED: openclaw/gstack-plan-CLAUDE.md
+
+Token Budget (openclaw host)
+════════════════════════════════════════════════════════════
+  .openclaw/skills/gstack-ship    2615 lines  ~ 43544 tokens
+  .openclaw/skills/gstack-plan-ceo-review  1871 lines  ~ 32129 tokens
+  .openclaw/skills/gstack-plan-devex-review  1818 lines  ~ 25974 tokens
+  .openclaw/skills/gstack-office-hours  1816 lines  ~ 29144 tokens
+  .openclaw/skills/gstack-land-and-deploy  1730 lines  ~ 27129 tokens
+  .openclaw/skills/gstack-design-review  1631 lines  ~ 25403 tokens
+  .openclaw/skills/gstack-plan-design-review  1604 lines  ~ 25767 tokens
+  .openclaw/skills/gstack-autoplan  1525 lines  ~ 22022 tokens
+  .openclaw/skills/gstack-setup-gbrain  1516 lines  ~ 19560 tokens
+  .openclaw/skills/gstack-plan-eng-review  1478 lines  ~ 25940 tokens
+  .openclaw/skills/gstack-qa      1411 lines  ~ 21414 tokens
+  .openclaw/skills/gstack-retro   1303 lines  ~ 18415 tokens
+  .openclaw/skills/gstack-spec    1275 lines  ~ 18182 tokens
+  .openclaw/skills/gstack-design-consultation  1214 lines  ~ 20007 tokens
+  .openclaw/skills/gstack-document-release  1141 lines  ~ 16571 tokens
+  .openclaw/skills/gstack-cso     1140 lines  ~ 18350 tokens
+  .openclaw/skills/gstack-review  1125 lines  ~ 17837 tokens
+  .openclaw/skills/gstack-design-html  1086 lines  ~ 14667 tokens
+  .openclaw/skills/gstack-devex-review  1084 lines  ~ 18975 tokens
+  .openclaw/skills/gstack-plan-tune  1017 lines  ~ 14006 tokens
+  .openclaw/skills/gstack-design-shotgun   974 lines  ~ 13921 tokens
+  .openclaw/skills/gstack-qa-only   933 lines  ~ 15745 tokens
+  .openclaw/skills/gstack-sync-gbrain   861 lines  ~ 13262 tokens
+  .openclaw/skills/gstack-document-generate   856 lines  ~ 11685 tokens
+  .openclaw/skills/gstack-skillify   836 lines  ~ 11571 tokens
+  .openclaw/skills/gstack-claude   774 lines  ~ 10559 tokens
+  .openclaw/skills/gstack-pair-agent   768 lines  ~ 11027 tokens
+  .openclaw/skills/gstack-canary   725 lines  ~ 12775 tokens
+  .openclaw/skills/gstack-health   683 lines  ~ 10250 tokens
+  .openclaw/skills/gstack-investigate   655 lines  ~ 11108 tokens
+  .openclaw/skills/gstack-ios-qa   644 lines  ~ 10718 tokens
+  .openclaw/skills/gstack-context-save   636 lines  ~  9517 tokens
+  .openclaw/skills/gstack-setup-deploy   616 lines  ~ 10672 tokens
+  .openclaw/skills/gstack-browse   599 lines  ~ 10938 tokens
+  .openclaw/skills/gstack-learn    560 lines  ~  8715 tokens
+  .openclaw/skills/gstack-context-restore   550 lines  ~  9063 tokens
+  .openclaw/skills/gstack-landing-report   529 lines  ~  8773 tokens
+  .openclaw/skills/gstack-ios-design-review   467 lines  ~  8432 tokens
+  .openclaw/skills/gstack-ios-clean   464 lines  ~  8253 tokens
+  .openclaw/skills/gstack-ios-fix   461 lines  ~  8210 tokens
+  .openclaw/skills/gstack-ios-sync   460 lines  ~  8369 tokens
+  .openclaw/skills/gstack-benchmark   433 lines  ~  6942 tokens
+  .openclaw/skills/gstack-make-pdf   415 lines  ~  5063 tokens
+  .openclaw/skills/gstack-scrape   410 lines  ~  6570 tokens
+  .openclaw/skills/gstack-open-gstack-browser   373 lines  ~  4306 tokens
+  .openclaw/skills/gstack-upgrade   360 lines  ~  3983 tokens
+  .openclaw/skills/gstack-diagram   296 lines  ~  4071 tokens
+  .openclaw/skills/gstack-benchmark-models   272 lines  ~  3647 tokens
+  .openclaw/skills/gstack-setup-browser-cookies   253 lines  ~  3049 tokens
+  .openclaw/skills/gstack          224 lines  ~  3626 tokens
+  .openclaw/skills/gstack-freeze    79 lines  ~   897 tokens
+  .openclaw/skills/gstack-careful    71 lines  ~   878 tokens
+  .openclaw/skills/gstack-guard     64 lines  ~   784 tokens
+  .openclaw/skills/gstack-unfreeze    38 lines  ~   336 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          46739 lines  ~722751 tokens
+
+GENERATED: .hermes/skills/gstack/SKILL.md
+GENERATED: .hermes/skills/gstack-pair-agent/SKILL.md
+GENERATED: .hermes/skills/gstack-benchmark/SKILL.md
+GENERATED: .hermes/skills/gstack-design-html/SKILL.md
+GENERATED: .hermes/skills/gstack-plan-tune/SKILL.md
+GENERATED: .hermes/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .hermes/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .hermes/skills/gstack-autoplan/SKILL.md
+GENERATED: .hermes/skills/gstack-design-consultation/SKILL.md
+GENERATED: .hermes/skills/gstack-learn/SKILL.md
+GENERATED: .hermes/skills/gstack-freeze/SKILL.md
+GENERATED: .hermes/skills/gstack-ios-qa/SKILL.md
+GENERATED: .hermes/skills/gstack-careful/SKILL.md
+GENERATED: .hermes/skills/gstack-cso/SKILL.md
+GENERATED: .hermes/skills/gstack-canary/SKILL.md
+GENERATED: .hermes/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .hermes/skills/gstack-diagram/SKILL.md
+GENERATED: .hermes/skills/gstack-investigate/SKILL.md
+GENERATED: .hermes/skills/gstack-context-restore/SKILL.md
+GENERATED: .hermes/skills/gstack-claude/SKILL.md
+GENERATED: .hermes/skills/gstack-document-release/SKILL.md
+GENERATED: .hermes/skills/gstack-health/SKILL.md
+GENERATED: .hermes/skills/gstack-upgrade/SKILL.md
+GENERATED: .hermes/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .hermes/skills/gstack-spec/SKILL.md
+GENERATED: .hermes/skills/gstack-qa/SKILL.md
+GENERATED: .hermes/skills/gstack-scrape/SKILL.md
+GENERATED: .hermes/skills/gstack-qa-only/SKILL.md
+GENERATED: .hermes/skills/gstack-skillify/SKILL.md
+GENERATED: .hermes/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .hermes/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .hermes/skills/gstack-ios-fix/SKILL.md
+GENERATED: .hermes/skills/gstack-ios-clean/SKILL.md
+GENERATED: .hermes/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .hermes/skills/gstack-document-generate/SKILL.md
+GENERATED: .hermes/skills/gstack-review/SKILL.md
+GENERATED: .hermes/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .hermes/skills/gstack-office-hours/SKILL.md
+GENERATED: .hermes/skills/gstack-landing-report/SKILL.md
+GENERATED: .hermes/skills/gstack-retro/SKILL.md
+GENERATED: .hermes/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .hermes/skills/gstack-devex-review/SKILL.md
+GENERATED: .hermes/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .hermes/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .hermes/skills/gstack-ios-sync/SKILL.md
+GENERATED: .hermes/skills/gstack-browse/SKILL.md
+GENERATED: .hermes/skills/gstack-design-review/SKILL.md
+GENERATED: .hermes/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .hermes/skills/gstack-ship/SKILL.md is 175625 bytes (~43906 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .hermes/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .hermes/skills/gstack-guard/SKILL.md
+GENERATED: .hermes/skills/gstack-make-pdf/SKILL.md
+GENERATED: .hermes/skills/gstack-unfreeze/SKILL.md
+GENERATED: .hermes/skills/gstack-context-save/SKILL.md
+GENERATED: .hermes/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (hermes host)
+════════════════════════════════════════════════════════════
+  .hermes/skills/gstack-ship      2653 lines  ~ 43906 tokens
+  .hermes/skills/gstack-plan-ceo-review  1909 lines  ~ 32512 tokens
+  .hermes/skills/gstack-office-hours  1854 lines  ~ 29521 tokens
+  .hermes/skills/gstack-plan-devex-review  1846 lines  ~ 26241 tokens
+  .hermes/skills/gstack-land-and-deploy  1737 lines  ~ 27236 tokens
+  .hermes/skills/gstack-design-review  1655 lines  ~ 25712 tokens
+  .hermes/skills/gstack-plan-design-review  1632 lines  ~ 26043 tokens
+  .hermes/skills/gstack-autoplan  1532 lines  ~ 22127 tokens
+  .hermes/skills/gstack-setup-gbrain  1523 lines  ~ 19654 tokens
+  .hermes/skills/gstack-plan-eng-review  1516 lines  ~ 26323 tokens
+  .hermes/skills/gstack-qa        1435 lines  ~ 21725 tokens
+  .hermes/skills/gstack-retro     1341 lines  ~ 18794 tokens
+  .hermes/skills/gstack-spec      1282 lines  ~ 18290 tokens
+  .hermes/skills/gstack-design-consultation  1252 lines  ~ 20392 tokens
+  .hermes/skills/gstack-cso       1178 lines  ~ 18736 tokens
+  .hermes/skills/gstack-document-release  1148 lines  ~ 16680 tokens
+  .hermes/skills/gstack-review    1132 lines  ~ 17944 tokens
+  .hermes/skills/gstack-design-html  1093 lines  ~ 14778 tokens
+  .hermes/skills/gstack-devex-review  1091 lines  ~ 19086 tokens
+  .hermes/skills/gstack-plan-tune  1024 lines  ~ 14103 tokens
+  .hermes/skills/gstack-design-shotgun   981 lines  ~ 14032 tokens
+  .hermes/skills/gstack-qa-only    940 lines  ~ 15857 tokens
+  .hermes/skills/gstack-sync-gbrain   868 lines  ~ 13371 tokens
+  .hermes/skills/gstack-document-generate   863 lines  ~ 11796 tokens
+  .hermes/skills/gstack-skillify   843 lines  ~ 11681 tokens
+  .hermes/skills/gstack-claude     781 lines  ~ 10670 tokens
+  .hermes/skills/gstack-pair-agent   775 lines  ~ 11136 tokens
+  .hermes/skills/gstack-canary     732 lines  ~ 12886 tokens
+  .hermes/skills/gstack-investigate   695 lines  ~ 11535 tokens
+  .hermes/skills/gstack-health     690 lines  ~ 10361 tokens
+  .hermes/skills/gstack-ios-qa     651 lines  ~ 10828 tokens
+  .hermes/skills/gstack-context-save   643 lines  ~  9627 tokens
+  .hermes/skills/gstack-setup-deploy   623 lines  ~ 10783 tokens
+  .hermes/skills/gstack-browse     606 lines  ~ 11049 tokens
+  .hermes/skills/gstack-learn      567 lines  ~  8821 tokens
+  .hermes/skills/gstack-context-restore   557 lines  ~  9173 tokens
+  .hermes/skills/gstack-landing-report   536 lines  ~  8883 tokens
+  .hermes/skills/gstack-ios-design-review   474 lines  ~  8543 tokens
+  .hermes/skills/gstack-ios-clean   471 lines  ~  8364 tokens
+  .hermes/skills/gstack-ios-fix    468 lines  ~  8321 tokens
+  .hermes/skills/gstack-ios-sync   467 lines  ~  8480 tokens
+  .hermes/skills/gstack-benchmark   440 lines  ~  7053 tokens
+  .hermes/skills/gstack-make-pdf   422 lines  ~  5173 tokens
+  .hermes/skills/gstack-scrape     417 lines  ~  6681 tokens
+  .hermes/skills/gstack-open-gstack-browser   380 lines  ~  4414 tokens
+  .hermes/skills/gstack-upgrade    360 lines  ~  3970 tokens
+  .hermes/skills/gstack-diagram    303 lines  ~  4182 tokens
+  .hermes/skills/gstack-benchmark-models   279 lines  ~  3757 tokens
+  .hermes/skills/gstack-setup-browser-cookies   260 lines  ~  3159 tokens
+  .hermes/skills/gstack            231 lines  ~  3737 tokens
+  .hermes/skills/gstack-freeze      79 lines  ~   896 tokens
+  .hermes/skills/gstack-careful     71 lines  ~   878 tokens
+  .hermes/skills/gstack-guard       64 lines  ~   784 tokens
+  .hermes/skills/gstack-unfreeze    38 lines  ~   336 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          47408 lines  ~731020 tokens
+
+GENERATED: .gbrain/skills/gstack/SKILL.md
+GENERATED: .gbrain/skills/gstack-pair-agent/SKILL.md
+GENERATED: .gbrain/skills/gstack-benchmark/SKILL.md
+GENERATED: .gbrain/skills/gstack-design-html/SKILL.md
+GENERATED: .gbrain/skills/gstack-plan-tune/SKILL.md
+GENERATED: .gbrain/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .gbrain/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-autoplan/SKILL.md
+GENERATED: .gbrain/skills/gstack-design-consultation/SKILL.md
+GENERATED: .gbrain/skills/gstack-learn/SKILL.md
+GENERATED: .gbrain/skills/gstack-freeze/SKILL.md
+GENERATED: .gbrain/skills/gstack-ios-qa/SKILL.md
+GENERATED: .gbrain/skills/gstack-careful/SKILL.md
+GENERATED: .gbrain/skills/gstack-cso/SKILL.md
+GENERATED: .gbrain/skills/gstack-canary/SKILL.md
+GENERATED: .gbrain/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .gbrain/skills/gstack-diagram/SKILL.md
+GENERATED: .gbrain/skills/gstack-investigate/SKILL.md
+GENERATED: .gbrain/skills/gstack-context-restore/SKILL.md
+GENERATED: .gbrain/skills/gstack-claude/SKILL.md
+GENERATED: .gbrain/skills/gstack-document-release/SKILL.md
+GENERATED: .gbrain/skills/gstack-health/SKILL.md
+GENERATED: .gbrain/skills/gstack-upgrade/SKILL.md
+GENERATED: .gbrain/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .gbrain/skills/gstack-spec/SKILL.md
+GENERATED: .gbrain/skills/gstack-qa/SKILL.md
+GENERATED: .gbrain/skills/gstack-scrape/SKILL.md
+GENERATED: .gbrain/skills/gstack-qa-only/SKILL.md
+GENERATED: .gbrain/skills/gstack-skillify/SKILL.md
+GENERATED: .gbrain/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .gbrain/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .gbrain/skills/gstack-ios-fix/SKILL.md
+GENERATED: .gbrain/skills/gstack-ios-clean/SKILL.md
+GENERATED: .gbrain/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .gbrain/skills/gstack-document-generate/SKILL.md
+GENERATED: .gbrain/skills/gstack-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-office-hours/SKILL.md
+GENERATED: .gbrain/skills/gstack-landing-report/SKILL.md
+GENERATED: .gbrain/skills/gstack-retro/SKILL.md
+GENERATED: .gbrain/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-devex-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .gbrain/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-ios-sync/SKILL.md
+GENERATED: .gbrain/skills/gstack-browse/SKILL.md
+GENERATED: .gbrain/skills/gstack-design-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .gbrain/skills/gstack-ship/SKILL.md is 175690 bytes (~43923 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .gbrain/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .gbrain/skills/gstack-guard/SKILL.md
+GENERATED: .gbrain/skills/gstack-make-pdf/SKILL.md
+GENERATED: .gbrain/skills/gstack-unfreeze/SKILL.md
+GENERATED: .gbrain/skills/gstack-context-save/SKILL.md
+GENERATED: .gbrain/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (gbrain host)
+════════════════════════════════════════════════════════════
+  .gbrain/skills/gstack-ship      2658 lines  ~ 43923 tokens
+  .gbrain/skills/gstack-plan-ceo-review  1914 lines  ~ 32528 tokens
+  .gbrain/skills/gstack-office-hours  1859 lines  ~ 29546 tokens
+  .gbrain/skills/gstack-plan-devex-review  1850 lines  ~ 26260 tokens
+  .gbrain/skills/gstack-land-and-deploy  1741 lines  ~ 27252 tokens
+  .gbrain/skills/gstack-design-review  1659 lines  ~ 25727 tokens
+  .gbrain/skills/gstack-plan-design-review  1636 lines  ~ 26056 tokens
+  .gbrain/skills/gstack-autoplan  1536 lines  ~ 22145 tokens
+  .gbrain/skills/gstack-setup-gbrain  1529 lines  ~ 19680 tokens
+  .gbrain/skills/gstack-plan-eng-review  1520 lines  ~ 26341 tokens
+  .gbrain/skills/gstack-qa        1439 lines  ~ 21739 tokens
+  .gbrain/skills/gstack-retro     1345 lines  ~ 18811 tokens
+  .gbrain/skills/gstack-spec      1289 lines  ~ 18330 tokens
+  .gbrain/skills/gstack-design-consultation  1256 lines  ~ 20407 tokens
+  .gbrain/skills/gstack-cso       1182 lines  ~ 18755 tokens
+  .gbrain/skills/gstack-document-release  1152 lines  ~ 16698 tokens
+  .gbrain/skills/gstack-review    1137 lines  ~ 17965 tokens
+  .gbrain/skills/gstack-design-html  1097 lines  ~ 14792 tokens
+  .gbrain/skills/gstack-devex-review  1095 lines  ~ 19104 tokens
+  .gbrain/skills/gstack-plan-tune  1032 lines  ~ 14144 tokens
+  .gbrain/skills/gstack-design-shotgun   985 lines  ~ 14054 tokens
+  .gbrain/skills/gstack-qa-only    944 lines  ~ 15873 tokens
+  .gbrain/skills/gstack-sync-gbrain   873 lines  ~ 13391 tokens
+  .gbrain/skills/gstack-document-generate   871 lines  ~ 11839 tokens
+  .gbrain/skills/gstack-skillify   848 lines  ~ 11704 tokens
+  .gbrain/skills/gstack-claude     785 lines  ~ 10686 tokens
+  .gbrain/skills/gstack-pair-agent   779 lines  ~ 11155 tokens
+  .gbrain/skills/gstack-canary     736 lines  ~ 12906 tokens
+  .gbrain/skills/gstack-investigate   701 lines  ~ 11564 tokens
+  .gbrain/skills/gstack-health     694 lines  ~ 10381 tokens
+  .gbrain/skills/gstack-ios-qa     657 lines  ~ 10856 tokens
+  .gbrain/skills/gstack-context-save   648 lines  ~  9646 tokens
+  .gbrain/skills/gstack-setup-deploy   627 lines  ~ 10802 tokens
+  .gbrain/skills/gstack-browse     610 lines  ~ 11064 tokens
+  .gbrain/skills/gstack-learn      571 lines  ~  8842 tokens
+  .gbrain/skills/gstack-context-restore   563 lines  ~  9204 tokens
+  .gbrain/skills/gstack-landing-report   542 lines  ~  8912 tokens
+  .gbrain/skills/gstack-ios-design-review   478 lines  ~  8567 tokens
+  .gbrain/skills/gstack-ios-clean   475 lines  ~  8390 tokens
+  .gbrain/skills/gstack-ios-fix    472 lines  ~  8342 tokens
+  .gbrain/skills/gstack-ios-sync   471 lines  ~  8508 tokens
+  .gbrain/skills/gstack-benchmark   444 lines  ~  7074 tokens
+  .gbrain/skills/gstack-make-pdf   427 lines  ~  5191 tokens
+  .gbrain/skills/gstack-scrape     423 lines  ~  6703 tokens
+  .gbrain/skills/gstack-open-gstack-browser   384 lines  ~  4433 tokens
+  .gbrain/skills/gstack-upgrade    364 lines  ~  3989 tokens
+  .gbrain/skills/gstack-diagram    310 lines  ~  4215 tokens
+  .gbrain/skills/gstack-benchmark-models   284 lines  ~  3789 tokens
+  .gbrain/skills/gstack-setup-browser-cookies   264 lines  ~  3182 tokens
+  .gbrain/skills/gstack            235 lines  ~  3755 tokens
+  .gbrain/skills/gstack-freeze      83 lines  ~   918 tokens
+  .gbrain/skills/gstack-careful     75 lines  ~   896 tokens
+  .gbrain/skills/gstack-guard       68 lines  ~   803 tokens
+  .gbrain/skills/gstack-unfreeze    42 lines  ~   357 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          47659 lines  ~732194 tokens
+
+
+Note: skill_prefix is true. Run gstack-relink to re-apply name: patches (it patches both the install and any active gbrain render).
+[gen-llms-txt] gstack/llms.txt: 55 skills, 76 browse commands
+[gen-agents-digest] agents-digest/gstack-AGENTS.md: 1765 bytes (budget 2048)
+   [5ms]  bundle  11 modules
+ [138ms] compile  browse/dist/browse
+   [3ms]  bundle  1 modules
+  [98ms] compile  browse/dist/find-browse
+   [6ms]  bundle  22 modules
+  [98ms] compile  design/dist/design
+  [42ms]  bundle  343 modules
+ [130ms] compile  make-pdf/dist/pdf
+   [3ms]  bundle  1 modules
+  [89ms] compile  bin/gstack-global-discover
+Building Node-compatible server bundle...
+Bundled 142 modules in 13ms
+
+  server-node.mjs  0.89 MB  (entry point)
+
+Node server bundle ready: /Users/kaitakeuchi/.gstack/repos/gstack/browse/dist/server-node.mjs
+Generating .agents/ skill docs...
+bun install v1.4.2 (744846f84)
+
+Checked 237 installs across 273 packages (no changes) [31.00ms]
+$ bun run scripts/gen-skill-docs.ts --host codex --model gpt
+GENERATED: .agents/skills/gstack/SKILL.md
+GENERATED: .agents/skills/gstack-pair-agent/SKILL.md
+GENERATED: .agents/skills/gstack-benchmark/SKILL.md
+GENERATED: .agents/skills/gstack-design-html/SKILL.md
+GENERATED: .agents/skills/gstack-plan-tune/SKILL.md
+GENERATED: .agents/skills/gstack-design-shotgun/SKILL.md
+GENERATED: .agents/skills/gstack-plan-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-autoplan/SKILL.md
+GENERATED: .agents/skills/gstack-design-consultation/SKILL.md
+GENERATED: .agents/skills/gstack-learn/SKILL.md
+GENERATED: .agents/skills/gstack-freeze/SKILL.md
+GENERATED: .agents/skills/gstack-ios-qa/SKILL.md
+GENERATED: .agents/skills/gstack-careful/SKILL.md
+GENERATED: .agents/skills/gstack-cso/SKILL.md
+GENERATED: .agents/skills/gstack-canary/SKILL.md
+GENERATED: .agents/skills/gstack-open-gstack-browser/SKILL.md
+GENERATED: .agents/skills/gstack-diagram/SKILL.md
+GENERATED: .agents/skills/gstack-investigate/SKILL.md
+GENERATED: .agents/skills/gstack-context-restore/SKILL.md
+GENERATED: .agents/skills/gstack-claude/SKILL.md
+GENERATED: .agents/skills/gstack-document-release/SKILL.md
+GENERATED: .agents/skills/gstack-health/SKILL.md
+GENERATED: .agents/skills/gstack-upgrade/SKILL.md
+GENERATED: .agents/skills/gstack-land-and-deploy/SKILL.md
+GENERATED: .agents/skills/gstack-spec/SKILL.md
+GENERATED: .agents/skills/gstack-qa/SKILL.md
+GENERATED: .agents/skills/gstack-scrape/SKILL.md
+GENERATED: .agents/skills/gstack-qa-only/SKILL.md
+GENERATED: .agents/skills/gstack-skillify/SKILL.md
+GENERATED: .agents/skills/gstack-sync-gbrain/SKILL.md
+GENERATED: .agents/skills/gstack-setup-browser-cookies/SKILL.md
+GENERATED: .agents/skills/gstack-ios-fix/SKILL.md
+GENERATED: .agents/skills/gstack-ios-clean/SKILL.md
+GENERATED: .agents/skills/gstack-setup-gbrain/SKILL.md
+GENERATED: .agents/skills/gstack-document-generate/SKILL.md
+GENERATED: .agents/skills/gstack-review/SKILL.md
+GENERATED: .agents/skills/gstack-plan-ceo-review/SKILL.md
+GENERATED: .agents/skills/gstack-office-hours/SKILL.md
+GENERATED: .agents/skills/gstack-landing-report/SKILL.md
+GENERATED: .agents/skills/gstack-retro/SKILL.md
+GENERATED: .agents/skills/gstack-ios-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-devex-review/SKILL.md
+GENERATED: .agents/skills/gstack-benchmark-models/SKILL.md
+GENERATED: .agents/skills/gstack-plan-devex-review/SKILL.md
+GENERATED: .agents/skills/gstack-ios-sync/SKILL.md
+GENERATED: .agents/skills/gstack-browse/SKILL.md
+GENERATED: .agents/skills/gstack-design-review/SKILL.md
+GENERATED: .agents/skills/gstack-ship/SKILL.md
+⚠️  TOKEN CEILING: .agents/skills/gstack-ship/SKILL.md is 173395 bytes (~43349 tokens), exceeds 160000 byte ceiling (~40K tokens)
+GENERATED: .agents/skills/gstack-plan-eng-review/SKILL.md
+GENERATED: .agents/skills/gstack-guard/SKILL.md
+GENERATED: .agents/skills/gstack-make-pdf/SKILL.md
+GENERATED: .agents/skills/gstack-unfreeze/SKILL.md
+GENERATED: .agents/skills/gstack-context-save/SKILL.md
+GENERATED: .agents/skills/gstack-setup-deploy/SKILL.md
+
+Token Budget (codex host)
+════════════════════════════════════════════════════════════
+  .agents/skills/gstack-ship      2614 lines  ~ 43349 tokens
+  .agents/skills/gstack-plan-ceo-review  1893 lines  ~ 32429 tokens
+  .agents/skills/gstack-plan-devex-review  1840 lines  ~ 26245 tokens
+  .agents/skills/gstack-office-hours  1838 lines  ~ 29433 tokens
+  .agents/skills/gstack-land-and-deploy  1752 lines  ~ 27428 tokens
+  .agents/skills/gstack-design-review  1653 lines  ~ 25721 tokens
+  .agents/skills/gstack-plan-design-review  1626 lines  ~ 26080 tokens
+  .agents/skills/gstack-autoplan  1547 lines  ~ 22293 tokens
+  .agents/skills/gstack-setup-gbrain  1538 lines  ~ 19776 tokens
+  .agents/skills/gstack-plan-eng-review  1500 lines  ~ 26240 tokens
+  .agents/skills/gstack-qa        1433 lines  ~ 21736 tokens
+  .agents/skills/gstack-retro     1325 lines  ~ 18730 tokens
+  .agents/skills/gstack-spec      1297 lines  ~ 18489 tokens
+  .agents/skills/gstack-design-consultation  1236 lines  ~ 20328 tokens
+  .agents/skills/gstack-cso       1162 lines  ~ 18676 tokens
+  .agents/skills/gstack-review    1147 lines  ~ 18137 tokens
+  .agents/skills/gstack-design-html  1108 lines  ~ 14978 tokens
+  .agents/skills/gstack-devex-review  1106 lines  ~ 19287 tokens
+  .agents/skills/gstack-plan-tune  1039 lines  ~ 14241 tokens
+  .agents/skills/gstack-document-release  1025 lines  ~ 14547 tokens
+  .agents/skills/gstack-design-shotgun   996 lines  ~ 14240 tokens
+  .agents/skills/gstack-qa-only    955 lines  ~ 16070 tokens
+  .agents/skills/gstack-sync-gbrain   883 lines  ~ 13572 tokens
+  .agents/skills/gstack-document-generate   878 lines  ~ 12005 tokens
+  .agents/skills/gstack-skillify   858 lines  ~ 11894 tokens
+  .agents/skills/gstack-claude     796 lines  ~ 10885 tokens
+  .agents/skills/gstack-pair-agent   790 lines  ~ 11346 tokens
+  .agents/skills/gstack-canary     747 lines  ~ 13097 tokens
+  .agents/skills/gstack-health     705 lines  ~ 10576 tokens
+  .agents/skills/gstack-investigate   677 lines  ~ 11424 tokens
+  .agents/skills/gstack-ios-qa     666 lines  ~ 11041 tokens
+  .agents/skills/gstack-context-save   658 lines  ~  9836 tokens
+  .agents/skills/gstack-setup-deploy   638 lines  ~ 10999 tokens
+  .agents/skills/gstack-browse     621 lines  ~ 11259 tokens
+  .agents/skills/gstack-learn      582 lines  ~  9006 tokens
+  .agents/skills/gstack-context-restore   572 lines  ~  9386 tokens
+  .agents/skills/gstack-landing-report   551 lines  ~  9096 tokens
+  .agents/skills/gstack-ios-design-review   489 lines  ~  8759 tokens
+  .agents/skills/gstack-ios-clean   486 lines  ~  8579 tokens
+  .agents/skills/gstack-ios-fix    483 lines  ~  8537 tokens
+  .agents/skills/gstack-ios-sync   482 lines  ~  8692 tokens
+  .agents/skills/gstack-benchmark   455 lines  ~  7264 tokens
+  .agents/skills/gstack-make-pdf   437 lines  ~  5388 tokens
+  .agents/skills/gstack-scrape     432 lines  ~  6895 tokens
+  .agents/skills/gstack-open-gstack-browser   395 lines  ~  4629 tokens
+  .agents/skills/gstack-upgrade    360 lines  ~  3950 tokens
+  .agents/skills/gstack-diagram    318 lines  ~  4387 tokens
+  .agents/skills/gstack-benchmark-models   294 lines  ~  3972 tokens
+  .agents/skills/gstack-setup-browser-cookies   275 lines  ~  3375 tokens
+  .agents/skills/gstack            246 lines  ~  3949 tokens
+  .agents/skills/gstack-freeze      79 lines  ~   893 tokens
+  .agents/skills/gstack-careful     71 lines  ~   878 tokens
+  .agents/skills/gstack-guard       64 lines  ~   781 tokens
+  .agents/skills/gstack-unfreeze    38 lines  ~   333 tokens
+────────────────────────────────────────────────────────────
+  TOTAL                          47656 lines  ~735136 tokens
+
+
+Note: skill_prefix is true. Run gstack-relink to re-apply name: patches (it patches both the install and any active gbrain render).
+[gen-llms-txt] gstack/llms.txt: 55 skills, 76 browse commands
+[gen-agents-digest] agents-digest/gstack-AGENTS.md: 1765 bytes (budget 2048)
+  Chromium bootstrap: skipped — GSTACK_SKIP_PLAYWRIGHT=1 — Chromium install skipped by request (#913)
+  linked skills: gstack-autoplan gstack-benchmark-models gstack-benchmark gstack-browse gstack-canary gstack-careful gstack-claude gstack-context-restore gstack-context-save gstack-cso gstack-design-consultation gstack-design-html gstack-design-review gstack-design-shotgun gstack-devex-review gstack-diagram gstack-document-generate gstack-document-release gstack-freeze gstack-guard gstack-health gstack-investigate gstack-ios-clean gstack-ios-design-review gstack-ios-fix gstack-ios-qa gstack-ios-sync gstack-land-and-deploy gstack-landing-report gstack-learn gstack-make-pdf gstack-office-hours gstack-open-gstack-browser gstack-pair-agent gstack-plan-ceo-review gstack-plan-design-review gstack-plan-devex-review gstack-plan-eng-review gstack-plan-tune gstack-qa-only gstack-qa gstack-retro gstack-review gstack-scrape gstack-setup-browser-cookies gstack-setup-deploy gstack-setup-gbrain gstack-ship gstack-skillify gstack-spec gstack-sync-gbrain gstack-unfreeze gstack-upgrade
+gstack ready (codex).
+  browse: /Users/kaitakeuchi/.gstack/repos/gstack/browse/dist/browse
+  browser: none available — Chromium install skipped by request (GSTACK_SKIP_PLAYWRIGHT=1); install Aside (aside.com, macOS 15+) or re-run ./setup without the flag
+  codex skills: /Users/kaitakeuchi/.codex/skills
+  model profile: gpt (/Users/kaitakeuchi/.codex/config.toml)
+  model changes: rerun ./setup --host codex
+
+  gstack is ready. First move:
+    New idea / empty repo?   /office-hours  or  /spec
+    Existing code?           /qa  to see it work, or  /investigate
+  (Run /gstack-upgrade anytime to stay current)
+
+Team mode disabled: auto-update hook removed.
+gbrain not detected — brain-aware blocks suppressed in planning-skill SKILL.md files (zero token overhead).
+  To enable: install gbrain via /setup-gbrain, then re-run ./setup or 'gstack-config gbrain-refresh'.
+  timeline Stop hook disabled (via flag) — removed its registration if one existed
+
+Chromium install skipped by request (GSTACK_SKIP_PLAYWRIGHT=1).
+  Browser skills (/qa, /qa-only, /design-review, /browse, /scrape, /benchmark, /canary, make-pdf, /diagram, /pair-agent, and any other skill that drives the browser) need it; re-run ./setup without the flag when you want them.

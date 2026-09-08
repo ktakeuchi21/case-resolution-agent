@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "phase2c-verification-v1",
+  "recordedAt": "2026-09-08T04:02:44.396450+00:00",
+  "status": "complete_local_synthetic_scope",
+  "files": {
+    "parity": {
+      "path": "artifacts/phase2c/parity-c54a8fb16b8d37df924c99806f2bf16a7a64bff6ca171aaba0b7ac70ebf29dcf.json",
+      "sha256": "c54a8fb16b8d37df924c99806f2bf16a7a64bff6ca171aaba0b7ac70ebf29dcf"
+    },
+    "restartConcurrency": {
+      "path": "artifacts/phase2c/restart-concurrency-a423cd0cc2a252dede88ea5338f70c0ad0bf542405490c099dd996a56324b11a.json",
+      "sha256": "a423cd0cc2a252dede88ea5338f70c0ad0bf542405490c099dd996a56324b11a"
+    },
+    "serverRestart": {
+      "path": "artifacts/phase2c/server-restart-e5b22755d7ed3685e781ba41f6a62714a2e082d7a2d2d6d72c13ea2b84f81c38.json",
+      "sha256": "e5b22755d7ed3685e781ba41f6a62714a2e082d7a2d2d6d72c13ea2b84f81c38"
+    },
+    "emptyDatabase": {
+      "path": "artifacts/phase2c/empty-database-6d12f3a4d74dbcc159ddfbf5def21860d28829da11dd97eae183d7709093eaec.json",
+      "sha256": "6d12f3a4d74dbcc159ddfbf5def21860d28829da11dd97eae183d7709093eaec"
+    },
+    "databaseAudit": {
+      "path": "artifacts/phase2c/database-audit-cc0797049f730897399ba73e74a36665caa1c95d13faca19a68a0c4d8107038d.json",
+      "sha256": "cc0797049f730897399ba73e74a36665caa1c95d13faca19a68a0c4d8107038d"
+    }
+  },
+  "checks": {
+    "typecheck": "passed",
+    "existingAutomatedTests": {
+      "passed": 67,
+      "failed": 0
+    },
+    "postgresIntegrationTests": {
+      "passed": 23,
+      "failed": 0
+    },
+    "originalGovernanceParity": {
+      "passed": 23,
+      "failed": 0
+    },
+    "frozenRetrievalParity": {
+      "referencePass": 23,
+      "retrievalPass": 108,
+      "rankingDifferences": 0,
+      "maxCosineDelta": 1.7044883838801539e-06,
+      "outcomes": {
+        "lexical": 31,
+        "semantic": 36,
+        "hybrid": 36
+      },
+      "additionalProviderCalls": 0,
+      "pass": true
+    },
+    "migrationsFromEmptyDatabase": "passed all 3 and checksum/idempotence rerun",
+    "deterministicSeed": "passed repeated seed",
+    "repositoryRestartAndBothConcurrencyOrders": "passed; actual blocked waiter observed",
+    "actualPostgresServerRestart": "passed; startup time after demo, original evidence and retirement preserved",
+    "databaseEvidenceAudit": {
+      "documents": 4320,
+      "versions": 5130,
+      "passages": 5130,
+      "packs": 810,
+      "releases": 819,
+      "assignments": 1089,
+      "collections": 270,
+      "cases": 1080,
+      "users": 2160,
+      "events": 4119,
+      "runs": 443,
+      "degraded_grants": 4,
+      "case_revisions": 11,
+      "evidence": 443,
+      "decisions": 1772,
+      "escalations": 85,
+      "audit": 7929,
+      "embeddings": 712
+    },
+    "hygiene": {
+      "canonicalPreservedFiles": 21,
+      "finderMetadataExcluded": true,
+      "secretPatternScanPassed": true,
+      "ignoreMatcherPassed": true,
+      "phase2cArtifactHashesPassed": true,
+      "sourceCorpusUnchanged": true,
+      "bm25AndRrfUnchanged": true,
+      "trackedStateAudit": "unavailable: no .git in project"
+    },
+    "lint": "not_configured",
+    "liveProviderCalls": 0
+  },
+  "initialFailures": [
+    {
+      "type": "local_setup",
+      "result": "Initial incomplete initialization retained; explicit native initialization succeeded. Private socket access required normal Codex permission escalation."
+    },
+    {
+      "type": "numeric_parity",
+      "result": "Initial 1e-6 float64 tolerance failed at 1.5454036114137537e-6. Preserved partial artifact. Verified pgvector float32 accumulation independently; accepted 1e-5 storage arithmetic tolerance with 1e-7 replay check. No ranking/threshold/gold changes."
+    },
+    {
+      "type": "typecheck",
+      "result": "Initial readonly/type-inference/unused-import compilation errors corrected; final typecheck passes."
+    }
+  ],
+  "notRun": [
+    "Live provider quality reruns (cached vectors used)",
+    "ANN/load/production-latency benchmark",
+    "Host crash/power-loss injection",
+    "Backup restoration/disaster recovery",
+    "Hosted identity/security/isolation qualification"
+  ],
+  "nextPhase": {
+    "choice": "A",
+    "name": "Headless synthetic SC-01 workflow state machine",
+    "implementationStarted": false
+  },
+  "limits": [
+    "Trusted fixture actors and backend-selected scope; backend credential compromise not isolated by custom GUC RLS",
+    "Coarse scope lock held during retrieval; no concurrency/revocation SLO measured",
+    "No signed/WORM ledger, retention/purge service, hosted auth or backup restore claim",
+    "No UI, generated answers, workflow orchestration or real operational effects"
+  ],
+  "localSetup": {
+    "postgres": "18.6",
+    "pgvector": "0.8.6",
+    "docker": "absent; native Homebrew used",
+    "server": "running, private Unix socket only, TCP disabled",
+    "automaticStartup": false,
+    "dataDeletion": false
+  },
+  "codePreservation": {
+    "BM25": "unchanged",
+    "RRF": "unchanged",
+    "frozenCorpusAndGold": "unchanged",
+    "phase2aAndPhase2bArtifacts": "unchanged",
+    "memoryAdapter": "retained as baseline control"
+  }
+}

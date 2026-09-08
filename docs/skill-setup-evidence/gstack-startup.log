@@ -1,0 +1,33 @@
+SKILL_START_PROTO: 1
+BRANCH: unknown
+PROACTIVE: false
+PROACTIVE_PROMPTED: yes
+SKILL_PREFIX: true
+REPO_MODE: unknown
+SESSION_KIND: headless
+ACTIVATED: no
+FIRST_LOOP_SHOWN: no
+FIRST_TASK: 
+LAKE_INTRO: no
+TELEMETRY: off
+TEL_PROMPTED: yes
+SESSION_ID: 51748-1788814745-d34c8fc7
+TEL_START: 1788814745
+EXPLAIN_LEVEL: default
+QUESTION_TUNING: false
+UPDATE_CHECK: false
+LEARNINGS: 0
+HAS_ROUTING: no
+ROUTING_DECLINED: true
+VENDORED_GSTACK: no
+MODEL_OVERLAY: gpt
+CHECKPOINT_MODE: explicit
+CHECKPOINT_PUSH: false
+GSTACK_PLAN_MODE: inactive
+ARTIFACTS_SYNC: off
+GSTACK_INSTRUCTION_BEGIN: feature-overlay 51748-1788814745-d34c8fc7
+Feature discovery: inform "Model overlays are active. MODEL_OVERLAY shows the patch." Always run: `touch "/Users/kaitakeuchi/.gstack/.feature-prompted-model-overlay"`.
+GSTACK_INSTRUCTION_END
+GSTACK_INSTRUCTION_BEGIN: lake-intro 51748-1788814745-d34c8fc7
+Say: "gstack follows the **Boil the Ocean** principle — do the complete thing when AI makes marginal cost near-zero. Read more: https://garryslist.org/posts/boil-the-ocean" and offer to open it. Only run `open https://garryslist.org/posts/boil-the-ocean` if the user says yes. Always run: `touch "/Users/kaitakeuchi/.gstack/.completeness-intro-seen"`.
+GSTACK_INSTRUCTION_END

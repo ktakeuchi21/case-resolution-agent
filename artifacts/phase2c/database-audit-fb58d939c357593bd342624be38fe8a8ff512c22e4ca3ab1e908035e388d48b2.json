@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "phase2c-database-audit-v1",
+  "recordedAt": "2026-09-08T04:06:03.703Z",
+  "checks": {
+    "documents": 4688,
+    "versions": 5567,
+    "passages": 5567,
+    "packs": 879,
+    "releases": 890,
+    "assignments": 1183,
+    "collections": 293,
+    "cases": 1172,
+    "users": 2344,
+    "events": 4475,
+    "runs": 471,
+    "degraded_grants": 5,
+    "case_revisions": 13,
+    "evidence": 471,
+    "decisions": 1884,
+    "escalations": 94,
+    "audit": 8566,
+    "embeddings": 799
+  },
+  "roles": [
+    {
+      "rolname": "pathway_app",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false
+    }
+  ],
+  "rls": [
+    {
+      "relname": "assignment_releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "assignments",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "audit",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "case_revisions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "cases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "collections",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "decisions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "degraded_grants",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "documents",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "embeddings",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "escalations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "events",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence_passages",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence_releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "generations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "idempotency",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "membership",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "packs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "passage_vectors",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "passages",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "runs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "users",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "versions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    }
+  ],
+  "migrations": [
+    {
+      "name": "001_governance.sql",
+      "sha256": "42004aef2d00c519dfa20401cfc8250ae1e7525e2a321e148b43f12f851d9489"
+    },
+    {
+      "name": "002_serialization.sql",
+      "sha256": "45cbe23f01345e5b3be27509b4355380a4dbcc72777778250c2b615dd17a594a"
+    },
+    {
+      "name": "003_evidence_links_and_degraded_grants.sql",
+      "sha256": "d1b2bd0d701b544d0ae892cd1c65d401c4eabe0db4087836efbcc5c24818044d"
+    },
+    {
+      "name": "004_correction_links.sql",
+      "sha256": "7dd3c1082a0df2087c6811ed72871feeede394d70b63f1ba45d9f6550358fc78"
+    }
+  ],
+  "extensions": [
+    {
+      "extname": "vector",
+      "extversion": "0.8.6"
+    }
+  ],
+  "artifactHashesVerified": 13,
+  "pass": true
+}

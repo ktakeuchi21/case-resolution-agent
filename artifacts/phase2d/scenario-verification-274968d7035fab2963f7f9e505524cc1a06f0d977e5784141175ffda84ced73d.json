@@ -1,0 +1,200 @@
+{
+  "schemaVersion": "phase2d-workflow-verification-v1",
+  "recordedAt": "2026-09-08T04:34:41.103Z",
+  "definition": {
+    "id": "sc01-v1",
+    "scenario": "SC-01",
+    "states": [
+      "RECEIVED",
+      "OUTREACH_QUEUED",
+      "AWAITING_RESPONSE",
+      "VERIFICATION_REQUIRED",
+      "TRANSFER_QUEUED",
+      "AWAITING_ACK",
+      "PAUSED",
+      "PA_PENDING",
+      "ESCALATED",
+      "CANCELLED",
+      "FAILED"
+    ],
+    "initialState": "RECEIVED",
+    "completionState": "PA_PENDING",
+    "goal": "Documentation dependency resolved; prior authorization pending",
+    "persistentProcessing": "at-least-once with idempotent effects and reconciliation",
+    "maxNotifications": 2,
+    "maxKnownFailureAttempts": 2,
+    "retrievalDefault": "hybrid",
+    "silentFallback": false,
+    "terminalStates": [
+      "PA_PENDING",
+      "ESCALATED",
+      "CANCELLED",
+      "FAILED"
+    ],
+    "documentation": "docs/sc01-state-machine.md",
+    "calendar": "September-2026-America-Denver-synthetic"
+  },
+  "scenarios": [
+    {
+      "name": "golden",
+      "scope": {
+        "workspace": "sc01.3934d4ff-7a1d-449d-b065-49f04e42083b",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PA_PENDING",
+      "notes": {
+        "childProcessReconstruction": {
+          "processId": 98497,
+          "steps": 4,
+          "state": "AWAITING_RESPONSE",
+          "snapshotHash": "ff3ca9510668d3560a1f9f4f65a2c5ee351100ef65dde10c36b1b5b56ff14600"
+        }
+      }
+    },
+    {
+      "name": "human-pause-resume",
+      "scope": {
+        "workspace": "sc01.c9ff7ebc-2dec-40b9-8121-8c64460afc7f",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PA_PENDING",
+      "notes": {
+        "childProcessReconstruction": {
+          "processId": 98503,
+          "steps": 5,
+          "state": "PAUSED",
+          "snapshotHash": "06414b221aeba7ac84ea693bb11b466181f8febaa8b1b9d84d122c689d6b88e4"
+        }
+      }
+    },
+    {
+      "name": "retirement",
+      "scope": {
+        "workspace": "sc01.fef88805-36f9-4029-ade0-054b34c4fa12",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PAUSED",
+      "notes": {
+        "historicalEvidencePreserved": true
+      }
+    },
+    {
+      "name": "duplicates",
+      "scope": {
+        "workspace": "sc01.392cf9ff-6032-462a-92c1-8383897b3a14",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PA_PENDING",
+      "notes": {}
+    },
+    {
+      "name": "crash-recovery",
+      "scope": {
+        "workspace": "sc01.ba4b4d41-4a9b-4278-8786-4953b5a610b2",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PA_PENDING",
+      "notes": {
+        "childProcessReconstruction": {
+          "processId": 98514,
+          "steps": 3,
+          "state": "OUTREACH_QUEUED",
+          "snapshotHash": "47ccb9ff83e4bde71b3df7f8e554ba4b568352d55c23fa1ee69f5056c545f578"
+        },
+        "crashPoint": "After independent simulated provider receipt commit; before workflow transaction commit"
+      }
+    },
+    {
+      "name": "rejection",
+      "scope": {
+        "workspace": "sc01.c6a27185-3f31-4abb-9c64-e864eedec7fa",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "ESCALATED",
+      "notes": {}
+    },
+    {
+      "name": "timer",
+      "scope": {
+        "workspace": "sc01.d5512ccc-9fe8-4f82-b046-2bc1db620132",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "ESCALATED",
+      "notes": {
+        "childProcessReconstruction": {
+          "processId": 98527,
+          "steps": 5,
+          "state": "AWAITING_RESPONSE",
+          "snapshotHash": "4485e52bbd6f9fe1fe96c17fbe887168b2448c8f0416bccfbf4ce171d84a66e1"
+        }
+      }
+    },
+    {
+      "name": "provider-failure",
+      "scope": {
+        "workspace": "sc01.a0db8530-cb4f-40da-9b25-d8a4454132e0",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "OUTREACH_QUEUED",
+      "notes": {
+        "degradedAcknowledgment": "Publisher durably preauthorizes one request for offline lexical operation. Manager resolves the task; the policy is not inherited by dispatch."
+      }
+    },
+    {
+      "name": "cancellation",
+      "scope": {
+        "workspace": "sc01.9c8f5f25-e980-4e4c-801d-60eca5943946",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "CANCELLED",
+      "notes": {}
+    },
+    {
+      "name": "concurrency-retirement-first",
+      "scope": {
+        "workspace": "sc01.12bb0648-6a75-4453-8d9e-8b588268e66d",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PAUSED",
+      "notes": {
+        "blockedWaiterObserved": true,
+        "commitOrdering": "retirement then human resolution: no transfer queued"
+      }
+    },
+    {
+      "name": "concurrency-resolution-first",
+      "scope": {
+        "workspace": "sc01.7e601558-5046-4db6-a1a8-9cdd5ca072d1",
+        "tenant": "T-DEMO",
+        "environment": "governed"
+      },
+      "pass": true,
+      "finalState": "PAUSED",
+      "notes": {
+        "blockedWaiterObserved": true,
+        "commitOrdering": "human resolution then retirement: queue permitted historically; subsequent dispatch blocked"
+      }
+    }
+  ],
+  "pass": true
+}

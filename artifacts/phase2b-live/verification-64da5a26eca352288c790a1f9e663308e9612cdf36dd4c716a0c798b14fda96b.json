@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "phase2b-live-review-verification-v1",
+  "liveBenchmark": {
+    "path": "artifacts/phase2b-live/benchmark-06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d.json",
+    "sha256": "06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d",
+    "bytes": 31550799
+  },
+  "preservationManifest": {
+    "path": "artifacts/phase2b-live/manifest-2795bf54eb8bb1bac79ecf19ac757d0c4c41cea6b9d66f96070796d224e35f4f.json",
+    "sha256": "2795bf54eb8bb1bac79ecf19ac757d0c4c41cea6b9d66f96070796d224e35f4f",
+    "bytes": 1737
+  },
+  "recordAudit": {
+    "path": "artifacts/phase2b-live/audit-977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba.json",
+    "sha256": "977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba",
+    "bytes": 4548
+  },
+  "verificationScope": "Documentation and artifact review of an already completed live run; no new live calls or Phase 2C code.",
+  "checks": {
+    "typecheck": "passed",
+    "automatedTests": {
+      "passed": 67,
+      "failed": 0
+    },
+    "originalReferenceEvaluations": {
+      "passed": 23,
+      "failed": 0,
+      "artifactWrites": false
+    },
+    "retirementHistorySandboxRegression": "passed in memory; original trace preserved",
+    "liveAllModeExecution": "all four arms measured in supplied run; 720 records audited; require-all-modes not weakened",
+    "citationFidelity": "exact all arms, every repeat",
+    "reproducibility": "five identical cached-vector/ranking/governance runs per arm; fresh-provider repeatability unmeasured",
+    "macroMetricRecomputation": "passed",
+    "lint": "not configured",
+    "additionalEmbeddingRequests": 0,
+    "preservedOriginalArtifactCount": 9,
+    "preservedSourceTestFixtureAndConfigurationFiles": 30,
+    "secretPatternScan": "passed new artifacts, .env.example and 160 embedding cache records; values never printed",
+    "ignoreMatching": "verified with actual Git matcher in temporary repository: .env/.env.* and .local/ ignored, .env.example and public artifacts not ignored",
+    "trackedOrStagedSecretAudit": "unavailable: project has no .git; ignored files can still be force-added",
+    "data": "original synthetic corpus unchanged; no patient or proprietary pharmaceutical data added"
+  },
+  "updatedDocumentation": [
+    "README.md",
+    "docs/phase2b-comparison.md",
+    "docs/rag-evaluation.md",
+    "docs/architecture.md",
+    "docs/roadmap.md",
+    "docs/decisions.md",
+    "docs/developer-guide.md",
+    "docs/retrieval-configuration.md"
+  ],
+  "productCodeChanged": false,
+  "phase2cStarted": false
+}

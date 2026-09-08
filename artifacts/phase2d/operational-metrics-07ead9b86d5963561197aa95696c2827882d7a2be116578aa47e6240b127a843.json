@@ -1,0 +1,272 @@
+{
+  "schemaVersion": "phase2d-synthetic-operational-metrics-v1",
+  "label": "Synthetic injected-clock operational metrics; no patient outcomes, productivity or clinical validation",
+  "cases": [
+    {
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 480000,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 120000,
+        "PAUSED": 120000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 120000,
+      "timeAwaitingHumanMs": 180000,
+      "agentTouches": 6,
+      "humanTouches": 4,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "DOCUMENT_UNCERTAIN"
+      ],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 660000,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 4,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 180000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000,
+        "PA_PENDING": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 180000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 3,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 600000,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 0,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 0,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 420000,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "ESCALATED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": true
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "ESCALATED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 240000,
+        "AWAITING_RESPONSE": 345300000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 345300000,
+      "timeAwaitingHumanMs": 0,
+      "agentTouches": 11,
+      "humanTouches": 0,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": true
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "OUTREACH_QUEUED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "PAUSED": 60000
+      },
+      "timeToIdentifyMs": 120000,
+      "timeAwaitingOfficeMs": 0,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 2,
+      "humanTouches": 1,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "PROVIDER_UNAVAILABLE,PROVIDER_UNAVAILABLE"
+      ],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "CANCELLED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 180000,
+        "AWAITING_RESPONSE": 86220000,
+        "CANCELLED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 86220000,
+      "timeAwaitingHumanMs": 0,
+      "agentTouches": 6,
+      "humanTouches": 1,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 4,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 0
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 5,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    }
+  ],
+  "completionRate": 0.36363636363636365,
+  "escalationRate": 0.18181818181818182,
+  "denominator": 11,
+  "observationBoundary": "Elapsed times stop at the last recorded command; unresolved cases are censored, not assigned completion times."
+}

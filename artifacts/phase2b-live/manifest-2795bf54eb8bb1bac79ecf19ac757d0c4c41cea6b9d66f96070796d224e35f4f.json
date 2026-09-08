@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "phase2b-live-preservation-manifest-v1",
+  "hashAlgorithm": "SHA-256 of exact file bytes",
+  "sourceConveniencePath": "artifacts/phase2b-benchmark.json",
+  "sourceLexicalSnapshot": ".local/benchmarks/f5bda9bad5fde63c58578e852f2f3bf740fc46132debedfee9598af98fd43b39.json",
+  "immutability": "Exclusive-created content-addressed copies, local read-only permissions; not signed or WORM storage. Never overwrite frozen baselines.",
+  "files": {
+    "liveBenchmark": {
+      "path": "artifacts/phase2b-live/benchmark-06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d.json",
+      "sha256": "06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d",
+      "bytes": 31550799
+    },
+    "originalLexicalBaseline": {
+      "path": "artifacts/phase2b-live/lexical-baseline-c675ea86447c3aa8dd3d2b756e3770c9785b6f415e9d95ec4ab70a3ef2081c32.json",
+      "sha256": "c675ea86447c3aa8dd3d2b756e3770c9785b6f415e9d95ec4ab70a3ef2081c32",
+      "bytes": 5133208
+    },
+    "audit": {
+      "path": "artifacts/phase2b-live/audit-977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba.json",
+      "sha256": "977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba",
+      "bytes": 4548
+    },
+    "traces": {
+      "path": "artifacts/phase2b-live/traces-a55da690970dea8c4e0efe83f1062617bcedfb30c9a2ddb3aa8a4cb22e32fde4.json",
+      "sha256": "a55da690970dea8c4e0efe83f1062617bcedfb30c9a2ddb3aa8a4cb22e32fde4",
+      "bytes": 2488111
+    },
+    "decision": {
+      "path": "artifacts/phase2b-live/decision-557968d9c23a522f03b56d674c157309961841e646cff8d742be3b393fc3a3c2.json",
+      "sha256": "557968d9c23a522f03b56d674c157309961841e646cff8d742be3b393fc3a3c2",
+      "bytes": 15333
+    }
+  }
+}

@@ -1,0 +1,333 @@
+{
+  "schemaVersion": "portfolio-browser-qa-v1",
+  "environment": "local development server; not a deployed URL",
+  "url": "http://127.0.0.1:3000",
+  "browser": "Playwright CLI 0.1.19 Chromium headed",
+  "observedAt": "2026-09-08T05:32:50.334811+00:00",
+  "syntheticOnly": true,
+  "golden": {
+    "assess": true,
+    "followUpDispatched": true,
+    "refreshPreservesAwaitingResponse": true,
+    "documentReceipt": true,
+    "serverRestartPreservesHumanTask": true,
+    "boundOfficeApproval": true,
+    "transferDeliverySeparateFromAcknowledgment": true,
+    "receivingAcknowledgment": true,
+    "finalState": "PA_PENDING"
+  },
+  "humanException": {
+    "pause": true,
+    "managerRoleRequired": true,
+    "refreshPreserved": true,
+    "keyboardTabEnterResolution": true,
+    "resumedAwaitingResponse": true,
+    "priorDispatchAttempts": 1,
+    "structuredEscalation": true,
+    "escalatedDispatchControls": 0,
+    "safeResetReceived": true
+  },
+  "knowledgeStudio": {
+    "fixtureDownloadUploadParsed": true,
+    "sandboxActionDenied": true,
+    "explicitReleasePublication": true,
+    "explicitSelectedReleaseAssignment": true,
+    "activePackTracksCurrentAssignment": true
+  },
+  "groundedInteraction": {
+    "knownSynonymAnswered": true,
+    "exactCitations": 3,
+    "noModelUsedVisible": true
+  },
+  "loading": {
+    "visible": true,
+    "buttonsDisabled": true,
+    "roleSelectorDisabled": true,
+    "method": "Observed DOM while actual action request was intercepted before continuing unchanged; no response substituted."
+  },
+  "keyboard": {
+    "skipLinkOutlinePx": 3,
+    "skipLinkTopPx": 10,
+    "skipLinkRetainsRoute": true,
+    "studioArrowKeys": true,
+    "asynchronousTabFocusRetained": true,
+    "selectedTabOutlinePx": 3
+  },
+  "responsive": [
+    {
+      "route": "home",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "workspace",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "agent",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "studio",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "evidence",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "review",
+      "width": 375,
+      "documentWidth": 375,
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "workspace",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "agent",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "studio",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "evidence",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "review",
+      "width": 768,
+      "documentWidth": 768,
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "workspace",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "agent",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "studio",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "evidence",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "review",
+      "width": 1024,
+      "documentWidth": 1024,
+      "overflow": false
+    },
+    {
+      "route": "home",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "workspace",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "agent",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "studio",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "evidence",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    },
+    {
+      "route": "review",
+      "width": 1440,
+      "documentWidth": 1440,
+      "overflow": false
+    }
+  ],
+  "visualInspection": [
+    "landing-1440.png",
+    "workspace-1440.png",
+    "review-1440.png",
+    "review-375.png",
+    "review-1024.png",
+    "completed-768.png",
+    "agent-1440.png",
+    "evidence-1440.png",
+    "studio-1440.png",
+    "studio-375.png",
+    "final-workspace-375.png",
+    "final-workspace-768.png",
+    "final-workspace-1024.png",
+    "final-workspace-1440.png",
+    "final-studio-375.png",
+    "final-studio-1440.png",
+    "production-landing-1440.png",
+    "production-workspace-1440.png",
+    "production-review-1440.png",
+    "production-completed-1440.png",
+    "production-completed-375.png"
+  ],
+  "fixedFindings": [
+    "Hero preview caption contrast CSS specificity",
+    "Sidebar brand contrast inherited link color",
+    "Historical inspector selection no longer changes workspace authority",
+    "Current release list follows active assignment",
+    "Human evidence links have distinct labels and gaps",
+    "Completion badge states workflow complete",
+    "Skip link preserves screen instead of routing to workspace",
+    "Loading disables concurrent role change",
+    "Async Studio fixture loading restores keyboard tab focus"
+  ],
+  "harnessIssues": [
+    "CLI run-code sandbox lacks setTimeout; test revised to inspect request before continue.",
+    "Early harness navigation raced pending role mutation; revised to wait for committed enabled controls. These were not counted as passing tests."
+  ],
+  "pending": [
+    "public deployed URL verification"
+  ],
+  "assets": {
+    "web/index.html": "a2c4667faa7c5ce4d8eb8fb71bbd4ff9d2738d257ce0523777ee62841a4be6d9",
+    "web/styles.css": "73523c940634d14073560159244b6be40c1e09edea2eaf201ede4c69cb29e333",
+    "web/mark.svg": "077701f432294a6e0e6a367b8cda6b135c2d05bffe473bb8ae7a424d46c44f75",
+    "web/app.js": "200823fd137c45a78efef93ed7aaa0d640bbc5c34c41d54a05e27bf12b9cc120"
+  },
+  "reducedMotion": {
+    "mediaMatched": true,
+    "scrollBehavior": "auto",
+    "buttonTransition": "0s"
+  },
+  "errorStates": {
+    "unknownQueryStatus": 422,
+    "message": "Choose a supplied synthetic question. Unrecognized visitor text is not stored.",
+    "failureProbeEvidencePaused": true,
+    "providerUnavailableVisible": true,
+    "noSilentFallbackVisible": true
+  },
+  "console": {
+    "developmentUnexpectedErrors": 0,
+    "developmentExpectedNetworkErrors": {
+      "422RejectedUnknownQuery": 1
+    },
+    "productionErrors": 0,
+    "productionWarnings": 0,
+    "cspErrors": 0
+  },
+  "production": {
+    "url": "http://127.0.0.1:3001",
+    "publiclyDeployed": false,
+    "goldenKeyboardOnly": true,
+    "refreshPreservesWait": true,
+    "focusOutlinePx": 3,
+    "keyboardActivatedControls": [
+      "Launch guided demo",
+      "Identify missing documentation",
+      "Dispatch simulated follow-up",
+      "Simulate document receipt",
+      "Human review",
+      "Verify document and approve bound transfer",
+      "Case workspace",
+      "Dispatch verified package",
+      "Simulate receiving acknowledgment"
+    ],
+    "finalState": "PA_PENDING",
+    "boundedCompletionVisible": true,
+    "headers": {
+      "strictCspSelfOnly": true,
+      "frameAncestorsNone": true,
+      "xFrameOptions": "DENY",
+      "xContentTypeOptions": "nosniff",
+      "hsts": "max-age=31536000"
+    },
+    "cookieFlags": {
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Strict"
+    },
+    "responsive": [
+      {
+        "width": 375,
+        "documentWidth": 375,
+        "overflow": false
+      },
+      {
+        "width": 768,
+        "documentWidth": 768,
+        "overflow": false
+      },
+      {
+        "width": 1024,
+        "documentWidth": 1024,
+        "overflow": false
+      },
+      {
+        "width": 1440,
+        "documentWidth": 1440,
+        "overflow": false
+      }
+    ],
+    "finalApprovalClarificationVerified": true,
+    "finalServerRestartPreservesCompletion": true
+  },
+  "screenshots": {
+    "docs/screenshots/production-workspace-1440.png": "4f98c3f7d4c4dc9e5bc57595aec47750afec44a32935476f8cd28c56e6c1396a",
+    "docs/screenshots/production-landing-1440.png": "09c534e5252117eb1c64a438a0aba5ad2907fe45da9a95b68837391b68adeea7",
+    "docs/screenshots/production-completed-1440.png": "cfc370d9f8b7322093d257ea6d48b73623a4954e932d1925a1400e70d61faa09",
+    "docs/screenshots/production-review-1440.png": "ed31fcd17bf82a42ec7b4d73e883aee3a99c8e5d05a25f03edfd6efc8d8927b7",
+    "docs/screenshots/production-completed-375.png": "38ddedc4d356b2678d56787d0672df0688468aa7c4fb241879b5f6f52bf3abcd"
+  }
+}

@@ -1,0 +1,429 @@
+{
+  "schemaVersion": "phase2b-reviewed-live-decision-v1",
+  "source": {
+    "path": "artifacts/phase2b-live/benchmark-06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d.json",
+    "sha256": "06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d",
+    "bytes": 31550799
+  },
+  "baseline": {
+    "path": "artifacts/phase2b-live/lexical-baseline-c675ea86447c3aa8dd3d2b756e3770c9785b6f415e9d95ec4ab70a3ef2081c32.json",
+    "sha256": "c675ea86447c3aa8dd3d2b756e3770c9785b6f415e9d95ec4ab70a3ef2081c32",
+    "bytes": 5133208
+  },
+  "audit": {
+    "path": "artifacts/phase2b-live/audit-977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba.json",
+    "sha256": "977f3c78270e36cf2db08787d1601665937828a024dceeb38467f229e5005cba",
+    "bytes": 4548
+  },
+  "traces": {
+    "path": "artifacts/phase2b-live/traces-a55da690970dea8c4e0efe83f1062617bcedfb30c9a2ddb3aa8a4cb22e32fde4.json",
+    "sha256": "a55da690970dea8c4e0efe83f1062617bcedfb30c9a2ddb3aa8a4cb22e32fde4",
+    "bytes": 2488111
+  },
+  "measurementRecordedAt": "2026-09-08T02:47:46.797Z",
+  "decision": "C",
+  "recommendedPrototypeMode": "hybrid",
+  "configuration": {
+    "mode": "hybrid",
+    "candidateDepth": 50,
+    "rrfK": 60,
+    "semanticMinCosine": null,
+    "embedding": {
+      "provider": "openai",
+      "model": "text-embedding-3-small",
+      "dimensions": 1536,
+      "revision": "configured-2026-09-07",
+      "normalization": "none-v1"
+    }
+  },
+  "runtimeCodeChanged": false,
+  "lowLevelCompatibilityDefault": "lexical",
+  "reason": "Both semantic and hybrid recover five lexical false abstentions with 36/36 correct outcomes. Hybrid improves first-gold ranking versus semantic on nine queries and worsens two; same required-passage rate. Its entire aggregate eligible recall/precision advantage comes from the single k=1 conflict probe. Adopt bounded prototype RRF for evidence ordering, not superior final accuracy or cache-biased speed/cost.",
+  "summaryByArm": {
+    "lexical": {
+      "summary": {
+        "queries": 36,
+        "candidates": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.5652173913043478,
+          "precisionAtK": 0.266304347826087,
+          "meanReciprocalRank": 0.4452898550724639,
+          "firstRelevantRankMeanWhenFound": 2.6842105263157894,
+          "requiredPassageRetrievalRate": 0.13043478260869565,
+          "inapplicablePassages": 172,
+          "returnedPassages": 232,
+          "inapplicablePassageRate": 0.7413793103448276
+        },
+        "eligible": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.8079710144927535,
+          "precisionAtK": 0.5891304347826086,
+          "meanReciprocalRank": 0.8043478260869565,
+          "firstRelevantRankMeanWhenFound": 1.15,
+          "requiredPassageRetrievalRate": 0.7391304347826086,
+          "inapplicablePassages": 0,
+          "returnedPassages": 95,
+          "inapplicablePassageRate": 0
+        },
+        "final": {
+          "outcomesCorrect": 31,
+          "providerFailures": 0,
+          "unsafeOutcomes": 0,
+          "abstentions": {
+            "correct": 3,
+            "total": 3
+          },
+          "falseAbstentions": 5,
+          "conflicts": {
+            "correct": 1,
+            "total": 1
+          },
+          "citations": {
+            "exact": 50,
+            "total": 50,
+            "fidelity": 1
+          },
+          "unsupportedClaims": 0
+        }
+      },
+      "latency": {
+        "candidate": {
+          "samples": 180,
+          "meanMs": 0.13071943333333186,
+          "p95Ms": 0.1797499999999843
+        },
+        "pipeline": {
+          "samples": 180,
+          "meanMs": 0.46293267777777863,
+          "p95Ms": 0.7514170000000036
+        },
+        "firstPass": {
+          "samples": 36,
+          "meanMs": 0.9055533888888958,
+          "p95Ms": 2.1665840000000287
+        },
+        "laterPasses": {
+          "samples": 144,
+          "meanMs": 0.5156767916666642,
+          "p95Ms": 0.7082919999999149
+        }
+      },
+      "cost": {
+        "usage": {
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "requests": 0,
+          "inputTokens": 0
+        },
+        "estimatedUsdFromReportedTokens": 0,
+        "rate": {
+          "usdPerMillionInputTokens": 0.02,
+          "checkedAt": "2026-09-07",
+          "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small"
+        },
+        "scope": "Embedding API usage for this arm including diagnostic and governed paths; excludes hosting and local compute; failed HTTP usage may be unknown"
+      },
+      "reproducibility": {
+        "repeats": 5,
+        "allQueriesCompleted": true,
+        "stable": true,
+        "scope": "cached vectors + ranking + decisions; excludes timing; not fresh provider reruns"
+      }
+    },
+    "semantic": {
+      "summary": {
+        "queries": 36,
+        "candidates": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.7246376811594202,
+          "precisionAtK": 0.2826086956521739,
+          "meanReciprocalRank": 0.5163561076604555,
+          "firstRelevantRankMeanWhenFound": 2.909090909090909,
+          "requiredPassageRetrievalRate": 0.4782608695652174,
+          "inapplicablePassages": 182,
+          "returnedPassages": 263,
+          "inapplicablePassageRate": 0.6920152091254753
+        },
+        "eligible": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.9565217391304348,
+          "precisionAtK": 0.5782608695652173,
+          "meanReciprocalRank": 0.6739130434782609,
+          "firstRelevantRankMeanWhenFound": 1.5909090909090908,
+          "requiredPassageRetrievalRate": 0.9565217391304348,
+          "inapplicablePassages": 0,
+          "returnedPassages": 120,
+          "inapplicablePassageRate": 0
+        },
+        "final": {
+          "outcomesCorrect": 36,
+          "providerFailures": 0,
+          "unsafeOutcomes": 0,
+          "abstentions": {
+            "correct": 3,
+            "total": 3
+          },
+          "falseAbstentions": 0,
+          "conflicts": {
+            "correct": 1,
+            "total": 1
+          },
+          "citations": {
+            "exact": 62,
+            "total": 62,
+            "fidelity": 1
+          },
+          "unsupportedClaims": 0
+        }
+      },
+      "latency": {
+        "candidate": {
+          "samples": 180,
+          "meanMs": 296.6336838166668,
+          "p95Ms": 997.257999999998
+        },
+        "pipeline": {
+          "samples": 180,
+          "meanMs": 4.437094444444038,
+          "p95Ms": 9.08600000000115
+        },
+        "firstPass": {
+          "samples": 36,
+          "meanMs": 1437.8166620555558,
+          "p95Ms": 4738.728499000004
+        },
+        "laterPasses": {
+          "samples": 144,
+          "meanMs": 16.88430731249966,
+          "p95Ms": 22.24674999999843
+        }
+      },
+      "cost": {
+        "usage": {
+          "cacheHits": 3445,
+          "cacheMisses": 160,
+          "requests": 160,
+          "inputTokens": 3435
+        },
+        "estimatedUsdFromReportedTokens": 6.87e-05,
+        "rate": {
+          "usdPerMillionInputTokens": 0.02,
+          "checkedAt": "2026-09-07",
+          "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small"
+        },
+        "scope": "Embedding API usage for this arm including diagnostic and governed paths; excludes hosting and local compute; failed HTTP usage may be unknown"
+      },
+      "reproducibility": {
+        "repeats": 5,
+        "allQueriesCompleted": true,
+        "stable": true,
+        "scope": "cached vectors + ranking + decisions; excludes timing; not fresh provider reruns"
+      }
+    },
+    "hybrid": {
+      "summary": {
+        "queries": 36,
+        "candidates": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.681159420289855,
+          "precisionAtK": 0.266304347826087,
+          "meanReciprocalRank": 0.5318840579710146,
+          "firstRelevantRankMeanWhenFound": 2.5454545454545454,
+          "requiredPassageRetrievalRate": 0.2608695652173913,
+          "inapplicablePassages": 186,
+          "returnedPassages": 263,
+          "inapplicablePassageRate": 0.7072243346007605
+        },
+        "eligible": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.967391304347826,
+          "precisionAtK": 0.6217391304347825,
+          "meanReciprocalRank": 0.8478260869565217,
+          "firstRelevantRankMeanWhenFound": 1.3043478260869565,
+          "requiredPassageRetrievalRate": 0.9565217391304348,
+          "inapplicablePassages": 0,
+          "returnedPassages": 120,
+          "inapplicablePassageRate": 0
+        },
+        "final": {
+          "outcomesCorrect": 36,
+          "providerFailures": 0,
+          "unsafeOutcomes": 0,
+          "abstentions": {
+            "correct": 3,
+            "total": 3
+          },
+          "falseAbstentions": 0,
+          "conflicts": {
+            "correct": 1,
+            "total": 1
+          },
+          "citations": {
+            "exact": 62,
+            "total": 62,
+            "fidelity": 1
+          },
+          "unsupportedClaims": 0
+        }
+      },
+      "latency": {
+        "candidate": {
+          "samples": 180,
+          "meanMs": 12.668394194444328,
+          "p95Ms": 14.652374999997846
+        },
+        "pipeline": {
+          "samples": 180,
+          "meanMs": 3.910538855555367,
+          "p95Ms": 5.810750000004191
+        },
+        "firstPass": {
+          "samples": 36,
+          "meanMs": 17.024615833332266,
+          "p95Ms": 23.145291999993788
+        },
+        "laterPasses": {
+          "samples": 144,
+          "meanMs": 16.46751235416655,
+          "p95Ms": 19.8837910000002
+        }
+      },
+      "cost": {
+        "usage": {
+          "cacheHits": 3605,
+          "cacheMisses": 0,
+          "requests": 0,
+          "inputTokens": 0
+        },
+        "estimatedUsdFromReportedTokens": 0,
+        "rate": {
+          "usdPerMillionInputTokens": 0.02,
+          "checkedAt": "2026-09-07",
+          "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small"
+        },
+        "scope": "Embedding API usage for this arm including diagnostic and governed paths; excludes hosting and local compute; failed HTTP usage may be unknown"
+      },
+      "reproducibility": {
+        "repeats": 5,
+        "allQueriesCompleted": true,
+        "stable": true,
+        "scope": "cached vectors + ranking + decisions; excludes timing; not fresh provider reruns"
+      }
+    },
+    "hybrid-threshold-sensitivity": {
+      "summary": {
+        "queries": 36,
+        "candidates": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.6521739130434782,
+          "precisionAtK": 0.27355072463768115,
+          "meanReciprocalRank": 0.5557971014492754,
+          "firstRelevantRankMeanWhenFound": 2.2857142857142856,
+          "requiredPassageRetrievalRate": 0.2608695652173913,
+          "inapplicablePassages": 175,
+          "returnedPassages": 244,
+          "inapplicablePassageRate": 0.7172131147540983
+        },
+        "eligible": {
+          "positiveQueryCount": 23,
+          "recallAtK": 0.894927536231884,
+          "precisionAtK": 0.6333333333333332,
+          "meanReciprocalRank": 0.8260869565217391,
+          "firstRelevantRankMeanWhenFound": 1.2727272727272727,
+          "requiredPassageRetrievalRate": 0.8695652173913043,
+          "inapplicablePassages": 0,
+          "returnedPassages": 104,
+          "inapplicablePassageRate": 0
+        },
+        "final": {
+          "outcomesCorrect": 34,
+          "providerFailures": 0,
+          "unsafeOutcomes": 0,
+          "abstentions": {
+            "correct": 3,
+            "total": 3
+          },
+          "falseAbstentions": 2,
+          "conflicts": {
+            "correct": 1,
+            "total": 1
+          },
+          "citations": {
+            "exact": 56,
+            "total": 56,
+            "fidelity": 1
+          },
+          "unsupportedClaims": 0
+        }
+      },
+      "latency": {
+        "candidate": {
+          "samples": 180,
+          "meanMs": 12.768737505555489,
+          "p95Ms": 15.23270799999591
+        },
+        "pipeline": {
+          "samples": 180,
+          "meanMs": 3.9460553277778674,
+          "p95Ms": 6.080207999999402
+        },
+        "firstPass": {
+          "samples": 36,
+          "meanMs": 15.990319500000421,
+          "p95Ms": 19.468791999999667
+        },
+        "laterPasses": {
+          "samples": 144,
+          "meanMs": 16.89591116666659,
+          "p95Ms": 20.831666000005498
+        }
+      },
+      "cost": {
+        "usage": {
+          "cacheHits": 3605,
+          "cacheMisses": 0,
+          "requests": 0,
+          "inputTokens": 0
+        },
+        "estimatedUsdFromReportedTokens": 0,
+        "rate": {
+          "usdPerMillionInputTokens": 0.02,
+          "checkedAt": "2026-09-07",
+          "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small"
+        },
+        "scope": "Embedding API usage for this arm including diagnostic and governed paths; excludes hosting and local compute; failed HTTP usage may be unknown"
+      },
+      "reproducibility": {
+        "repeats": 5,
+        "allQueriesCompleted": true,
+        "stable": true,
+        "scope": "cached vectors + ranking + decisions; excludes timing; not fresh provider reruns"
+      }
+    }
+  },
+  "degradedLexical": {
+    "permitted": true,
+    "automaticFallback": false,
+    "acknowledgmentRequired": true,
+    "acknowledgment": "Explicit human acknowledgment or previously authorized, bounded system policy; record actor/policy, timestamp, requested/effective configuration, reason and original failure/attempt linkage. Rerun every governance gate. Mode authorization cannot confer communication/action permission.",
+    "implementedAcknowledgmentFlow": false
+  },
+  "rejectThresholdConfiguration": 0.35,
+  "rerankingJustified": false,
+  "queryRewritingJustified": false,
+  "nextPhase": {
+    "choice": 2,
+    "scope": "Local headless PostgreSQL governance persistence plus replaceable pgvector storage and exact filtered cosine; preserve BM25/RRF and canonical evidence. Restart/concurrency/retirement/history/isolation parity gates before operational use.",
+    "pgvectorReason": "Durable reuse of empirically useful semantic vectors; not evidence that ANN, vector database scale, or hosted infrastructure is needed.",
+    "implementationStarted": false
+  },
+  "limitations": [
+    "36 developer-authored queries, 23 positive; correlated cases, 19 source versions, not independent heldout evidence",
+    "Hybrid has worse broad candidate recall and two worse first-relevant ranks than semantic",
+    "Shared cache and fixed arm ordering prevent equal cold-provider latency/cost comparisons; candidate diagnostics warm governed pipeline",
+    "160 requests and 3435 tokens were attributed to semantic; hybrid zero incremental embedding usage is reuse, not free retrieval",
+    "Five repeats establish cached-vector ranking/governance stability, not fresh provider variability",
+    "Registered conflicts and extractive quotes only; no general prose conflict detector, generative answers, patient data or production safety claim"
+  ],
+  "supersedes": "D-27/D-28. Original live artifact decision/recommendedDefault/decisionReason are hard-coded stale runner prose; raw artifact preserved unchanged."
+}

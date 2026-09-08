@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "phase2c-server-restart-v1",
+  "sourceDemo": "restart-concurrency-a423cd0cc2a252dede88ea5338f70c0ad0bf542405490c099dd996a56324b11a.json",
+  "serverStartedAt": "2026-09-08T03:59:56.821Z",
+  "demoRecordedAt": "2026-09-08T03:58:05.260Z",
+  "evidenceId": "EV-9db1053ab7a7226c287339324096776924e740318c1d3213b9990fd847eef148",
+  "recordHash": "9db1053ab7a7226c287339324096776924e740318c1d3213b9990fd847eef148",
+  "historicalEvidenceUnchanged": true,
+  "activeRetirementSurvived": true,
+  "pass": true
+}

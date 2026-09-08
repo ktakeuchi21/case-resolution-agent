@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "phase2d-server-restart-v1",
+  "recordedAt": "2026-09-08T04:40:52.771Z",
+  "serverStartedAt": "2026-09-08T04:40:46.616Z",
+  "demonstrationRecordedAt": "2026-09-08T04:34:41.103Z",
+  "restored": [
+    {
+      "name": "golden",
+      "workspace": "sc01.3934d4ff-7a1d-449d-b065-49f04e42083b",
+      "state": "PA_PENDING",
+      "steps": 9
+    },
+    {
+      "name": "human-pause-resume",
+      "workspace": "sc01.c9ff7ebc-2dec-40b9-8121-8c64460afc7f",
+      "state": "PA_PENDING",
+      "steps": 12
+    },
+    {
+      "name": "retirement",
+      "workspace": "sc01.fef88805-36f9-4029-ade0-054b34c4fa12",
+      "state": "PAUSED",
+      "steps": 6
+    },
+    {
+      "name": "duplicates",
+      "workspace": "sc01.392cf9ff-6032-462a-92c1-8383897b3a14",
+      "state": "PA_PENDING",
+      "steps": 12
+    },
+    {
+      "name": "crash-recovery",
+      "workspace": "sc01.ba4b4d41-4a9b-4278-8786-4953b5a610b2",
+      "state": "PA_PENDING",
+      "steps": 9
+    },
+    {
+      "name": "rejection",
+      "workspace": "sc01.c6a27185-3f31-4abb-9c64-e864eedec7fa",
+      "state": "ESCALATED",
+      "steps": 9
+    },
+    {
+      "name": "timer",
+      "workspace": "sc01.d5512ccc-9fe8-4f82-b046-2bc1db620132",
+      "state": "ESCALATED",
+      "steps": 12
+    },
+    {
+      "name": "provider-failure",
+      "workspace": "sc01.a0db8530-cb4f-40da-9b25-d8a4454132e0",
+      "state": "OUTREACH_QUEUED",
+      "steps": 3
+    },
+    {
+      "name": "cancellation",
+      "workspace": "sc01.9c8f5f25-e980-4e4c-801d-60eca5943946",
+      "state": "CANCELLED",
+      "steps": 8
+    },
+    {
+      "name": "concurrency-retirement-first",
+      "workspace": "sc01.12bb0648-6a75-4453-8d9e-8b588268e66d",
+      "state": "PAUSED",
+      "steps": 6
+    },
+    {
+      "name": "concurrency-resolution-first",
+      "workspace": "sc01.7e601558-5046-4db6-a1a8-9cdd5ca072d1",
+      "state": "PAUSED",
+      "steps": 7
+    }
+  ],
+  "pass": true
+}

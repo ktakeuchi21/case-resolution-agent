@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "phase2d-workflow-audit-v1",
+  "recordedAt": "2026-09-08T04:35:08.247Z",
+  "grants": 48,
+  "revocations": 1,
+  "simulatedReceipts": 62,
+  "journalSteps": 375,
+  "workflows": 48,
+  "validatedSnapshotAuthorizations": 1037,
+  "knowledgeLinks": 1074,
+  "views": [
+    {
+      "relname": "wf_instances",
+      "reloptions": [
+        "security_invoker=true"
+      ]
+    },
+    {
+      "relname": "wf_outbox",
+      "reloptions": [
+        "security_invoker=true"
+      ]
+    },
+    {
+      "relname": "wf_inbox",
+      "reloptions": [
+        "security_invoker=true"
+      ]
+    },
+    {
+      "relname": "wf_tasks",
+      "reloptions": [
+        "security_invoker=true"
+      ]
+    },
+    {
+      "relname": "wf_timers",
+      "reloptions": [
+        "security_invoker=true"
+      ]
+    }
+  ],
+  "pass": true,
+  "note": "Counts include retained development and regression workspaces; repeated snapshot references are not independent quality trials."
+}

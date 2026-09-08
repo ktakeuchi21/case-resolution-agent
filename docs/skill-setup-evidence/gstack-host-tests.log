@@ -1,0 +1,100 @@
+bun test v1.4.2 (744846f84)
+
+test/host-config.test.ts:
+(pass) hosts/index.ts > ALL_HOST_CONFIGS has 10 hosts [0.04ms]
+(pass) hosts/index.ts > ALL_HOST_NAMES matches config names [0.85ms]
+(pass) hosts/index.ts > HOST_CONFIG_MAP keys match names [0.02ms]
+(pass) hosts/index.ts > individual config re-exports match registry [0.02ms]
+(pass) hosts/index.ts > getHostConfig returns correct config [0.03ms]
+(pass) hosts/index.ts > getHostConfig throws on unknown host [1.12ms]
+(pass) hosts/index.ts > resolveHostArg resolves direct names [0.03ms]
+(pass) hosts/index.ts > resolveHostArg resolves aliases [0.33ms]
+(pass) hosts/index.ts > resolveHostArg throws on unknown alias [0.02ms]
+(pass) hosts/index.ts > getExternalHosts excludes claude [0.22ms]
+(pass) hosts/index.ts > every host has a unique name [0.02ms]
+(pass) hosts/index.ts > every host has a unique hostSubdir [0.02ms]
+(pass) hosts/index.ts > every host has a unique globalRoot [0.03ms]
+(pass) validateHostConfig > valid config passes [0.70ms]
+(pass) validateHostConfig > invalid name is caught [0.05ms]
+(pass) validateHostConfig > name with special chars is caught [0.20ms]
+(pass) validateHostConfig > empty displayName is caught [0.01ms]
+(pass) validateHostConfig > invalid cliCommand is caught [0.01ms]
+(pass) validateHostConfig > invalid cliAlias is caught [0.02ms]
+(pass) validateHostConfig > valid cliAliases pass [0.01ms]
+(pass) validateHostConfig > invalid defaultModel is caught [0.15ms]
+(pass) validateHostConfig > invalid globalRoot is caught [0.01ms]
+(pass) validateHostConfig > invalid localSkillRoot is caught [0.01ms]
+(pass) validateHostConfig > invalid hostSubdir is caught [0.01ms]
+(pass) validateHostConfig > invalid frontmatter.mode is caught [0.01ms]
+(pass) validateHostConfig > invalid linkingStrategy is caught [0.47ms]
+(pass) validateHostConfig > paths with $ and ~ are valid [0.02ms]
+(pass) validateHostConfig > shell injection attempt in cliCommand is caught [0.23ms]
+(pass) validateHostConfig > valid suppressedResolvers pass when resolver names provided [0.02ms]
+(pass) validateHostConfig > unknown suppressedResolvers entry is caught [0.02ms]
+(pass) validateHostConfig > suppressedResolvers unchecked when resolver names omitted
+(pass) validateAllConfigs > real configs all pass validation [0.35ms]
+(pass) validateAllConfigs > duplicate name detected [0.05ms]
+(pass) validateAllConfigs > duplicate hostSubdir detected [0.03ms]
+(pass) validateAllConfigs > duplicate globalRoot detected [0.02ms]
+(pass) validateAllConfigs > unknown suppressedResolvers entry surfaces with host-name prefix [0.04ms]
+(pass) validateAllConfigs > per-config validation errors are prefixed with host name [0.26ms]
+(pass) HOST_PATHS derivation from configs > Claude uses literal home paths (no env vars) [0.02ms]
+(pass) HOST_PATHS derivation from configs > Codex uses $GSTACK_ROOT env vars [0.01ms]
+(pass) HOST_PATHS derivation from configs > every host with usesEnvVars=true gets env var paths [0.02ms]
+(pass) HOST_PATHS derivation from configs > every host with usesEnvVars=false gets literal paths [0.02ms]
+(pass) HOST_PATHS derivation from configs > localSkillRoot matches config for every host [0.01ms]
+(pass) HOST_PATHS derivation from configs > HOST_PATHS has entry for every registered host [0.74ms]
+(pass) host-config-export.ts CLI > list prints all host names [28.79ms]
+(pass) host-config-export.ts CLI > get returns string field [21.64ms]
+(pass) host-config-export.ts CLI > get returns boolean as 1/0 [37.74ms]
+(pass) host-config-export.ts CLI > get with missing args exits 1 [19.85ms]
+(pass) host-config-export.ts CLI > get with unknown field exits 1 [18.51ms]
+(pass) host-config-export.ts CLI > get with unknown host exits 1 [27.02ms]
+(pass) host-config-export.ts CLI > validate passes for real configs [21.17ms]
+(pass) host-config-export.ts CLI > symlinks returns asset list [23.67ms]
+(pass) host-config-export.ts CLI > opencode symlinks returns nested runtime assets [19.27ms]
+(pass) host-config-export.ts CLI > symlinks with missing host exits 1 [19.19ms]
+(skip) host-config-export.ts CLI > detect finds claude (since we are running in claude)
+(pass) host-config-export.ts CLI > unknown command exits 1 [19.97ms]
+(pass) golden-file regression > Claude ship skill matches golden baseline [0.71ms]
+(pass) golden-file regression > Codex ship skill matches golden baseline [0.46ms]
+(pass) golden-file regression > Factory ship skill matches golden baseline [0.56ms]
+(pass) host config correctness > Codex defaults to generic GPT while all existing hosts retain Claude [0.16ms]
+(pass) host config correctness > claude is the only host with real-dir-symlink strategy [0.03ms]
+(pass) host config correctness > claude does not use env vars [0.01ms]
+(pass) host config correctness > all external hosts use env vars [0.02ms]
+(pass) host config correctness > codex has 1024-char description limit with error behavior
+(pass) host config correctness > codex generates metadata (openai.yaml, format hardcoded in gen-skill-docs)
+(pass) host config correctness > codex rewrites CLAUDE.md to AGENTS.md [0.33ms]
+(pass) host config correctness > factory has tool rewrites [0.03ms]
+(pass) host config correctness > factory has conditional disable-model-invocation field [0.02ms]
+(pass) host config correctness > codex has suppressedResolvers for self-invocation prevention [0.01ms]
+(pass) host config correctness > codex has boundary instruction
+(pass) host config correctness > openclaw has tool rewrites for exec/read/write
+(pass) host config correctness > openclaw has CLAUDE.md→AGENTS.md path rewrite [0.02ms]
+(pass) host config correctness > no host carries a no-op empty includeSkills allowlist [0.02ms]
+(pass) host config correctness > every host has coAuthorTrailer or undefined [0.01ms]
+(pass) host config correctness > every external host skips the codex skill [0.01ms]
+(pass) host config correctness > every host has at least one pathRewrite (except claude) [0.07ms]
+(pass) host config correctness > every host has runtimeRoot.globalSymlinks [0.06ms]
+
+test/codex-generation-model.test.ts:
+(pass) Codex generation model resolution > explicit override wins over config [0.87ms]
+(pass) Codex generation model resolution > reads only the top-level TOML model [0.97ms]
+(pass) Codex generation model resolution > ignores profile-only model values [0.42ms]
+(pass) Codex generation model resolution > missing, malformed, non-string, and unsupported configs fall back safely [2.25ms]
+(pass) Codex generation model resolution > unreadable config warns and falls back [0.59ms]
+(pass) Codex generation model resolution > injection-shaped model data is data, never shell [0.46ms]
+(pass) Codex generation model resolution > non-absolute codex home falls back with a warning (relative-path steering guard) [0.02ms]
+(pass) Codex generation model resolution > Sol-suffixed near-misses map to gpt WITH a warning [0.51ms]
+(pass) Codex generation model resolution > warnings never carry control characters from config values [0.34ms]
+(pass) Codex generation model resolution > CLI honors CODEX_HOME and rejects an invalid explicit family [30.90ms]
+
+1 tests skipped:
+(skip) host-config-export.ts CLI > detect finds claude (since we are running in claude)
+
+ 85 pass
+ 1 skip
+ 0 fail
+ 289 expect() calls
+Ran 86 tests across 2 files. [637.00ms]

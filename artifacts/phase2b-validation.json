@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "phase2b-validation-v1",
+  "typecheck": "passed",
+  "tests": {
+    "total": 67,
+    "passed": 67,
+    "failed": 0,
+    "originalTestsPreserved": 44
+  },
+  "originalReferences": {
+    "total": 23,
+    "passed": 23
+  },
+  "frozenQueryCount": 36,
+  "repeats": 5,
+  "lexicalReproducible": true,
+  "strictAllModesGate": "incomplete: semantic/hybrid credentials unavailable; expected exit 1",
+  "lint": "not configured",
+  "baselineFilesUnchanged": [
+    "src/providers/local-lexical.ts",
+    "src/policy.ts",
+    "src/support.ts",
+    "tests/contracts.test.ts",
+    "tests/integration.test.ts",
+    "fixtures/knowledge/corpus.json",
+    "artifacts/phase2a-evaluation.json",
+    "artifacts/phase2a-retrieval-probes.json",
+    "artifacts/phase2a-retirement-trace.json"
+  ],
+  "ignoreProbesPassed": [
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".local/embeddings/vector.json",
+    ".local/evidence/record.json",
+    ".local/benchmarks/run.json",
+    "node_modules/file"
+  ],
+  "syntheticCorpus": true,
+  "liveProviderCalls": 0,
+  "secretPatternScan": {
+    "files": 36,
+    "matches": 0,
+    "scope": "Pattern scan only; not a comprehensive secrets audit"
+  },
+  "unitVectorContractTrace": "passed; not semantic quality",
+  "envExampleNotIgnored": true
+}

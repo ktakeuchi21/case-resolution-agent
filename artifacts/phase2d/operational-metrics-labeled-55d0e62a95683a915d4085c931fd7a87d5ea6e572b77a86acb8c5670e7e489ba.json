@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "phase2d-synthetic-operational-metrics-v1",
+  "label": "Synthetic injected-clock operational metrics; no patient outcomes, productivity or clinical validation",
+  "cases": [
+    {
+      "scenario": "golden",
+      "workspace": "sc01.3934d4ff-7a1d-449d-b065-49f04e42083b",
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 480000,
+      "escalated": false
+    },
+    {
+      "scenario": "human-pause-resume",
+      "workspace": "sc01.c9ff7ebc-2dec-40b9-8121-8c64460afc7f",
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 120000,
+        "PAUSED": 120000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 120000,
+      "timeAwaitingHumanMs": 180000,
+      "agentTouches": 6,
+      "humanTouches": 4,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "DOCUMENT_UNCERTAIN"
+      ],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 660000,
+      "escalated": false
+    },
+    {
+      "scenario": "retirement",
+      "workspace": "sc01.fef88805-36f9-4029-ade0-054b34c4fa12",
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 4,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "scenario": "duplicates",
+      "workspace": "sc01.392cf9ff-6032-462a-92c1-8383897b3a14",
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 180000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000,
+        "PA_PENDING": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 180000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 3,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 600000,
+      "escalated": false
+    },
+    {
+      "scenario": "crash-recovery",
+      "workspace": "sc01.ba4b4d41-4a9b-4278-8786-4953b5a610b2",
+      "workflowId": "SC-01",
+      "finalState": "PA_PENDING",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 0,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 0,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": true,
+      "timeToBoundedCompletionMs": 420000,
+      "escalated": false
+    },
+    {
+      "scenario": "rejection",
+      "workspace": "sc01.c6a27185-3f31-4abb-9c64-e864eedec7fa",
+      "workflowId": "SC-01",
+      "finalState": "ESCALATED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 120000,
+        "AWAITING_ACK": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 6,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": true
+    },
+    {
+      "scenario": "timer",
+      "workspace": "sc01.d5512ccc-9fe8-4f82-b046-2bc1db620132",
+      "workflowId": "SC-01",
+      "finalState": "ESCALATED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 240000,
+        "AWAITING_RESPONSE": 345300000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 345300000,
+      "timeAwaitingHumanMs": 0,
+      "agentTouches": 11,
+      "humanTouches": 0,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": true
+    },
+    {
+      "scenario": "provider-failure",
+      "workspace": "sc01.a0db8530-cb4f-40da-9b25-d8a4454132e0",
+      "workflowId": "SC-01",
+      "finalState": "OUTREACH_QUEUED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "PAUSED": 60000
+      },
+      "timeToIdentifyMs": 120000,
+      "timeAwaitingOfficeMs": 0,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 2,
+      "humanTouches": 1,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "PROVIDER_UNAVAILABLE,PROVIDER_UNAVAILABLE"
+      ],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "scenario": "cancellation",
+      "workspace": "sc01.9c8f5f25-e980-4e4c-801d-60eca5943946",
+      "workflowId": "SC-01",
+      "finalState": "CANCELLED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 180000,
+        "AWAITING_RESPONSE": 86220000,
+        "CANCELLED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 86220000,
+      "timeAwaitingHumanMs": 0,
+      "agentTouches": 6,
+      "humanTouches": 1,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [],
+      "evidenceRetirementInterruptions": 0,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "scenario": "concurrency-retirement-first",
+      "workspace": "sc01.12bb0648-6a75-4453-8d9e-8b588268e66d",
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 4,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    },
+    {
+      "scenario": "concurrency-resolution-first",
+      "workspace": "sc01.7e601558-5046-4db6-a1a8-9cdd5ca072d1",
+      "workflowId": "SC-01",
+      "finalState": "PAUSED",
+      "timeInStateMs": {
+        "RECEIVED": 60000,
+        "OUTREACH_QUEUED": 120000,
+        "AWAITING_RESPONSE": 60000,
+        "VERIFICATION_REQUIRED": 60000,
+        "TRANSFER_QUEUED": 0
+      },
+      "timeToIdentifyMs": 60000,
+      "timeAwaitingOfficeMs": 60000,
+      "timeAwaitingHumanMs": 60000,
+      "agentTouches": 5,
+      "humanTouches": 2,
+      "duplicateEventsSuppressed": 0,
+      "retryAttempts": 0,
+      "pauseReasons": [
+        "SOURCE_RETIRED,SOURCE_RETIRED"
+      ],
+      "evidenceRetirementInterruptions": 1,
+      "completed": false,
+      "timeToBoundedCompletionMs": null,
+      "escalated": false
+    }
+  ],
+  "completionRate": 0.36363636363636365,
+  "escalationRate": 0.18181818181818182,
+  "denominator": 11,
+  "observationBoundary": "Elapsed times stop at the last recorded command; unresolved cases are censored, not assigned completion times."
+}

@@ -1,0 +1,2183 @@
+{
+  "schemaVersion": "phase2c-parity-incomplete-v1",
+  "referenceResults": [
+    {
+      "id": "T01",
+      "pass": true,
+      "evidenceId": "EV-11e0fd4054bb2e408f8976ec5fcc1c68ab0cb87e2aa395ca793976165fce05be",
+      "runId": "20ed7aa0-493d-4f89-a5dd-1df2e5c09bc7",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T02",
+      "pass": true,
+      "evidenceId": "EV-c791b42198e19297f7b5106c2232639536e2cacf02490a3856abd3dd9ccb5c84",
+      "runId": "d4419061-1d0b-4233-97e4-6e3b4ba81d0f",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T03",
+      "pass": true,
+      "evidenceId": "EV-e1ac01b34e354129776ea11bf65784166a9cf520e849147a64dc42dac84fff02",
+      "runId": "6df2afed-67b1-48c9-85f2-0365834942a9",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T04",
+      "pass": true,
+      "evidenceId": "EV-161ff10c72e6d075d2d1163f1a2993634b664bb7fa2b39aa24972ae792db6573",
+      "runId": "e21f755f-e441-4896-b85f-a0ea8af34690",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T05",
+      "pass": true,
+      "evidenceId": "EV-d82a569a3f8ae7abebcb2c4392a18556b92e75fe289224476ec35c5feb61f675",
+      "runId": "c3c6f01d-48c5-4ddd-84a4-b79162b247a3",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T06",
+      "pass": true,
+      "evidenceId": "EV-73b5a11da4819a4e6ce668d25950c66e75b5e3e812b7ea8efb6fc170272a82ca",
+      "runId": "3480e48f-3157-41a9-83d1-1bb74c9ea5db",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "escalate"
+    },
+    {
+      "id": "T07",
+      "pass": true,
+      "evidenceId": "EV-768ca735fd4f4f6dbc886d148c1ac3414246d41e3e7d6c5251d011d50aab4934",
+      "runId": "2213a2d9-b82b-448b-8a5f-844e6cd8daba",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "abstain"
+    },
+    {
+      "id": "T08",
+      "pass": true,
+      "evidenceId": "EV-12adb164abbad52764eb9a6c55f2aeb60c2b9f0131bd45e10c279b649abbea8e",
+      "runId": "1cffee37-03cb-4158-b073-1307eb3e137f",
+      "eligible": [
+        "SB-INJECT.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "SB-REPLACEMENT.v1",
+          "reasonCodes": [
+            "NOT_IN_COLLECTION"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T09",
+      "pass": true,
+      "evidenceId": "EV-6d67e1e7146c01aaddcd964057d65726da7abfda5dbb9d6fca02c544c5730164",
+      "runId": "323d47b7-e86d-490c-9731-9d1cb1fac4e7",
+      "eligible": [
+        "SB-INJECT.v1",
+        "SB-REPLACEMENT.v1"
+      ],
+      "excluded": [],
+      "disposition": "answer"
+    },
+    {
+      "id": "T10",
+      "pass": true,
+      "evidenceId": "EV-a9bb16728dacbfa8e7275c2aa3c7ed0bdf77e41ad0cc46be4d317b014e8b18e9",
+      "runId": "4f897eb9-41ce-45cc-a6f7-ae48f2950a76",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "pause"
+    },
+    {
+      "id": "T11",
+      "pass": true,
+      "evidenceId": "EV-8eaa0751aa71e7f24b5f51605059602b7b0945cd2f43057722eb54ae846618ca",
+      "runId": "a40e1709-3b0f-43d9-b50c-260e11bbfe1e",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-COMM.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T12",
+      "pass": true,
+      "evidenceId": "EV-63a22d321feba6ccc999ceede8144d5967f421acc2375b910a6c248fad7bec2f",
+      "runId": "d96f0a62-057c-4115-865e-318833f1ee4f",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T13",
+      "pass": true,
+      "evidenceId": "EV-3d8fb529ad0ea04503ae0ebdaaaac2cef5b49939c4620ca8603daee38e746773",
+      "runId": "1e5c5744-0d10-424e-9e52-53a2487a64f9",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "deny"
+    },
+    {
+      "id": "T14",
+      "pass": true,
+      "evidenceId": "EV-7d82fe66f8990bdd08f90fd2ea49173b4b94a9ae0f42d289c28b19b920d3d24e",
+      "runId": "d19132ac-dcfa-46a5-b6b9-ef7205701643",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "deny"
+    },
+    {
+      "id": "T15",
+      "pass": true,
+      "evidenceId": "EV-933fb8e60021444ca9c9af7e32fab728b3ab89d91059e82849b00be6ab94d754",
+      "runId": "38307234-0edb-4d72-945a-721a428e99ae",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "deny"
+    },
+    {
+      "id": "T16",
+      "pass": true,
+      "evidenceId": "EV-f0f04dcb2df5dc804497f792beadbf327afef2572155106cda05732a837b56d3",
+      "runId": "00711c68-676f-4a60-9a98-1dc5e31aad7b",
+      "eligible": [
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-102.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        },
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T17",
+      "pass": true,
+      "evidenceId": "EV-554c7a97d23ca82d8d41c5909c28aec77229ad469b234e8cae39973f028f2ecf",
+      "runId": "e7fd363e-7683-4a72-9d0a-469f3fefd652",
+      "eligible": [
+        "K-FIN.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-APL.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN",
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-EDU.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "EXPIRED",
+            "REVIEW_OVERDUE",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "SUPERSEDED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "NOT_YET_EFFECTIVE",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "METADATA_UNKNOWN",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "METADATA_UNKNOWN"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T18",
+      "pass": true,
+      "evidenceId": "EV-bc3e7b24bcc5977a21a8cab85c129c81384409efc467e7e2ad1e3806bca9dfb5",
+      "runId": "0850a9ba-b60b-4e98-aaf9-51c5322c822c",
+      "eligible": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "K-PA.v2",
+        "N-101.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "K-CEDAR.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "SUPERSEDED"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T19",
+      "pass": true,
+      "evidenceId": "EV-1e80191c2ef0bf5a3e2ebd5893dee63020e9077de1af2274b19f066826bbb6a7",
+      "runId": "9e172a6f-6c95-484f-9bf0-22663955b0c4",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "deny"
+    },
+    {
+      "id": "T20",
+      "pass": true,
+      "evidenceId": "EV-189fdcfd591bf05a9233c7f485e8bfa3d2b6518e23d79bd72d0e65dc8fc60574",
+      "runId": "f7b557cd-04b6-473f-b945-6323c6968c43",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "pause"
+    },
+    {
+      "id": "T21",
+      "pass": true,
+      "evidenceId": "EV-9b4ce25e56576d34b59387d1fca186936abb2ca9b9316a5b899c3b45f56aa461",
+      "runId": "07870078-51bb-47af-960d-d5cd7590dca9",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "deny"
+    },
+    {
+      "id": "T22",
+      "pass": true,
+      "evidenceId": "EV-06de31b5e894d22d0fb4d52fa02130b7b0856bf3e4fcdc0c7cd7bddd88f56e58",
+      "runId": "d9f6c4e6-b40a-4631-aa39-95666eea5314",
+      "eligible": [
+        "K-CEDAR.v1"
+      ],
+      "excluded": [
+        {
+          "documentVersionId": "CE-101-01.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-APL.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-COMM.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN",
+            "USE_NOT_PERMITTED"
+          ]
+        },
+        {
+          "documentVersionId": "K-EDU.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-FIN.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA-X.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.expired",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "EXPIRED",
+            "REVIEW_OVERDUE",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.superseded",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "SUPERSEDED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v2",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-PA.v3",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "NOT_YET_EFFECTIVE",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-TABLE.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UNDATED.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "K-UT.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN",
+            "WRONG_STATE"
+          ]
+        },
+        {
+          "documentVersionId": "N-101.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        },
+        {
+          "documentVersionId": "N-102.v1",
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ]
+        }
+      ],
+      "disposition": "answer"
+    },
+    {
+      "id": "T23",
+      "pass": true,
+      "evidenceId": "EV-5f005f61e7e166edbea92216a9ea472d3dbc5a052c06d11746cf03a45e3aa139",
+      "runId": "b036c9ac-95c9-4b59-a579-3a76a7d4be59",
+      "eligible": [],
+      "excluded": [],
+      "disposition": "pause"
+    }
+  ],
+  "retrievalResults": [
+    {
+      "queryId": "Q01",
+      "mode": "lexical",
+      "pass": true,
+      "correctOutcome": true,
+      "rankParity": true,
+      "liveRankParity": true,
+      "maxCosineDelta": 0,
+      "record": {
+        "schemaVersion": "phase2a-v1",
+        "timestamp": "2026-09-10T16:00:00Z",
+        "policyVersion": "knowledge-policy-v1",
+        "request": {
+          "id": "Q01.lexical",
+          "mode": "governed",
+          "question": "Which signed office note document is missing for this request?",
+          "channel": "chat",
+          "task": "missing_document",
+          "selectionId": "AS-101",
+          "releaseIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "caseId": "DEMO-101",
+          "purpose": "recommend",
+          "requestedAction": "recommend_document",
+          "maxResults": 8
+        },
+        "userContext": {
+          "id": "avery",
+          "tenantId": "T-DEMO",
+          "audience": "hcp",
+          "roles": [
+            "operational"
+          ],
+          "caseIds": [
+            "DEMO-101",
+            "DEMO-102",
+            "DEMO-103",
+            "DEMO-CEDAR"
+          ],
+          "releaseIds": [
+            "KP-ALDER.2026.09.1",
+            "KP-CEDAR.2026.09.1",
+            "KP-SUPPORT.2026.09.1"
+          ],
+          "collectionIds": [],
+          "channels": [
+            "chat",
+            "sms",
+            "email"
+          ],
+          "permittedUses": [
+            "explain",
+            "recommend"
+          ],
+          "actionGrants": [
+            "recommend_document"
+          ]
+        },
+        "caseContext": {
+          "id": "DEMO-101",
+          "tenantId": "T-DEMO",
+          "revision": "case-v1",
+          "attributes": {
+            "product": "DEMO-PX1",
+            "indication": "Condition-Q",
+            "payer": "Alder",
+            "plan": "Alder-Commercial",
+            "state": "CO",
+            "benefit": "pharmacy",
+            "siteOfCare": null
+          },
+          "assignmentId": "AS-101",
+          "evidenceVersionIds": [
+            "N-101.v1",
+            "CE-101-01.v1"
+          ],
+          "accessStatus": "pa_pending"
+        },
+        "registryHash": "07c2a827483e9cca08062d00667a1e0d507b828cf09de3303c571f1dc0430d37",
+        "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+        "selectedReleases": [
+          {
+            "id": "KP-ALDER.2026.09.1",
+            "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+          }
+        ],
+        "collectionSnapshot": null,
+        "provider": {
+          "id": "local-bm25",
+          "version": "v1",
+          "kind": "lexical",
+          "config": "BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite"
+        },
+        "eligibleVersionIds": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "K-PA.v2",
+          "N-101.v1"
+        ],
+        "retrieved": [
+          {
+            "passageId": "N-101.v1.s1",
+            "documentVersionId": "N-101.v1",
+            "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+            "score": 2.2754388,
+            "rank": 1,
+            "scoreKind": "lexical_bm25"
+          },
+          {
+            "passageId": "K-PA.v2.s1",
+            "documentVersionId": "K-PA.v2",
+            "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+            "score": 2.22801512,
+            "rank": 2,
+            "scoreKind": "lexical_bm25"
+          },
+          {
+            "passageId": "K-EDU.v1.s1",
+            "documentVersionId": "K-EDU.v1",
+            "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+            "score": 2.19584462,
+            "rank": 3,
+            "scoreKind": "lexical_bm25"
+          },
+          {
+            "passageId": "CE-101-01.v1.s1",
+            "documentVersionId": "CE-101-01.v1",
+            "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+            "score": 0.8931062,
+            "rank": 4,
+            "scoreKind": "lexical_bm25"
+          },
+          {
+            "passageId": "K-APL.v1.s1",
+            "documentVersionId": "K-APL.v1",
+            "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+            "score": 0.37056196,
+            "rank": 5,
+            "scoreKind": "lexical_bm25"
+          }
+        ],
+        "excluded": [
+          {
+            "documentVersionId": "K-CEDAR.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_PAYER",
+              "WRONG_PLAN"
+            ]
+          },
+          {
+            "documentVersionId": "K-COMM.v1",
+            "reasonCodes": [
+              "USE_NOT_PERMITTED"
+            ]
+          },
+          {
+            "documentVersionId": "K-FIN.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA-X.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.expired",
+            "reasonCodes": [
+              "EXPIRED",
+              "REVIEW_OVERDUE"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.superseded",
+            "reasonCodes": [
+              "SUPERSEDED"
+            ]
+          },
+          {
+            "documentVersionId": "K-PA.v3",
+            "reasonCodes": [
+              "NOT_YET_EFFECTIVE"
+            ]
+          },
+          {
+            "documentVersionId": "K-TABLE.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED"
+            ]
+          },
+          {
+            "documentVersionId": "K-UNDATED.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED",
+              "METADATA_UNKNOWN"
+            ]
+          },
+          {
+            "documentVersionId": "K-UT.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_STATE"
+            ]
+          },
+          {
+            "documentVersionId": "N-102.v1",
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "CASE_ACCESS_DENIED"
+            ]
+          }
+        ],
+        "authorityFindings": [
+          {
+            "reasonCode": "LOWER_AUTHORITY_CONFLICT",
+            "passageIds": [
+              "K-EDU.v1.s1",
+              "K-PA.v2.s1"
+            ],
+            "explanation": "K-EDU.v1 lacks payer_owner authority for payer_process; it cannot establish or override this requirement."
+          }
+        ],
+        "support": {
+          "reasonCodes": [
+            "SUPPORTED"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "status": "supported"
+        },
+        "applicability": {
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "status": "applicable"
+        },
+        "communication": {
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "status": "allowed"
+        },
+        "action": {
+          "reasonCodes": [
+            "RECOMMENDATION_ALLOWED"
+          ],
+          "supportingPassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "policyVersion": "knowledge-policy-v1",
+          "timestamp": "2026-09-10T16:00:00Z",
+          "status": "allowed"
+        },
+        "evidenceUsed": [
+          {
+            "passageId": "K-PA.v2.s1",
+            "documentVersionId": "K-PA.v2",
+            "documentId": "K-PA",
+            "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+            "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 137,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          },
+          {
+            "passageId": "N-101.v1.s1",
+            "documentVersionId": "N-101.v1",
+            "documentId": "N-101",
+            "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+            "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 128,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          },
+          {
+            "passageId": "CE-101-01.v1.s1",
+            "documentVersionId": "CE-101-01.v1",
+            "documentId": "CE-101-01",
+            "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+            "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+            "locator": {
+              "section": "section-1",
+              "start": 0,
+              "end": 128,
+              "lineStart": 1,
+              "lineEnd": 1,
+              "table": null
+            },
+            "artifactVersion": "artifact-v1"
+          }
+        ],
+        "answer": {
+          "method": "deterministic-extractive-composition",
+          "claims": [
+            {
+              "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+              "passageIds": [
+                "K-PA.v2.s1"
+              ]
+            },
+            {
+              "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+              "passageIds": [
+                "N-101.v1.s1"
+              ]
+            },
+            {
+              "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+              "passageIds": [
+                "CE-101-01.v1.s1"
+              ]
+            }
+          ],
+          "message": "Source-supported quotations selected by local lexical retrieval; no generated clinical inference.",
+          "operationalKnowledge": true
+        },
+        "actionProposal": {
+          "type": "recommend_document",
+          "caseId": "DEMO-101",
+          "evidencePassageIds": [
+            "K-PA.v2.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1"
+          ],
+          "status": "permitted_recommendation",
+          "execution": "not_executed"
+        },
+        "escalation": null,
+        "disposition": "answer",
+        "audit": [
+          {
+            "id": "Q01.lexical.access",
+            "type": "access",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "avery"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "618b7e080a559b04761130274595d2ea01d576eeb28d7d553c5d029f8d69d6f9"
+          },
+          {
+            "id": "Q01.lexical.selection",
+            "type": "selection",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "KP-ALDER.2026.09.1"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "22ea804813c6dea8f03b96b7d2117e796189df33436f8199a8b8c977a1ab5eb5"
+          },
+          {
+            "id": "Q01.lexical.filtering",
+            "type": "filtering",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "CE-101-01.v1",
+              "K-APL.v1",
+              "K-EDU.v1",
+              "K-PA.v2",
+              "N-101.v1"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "43997037166b853076cea423b6c75f49cefa0e2af1462a8de8584edf08bc029f"
+          },
+          {
+            "id": "Q01.lexical.retrieval",
+            "type": "retrieval",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "N-101.v1.s1",
+              "K-PA.v2.s1",
+              "K-EDU.v1.s1",
+              "CE-101-01.v1.s1",
+              "K-APL.v1.s1"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "d499f12db7027f36a1af28f3c887404d1f9049b6d96e1e42f08f221cc033be36"
+          },
+          {
+            "id": "Q01.lexical.authority",
+            "type": "authority",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-EDU.v1.s1",
+              "K-PA.v2.s1"
+            ],
+            "reasonCodes": [
+              "LOWER_AUTHORITY_CONFLICT"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "a0da64a368d4e1e3ab65bdd57904a99d4f8c0655392e2f3633a7fef3ec38bf0d"
+          },
+          {
+            "id": "Q01.lexical.support",
+            "type": "support",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-PA.v2.s1",
+              "N-101.v1.s1",
+              "CE-101-01.v1.s1"
+            ],
+            "reasonCodes": [
+              "SUPPORTED"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "061dc8f81379cbbccbbf747afb480104172ce71eddf42bca44e641a4cbaec77e"
+          },
+          {
+            "id": "Q01.lexical.applicability",
+            "type": "applicability",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-PA.v2.s1",
+              "N-101.v1.s1",
+              "CE-101-01.v1.s1"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "db15fd5276355caae5b3543103661b7db18aebb7a323c65a9a735df354769b63"
+          },
+          {
+            "id": "Q01.lexical.communication",
+            "type": "communication",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-PA.v2.s1",
+              "N-101.v1.s1",
+              "CE-101-01.v1.s1"
+            ],
+            "reasonCodes": [
+              "ELIGIBLE"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "d77c86244ff5ce2d1409c5f59de4cdeebab81457158bf63d12ef6392ab887139"
+          },
+          {
+            "id": "Q01.lexical.action",
+            "type": "action",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-PA.v2.s1",
+              "N-101.v1.s1",
+              "CE-101-01.v1.s1"
+            ],
+            "reasonCodes": [
+              "RECOMMENDATION_ALLOWED"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "49277a67be69034f2abb09f28f13b607d0fcf8a0f68c9c4314e7dffea6f26d26"
+          },
+          {
+            "id": "Q01.lexical.evidence",
+            "type": "evidence",
+            "actorId": "avery",
+            "tenantId": "T-DEMO",
+            "subjectIds": [
+              "K-PA.v2.s1",
+              "N-101.v1.s1",
+              "CE-101-01.v1.s1"
+            ],
+            "reasonCodes": [
+              "SUPPORTED"
+            ],
+            "policyVersion": "knowledge-policy-v1",
+            "timestamp": "2026-09-10T16:00:00Z",
+            "payloadHash": "176d894a21bf69ae3350966faffac9911e98371a575522281d73a761daff52f9"
+          }
+        ],
+        "id": "EV-b3febe79778276c7d7e2a6791bc9a89cae205ce23f359b49ff282373471b8cc2",
+        "recordHash": "b3febe79778276c7d7e2a6791bc9a89cae205ce23f359b49ff282373471b8cc2"
+      },
+      "run": {
+        "id": "ab2850db-bd19-4782-9873-d0baf5366ebf",
+        "operationId": "ab2850db-bd19-4782-9873-d0baf5366ebf",
+        "transactionId": "1145",
+        "transactionOutcome": "committed",
+        "evidenceId": "EV-b3febe79778276c7d7e2a6791bc9a89cae205ce23f359b49ff282373471b8cc2",
+        "requestId": "Q01.lexical",
+        "actorId": "avery",
+        "requestedMode": "hybrid",
+        "effectiveMode": "lexical",
+        "generation": "89",
+        "decisionTimestamp": "2026-09-10T16:00:00Z",
+        "configuration": {
+          "mode": "lexical",
+          "candidateDepth": 50,
+          "rrfK": 60,
+          "semanticMinCosine": null,
+          "embedding": {
+            "provider": "openai",
+            "model": "text-embedding-3-small",
+            "dimensions": 1536,
+            "revision": "configured-2026-09-07",
+            "normalization": "none-v1"
+          }
+        },
+        "acknowledgment": {
+          "actorId": "avery",
+          "policyId": null,
+          "timestamp": "2026-09-10T16:00:00Z",
+          "expiresAt": "2027-01-01T00:00:00Z",
+          "reason": "OFFLINE_EXPLICIT",
+          "originalRunId": null,
+          "scope": "single_request",
+          "requestId": "Q01.lexical"
+        },
+        "reasonCodes": [
+          "SUPPORTED",
+          "RECOMMENDATION_ALLOWED",
+          "DEGRADED_LEXICAL_ACKNOWLEDGED"
+        ],
+        "diagnostics": {
+          "retrieved": [
+            {
+              "passageId": "N-101.v1.s1",
+              "documentVersionId": "N-101.v1",
+              "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+              "score": 2.2754388,
+              "rank": 1,
+              "scoreKind": "lexical_bm25"
+            },
+            {
+              "passageId": "K-PA.v2.s1",
+              "documentVersionId": "K-PA.v2",
+              "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+              "score": 2.22801512,
+              "rank": 2,
+              "scoreKind": "lexical_bm25"
+            },
+            {
+              "passageId": "K-EDU.v1.s1",
+              "documentVersionId": "K-EDU.v1",
+              "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+              "score": 2.19584462,
+              "rank": 3,
+              "scoreKind": "lexical_bm25"
+            },
+            {
+              "passageId": "CE-101-01.v1.s1",
+              "documentVersionId": "CE-101-01.v1",
+              "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+              "score": 0.8931062,
+              "rank": 4,
+              "scoreKind": "lexical_bm25"
+            },
+            {
+              "passageId": "K-APL.v1.s1",
+              "documentVersionId": "K-APL.v1",
+              "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+              "score": 0.37056196,
+              "rank": 5,
+              "scoreKind": "lexical_bm25"
+            }
+          ],
+          "excluded": [
+            {
+              "documentVersionId": "K-CEDAR.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK",
+                "WRONG_PAYER",
+                "WRONG_PLAN"
+              ]
+            },
+            {
+              "documentVersionId": "K-COMM.v1",
+              "reasonCodes": [
+                "USE_NOT_PERMITTED"
+              ]
+            },
+            {
+              "documentVersionId": "K-FIN.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK"
+              ]
+            },
+            {
+              "documentVersionId": "K-PA-X.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK"
+              ]
+            },
+            {
+              "documentVersionId": "K-PA.expired",
+              "reasonCodes": [
+                "EXPIRED",
+                "REVIEW_OVERDUE"
+              ]
+            },
+            {
+              "documentVersionId": "K-PA.superseded",
+              "reasonCodes": [
+                "SUPERSEDED"
+              ]
+            },
+            {
+              "documentVersionId": "K-PA.v3",
+              "reasonCodes": [
+                "NOT_YET_EFFECTIVE"
+              ]
+            },
+            {
+              "documentVersionId": "K-TABLE.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK",
+                "UNAPPROVED"
+              ]
+            },
+            {
+              "documentVersionId": "K-UNDATED.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK",
+                "UNAPPROVED",
+                "METADATA_UNKNOWN"
+              ]
+            },
+            {
+              "documentVersionId": "K-UT.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK",
+                "WRONG_STATE"
+              ]
+            },
+            {
+              "documentVersionId": "N-102.v1",
+              "reasonCodes": [
+                "NOT_IN_PACK",
+                "CASE_ACCESS_DENIED"
+              ]
+            }
+          ],
+          "eligibleVersionIds": [
+            "CE-101-01.v1",
+            "K-APL.v1",
+            "K-EDU.v1",
+            "K-PA.v2",
+            "N-101.v1"
+          ],
+          "selectedReleases": [
+            {
+              "id": "KP-ALDER.2026.09.1",
+              "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+            }
+          ],
+          "assignmentId": "AS-101"
+        },
+        "embeddingUsage": {
+          "cacheHits": 0,
+          "cacheMisses": 0,
+          "requests": 0,
+          "inputTokens": 0
+        }
+      }
+    }
+  ],
+  "maximumCompletedCosineDelta": 0,
+  "error": "pgvector numerical delta 0.0000015454036114137537 on Q01/semantic exceeds 1e-6"
+}

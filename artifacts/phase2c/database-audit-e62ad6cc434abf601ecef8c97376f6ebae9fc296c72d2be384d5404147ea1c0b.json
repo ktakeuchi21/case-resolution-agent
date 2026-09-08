@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "phase2c-database-audit-v1",
+  "recordedAt": "2026-09-08T05:16:36.711Z",
+  "checks": {
+    "documents": 10400,
+    "versions": 12350,
+    "passages": 12350,
+    "packs": 1950,
+    "releases": 1969,
+    "assignments": 2619,
+    "collections": 652,
+    "cases": 2600,
+    "users": 5200,
+    "events": 9902,
+    "runs": 1521,
+    "degraded_grants": 14,
+    "case_revisions": 26,
+    "user_revisions": 4,
+    "answers": 3,
+    "evidence": 1521,
+    "decisions": 6084,
+    "escalations": 187,
+    "audit": 24498,
+    "embeddings": 2277
+  },
+  "roles": [
+    {
+      "rolname": "pathway_app",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false
+    }
+  ],
+  "rls": [
+    {
+      "relname": "answers",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "assignment_releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "assignments",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "audit",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "case_revisions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "cases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "collections",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "decisions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "degraded_grants",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "documents",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "embeddings",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "escalations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "events",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence_passages",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "evidence_releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "generations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "idempotency",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "membership",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "packs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "passage_vectors",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "passages",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "releases",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "runs",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "user_revisions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "users",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "versions",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "wf_grants",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "wf_knowledge_links",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "wf_receipts",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "wf_revocations",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    },
+    {
+      "relname": "wf_steps",
+      "relrowsecurity": true,
+      "relforcerowsecurity": true
+    }
+  ],
+  "migrations": [
+    {
+      "name": "001_governance.sql",
+      "sha256": "42004aef2d00c519dfa20401cfc8250ae1e7525e2a321e148b43f12f851d9489"
+    },
+    {
+      "name": "002_serialization.sql",
+      "sha256": "45cbe23f01345e5b3be27509b4355380a4dbcc72777778250c2b615dd17a594a"
+    },
+    {
+      "name": "003_evidence_links_and_degraded_grants.sql",
+      "sha256": "d1b2bd0d701b544d0ae892cd1c65d401c4eabe0db4087836efbcc5c24818044d"
+    },
+    {
+      "name": "004_correction_links.sql",
+      "sha256": "7dd3c1082a0df2087c6811ed72871feeede394d70b63f1ba45d9f6550358fc78"
+    },
+    {
+      "name": "005_sc01_workflow.sql",
+      "sha256": "5a0f0e6610cad18e029a504b654a859ce4ef8bd6a6c1f6ffde31e80daa88e480"
+    },
+    {
+      "name": "006_workflow_evidence_links.sql",
+      "sha256": "3619fe1987cce4ed825900bbd8fea13992fb49b00a9bc34d193f76ebc9162c1f"
+    },
+    {
+      "name": "007_portfolio_sessions.sql",
+      "sha256": "c3abf259db3b713442e83b5aeb0a465fde174139e192cd7553e1a4679bca308b"
+    },
+    {
+      "name": "008_application_evidence.sql",
+      "sha256": "2668f1b9036740b01fb3d1c862a39b5710484cea0a81ca61a728a2a8cffadec7"
+    }
+  ],
+  "extensions": [
+    {
+      "extname": "vector",
+      "extversion": "0.8.6"
+    }
+  ],
+  "artifactHashesVerified": 23,
+  "pass": true
+}
