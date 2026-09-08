@@ -1,0 +1,130 @@
+{
+  "schema": "digital-worker-live-qualification-v1",
+  "checkedAt": "2026-09-08T19:01:16.577932+00:00",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "providerConfigured": true,
+  "model": "gpt-4.1-mini-2025-04-14",
+  "promptVersion": "pathway-synthesis-v2",
+  "retrievalModel": "text-embedding-3-small",
+  "apiGenerations": [
+    {
+      "id": "agent.b3b02fce5ace466353072b5ceca5dd301b31b81767f95ad9",
+      "operation": "ask",
+      "disposition": "answer",
+      "reasonCodes": [],
+      "inputTokens": 1804,
+      "outputTokens": 594,
+      "requests": 2,
+      "compositionMs": 7665,
+      "roundTripMs": 118
+    },
+    {
+      "id": "agent.402c02991fb9482448d344e29a842e4507ce1375fa17d842",
+      "operation": "ask",
+      "disposition": "answer",
+      "reasonCodes": [],
+      "inputTokens": 1791,
+      "outputTokens": 335,
+      "requests": 2,
+      "compositionMs": 7010,
+      "roundTripMs": 8646
+    },
+    {
+      "id": "agent.0e71527da0677b586191918254f75aa4aafb1b029af07dcb",
+      "operation": "draft",
+      "disposition": "pause",
+      "reasonCodes": [
+        "UNSUPPORTED_CLAIM"
+      ],
+      "inputTokens": 2283,
+      "outputTokens": 601,
+      "requests": 2,
+      "compositionMs": 7676,
+      "roundTripMs": 8261
+    },
+    {
+      "id": "agent.db6b900e34f7ed9419340542463a38e999100f14a09db705",
+      "operation": "draft",
+      "disposition": "pause",
+      "reasonCodes": [
+        "UNSUPPORTED_CLAIM"
+      ],
+      "inputTokens": 2319,
+      "outputTokens": 387,
+      "requests": 2,
+      "compositionMs": 4874,
+      "roundTripMs": 5427
+    },
+    {
+      "id": "agent.f21e9f71bee6b84d93afcb017b050e61566e3d677fab0b46",
+      "operation": "summary",
+      "disposition": "pause",
+      "reasonCodes": [
+        "CONVERSATION_IS_NOT_CASE_FACT"
+      ],
+      "inputTokens": 1155,
+      "outputTokens": 599,
+      "requests": 1,
+      "compositionMs": 4802,
+      "roundTripMs": 5352
+    }
+  ],
+  "browserGeneration": {
+    "operation": "ask",
+    "disposition": "answer",
+    "inputTokens": 1805,
+    "outputTokens": 553,
+    "requests": 2,
+    "compositionMs": 6729,
+    "persistedAfterRefresh": true,
+    "consoleErrors": 0,
+    "consoleWarnings": 0
+  },
+  "generationTotals": {
+    "requests": 11,
+    "inputTokens": 11157,
+    "outputTokens": 3069,
+    "estimatedUsdAtUncachedRates": 0.009373,
+    "priceBasis": "https://developers.openai.com/api/docs/models/gpt-4.1-mini; $0.40 / 1M input and $1.60 / 1M output tokens, checked September 8, 2026. Excludes embeddings; not a billing record."
+  },
+  "acceptedAnswers": 3,
+  "liveDrafts": {
+    "attempts": 2,
+    "accepted": 0,
+    "safelyPaused": 2
+  },
+  "liveCrmSummary": {
+    "attempts": 1,
+    "accepted": 0,
+    "safelyPaused": 1
+  },
+  "freshSandboxHybrid": {
+    "requests": 3,
+    "inputTokens": 44,
+    "repeatCacheHits": 3,
+    "repeatProviderRequests": 0,
+    "actionDenied": true
+  },
+  "workflow": {
+    "state": "PA_PENDING",
+    "revision": 11,
+    "notificationAttempts": 1,
+    "transferAttempts": 1,
+    "retirementPausedNewAnswer": true,
+    "historicalEvidenceHash": "febed8a3c48174d4d610c7b11302b5a639288aa0714fc499e9b86b7925839a0a"
+  },
+  "artifact": "artifacts/digital-worker/live-journey-f2655216e2c8a51fb064034815decf24233de856df26411824b1486255aca6c7.json",
+  "screenshot": {
+    "path": "output/playwright/live-model-answer.png",
+    "sha256": "3c66b5416cae110b9ddc9f5a385f2ae740a61ed5b246e9e7ff14b74d564fd2cb"
+  },
+  "assessment": "Provider setup works. The live question/ingestion/workflow path passed. Live draft and CRM-summary usefulness is not qualified: all three work-product attempts paused. Deterministic work products remain separately available.",
+  "limitations": [
+    "Six developer-authored synthetic model attempts across two isolated sessions; not a representative accuracy benchmark.",
+    "The narrower second draft was an adaptive follow-up and did not pass; no cherry-picking of accepted work products.",
+    "The failed verifier verdict text is not retained by this release; the raw proposed claims and rejection code are retained.",
+    "The CRM summary treated a conversation quote as a fact; deterministic validation blocked it. The narrower draft proposed an unsupported urgency phrase.",
+    "Embedding activity for agent/workflow retrieval is outside the generation totals. All runtime calls stayed subject to configured daily/session budgets.",
+    "No production, clinical, real-channel or general model-quality claim follows from this smoke test."
+  ]
+}

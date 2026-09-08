@@ -2,6 +2,10 @@
 
 [Open Pathway Agent](https://case-resolution-agent.onrender.com).
 
+## Live provider configuration — subsequent verification
+
+The provider is now configured and verified. Three live case answers, fresh upload hybrid retrieval, workflow completion and retirement passed. Two live drafts and one CRM summary were safely rejected by support/authority checks; live work-product quality remains a limitation. [Read the measured qualification](live-provider-qualification.md). The provider-gated descriptions below record the earlier deployment checkpoint.
+
 ## September 8 digital-worker release
 
 The digital-worker increment is live on the existing Free Render service. Deployment `dep-dag4fpvqj5pc738uqjpg` ran verified source `d570ce703cd3d7421d371fe0d34aac36d913c639` and succeeded in 39.3 seconds at 11:38 AM MDT. Render built 235 files and validated 160 preserved vectors. Additive migrations 009–011 were applied through the administrator migration workflow; the runtime role remains restricted. Automatic deployment remains Off.

@@ -57,3 +57,7 @@ Browser record: `artifacts/digital-worker/local-browser-bfadf80cf14bc76b8c8df1c2
 ### Hosted release accepted
 
 Deployed `d570ce703cd3d7421d371fe0d34aac36d913c639` as Render `dep-dag4fpvqj5pc738uqjpg`; healthy digital-worker-v1 after a 39.3-second deployment. Public HTTPS, private-path and cross-origin checks pass. All four compiled Linux parsers preserve exact locations and original bytes. Public browser confirms persistent cited conversation and PDF upload. See `docs/hosted-verification.md` for immutable result links. No live generation or embedding request was made. The only manual configuration action is to privately configure the provider and bounded request settings described in the runbook; live model quality remains unmeasured. Documentation-only follow-up commits do not change the deployed source.
+
+### Configured-provider follow-up
+
+Owner completed private Render configuration. Live question answering, fresh upload hybrid retrieval and deterministic uploaded-source workflow passed; retirement preserved historical evidence. Both live drafts and the live CRM summary paused at their support/authority checks. No validation was relaxed and no application code changed. See `docs/live-provider-qualification.md` for every measured outcome and the remaining work-product quality limitation. Provider configuration is no longer a manual action.
