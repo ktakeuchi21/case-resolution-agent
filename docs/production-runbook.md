@@ -17,7 +17,7 @@ npm run build
 
 Database-backed application tests require the local migration/setup described in [persistence runbook](persistence-runbook.md). The build does not connect to a database or an LLM. It compiles TypeScript with `rewriteRelativeImportExtensions`, preserving the directory layout and replacing relative `.ts` imports with emitted `.js` imports. [TypeScript compiler documentation](https://www.typescriptlang.org/tsconfig/rewriteRelativeImportExtensions.html)
 
-`dist/` contains compiled server/domain/provider code, the compiled one-time database CLI, reviewed synthetic fixtures, validated cached embeddings, web assets and immutable SQL migrations. `dist/build-manifest.json` records SHA-256 and size for every packaged runtime file plus the count of validated embedding records. Rebuilds replace only a recognized generated `dist/` directory. Historical Phase 2A–2D artifacts are never copied or modified.
+`dist/` contains compiled server/domain/provider code, the compiled one-time database CLI, reviewed synthetic fixtures, validated cached embeddings, web assets, immutable SQL migrations and the public Supabase CA certificate in `config/supabase-ca.crt`. The CA certificate is public trust material, not a client credential or private key. `dist/build-manifest.json` records SHA-256 and size for every packaged runtime file plus the count of validated embedding records. Rebuilds replace only a recognized generated `dist/` directory. Historical Phase 2A–2D artifacts are never copied or modified.
 
 The build rejects symlink assets, unrewritten imports, missing runtime files, invalid embedding records, disallowed private file paths and recognizable credential patterns. This is a packaging check, not a complete secret detector. It does not copy environment files, `.local`, PostgreSQL data, prior artifacts, tests, source maps or developer caches. The reviewed embeddings in `fixtures/embeddings` are deliberately packaged synthetic-corpus inputs, with existing model/configuration/content integrity checks; they are not a writable runtime cache or an authority store.
 
@@ -36,8 +36,10 @@ Configure these names using the host's secret/environment controls. Never put se
 | `NODE_ENV` | `production` on the hosted service; enables Secure cookies and HSTS |
 | `HOST` | `0.0.0.0` on Render; use loopback for ordinary local development |
 | `PORT` | Render assigned port, default Blueprint value `10000` |
-| `PUBLIC_ORIGIN` | Exact HTTPS public origin, with no trailing slash; required origin boundary (HTTP localhost only for local production verification) |
-| `PATHWAY_DATABASE_URL` | Restricted `pathway_app` login to the dedicated synthetic database, using verified TLS |
+| `PUBLIC_ORIGIN` | Optional on Render when `RENDER=true` and the supplied `RENDER_EXTERNAL_URL` validates as an exact HTTPS origin under `.onrender.com`; otherwise set the exact HTTPS origin, with no trailing slash. HTTP loopback is permitted only for local verification. |
+| `PATHWAY_DATABASE_URL` | Restricted `pathway_app.<project-reference>` session-pooler login to the dedicated synthetic database on port 5432; URL query options are rejected |
+| `PATHWAY_DATABASE_PROFILE` | `supabase-pg17-vector082` for this hosted project; explicitly checks PostgreSQL 17.6, vector 0.8.2 and extension schema `extensions` |
+| `PATHWAY_DATABASE_CA_FILE` | `/app/dist/config/supabase-ca.crt` in the Docker runtime; required by the hosted profile |
 | `PATHWAY_ADMIN_DATABASE_URL` | Migration environment only; never present in the running public service |
 
 No OpenAI key is configured in the public deployment. Guests use reviewed cached embeddings and visibly deterministic evidence explanations. Unknown queries can pause on cache miss; the server does not silently substitute lexical retrieval or make paid provider calls. The optional server-only OpenAI explanation adapter is not enabled by this package.
@@ -46,7 +48,19 @@ The application offers cryptographic anonymous demo sessions, not production emp
 
 ## One-time database preparation
 
-Choose only a clearly identified new/dedicated Pathway Agent database. Validate PostgreSQL/pgvector versions, extension schema/search path, role creation permissions, TLS and session advisory locks as described in the feasibility preflight. The migrations currently request vector 0.8.6. A hosted incompatibility is a deployment blocker; never edit already-applied migration checksums or disable RLS to force it through.
+Choose only a clearly identified new/dedicated Pathway Agent database. Local verification remains pinned to PostgreSQL 18.6/vector 0.8.6. The dedicated Supabase project `qabaroofmvrzyuwuxndy` exposes PostgreSQL 17.6/vector 0.8.2. The explicit hosted profile passed [hosted frozen parity](../artifacts/phase2c/parity-84c57174e5f418c904098e085b2f6d0fa85bec756f1342225ee98969d65826b1.json): 23 references and 108 retrieval comparisons, with no ranking differences. Migration success alone would not qualify retrieval quality. Never edit applied migration checksums or disable RLS to force compatibility.
+
+For an approved, empty hosted project, load administrator connection settings from protected, ignored local files without printing them or placing values in shell history. Set the hosted profile and CA-file path, then run from the source checkout:
+
+```sh
+node scripts/db/bootstrap-hosted.ts qabaroofmvrzyuwuxndy
+```
+
+This guarded bootstrap verifies the project-specific administrator login, empty application schemas and exact PostgreSQL version, installs vector 0.8.2 in `extensions`, then applies all eight unchanged SQL migrations and checks an identical second migration run. Migration 001 retains its original vector 0.8.6 request; `IF NOT EXISTS` skips the already verified extension, so the profile check supplies the explicit version validation. Do not rerun the empty-project bootstrap against an existing deployment; use the normal checksum-checked migration command. The bootstrap source script is an operator tool and is not packaged into the web container.
+
+The hosted bootstrap and idempotent rerun succeeded: [immutable bootstrap artifact](../artifacts/phase2c/hosted-bootstrap-0291b3a8a0d317dd19781aabd7b72046746bae2eb6e18e5bbcfaf6685c60262d.json). The restricted runtime role was separately checked: LOGIN enabled; superuser, BYPASSRLS, CREATEDB, CREATEROLE and INHERIT disabled; no memberships or application-schema ownership. Supabase default API grants on the public migration ledger were found and removed, and the ledger now forces RLS. Effective `anon`/`authenticated` privileges on application tables and the ledger were verified absent. These hosted hardening steps preserve the eight migration files; the deployment audit must verify them again before release.
+
+Client-to-session-pooler TLS on port 5432 was verified with certificate and hostname checks using the official Supabase CA. Its SHA-256 certificate fingerprint is `807025AD50D4ED219D2C9C7D299C004F824EB00CF7F65AFEF607D07B72E6CAFA`. The database-side `pg_stat_ssl` observation reported `backend_tls=false`; this does not establish encryption between the provider pooler and PostgreSQL. Do not describe the connection as verified end-to-end TLS.
 
 From a protected migration environment that contains the generated package and production dependencies:
 
@@ -66,7 +80,7 @@ Test empty-database migration, runtime role restrictions, exact retrieval/citati
 
 `.dockerignore` uses a source allowlist and additionally excludes environment files, private-key files and local state. Never add secret files to the build context. Render makes environment variables available as build arguments, so do not introduce credential-bearing `ARG` declarations. [Render Docker documentation](https://render.com/docs/docker)
 
-`render.yaml` defines one free Docker web service with automatic deployment disabled, manual origin/runtime-database environment entries and `/healthz`. It provisions no database, paid worker, custom domain or preview fleet. It is a reviewed template, not proof of available account capacity or a live service. Confirm free-resource/overage settings and service-name ownership before applying it. During first setup `sync: false` fields prompt for values; later additions require manual environment management. [Render Blueprint reference](https://render.com/docs/blueprint-spec)
+`render.yaml` defines one free Docker web service with automatic deployment disabled, the hosted database profile and CA path, a manual runtime database secret and `/healthz`. The origin may use Render's validated platform-supplied URL. It provisions no database, paid worker, custom domain or preview fleet. The authenticated service draft selects Oregon, Free, `NODE_ENV=production`, `/healthz` and automatic deployments Off; no deployed URL is verified yet. Confirm free-resource/overage settings and service-name ownership before applying it. During first setup `sync: false` fields prompt for values; later additions require manual environment management. [Render Blueprint reference](https://render.com/docs/blueprint-spec)
 
 Free service sleeping/ephemeral-disk limits mean timers cannot promise continuous wall-clock execution. Durable workflow work remains in PostgreSQL and must catch up safely when processing resumes. Do not use keep-alive traffic to defeat host limits. See the feasibility document for free-database capacity, inactivity and backup limitations.
 
@@ -78,6 +92,9 @@ Rollback the application image to a previously verified build only after checkin
 
 ## Packaging verification recorded locally
 
-The production build emitted 212 runtime files and validated 160 cached embedding records. Type checking and all twelve generation tests passed. A copied compiled package was run from an unrelated temporary directory: HTML/JavaScript/CSS and a read-only health query to the existing local PostgreSQL database succeeded, while four source/fixture/environment paths returned 404. This checks actual packaged asset/module paths independently of the checkout. Docker is unavailable in the current environment, so an image build/container boot has not been verified. Render Blueprint account-side validation, hosted migrations and deployed HTTPS browser verification remain external gates. Rebuild after subsequent source or frontend changes before treating the manifest as final.
+The earlier production build emitted 212 runtime files and validated 160 cached embedding records. A copied compiled package was run from an unrelated temporary directory: HTML/JavaScript/CSS and a read-only health query to the existing local PostgreSQL database succeeded, while four source/fixture/environment paths returned 404. This checks actual packaged asset/module paths independently of the checkout. The September 8 rerun passes 80 unit tests; the 84 local database/workflow/generation/application checks also passed. The final package contains 215 files and 160 validated vectors. Hosted regression passes 71 tests with one intentional extra-database skip, and 23 reference/108 retrieval comparisons preserve exact rankings, governance and citations. Docker is unavailable in the current environment, so an image build/container boot has not been verified. Hosted migration bootstrap and retrieval qualification passed; public deployment and deployed HTTPS browser verification remain gates. Rebuild after subsequent source or frontend changes before treating the manifest as final.
 
 Public question privacy boundary: only the reviewed frozen synthetic questions, supplied literal/sandbox prompts and the explicitly labeled cache-failure probe are admitted. Other text is rejected before durable evidence/answer storage; no heuristic patient-data detector is used. The public API counts all attempted writes against a durable150-attempt session cap even when a later application transaction rolls back. Session refreshes share the normal read limiter.
+
+
+September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import and actual deployed HTTPS/browser checks remain pending.

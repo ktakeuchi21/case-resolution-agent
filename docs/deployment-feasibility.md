@@ -1,6 +1,6 @@
 # Public synthetic demo deployment feasibility
 
-Assessment: September 7, 2026. This is a feasibility assessment, not evidence of a deployed application. The execution charter authorizes a public synthetic portfolio MVP on existing authenticated free or already-authorized resources. It does not authorize new charges, unrelated repositories, or weakening isolation.
+Assessment started September 7, 2026; hosted preparation updated September 8. This is not evidence of a deployed application. The execution charter authorizes a public synthetic portfolio MVP on existing authenticated free or already-authorized resources. It does not authorize new charges, unrelated repositories, or weakening isolation.
 
 ## Recommended path
 
@@ -8,11 +8,11 @@ Retain Render for the Node web/API and Supabase for durable PostgreSQL/pgvector,
 
 Use a Supabase database dedicated to this synthetic demonstration. Runtime must connect as the restricted `pathway_app` role, never the administrator or Supabase `service_role`. Browser requests go through the application API; do not expose the `pathway` schema through a public Data API. Exact scoped vector retrieval and Pathway-owned governance remain unchanged. Supabase documents custom roles and pgvector, but their availability does not prove our migrations work on a selected project. [Postgres roles](https://supabase.com/docs/guides/database/postgres/roles), [pgvector](https://supabase.com/docs/guides/database/extensions/pgvector)
 
-Prefer a direct TLS connection when network compatibility permits, otherwise the Supabase session pooler on port 5432 for this persistent Node client. A migration holds a session advisory lock, so do not run it through transaction pooling. Keep one checked-out connection for each application transaction, including transaction-local scope and advisory locks. Obtain the database certificate through the provider; never disable certificate verification to get a connection working. [Connection methods](https://supabase.com/docs/guides/database/connecting-to-postgres)
+The selected hosted profile requires the Supabase session pooler on port 5432 for this persistent Node client. A migration holds a session advisory lock, so transaction pooling on port 6543 is rejected. Keep one checked-out connection for each application transaction, including transaction-local scope and advisory locks. Obtain the database certificate through the provider; never disable certificate verification to get a connection working. Client-to-pooler certificate and hostname verification has passed; the backend TLS limitation is recorded below. [Connection methods](https://supabase.com/docs/guides/database/connecting-to-postgres)
 
 ADR-001 proposed separate mode projects, object storage, Supabase Auth, and always-running workers. A bounded fixture-only public demo can use cryptographic anonymous sessions with server-selected disposable workspaces and mode-scoped RLS in one dedicated synthetic database. This is a deliberate portfolio topology reduction, not production isolation equivalence. It needs an explicit current architecture/decision entry and cross-session tests. No arbitrary uploads or external action credentials belong in this topology.
 
-## Verified local access inventory
+## Historical September 7 access inventory
 
 Only credential presence and environment variable names were inspected; no secret values were read or printed.
 
@@ -27,7 +27,7 @@ Only credential presence and environment variable names were inspected; no secre
 | Browser inventory | No existing Render or Supabase dashboard tab |
 | Cloud resources | No authenticated Render workspace or Supabase project verified; no resource created |
 
-Attempting to open the Render dashboard for a read-only account check was rejected by automatic approval review, which stated that private deployment-account access was not authorized. No workaround or alternate account-access path was attempted after that rejection. This leaves authentication and ownership unverified even though the charter contains deployment authority. Account access must be approved through the normal mechanism before that check resumes.
+The initial attempt to open the Render dashboard for a read-only account check was rejected by automatic approval review. No workaround was attempted. This historical access blocker was resolved when the user subsequently signed into Render/Supabase, identified the source repository and created the dedicated project. The current verified state appears below.
 
 Sites was not substituted: the available capability is not evidence that it can host this existing Node/PostgreSQL/pgvector runtime unchanged. A static mock or alternative persistence backend would fail the stated completion boundary.
 
@@ -36,7 +36,7 @@ Sites was not substituted: the available capability is not evidence that it can 
 1. Access to an identified Render workspace using an authenticated dashboard/CLI or `RENDER_API_KEY`; confirm its existing free capacity, billing and overage settings. If multiple owners are plausible, choose only with the user's identification.
 2. An identified **new/dedicated** Pathway Agent Supabase project under the intended organization, with free capacity or already-authorized resource allocation. Dashboard authentication or `SUPABASE_ACCESS_TOKEN` enables management; neither alone supplies the database password.
 3. Server-only `PATHWAY_ADMIN_DATABASE_URL` for the one-time migration environment, and a different server-only `PATHWAY_DATABASE_URL` authenticating the restricted runtime role. Do not place admin credentials in the running web service. Connection strings must be entered through a secret manager or local ignored environment, never pasted into public artifacts or command output.
-4. An authorized source repository or registry artifact for Render. This checkout currently has no Git metadata; do not publish unrelated source or infer a new public repository owner from a browser profile.
+4. An authorized source repository or registry artifact for Render. The user identified `ktakeuchi21/case-resolution-agent`; the prepared source was published there through the isolated deployment checkout. Do not publish unrelated source or infer another owner.
 5. The public origin selected by Render, recorded in the application origin allowlist and cookie configuration. Session cookies require HTTPS/Secure in the hosted environment.
 
 No OpenAI secret is needed for a public cached-vector/controlled-explanation path. Guests must not be able to trigger paid generation or new embedding requests. Any operator-only live generation path requires separate server-side credentials and explicitly bounded authorization; absence must be visible.
@@ -57,4 +57,20 @@ Render Free is not a blanket no-cost guarantee: bandwidth and build overages can
 
 ## Completion evidence still required
 
-Account identity, selected resource plan, migration output, hosted role/RLS checks, published artifact identity, health check, live URL, deployed browser tests and screenshots remain unverified. Local build or a generated deployment manifest must never be reported as a successful public deployment.
+Account selection, source publication, the free service draft, hosted migration bootstrap and bounded runtime/API privilege checks are verified. Hosted frozen retrieval parity, complete regression/audit results, deployed build identity, HTTPS health/browser checks, the live URL and deployed screenshots remain required. Local build or a generated deployment manifest must never be reported as a successful public deployment.
+
+
+## September 8 hosted preparation
+
+The user identified a new dedicated Supabase project, `qabaroofmvrzyuwuxndy`, in Oregon. The initial read-only preflight found PostgreSQL 17.6 and pgvector availability through 0.8.2. The explicit profile `supabase-pg17-vector082` now selects that exact server/extension pair and requires extension schema `extensions`. The guarded empty-project bootstrap installed vector 0.8.2 and applied all eight unchanged migrations; the second migration run was identical. Existing local PostgreSQL 18.6/vector 0.8.6 pins and historical benchmark artifacts are preserved. Frozen retrieval and governance parity now passes ([hosted frozen parity](../artifacts/phase2c/parity-84c57174e5f418c904098e085b2f6d0fa85bec756f1342225ee98969d65826b1.json)).
+
+The authenticated Render draft selects Oregon, Free ($0 base/month), `NODE_ENV=production`, `/healthz` and automatic deployments Off. It points at `ktakeuchi21/case-resolution-agent`, branch `main`. No deployed URL is verified. Runtime must set the hosted profile, `PATHWAY_DATABASE_CA_FILE=/app/dist/config/supabase-ca.crt` and the restricted runtime database secret. `PUBLIC_ORIGIN` may be omitted only when `RENDER=true` and `RENDER_EXTERNAL_URL` validates as an exact HTTPS origin under `.onrender.com`; request headers cannot select the trusted origin. Neither administrator database credentials nor an OpenAI key belongs on Render.
+
+A protected local password-entry file (0600 beneath a 0700 directory) beneath ignored `.local/deployment/` allowed the owner to provide the database credential without chat or source-control exposure. Connection tooling consumes private files without printing values and redacts raw errors. The official Supabase CA is packaged as public trust material in `config/supabase-ca.crt`; certificate SHA-256 fingerprint: `807025AD50D4ED219D2C9C7D299C004F824EB00CF7F65AFEF607D07B72E6CAFA`. Client-to-session-pooler certificate and hostname verification passed. Database-side `pg_stat_ssl` reported `backend_tls=false`, so encryption from the provider's pooler to PostgreSQL has not been established and no end-to-end TLS claim is made.
+
+The dedicated `pathway_app` role was verified with LOGIN enabled and superuser, BYPASSRLS, CREATEDB, CREATEROLE and INHERIT disabled; it has no memberships or application-schema ownership. Supabase default API grants on the public migration ledger were discovered and removed. The ledger now forces RLS, and effective `anon`/`authenticated` privileges on the application tables and ledger are zero. These checks must remain in the hosted audit; relying only on application schema placement would have missed the ledger exposure.
+
+Evidence: [original dashboard preflight](../artifacts/mvp/hosted-dashboard-preflight-556c2f3b050e9fcfb92a74530bb85df6e7433e9bb774a42c686952d18bba2410.json) and [successful guarded bootstrap and identical rerun](../artifacts/phase2c/hosted-bootstrap-0291b3a8a0d317dd19781aabd7b72046746bae2eb6e18e5bbcfaf6685c60262d.json). Current verification includes 80 passing unit tests, the 84 rerun local integration/generation checks, 71 hosted regression passes and one intentional extra-database skip. Both database profiles pass 23 original references and 108 frozen retrieval comparisons. The hosted retirement/history/sandbox/concurrency demonstration also passed. The final read-only access/evidence/vector/workflow audits passed. Import the restricted runtime secret, then deploy and verify the actual HTTPS service. No public-deployment pass is claimed.
+
+
+September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import and actual deployed HTTPS/browser checks remain pending.

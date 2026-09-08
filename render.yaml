@@ -1,9 +1,10 @@
 # Review account/free-plan capacity before applying. No database or paid worker is provisioned.
 services:
   - type: web
-    name: pathway-agent-portfolio
+    name: case-resolution-agent
     runtime: docker
     plan: free
+    region: oregon
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /healthz
@@ -16,8 +17,11 @@ services:
         value: 0.0.0.0
       - key: PORT
         value: "10000"
-      - key: PUBLIC_ORIGIN
-        sync: false
+      # Uses validated RENDER_EXTERNAL_URL; set PUBLIC_ORIGIN only for an explicit custom origin.
       - key: PATHWAY_DATABASE_URL
         sync: false
+      - key: PATHWAY_DATABASE_PROFILE
+        value: supabase-pg17-vector082
+      - key: PATHWAY_DATABASE_CA_FILE
+        value: /app/dist/config/supabase-ca.crt
 # Admin database credentials and OPENAI_API_KEY deliberately do not belong in this public service.

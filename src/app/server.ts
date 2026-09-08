@@ -7,6 +7,8 @@ import { z } from 'zod';
 import { Database,connection } from '../db/database.ts';
 import { Application,uploadFixtures } from './service.ts';
 import { Sessions,HttpError } from './session.ts';
+import { configuredPublicOrigin } from './origin.ts';
+import { databaseProfile,inspectDatabaseProfile } from '../db/profile.ts';
 const bodyLimit=12_000;
 async function body(req:IncomingMessage){
  if(!String(req.headers['content-type']??'').startsWith('application/json'))throw new HttpError(415,'Send JSON with the supported content type.');
@@ -15,12 +17,7 @@ async function body(req:IncomingMessage){
 }
 function json(res:ServerResponse,status:number,value:unknown){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
 export function createApplicationServer(options:{db?:Database;sessionDb?:Database;webRoot?:string}={}){
- if(process.env.NODE_ENV==='production'){
-  const raw=process.env.PUBLIC_ORIGIN;if(!raw)throw new Error('PUBLIC_ORIGIN_REQUIRED');
-  let origin:URL;try{origin=new URL(raw);}catch{throw new Error('PUBLIC_ORIGIN_INVALID');}
-  const loopback=['localhost','127.0.0.1','[::1]'].includes(origin.hostname);
-  if(origin.origin!==raw||origin.username||origin.password||(origin.protocol!=='https:'&&!(loopback&&origin.protocol==='http:')))throw new Error('PUBLIC_ORIGIN_INVALID');
- }
+ const publicOrigin=configuredPublicOrigin();
  const db=options.db??new Database(),sessionDb=options.sessionDb??new Database({...connection(),max:4});
  const sessions=new Sessions(sessionDb),app=new Application(db,sessions);let active=0;
  const webRoot=resolve(options.webRoot??fileURLToPath(new URL('../../web/',import.meta.url)));
@@ -31,10 +28,10 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
   let counted=false;
   try{
    const host=req.headers.host??'localhost',url=new URL(req.url??'/',`http://${host}`);
-   if(url.pathname==='/healthz'){await db.pool.query('SELECT 1 FROM portfolio.sessions LIMIT 0');await db.pool.query('SELECT 1 FROM pathway.answers LIMIT 0');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'portfolio-v1'});return;}
+   if(url.pathname==='/healthz'){if(databaseProfile().hosted)await inspectDatabaseProfile(db.pool);await db.pool.query('SELECT 1 FROM portfolio.sessions LIMIT 0');await db.pool.query('SELECT 1 FROM pathway.answers LIMIT 0');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'portfolio-v1'});return;}
    if(url.pathname.startsWith('/api/')){
     if(req.headers['sec-fetch-site']==='cross-site')throw new HttpError(403,'Cross-site requests are not allowed.');
-    const origin=req.headers.origin,expected=process.env.PUBLIC_ORIGIN;
+    const origin=req.headers.origin,expected=publicOrigin;
     if(origin&&origin!==(expected??`http://${host}`))throw new HttpError(403,'Request origin is not allowed.');
     if(active>=2)throw new HttpError(503,'The demo is busy. Please retry in a moment.');active++;counted=true;
     if(url.pathname==='/api/session'&&req.method==='GET'){

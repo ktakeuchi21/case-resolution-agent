@@ -16,7 +16,7 @@ const walk = (directory: string): string[] => readdirSync(directory, { withFileT
 try {
   const compile = spawnSync(process.execPath, [join(root, 'node_modules/typescript/bin/tsc'), '-p', 'tsconfig.build.json', '--outDir', stage], { cwd: root, stdio: 'inherit' });
   if (compile.status !== 0) throw new Error('Production TypeScript compilation failed.');
-  const assets: Record<string, Set<string>> = { web: new Set(['.html','.js','.css','.svg','.png','.webp','.woff2']), fixtures: new Set(['.json']), migrations: new Set(['.sql']) };
+  const assets: Record<string, Set<string>> = { web: new Set(['.html','.js','.css','.svg','.png','.webp','.woff2']), fixtures: new Set(['.json']), migrations: new Set(['.sql']), config: new Set(['.crt']) };
   for (const [directory, extensions] of Object.entries(assets)) {
     for (const source of walk(join(root, directory))) {
       if (basename(source).startsWith('.')) continue;
@@ -33,7 +33,7 @@ try {
   const files = walk(stage).map(path => {
     const name = relative(stage, path).split('\\').join('/'), bytes = readFileSync(path);
     if (/(^|\/)(?:\.env(?:\.|$)|\.local|node_modules|artifacts|tests|\.git)(?:\/|$)/.test(name) || /\.(?:ts|pem|key|map)$/.test(name)) throw new Error('Disallowed file in production output.');
-    if (['.js','.json','.html','.css','.sql','.svg'].includes(extname(path))) {
+    if (['.js','.json','.html','.css','.sql','.svg','.crt'].includes(extname(path))) {
       const text = bytes.toString('utf8');
       if (/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\bsk-(?:proj-)?[A-Za-z0-9_-]{30,}|postgres(?:ql)?:\/\/[^\s:"']+:[^\s@"']+@/.test(text)) throw new Error('Potential credential in build; inspect privately before packaging.');
       if (extname(path) === '.js' && /(?:from\s*|import\s*)["'][.]{1,2}\/[^"']+\.ts["']/.test(text)) throw new Error('Unrewritten TypeScript import in emitted artifact.');

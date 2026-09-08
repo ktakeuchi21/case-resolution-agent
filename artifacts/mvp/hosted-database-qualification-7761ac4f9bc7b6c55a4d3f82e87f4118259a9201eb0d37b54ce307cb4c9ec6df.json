@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "pathway-hosted-database-qualification-v1",
+  "recordedAt": "2026-09-08T14:26:48.021525+00:00",
+  "syntheticOnly": true,
+  "profile": "supabase-pg17-vector082",
+  "projectRef": "qabaroofmvrzyuwuxndy",
+  "proofs": {
+    "hostedParity": "artifacts/phase2c/parity-84c57174e5f418c904098e085b2f6d0fa85bec756f1342225ee98969d65826b1.json",
+    "localParity": "artifacts/phase2c/parity-e189549324619375dfc81724bad0ed2a07e7a0cdcb88f05a1a793e98c1a40a6f.json",
+    "hostedBootstrap": "artifacts/phase2c/hosted-bootstrap-0291b3a8a0d317dd19781aabd7b72046746bae2eb6e18e5bbcfaf6685c60262d.json",
+    "hostedRetirement": "artifacts/phase2c/restart-concurrency-f144515f03bdbf8921c25785177c79d9178a1022acdb1f5c18e69f2c2f0b3282.json",
+    "hostedDatabaseAudit": "artifacts/phase2c/database-audit-a6841adcf835c4d149297df8d58ce3fa4d5ba1e71473a417f29e3038b09972e1.json",
+    "hostedWorkflowAudit": "artifacts/phase2d/workflow-audit-3485e8a3c2aa42dded30fbd9db7ba76d47b676f6f26c373deb9af7c6ee497f7f.json"
+  },
+  "tests": {
+    "unitPassed": 80,
+    "localIntegrationGenerationApplicationPassed": 84,
+    "hostedPassed": 71,
+    "hostedSkipped": 1,
+    "hostedSkipReason": "Extra database creation intentionally skipped; dedicated application-schema bootstrap and identical migration rerun verified separately."
+  },
+  "retrieval": {
+    "references": 23,
+    "comparisons": 108,
+    "rankingDifferences": 0,
+    "lexicalCorrect": 31,
+    "semanticCorrect": 36,
+    "hybridCorrect": 36,
+    "additionalProviderCalls": 0
+  },
+  "auditOutputPrecision": {
+    "observedExtraFloatDigits": 0,
+    "vectorRows": 459,
+    "coordinateMismatchesWithRoundedText": 554079,
+    "coordinateMismatchesWithRoundTrippableText": 0,
+    "change": "Read-only audit transaction uses SET LOCAL extra_float_digits=3; no vector content or runtime retrieval changed."
+  },
+  "preservation": {
+    "fixtureAndMigrationFilesUnchanged": 171,
+    "originalLiveArtifactSha256": "06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d"
+  },
+  "limits": [
+    "No fresh embedding-provider calls.",
+    "Client-to-session-pooler TLS verified; backend TLS observation false, no end-to-end TLS claim.",
+    "Database audit counts include retained synthetic test workspaces, not independent quality trials.",
+    "Public deployment, container boot and deployed browser verification remain pending."
+  ]
+}

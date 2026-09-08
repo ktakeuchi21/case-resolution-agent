@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "render-billing-preflight-v1",
+  "recordedAt": "2026-09-08T14:13:25.505172+00:00",
+  "source": "Authenticated Render workspace Billing page",
+  "workspacePlan": "Hobby",
+  "cardOnFile": false,
+  "pendingCharges": false,
+  "existingServices": 0,
+  "freeInstanceHoursUsed": 0,
+  "freeInstanceHoursIncluded": 750,
+  "pipelineMinutesUsed": 0,
+  "pipelineMinutesIncluded": 500,
+  "bandwidthUsedMb": 0,
+  "bandwidthIncludedGb": 5,
+  "resourceCreated": false,
+  "billingSettingsChanged": false
+}

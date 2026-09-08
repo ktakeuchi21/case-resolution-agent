@@ -9,6 +9,7 @@ COPY scripts/build.ts ./scripts/build.ts
 COPY scripts/db/cli.ts ./scripts/db/cli.ts
 COPY fixtures ./fixtures
 COPY migrations ./migrations
+COPY config ./config
 COPY web ./web
 RUN npm run build
 

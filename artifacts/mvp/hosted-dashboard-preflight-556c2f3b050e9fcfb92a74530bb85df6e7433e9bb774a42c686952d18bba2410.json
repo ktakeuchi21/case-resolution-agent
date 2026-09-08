@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "hosted-dashboard-preflight-v1",
+  "recordedAt": "2026-09-08T13:09:53.093020+00:00",
+  "source": "Authenticated Supabase dashboard SQL Editor and Render deployment form",
+  "supabase": {
+    "projectRef": "qabaroofmvrzyuwuxndy",
+    "postgresVersion": "17.6",
+    "migrationActor": "postgres",
+    "availableVectorVersions": [
+      "0.5.1",
+      "0.6.0",
+      "0.6.1",
+      "0.6.2",
+      "0.7.0",
+      "0.7.1",
+      "0.7.2",
+      "0.7.3",
+      "0.7.4",
+      "0.8.0",
+      "0.8.1",
+      "0.8.2"
+    ],
+    "installedVectorVersion": null,
+    "connectionMethodPrepared": "session pooler, port 5432",
+    "migrationsApplied": false,
+    "clientTlsConnectionVerified": false
+  },
+  "renderDraft": {
+    "repository": "ktakeuchi21/case-resolution-agent",
+    "branch": "main",
+    "region": "Oregon (US West)",
+    "plan": "Free",
+    "monthlyBasePriceUsd": 0,
+    "healthCheckPath": "/healthz",
+    "autoDeploy": "Off",
+    "nodeEnv": "production",
+    "deployed": false
+  },
+  "gates": [
+    "Existing database password must be entered privately by the owner.",
+    "Validate verified TLS connection.",
+    "Explicitly qualify pgvector 0.8.2 compatibility before migrations; existing 0.8.6 pin is unchanged.",
+    "Hosted migration, restricted runtime role and governance tests remain required."
+  ],
+  "secrets": {
+    "valuesRecorded": false,
+    "entryPathIgnoredByGit": true,
+    "entryFileMode": "0600",
+    "parentDirectoryMode": "0700"
+  }
+}

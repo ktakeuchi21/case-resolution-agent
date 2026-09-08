@@ -9,9 +9,10 @@ import { baseRequest } from '../../src/evaluation.ts';
 import { FIXED_TIME } from '../../src/registry.ts';
 import { artifact } from '../../scripts/db/parity.ts';
 import { db,fixture,unit } from './helpers.ts';
+import { databaseProfile } from '../../src/db/profile.ts';
 const owner=new pg.Pool(connection(true));after(async()=>{await db.close();await owner.end();});
 
-test('ordered migrations succeed on a new empty database and seed is deterministic',async()=>{
+test('ordered migrations succeed on a new empty database and seed is deterministic',{skip:databaseProfile().hosted?'Hosted empty-schema migration is verified by the explicit bootstrap; do not create extra cloud databases.':false},async()=>{
  const database='pathway_verify_'+randomUUID().replaceAll('-','');assert(/^[a-z0-9_]+$/.test(database));
  await owner.query(`CREATE DATABASE ${database}`);
  const adminConfig={...connection(true),database},appConfig={...connection(),database};

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "hosted-cosine-diagnosis-v1",
+  "recordedAt": "2026-09-08T14:01:26.371Z",
+  "evidenceId": "EV-5f55624d8f2278be7523aa3059361de244eb538f458956795c35211397d045ec",
+  "configurationChanged": false,
+  "rows": [
+    {
+      "passage": "K-EDU.v1.s1",
+      "dimensions": 1536,
+      "storedScore": 0.774126608794792,
+      "replays": {
+        "input64": 0.7741270915273804,
+        "storedFloat32_accum64": 0.7741270915273804,
+        "storedFloat32_accum32": 0.7741265916937967,
+        "storedFloat32_fma32": 0.7741265916937967
+      },
+      "deltas": {
+        "input64": 4.8273258834719e-7,
+        "storedFloat32_accum64": 4.8273258834719e-7,
+        "storedFloat32_accum32": 1.710099528651199e-8,
+        "storedFloat32_fma32": 1.710099528651199e-8
+      }
+    },
+    {
+      "passage": "N-101.v1.s1",
+      "dimensions": 1536,
+      "storedScore": 0.705512484744237,
+      "replays": {
+        "input64": 0.7055127042958004,
+        "storedFloat32_accum64": 0.7055127042958004,
+        "storedFloat32_accum32": 0.7055118716500719,
+        "storedFloat32_fma32": 0.7055118716500719
+      },
+      "deltas": {
+        "input64": 2.1955156337405413e-7,
+        "storedFloat32_accum64": 2.1955156337405413e-7,
+        "storedFloat32_accum32": 6.13094165102801e-7,
+        "storedFloat32_fma32": 6.13094165102801e-7
+      }
+    },
+    {
+      "passage": "K-PA.v2.s1",
+      "dimensions": 1536,
+      "storedScore": 0.685202149937759,
+      "replays": {
+        "input64": 0.6852022233310128,
+        "storedFloat32_accum64": 0.6852022233310128,
+        "storedFloat32_accum32": 0.6852006779274014,
+        "storedFloat32_fma32": 0.6852006779274014
+      },
+      "deltas": {
+        "input64": 7.339325380772976e-8,
+        "storedFloat32_accum64": 7.339325380772976e-8,
+        "storedFloat32_accum32": 0.000001472010357606024,
+        "storedFloat32_fma32": 0.000001472010357606024
+      }
+    },
+    {
+      "passage": "CE-101-01.v1.s1",
+      "dimensions": 1536,
+      "storedScore": 0.681374221904832,
+      "replays": {
+        "input64": 0.6813745663218562,
+        "storedFloat32_accum64": 0.6813745663218562,
+        "storedFloat32_accum32": 0.6813739704583582,
+        "storedFloat32_fma32": 0.6813739704583582
+      },
+      "deltas": {
+        "input64": 3.4441702423393394e-7,
+        "storedFloat32_accum64": 3.4441702423393394e-7,
+        "storedFloat32_accum32": 2.514464737535249e-7,
+        "storedFloat32_fma32": 2.514464737535249e-7
+      }
+    },
+    {
+      "passage": "K-APL.v1.s1",
+      "dimensions": 1536,
+      "storedScore": 0.321190631113487,
+      "replays": {
+        "input64": 0.3211907695327591,
+        "storedFloat32_accum64": 0.3211907695327591,
+        "storedFloat32_accum32": 0.32119049514285625,
+        "storedFloat32_fma32": 0.32119049514285625
+      },
+      "deltas": {
+        "input64": 1.384192720998989e-7,
+        "storedFloat32_accum64": 1.384192720998989e-7,
+        "storedFloat32_accum32": 1.3597063075465599e-7,
+        "storedFloat32_fma32": 1.3597063075465599e-7
+      }
+    }
+  ]
+}

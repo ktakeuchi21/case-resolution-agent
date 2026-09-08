@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import { mkdirSync,writeFileSync,readFileSync } from 'node:fs';
 import { randomUUID } from 'node:crypto';
 import { Database } from '../../src/db/database.ts';
+import { inspectDatabaseProfile } from '../../src/db/profile.ts';
+import { cosineReplay } from './cosine-replay.ts';
 import { GovernanceRepository,seed } from '../../src/db/governance.ts';
 import { PersistentRetrieval } from '../../src/db/retrieval.ts';
 import { cachedOnlyProvider } from '../../src/db/vector.ts';
@@ -32,8 +34,10 @@ function audit(record:EvidenceRecord){
 export async function runParity(){
  const db=new Database(),prefix='parity.'+randomUUID(),source=new FileEmbeddingCache('.local/embeddings');
  const original=await runEvaluations();assert(original.summary.allPassed);
- const referenceResults=[];const retrievalResults:{queryId:string;mode:string;pass:boolean;correctOutcome:boolean;rankParity:boolean;liveRankParity:boolean;maxCosineDelta:number;record:EvidenceRecord;run:RunRecord}[]=[];let maxCosineDelta=0;
+ const referenceResults=[];const retrievalResults:{queryId:string;mode:string;pass:boolean;correctOutcome:boolean;rankParity:boolean;liveRankParity:boolean;maxCosineDelta:number;float32ReplayDelta:number;record:EvidenceRecord;run:RunRecord}[]=[];let maxCosineDelta=0,maxFloat32ReplayDelta=0;
  try{
+  const databaseProfile=await inspectDatabaseProfile(db.pool);
+  const replayLanes=databaseProfile.profile==='supabase-pg17-vector082'?4:1;
   for(const t of referenceCases){
    const h=harness(t.corpus?t.corpus(loadCorpus()):loadCorpus());t.setup?.(h);
    const request=(t.sandbox?sandboxRequest:baseRequest)({id:t.id,...t.request});const actor=t.actor??(t.sandbox?'viewer':'avery');
@@ -74,23 +78,22 @@ export async function runParity(){
      if(a.ranking?.semantic&&b.ranking?.semantic){
       delta=Math.max(delta,Math.abs(a.ranking.semantic.score-b.ranking.semantic.score));
       const qv=(await source.get(b.embedding!.queryVectorKey))!.vector,dv=(await source.get(b.embedding!.documentVectorKey))!.vector;
-      let dot=0,nq=0,nd=0;
-      for(let j=0;j<qv.length;j++){const x=Math.fround(qv[j]!),y=Math.fround(dv[j]!);dot=Math.fround(dot+Math.fround(x*y));nq=Math.fround(nq+Math.fround(x*x));nd=Math.fround(nd+Math.fround(y*y));}
-      const expected=Math.max(-1,Math.min(1,dot/Math.sqrt(nq*nd)));
+      const expected=cosineReplay(qv,dv,replayLanes);
       float32ReplayDelta=Math.max(float32ReplayDelta,Math.abs(expected-b.ranking.semantic.score));
      }
     }
     // Storage arithmetic tolerance, never a retrieval threshold. Initial 1e-6 failed and is preserved.
     assert(delta<1e-5,`pgvector numerical delta ${delta} on ${q.id}/${mode} exceeds 1e-5`);
-    assert(float32ReplayDelta<1e-7,'PostgreSQL difference not explained by verified float32 accumulation');maxCosineDelta=Math.max(maxCosineDelta,delta);
+    assert(float32ReplayDelta<1e-7,`PostgreSQL fixed ${replayLanes}-lane replay delta ${float32ReplayDelta} on ${q.id}/${mode} exceeds 1e-7`);maxCosineDelta=Math.max(maxCosineDelta,delta);maxFloat32ReplayDelta=Math.max(maxFloat32ReplayDelta,float32ReplayDelta);
     retrievalResults.push({queryId:q.id,mode,pass:true,correctOutcome:sql.record.disposition===q.expectedDisposition&&sql.record.action.status===q.expectedAction,
-     rankParity:true,liveRankParity:true,maxCosineDelta:delta,record:sql.record,run:sql.run});
+     rankParity:true,liveRankParity:true,maxCosineDelta:delta,float32ReplayDelta,record:sql.record,run:sql.run});
    }
   }
   return {schemaVersion:'phase2c-parity-v1',recordedAt:new Date().toISOString(),scope:'Replays preserved live vectors; no provider calls. PostgreSQL float4 cosine compared with Phase 2B JS doubles; no ranking differences permitted.',
-   numericalAnalysis:{initialTolerance:1e-6,initialFailure:'Q01/semantic, delta 0.0000015454036114137537',acceptedStorageTolerance:1e-5,float32ReplayTolerance:1e-7,explanation:'pgvector v0.8.6 accumulates dot products and norms in float32; independently replayed each SQL score with Math.fround. No query, ranking, fusion, filter, expectation or similarity threshold changed.'},
+   databaseProfile,
+   numericalAnalysis:{initialTolerance:1e-6,initialFailure:'Historical local Q01/semantic, delta 0.0000015454036114137537',acceptedStorageTolerance:1e-5,float32ReplayTolerance:1e-7,replayLanes,reduction:'adjacent-tree',explanation:`pgvector v${databaseProfile.vector}: independently replayed every returned semantic score with a single fixed ${replayLanes}-lane float32 reduction for this profile. Hosted Q01 scalar mismatch and four-lane diagnosis are preserved. This validates observed arithmetic, not CPU identity. No query, ranking, fusion, filter, expectation, similarity threshold or numerical tolerance changed.`},
    frozenGoldHash:experiment.goldSha256,sourceLiveSha256:textHash(readFileSync('artifacts/phase2b-benchmark.json','utf8')),originalReferenceSummary:original.summary,
-   referenceResults,retrievalResults,summary:{referencePass:referenceResults.length,retrievalPass:retrievalResults.length,rankingDifferences:0,maxCosineDelta,
+   referenceResults,retrievalResults,summary:{referencePass:referenceResults.length,retrievalPass:retrievalResults.length,rankingDifferences:0,maxCosineDelta,maxFloat32ReplayDelta,
     outcomes:Object.fromEntries(['lexical','semantic','hybrid'].map(mode=>[mode,retrievalResults.filter(r=>r.mode===mode&&r.correctOutcome).length])),additionalProviderCalls:0,pass:true}};
  }catch(e){artifact('parity-incomplete',{schemaVersion:'phase2c-parity-incomplete-v1',referenceResults,retrievalResults,maximumCompletedCosineDelta:maxCosineDelta,error:e instanceof assert.AssertionError?e.message:'infrastructure_or_contract_failure'});throw e;}finally{await db.close();}
 }

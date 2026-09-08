@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "phase2c-empty-database-v1",
+  "database": "pathway_verify_7c6b0c9b34ad43ca9b09e3b16054b4ad",
+  "migrations": [
+    {
+      "name": "001_governance.sql",
+      "sha256": "42004aef2d00c519dfa20401cfc8250ae1e7525e2a321e148b43f12f851d9489",
+      "applied_at": "2026-09-08T13:47:07.273Z"
+    },
+    {
+      "name": "002_serialization.sql",
+      "sha256": "45cbe23f01345e5b3be27509b4355380a4dbcc72777778250c2b615dd17a594a",
+      "applied_at": "2026-09-08T13:47:07.285Z"
+    },
+    {
+      "name": "003_evidence_links_and_degraded_grants.sql",
+      "sha256": "d1b2bd0d701b544d0ae892cd1c65d401c4eabe0db4087836efbcc5c24818044d",
+      "applied_at": "2026-09-08T13:47:07.318Z"
+    },
+    {
+      "name": "004_correction_links.sql",
+      "sha256": "7dd3c1082a0df2087c6811ed72871feeede394d70b63f1ba45d9f6550358fc78",
+      "applied_at": "2026-09-08T13:47:07.330Z"
+    },
+    {
+      "name": "005_sc01_workflow.sql",
+      "sha256": "5a0f0e6610cad18e029a504b654a859ce4ef8bd6a6c1f6ffde31e80daa88e480",
+      "applied_at": "2026-09-08T13:47:07.356Z"
+    },
+    {
+      "name": "006_workflow_evidence_links.sql",
+      "sha256": "3619fe1987cce4ed825900bbd8fea13992fb49b00a9bc34d193f76ebc9162c1f",
+      "applied_at": "2026-09-08T13:47:07.368Z"
+    },
+    {
+      "name": "007_portfolio_sessions.sql",
+      "sha256": "c3abf259db3b713442e83b5aeb0a465fde174139e192cd7553e1a4679bca308b",
+      "applied_at": "2026-09-08T13:47:07.380Z"
+    },
+    {
+      "name": "008_application_evidence.sql",
+      "sha256": "2668f1b9036740b01fb3d1c862a39b5710484cea0a81ca61a728a2a8cffadec7",
+      "applied_at": "2026-09-08T13:47:07.395Z"
+    }
+  ],
+  "seed": {
+    "workspace": "empty-test",
+    "fixtureHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+    "fixtureVersion": "phase2c-synthetic-v1"
+  },
+  "repeatSeedIdentical": true,
+  "hybridRun": "d2ede572-8c6e-4048-bf2c-681fa7bd1e11",
+  "pass": true,
+  "note": "Disposable verification database retained; no automatic database or volume deletion."
+}

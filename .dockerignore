@@ -16,6 +16,8 @@
 !fixtures/**
 !migrations/
 !migrations/*.sql
+!config/
+!config/*.crt
 !web/
 !web/**
 **/.env
