@@ -1,0 +1,277 @@
+{
+  "schema": "pathway-conversation-acceptance-v1",
+  "timestamp": "2026-09-08T22:43:10.798359+00:00",
+  "publicUrl": "https://case-resolution-agent.onrender.com",
+  "runtimeCommit": "e1528b7",
+  "renderDeployment": "dep-dag8sq8u01pc73ffvk20",
+  "schemaMigration": "012_conversation_preferences.sql",
+  "automatedVerification": "artifacts/digital-worker/verification-8bb5628c04b09a12c50898d14ae8b0b8af1952c9a85d9c14c7f0f26ca4d3ef4a.json",
+  "automatedTests": 225,
+  "acceptance": [
+    {
+      "number": 1,
+      "criterion": "Homepage launches knowledge selection",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 2,
+      "criterion": "Sample opens chat immediately",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 3,
+      "criterion": "Active knowledge is visible",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json"
+      ]
+    },
+    {
+      "number": 4,
+      "criterion": "Ask without per-turn configuration",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 5,
+      "criterion": "No per-message attestation",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 6,
+      "criterion": "Enter sends",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 7,
+      "criterion": "Shift+Enter inserts a newline",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json"
+      ]
+    },
+    {
+      "number": 8,
+      "criterion": "Submission generates a response",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 9,
+      "criterion": "Contextual Why follow-up",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 10,
+      "criterion": "Follow-up uses preceding context",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 11,
+      "criterion": "Natural summary request",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 12,
+      "criterion": "Draft and refine conversationally",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 13,
+      "criterion": "Readable citations and next action",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 14,
+      "criterion": "Advanced provenance is inspectable",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json"
+      ]
+    },
+    {
+      "number": 15,
+      "criterion": "Upload leads directly to sandbox chat",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+      ]
+    },
+    {
+      "number": 16,
+      "criterion": "Sandbox selection creates no authority",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+      ]
+    },
+    {
+      "number": 17,
+      "criterion": "Workflow and retirement still work",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+      ]
+    },
+    {
+      "number": 18,
+      "criterion": "Desktop/tablet/mobile navigation",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json",
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    },
+    {
+      "number": 19,
+      "criterion": "Route errors clear on navigation",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+      ]
+    },
+    {
+      "number": 20,
+      "criterion": "Public post-deployment smoke",
+      "verified": true,
+      "evidence": [
+        "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+      ]
+    }
+  ],
+  "browserReports": [
+    {
+      "path": "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+      "passed": 34,
+      "failed": 0,
+      "error": null
+    },
+    {
+      "path": "artifacts/conversation/browser-96c7ecb8db5549fc555c324bcaa59125c887b9df90e236eb51460b92b3216257.json",
+      "passed": 4,
+      "failed": 1,
+      "error": "Error: live CRM note preserves unverified interaction and target boundary failed"
+    },
+    {
+      "path": "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+      "passed": 19,
+      "failed": 1,
+      "error": "Error: mobile composer stays visible after submission failed"
+    },
+    {
+      "path": "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json",
+      "passed": 19,
+      "failed": 0,
+      "error": null
+    },
+    {
+      "path": "artifacts/conversation/browser-efc58e51583c3613bedcbd94e91ad8590c1a4af8fc6429817da83033ff091c0a.json",
+      "passed": 4,
+      "failed": 1,
+      "error": "Error: final Why uses preceding context with fresh validation failed"
+    },
+    {
+      "path": "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json",
+      "passed": 17,
+      "failed": 0,
+      "error": null
+    }
+  ],
+  "providerQualification": {
+    "pathway-synthesis-v3": {
+      "attempts": 9,
+      "accepted": 8,
+      "paused": 1,
+      "providerRequests": 17,
+      "inputTokens": 18256,
+      "outputTokens": 3088
+    },
+    "pathway-synthesis-v4": {
+      "attempts": 7,
+      "accepted": 6,
+      "paused": 1,
+      "providerRequests": 13,
+      "inputTokens": 12547,
+      "outputTokens": 2205
+    },
+    "pathway-synthesis-v5": {
+      "attempts": 7,
+      "accepted": 7,
+      "paused": 0,
+      "providerRequests": 14,
+      "inputTokens": 14083,
+      "outputTokens": 2546
+    }
+  },
+  "latency": {
+    "launchToFirstAnswerMs": 11328,
+    "submissionToAnswerMs": 8191
+  },
+  "coldStart": {
+    "seconds": 12.306951,
+    "artifact": "artifacts/conversation/cold-start-99e364fcef816d110e9e0203596a212c95cf8b2ecec68d771575c46d260a46c1.json",
+    "scope": "One uncontrolled cold-instance wake to application HTML, supported by Render instance logs. Not a service-level guarantee."
+  },
+  "cost": {
+    "estimatedUsd": null,
+    "basis": "Measured generation and verification tokens; deployment pricing not configured. Excludes embedding usage and is not a billing record."
+  },
+  "resolvedFailures": [
+    "v3 CRM referenced internal fact IDs: removed IDs from model input and provided explicit next-step reference.",
+    "v4 Why cited another claim: v5 structured output limits references to current supplied fact/source IDs.",
+    "Mobile composer fell below viewport: nearest immediate scrolling now passes local three-width and public mobile checks.",
+    "A local regression probe retained old ES modules on fragment navigation: deployment checks now reload assets."
+  ],
+  "limits": [
+    "Developer-authored synthetic scenario; no independent model-quality benchmark.",
+    "Model entailment review is fallible; unsupported or failed responses pause without fallback.",
+    "All channel delivery is simulated; conversation never executes an effect or changes authority.",
+    "Free-instance idle wake and shared bounded provider/storage capacity remain."
+  ]
+}

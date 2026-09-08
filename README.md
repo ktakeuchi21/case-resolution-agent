@@ -52,3 +52,7 @@ Treat the foundation as product intent; Knowledge Studio as the knowledge lifecy
 When a decision changes, add a dated decision-log entry, update affected documents and acceptance criteria in the same change, and record supporting evidence. Preserve superseded decisions rather than silently rewriting history. Research sources inform product design; they do not become runtime action permissions. Synthetic knowledge is a separate corpus.
 
 The original headless phases remain frozen. Current digital-worker implementation, measured results and provider limitations are recorded in the [digital-worker architecture](docs/digital-worker.md) and [execution ledger](docs/digital-worker-execution.md). Live generation utility, independent retrieval holdouts, production retention/restore and enterprise integrations require separate evidence.
+
+## Conversation release acceptance
+
+The deployed fast path is **Launch → Use sample knowledge → ask Pathway**. The final public visitor reached a cited answer in **11.3 seconds** after wake. All 20 browser acceptance criteria and 225 automated tests passed; live v5 qualification accepted 7/7 generated responses. Earlier rejected citations remain retained. See [the acceptance, exact steps and limitations](docs/conversation-experience.md).

@@ -2,7 +2,7 @@
   "schema": "pathway-digital-worker-verification-v1",
   "timestamp": "2026-09-08T22:35:54.487Z",
   "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
-  "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
+  "summary": "All 225 automated tests and the reference/parity checks passed. The public conversation acceptance verifies all 20 requested browser criteria; live model results are reported separately below.",
   "suites": [
     {
       "name": "TypeScript contracts",
@@ -107,14 +107,14 @@
     "manifestHash": "e6eeb6c52439bdca58b59ef0ef30d2bc4402a40b9bd77dedb3f1c67503ad9c32"
   },
   "retrieval": {
-    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions \u00b7 preserved real synthetic vectors",
     "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
     "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
   },
   "generation": {
-    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-synthesis-v5; replaceable provider interface",
-    "summary": "Conversation intent, defaults, deterministic work products, structured provider-contract tests and fail-closed checks were exercised. No live synthesis quality score is claimed.",
-    "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
+    "model": "OpenAI gpt-4.1-mini-2025-04-14 \u00b7 pathway-synthesis-v5 \u00b7 request-specific citation schema",
+    "summary": "The final live scripted sequence accepted 7/7 synthesized responses: question, Why, supervisor summary, office email, warmer/shorter refinement, SMS and CRM note. Launch to the first cited answer took 11.33 seconds after the app was awake. Live sandbox answers and governance checks also passed. Two earlier citation failures were safely blocked and retained; the generation schema now restricts references. This small synthetic scenario is not an independent quality benchmark.",
+    "cost": "Across all retained conversation qualification attempts: 44 synthesis/verification requests, 44,886 input tokens and 7,839 output tokens. Embeddings are excluded. Estimated cost is unavailable because deployment pricing is not configured; these are not billing figures. One cold-instance wake to application HTML measured 12.307 seconds; Free-instance wake time varies."
   },
   "limitations": [
     "All cases, identities and integrations are synthetic. No real outreach, payer approval or clinical authority.",
@@ -123,5 +123,282 @@
     "TXT, Markdown, PDF and DOCX parsing is bounded: 1 MB, 20 PDF pages, 64,000 extracted characters and 128 passages. No OCR; PDF tables can have uncertain reading order.",
     "Content screening and user attestation do not guarantee patient-data detection. Temporary sandbox data expires with the session; approved published sources and governed evidence remain immutable.",
     "Enterprise identity, real channel integrations, independent healthcare validation, production load, backup restoration and patient outcomes are unverified."
-  ]
+  ],
+  "conversationAcceptance": {
+    "schema": "pathway-conversation-acceptance-v1",
+    "timestamp": "2026-09-08T22:43:10.798359+00:00",
+    "publicUrl": "https://case-resolution-agent.onrender.com",
+    "runtimeCommit": "e1528b7",
+    "renderDeployment": "dep-dag8sq8u01pc73ffvk20",
+    "schemaMigration": "012_conversation_preferences.sql",
+    "automatedVerification": "artifacts/digital-worker/verification-8bb5628c04b09a12c50898d14ae8b0b8af1952c9a85d9c14c7f0f26ca4d3ef4a.json",
+    "automatedTests": 225,
+    "acceptance": [
+      {
+        "number": 1,
+        "criterion": "Homepage launches knowledge selection",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 2,
+        "criterion": "Sample opens chat immediately",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 3,
+        "criterion": "Active knowledge is visible",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json"
+        ]
+      },
+      {
+        "number": 4,
+        "criterion": "Ask without per-turn configuration",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 5,
+        "criterion": "No per-message attestation",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 6,
+        "criterion": "Enter sends",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 7,
+        "criterion": "Shift+Enter inserts a newline",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json"
+        ]
+      },
+      {
+        "number": 8,
+        "criterion": "Submission generates a response",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 9,
+        "criterion": "Contextual Why follow-up",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 10,
+        "criterion": "Follow-up uses preceding context",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 11,
+        "criterion": "Natural summary request",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 12,
+        "criterion": "Draft and refine conversationally",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 13,
+        "criterion": "Readable citations and next action",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 14,
+        "criterion": "Advanced provenance is inspectable",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json"
+        ]
+      },
+      {
+        "number": 15,
+        "criterion": "Upload leads directly to sandbox chat",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+        ]
+      },
+      {
+        "number": 16,
+        "criterion": "Sandbox selection creates no authority",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+        ]
+      },
+      {
+        "number": 17,
+        "criterion": "Workflow and retirement still work",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+        ]
+      },
+      {
+        "number": 18,
+        "criterion": "Desktop/tablet/mobile navigation",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+          "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json",
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      },
+      {
+        "number": 19,
+        "criterion": "Route errors clear on navigation",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json"
+        ]
+      },
+      {
+        "number": 20,
+        "criterion": "Public post-deployment smoke",
+        "verified": true,
+        "evidence": [
+          "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json"
+        ]
+      }
+    ],
+    "browserReports": [
+      {
+        "path": "artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json",
+        "passed": 34,
+        "failed": 0,
+        "error": null
+      },
+      {
+        "path": "artifacts/conversation/browser-96c7ecb8db5549fc555c324bcaa59125c887b9df90e236eb51460b92b3216257.json",
+        "passed": 4,
+        "failed": 1,
+        "error": "Error: live CRM note preserves unverified interaction and target boundary failed"
+      },
+      {
+        "path": "artifacts/conversation/browser-6c48f2a34878cfd85683f2a2309d2cb5a6e1efb303fce84a855ea1c1ce73ac0a.json",
+        "passed": 19,
+        "failed": 1,
+        "error": "Error: mobile composer stays visible after submission failed"
+      },
+      {
+        "path": "artifacts/conversation/browser-85b7f935c51532aef93596e14a6afa9a607b0dfa0e384ba022114840be915e1b.json",
+        "passed": 19,
+        "failed": 0,
+        "error": null
+      },
+      {
+        "path": "artifacts/conversation/browser-efc58e51583c3613bedcbd94e91ad8590c1a4af8fc6429817da83033ff091c0a.json",
+        "passed": 4,
+        "failed": 1,
+        "error": "Error: final Why uses preceding context with fresh validation failed"
+      },
+      {
+        "path": "artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json",
+        "passed": 17,
+        "failed": 0,
+        "error": null
+      }
+    ],
+    "providerQualification": {
+      "pathway-synthesis-v3": {
+        "attempts": 9,
+        "accepted": 8,
+        "paused": 1,
+        "providerRequests": 17,
+        "inputTokens": 18256,
+        "outputTokens": 3088
+      },
+      "pathway-synthesis-v4": {
+        "attempts": 7,
+        "accepted": 6,
+        "paused": 1,
+        "providerRequests": 13,
+        "inputTokens": 12547,
+        "outputTokens": 2205
+      },
+      "pathway-synthesis-v5": {
+        "attempts": 7,
+        "accepted": 7,
+        "paused": 0,
+        "providerRequests": 14,
+        "inputTokens": 14083,
+        "outputTokens": 2546
+      }
+    },
+    "latency": {
+      "launchToFirstAnswerMs": 11328,
+      "submissionToAnswerMs": 8191
+    },
+    "coldStart": {
+      "seconds": 12.306951,
+      "artifact": "artifacts/conversation/cold-start-99e364fcef816d110e9e0203596a212c95cf8b2ecec68d771575c46d260a46c1.json",
+      "scope": "One uncontrolled cold-instance wake to application HTML, supported by Render instance logs. Not a service-level guarantee."
+    },
+    "cost": {
+      "estimatedUsd": null,
+      "basis": "Measured generation and verification tokens; deployment pricing not configured. Excludes embedding usage and is not a billing record."
+    },
+    "resolvedFailures": [
+      "v3 CRM referenced internal fact IDs: removed IDs from model input and provided explicit next-step reference.",
+      "v4 Why cited another claim: v5 structured output limits references to current supplied fact/source IDs.",
+      "Mobile composer fell below viewport: nearest immediate scrolling now passes local three-width and public mobile checks.",
+      "A local regression probe retained old ES modules on fragment navigation: deployment checks now reload assets."
+    ],
+    "limits": [
+      "Developer-authored synthetic scenario; no independent model-quality benchmark.",
+      "Model entailment review is fallible; unsupported or failed responses pause without fallback.",
+      "All channel delivery is simulated; conversation never executes an effect or changes authority.",
+      "Free-instance idle wake and shared bounded provider/storage capacity remain."
+    ]
+  }
 }

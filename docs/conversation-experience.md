@@ -24,10 +24,56 @@ Normal `POST /api/conversation` accepts a bounded text message and idempotency k
 
 Fresh registry reads combine immutable table reads into a single statement after the existing generation lookup. Every schema/hash check, user revision, governance event and transaction lock remains. No current-authority cache is introduced. Readiness checks use one table-check round trip; migrations and seeding remain outside application boot. Provider initialization stays deferred until a request.
 
-## Verification status
+## Fast demonstration
 
-The complete local verification passed 223 tests plus reference evaluation, retirement/probe demonstrations and cached PostgreSQL parity. All prior frozen artifacts were unchanged. The production build contained 240 files and 160 validated embedding records. The first production-build browser report passed 31 assertions, including launch, no-attestation sample chat, keyboard behavior, contextual requests, retry, duplicate prevention and desktop/tablet/mobile layout. Its local deterministic first answer took 217ms; launch to answer took 743ms. These are local interaction measurements, not live model quality.
+1. Open [the deployed application](https://case-resolution-agent.onrender.com) and choose **Launch guided demo**.
+2. Choose **Use sample knowledge**. The synthetic Alder case and knowledge open directly in chat.
+3. Ask **What should happen next?**, then **Why?**. Expand a readable citation or the advanced evidence section.
+4. Ask for a supervisor summary or office email, then **Make that warmer and shorter** or **Turn it into an SMS**. The separate case controls and Full technical walkthrough remain available for human decisions and governance.
 
-A public baseline probe on September 8 at 21:50 UTC received application HTML after 12.307 seconds. Render application logs showed a new instance beginning to listen during that request (15:50:20 MDT), supporting a cold-instance wake interpretation. This is one sample; platform scheduling and other visitors were not controlled. The reported roughly 50-second cold start remains plausible on Free instances. No plan was upgraded.
+A new external file uses one upload confirmation and a direct sandbox-chat handoff. Ordinary conversation requires no repeated attestation or per-turn configuration. An empty “Record this as a Teams call note” request asks for the synthetic text; the reply retains the requested channel without implying that a real call occurred.
 
-Fourteen additional production-build browser assertions passed for upload-to-sandbox chat, settings roles/persistence, operational human pause/resume, separate acknowledgement, PA_PENDING, retirement, unchanged historical citations and route-error cleanup. Live-provider qualification and post-deployment acceptance of this increment remain pending. Historical provider-v2 qualification accepted cited questions but rejected draft/CRM attempts; those results are retained and are not replaced by deterministic tests. Prompt v3 keeps unverified interaction text outside provider facts for work products, narrows unsupported urgency and retains failed verifier output. Only new live measurements can qualify that change.
+## Verified result
+
+The final runtime is commit `e1528b7`, deployed on the existing Free Render service as `dep-dag8sq8u01pc73ffvk20`. Migration 012 is applied to the hosted database. Later acceptance-report commits change documentation and published measurement data only.
+
+The [complete verification](../artifacts/digital-worker/verification-8bb5628c04b09a12c50898d14ae8b0b8af1952c9a85d9c14c7f0f26ca4d3ef4a.json) passed **225 tests**, plus reference evaluation, retirement/probe demonstrations and cached PostgreSQL parity. Frozen artifacts remained unchanged. The production build contains 240 files and 160 validated embedding records; the production dependency audit found zero vulnerabilities.
+
+The [final public browser sequence](../artifacts/conversation/browser-1af8635bfea354e0ffd04f6bb73829e96183b09d3a0100cb1416eb781b1172ca.json) passed **17 assertions** and accepted **7/7 live v5 synthesized responses**: first question, contextual Why, supervisor summary, office email, warmer/shorter refinement, SMS and CRM note. The synthetic Teams interaction stayed unverified conversation memory. Fresh-visitor Launch to first cited answer took **11.328 seconds**; submission to answer took **8.191 seconds**. This is a scripted sample after the app was awake, not a service-level guarantee or independent quality benchmark.
+
+A separate public continuation passed **19 assertions** for mobile composer visibility, live sandbox citations, unchanged workflow/assignment, settings roles, human pause/resume, separate acknowledgement, completion, retirement and preserved exact historical citations. Earlier browser checks cover Enter/Shift+Enter, loading, duplicate prevention, deliberate failure/retry, persistent notice acknowledgement, copy/edit/save/review, pack/source handoffs and technical provenance. Desktop, tablet and mobile screenshots were inspected at 1440, 768 and 375 pixels. The composer visibility correction additionally passed a focused three-width production-build regression.
+
+Two earlier live attempts were safely blocked for invalid citation references: a v3 CRM note and a v4 Why answer. Both are retained. V4 removed internal fact IDs from model input and gave the next-step recommendation an explicit reference. V5 constrains generated reference IDs to a request-specific enum, then retains exact-quote, current-eligibility and fallible support-review checks. No invalid citation is repaired or accepted after generation. Across all retained conversation qualification attempts, 44 synthesis/verification requests used 44,886 input tokens and 7,839 output tokens. These exclude embeddings; estimated cost is unavailable because deployment pricing is not configured.
+
+All twenty acceptance criteria are mapped to direct evidence in the [retained acceptance record](../artifacts/conversation/acceptance-6c72726dfcea667c68f6337e4a6f063a1ea725b2455e76376fb59aad45eb27b6.json). Earlier failed assertions are preserved and linked to the completed corrections.
+
+| # | Browser acceptance | Result |
+| --- | --- | --- |
+| 1 | Homepage launches knowledge selection | Verified |
+| 2 | Sample opens chat immediately | Verified |
+| 3 | Active knowledge is visible | Verified |
+| 4 | Ask without per-turn configuration | Verified |
+| 5 | No per-message attestation | Verified |
+| 6 | Enter sends | Verified |
+| 7 | Shift+Enter inserts a newline | Verified |
+| 8 | Submission generates a response | Verified |
+| 9 | Contextual Why follow-up | Verified |
+| 10 | Follow-up uses preceding context | Verified |
+| 11 | Natural summary request | Verified |
+| 12 | Draft and refine conversationally | Verified |
+| 13 | Readable citations and next action | Verified |
+| 14 | Advanced provenance is inspectable | Verified |
+| 15 | Upload leads directly to sandbox chat | Verified |
+| 16 | Sandbox selection creates no authority | Verified |
+| 17 | Workflow and retirement still work | Verified |
+| 18 | Desktop/tablet/mobile navigation | Verified |
+| 19 | Route errors clear on navigation | Verified |
+| 20 | Public post-deployment smoke | Verified |
+
+## Startup and remaining limits
+
+The retained September 8 21:50 UTC probe received application HTML in **12.307 seconds**. Render logs show a new instance starting during that request. It is one uncontrolled cold-instance sample; it does not establish a before/after speedup. Migrations, seed work and provider requests do not block listening. Scoped registry reads were reduced from fourteen database round trips to two without caching current authority; readiness schema checks share one statement.
+
+No additional credential configuration is required. The live provider is configured and verified. No paid plan was purchased. Optional infrastructure choice: change this service’s **Compute** plan to the smallest paid instance to remove Free-instance idle wake, at an ongoing monthly compute charge. This does not eliminate model latency. Render Free idles after 15 minutes and can take about a minute to wake; see [Render’s Free documentation](https://render.com/docs/free) and [current pricing](https://render.com/pricing).
+
+All cases and integrations are synthetic. Intent inference and sentiment cues are bounded. Generated products remain unverified and unsent; preparing review creates no operational task. Model support review remains fallible, and failed or unavailable evidence/providers pause without fallback. Uploads expire with their four-hour session; immutable governed evidence remains historical. Shared provider quotas and the lifetime 64-workspace capacity remain bounded. No independent clinical validation, real outreach, enterprise identity, production-load qualification or healthcare-production claim is made.
