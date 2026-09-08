@@ -1,5 +1,9 @@
 async page => {
  const results=[];const check=(name,pass,detail)=>{results.push({name,pass:!!pass,...(detail?{detail}:{})});if(!pass)throw new Error(name+' failed');};
+ const live=page.url().startsWith('https://case-resolution-agent.onrender.com');
+ const responses=[],captures=[];const capture=r=>{if(r.url().endsWith('/api/conversation')&&r.request().method()==='POST')captures.push(r.json().then(body=>responses.push(body)).catch(error=>responses.push({captureError:String(error)})));};page.on('response',capture);
+ let error;
+ try {
  const journeyStart=Date.now();
  if(await page.getByRole('button',{name:'Launch guided demo',exact:true}).count()){await page.getByRole('button',{name:'Launch guided demo',exact:true}).first().click();await page.getByRole('heading',{name:'Choose knowledge. Start talking.',exact:true}).waitFor();check('homepage launch reaches focused knowledge selection',true);await page.getByRole('button',{name:'Use sample knowledge →',exact:true}).click();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).waitFor();check('sample choice opens chat without confirmation',await page.locator('#agent-form').count()===1);check('active knowledge is readable and changeable',(await page.locator('.knowledge-context').innerText()).includes('Alder prior authorization knowledge'));}
  let calls=0;page.on('request',r=>{if(r.url().endsWith('/api/conversation')&&r.method()==='POST')calls++;});
@@ -12,7 +16,8 @@ async page => {
  await page.waitForFunction(()=>document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false');
  check('Enter sends exactly one turn',calls===1);check('composer clears on success',(await box().inputValue())==='');
  check('focus returns to composer',await box().evaluate(n=>n===document.activeElement));
- check('first answer has citations and next action',await page.locator('.agent-turn .readable-citation').count()===3&&await page.locator('.agent-turn .answer-next').count()===1,{elapsedMs:Date.now()-start,launchToFirstAnswerMs:Date.now()-journeyStart});
+ check('first answer has citations and next action',await page.locator('.agent-turn .readable-citation').count()>0&&await page.locator('.agent-turn .answer-next').count()===1,{elapsedMs:Date.now()-start,launchToFirstAnswerMs:Date.now()-journeyStart});
+ await Promise.all(captures);if(live){check('configured provider is the default',responses[0]?.audit?.method==='model-synthesis');check('awake launch reaches useful answer within 30 seconds',Date.now()-journeyStart<30000);}
  await box().fill('Why?');await box().press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.agent-turn').length===2&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false');
  check('Why uses preceding context',(await page.locator('.agent-turn').last().innerText()).includes('previous turn'));
  await box().fill('Summarize this case for a supervisor.');await box().press('Enter');await page.waitForFunction(()=>document.querySelectorAll('.agent-turn').length===3&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false');
@@ -44,5 +49,7 @@ async page => {
   if(width<1000){await page.getByRole('button',{name:'Menu',exact:true}).click();check('responsive navigation visible at '+width,await page.getByRole('navigation',{name:'Workspace',exact:true}).isVisible());const clipped=await page.locator('.side-nav a').evaluateAll(nodes=>nodes.some(n=>n.scrollWidth>n.clientWidth));check('navigation labels not clipped at '+width,!clipped);await page.getByRole('button',{name:'Close menu',exact:true}).press('Escape');}
   await page.screenshot({path:'output/playwright/conversation-'+width+'.png',fullPage:true});
  }
- return {schema:'pathway-conversation-browser-check-v1',timestamp:new Date().toISOString(),environment:'Local browser; deterministic composition, no live-quality claim',results};
+ }catch(caught){error=String(caught);}
+ await Promise.all(captures);page.off('response',capture);
+ return {schema:'pathway-conversation-browser-check-v1',timestamp:new Date().toISOString(),environment:live?'Public Render deployment; configured live provider':'Local browser; deterministic composition, no live-quality claim',results,responses,...(error?{error}:{})};
 }

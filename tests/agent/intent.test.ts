@@ -19,3 +19,9 @@ test('channel conversion uses the prior draft and an explicit SMS choice',()=>{c
 test('missing refinement target asks for clarification instead of fabricating a previous draft',()=>{assert.equal(interpret('Make that warmer.').interpretation.intent,'clarification');});
 test('natural clarification resolves only an open conversational question',()=>{const prior={id:'clarify.previous',operation:'ask',clarification:{status:'open',options:[{value:'workflow_status',label:'Current workflow status'},{value:'document_requirement',label:'Documentation requirement'}]}} as AgentResponse;const r=interpret('The workflow status.',[prior]);assert.equal(r.request.operation,'clarify');assert.equal(r.request.choice,'workflow_status');assert.equal(r.request.targetId,prior.id);});
 test('settings reject unsupported channels, models and unavailable defaults',()=>{assert.throws(()=>AgentSettings.parse({channels:['sms']}));assert.throws(()=>AgentSettings.parse({model:'arbitrary-model'}));assert.throws(()=>AgentSettings.parse({channels:['fax']}));});
+test('a call-note request without transcript asks for text and carries its channel into the reply',()=>{
+ const first=interpret('Record this as a Teams call note.');assert.equal(first.interpretation.intent,'clarification');
+ const pending={id:'missing.transcript',query:first.request.text,operation:'ask',reasonCodes:['INTERACTION_TEXT_REQUIRED']} as AgentResponse;
+ const reply=interpret('Still waiting. Please provide an update today.',[pending]);assert.equal(reply.request.operation,'interaction');assert.equal(reply.request.channel,'teams');assert.equal(reply.interpretation.follows,pending.id);
+ assert.equal(interpret('Summarize the case for a supervisor.',[pending]).request.operation,'summary');
+});

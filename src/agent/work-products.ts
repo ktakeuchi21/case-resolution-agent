@@ -14,14 +14,14 @@ export function workProductBody(r: AgentRequest, response: AgentResponse, title:
  if(r.channel==='sms')return 'Synthetic draft: An administrative update is available in the case workspace. Please review it there. No patient or document details are included.';
  const next=`Next: ${c.nextAction}. Owner: ${c.owner}.`;
  const permission=`Evidence: ${c.permission.sourceSupport}; applicability: ${c.permission.applicability}; communication: ${c.permission.communication}; action: ${c.permission.action}.`;
- const summary=[title,c.whatHappened,source,`Open: ${c.unresolved.join(' ')}`,`Latest communication (unverified): ${latest}`,next,`Checkpoint: ${checkpoint}.`,permission,`Completion boundary: ${BOUNDARY}`];
+ const summary=[title,c.whatHappened,source,`Open: ${c.unresolved.join(' ')}`,`Latest communication (unverified): ${latest}`,next,`Checkpoint: ${checkpoint}.`,permission,`Target completion boundary: ${BOUNDARY}`];
  if(r.operation==='summary')return summary.filter(Boolean).join('\n\n');
  const heading=r.channel==='email'?'Subject: Synthetic documentation follow-up':r.channel==='voice'?'Synthetic voice-call notes':r.channel==='teams'?'Synthetic Teams-call follow-up':'Synthetic chat draft';
  const greeting=r.tone==='warm'?'Thank you for helping with this administrative follow-up.':r.tone==='formal'?'Please review this synthetic administrative follow-up.':'';
  const request=r.audience==='office'?'Please review the requested documentation in the case workspace and provide an administrative update.':'Please review the current documentation dependency and the next administrative step.';
  const parts=[heading,greeting,source,request,next];
  if(!short)parts.push(`Checkpoint: ${checkpoint}.`,permission,`Unresolved: ${c.unresolved.join(' ')}`);
- parts.push(BOUNDARY);
+ parts.push(`Target completion boundary: ${BOUNDARY}`);
  if(r.channel==='voice')parts.push('Prepared call notes only. No call occurred.');
  return parts.filter(Boolean).join('\n\n');
 }

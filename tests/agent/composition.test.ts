@@ -31,6 +31,11 @@ test('ambiguous pronouns ask a focused question and explain the authority distin
  const r = await compose({ text: 'Can you do it?' }); assert.equal(r.disposition, 'clarify'); assert.match(r.clarification!.why, /durable case record/); assert.equal(r.clarification!.options.length, 2);
  assert.equal(clarificationFor('Which signed office note is missing?'), null);
 });
+test('missing interaction text is clarified and a draft labels completion as a target',async()=>{
+ const r=await composeAgent({request:request({text:'Record this as a Teams call note.'}),id:'missing.transcript',conversationId:'conv.unit',timestamp,snapshot,evidence,history:[],interpretation:{intent:'clarification',follows:null,note:'',retrievalQuestion:null}});
+ assert.equal(r.disposition,'clarify');assert(r.reasonCodes.includes('INTERACTION_TEXT_REQUIRED'));assert.equal(r.analysis,null);assert.equal(r.audit.requests,0);
+ const draft=await compose({operation:'draft',channel:'email'});assert(draft.workProduct!.body.includes('Target completion boundary: '+BOUNDARY));assert.equal(draft.context.state,'RECEIVED');
+});
 test('clarification resolution preserves question and decision, without mutating the case', async () => {
  const original = await compose({ text: 'Is it ready?' });
  const resolved = await composeAgent({ request: request({ operation: 'clarify', text: undefined, targetId: original.id, choice: 'workflow_status' }), id: 'agent.resolution', conversationId: 'conv.unit', timestamp, snapshot, evidence, history: [original], clarificationSource: original });

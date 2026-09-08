@@ -1,0 +1,2250 @@
+{
+  "schema": "pathway-conversation-browser-check-v1",
+  "timestamp": "2026-09-08T22:11:06.382Z",
+  "environment": "Public Render deployment; configured live provider",
+  "results": [
+    {
+      "name": "homepage launch reaches focused knowledge selection",
+      "pass": true
+    },
+    {
+      "name": "sample choice opens chat without confirmation",
+      "pass": true
+    },
+    {
+      "name": "active knowledge is readable and changeable",
+      "pass": true
+    },
+    {
+      "name": "single composer with no per-message attestation",
+      "pass": true
+    },
+    {
+      "name": "Shift+Enter inserts newline",
+      "pass": true
+    },
+    {
+      "name": "Shift+Enter does not send",
+      "pass": true
+    },
+    {
+      "name": "Enter sends exactly one turn",
+      "pass": true
+    },
+    {
+      "name": "composer clears on success",
+      "pass": true
+    },
+    {
+      "name": "focus returns to composer",
+      "pass": true
+    },
+    {
+      "name": "first answer has citations and next action",
+      "pass": true,
+      "detail": {
+        "elapsedMs": 9354,
+        "launchToFirstAnswerMs": 13237
+      }
+    },
+    {
+      "name": "configured provider is the default",
+      "pass": true
+    },
+    {
+      "name": "awake launch reaches useful answer within 30 seconds",
+      "pass": true
+    },
+    {
+      "name": "Why uses preceding context",
+      "pass": true
+    },
+    {
+      "name": "natural summary produces a work product",
+      "pass": true
+    },
+    {
+      "name": "natural email draft is unsent",
+      "pass": true
+    },
+    {
+      "name": "shorter refinement reduces the work-product text",
+      "pass": true
+    },
+    {
+      "name": "warm refinement uses existing draft",
+      "pass": true
+    },
+    {
+      "name": "SMS conversion stays generic",
+      "pass": true
+    },
+    {
+      "name": "meaningful loading feedback",
+      "pass": true
+    },
+    {
+      "name": "pending composer prevents duplicate submit",
+      "pass": true
+    },
+    {
+      "name": "failure retains unsent draft",
+      "pass": true
+    },
+    {
+      "name": "duplicate pending request prevented",
+      "pass": true
+    },
+    {
+      "name": "inline retry succeeds",
+      "pass": true
+    },
+    {
+      "name": "session acknowledgement survives reload",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 1440",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 768",
+      "pass": true
+    },
+    {
+      "name": "responsive navigation visible at 768",
+      "pass": true
+    },
+    {
+      "name": "navigation labels not clipped at 768",
+      "pass": true
+    },
+    {
+      "name": "no horizontal page overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "composer does not cover transcript at 375",
+      "pass": true
+    },
+    {
+      "name": "responsive navigation visible at 375",
+      "pass": true
+    },
+    {
+      "name": "navigation labels not clipped at 375",
+      "pass": true
+    }
+  ],
+  "responses": [
+    {
+      "id": "agent.d40e77dc1cd367a14e92bce7950372033ae4f6aa334f01db",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "ask",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "What should happen next?",
+      "queryHash": "8a1d89100a146bbfb22706d187de70e7b931adcb4c12b41d05e1cbd8400ae0f5",
+      "workflowRevision": 1,
+      "disposition": "answer",
+      "message": "The next step is to assess the documentation dependency for the synthetic case.",
+      "claims": [
+        {
+          "id": "claim1",
+          "kind": "recommendation",
+          "text": "The next step is to assess the documentation dependency for the synthetic case.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            }
+          ]
+        },
+        {
+          "id": "claim2",
+          "kind": "fact",
+          "text": "The required signed office note identified in the missing-document request has not yet been supplied or received.",
+          "supports": [
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+            }
+          ]
+        },
+        {
+          "id": "claim3",
+          "kind": "fact",
+          "text": "Receipt of the signed office note is necessary to resolve the documentation dependency but does not constitute a coverage decision.",
+          "supports": [
+            {
+              "reference": "K-PA.v2.s1",
+              "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-d2848135e1900013728ec7301895aaa7dbebbab328594aa03e561aa7e54434fe",
+      "evidenceHash": "d2848135e1900013728ec7301895aaa7dbebbab328594aa03e561aa7e54434fe",
+      "reasonCodes": [],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": null,
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "next_action",
+        "follows": null,
+        "note": "",
+        "retrievalQuestion": "case_status"
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "d2bdfca869311cf6aaeab1ddf18bb71056843b77d6dcf3fdae2cd9dc465fd9aa",
+        "contextHash": "be4f1a08018add8ec7cbe1894b402e730b53eb480e27281bf494f36b72a3691d",
+        "latencyMs": 7271.604524999973,
+        "inputTokens": 1777,
+        "outputTokens": 362,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "claim1",
+                "kind": "recommendation",
+                "text": "The next step is to assess the documentation dependency for the synthetic case.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              },
+              {
+                "id": "claim2",
+                "kind": "fact",
+                "text": "The required signed office note identified in the missing-document request has not yet been supplied or received.",
+                "supports": [
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+                  }
+                ]
+              },
+              {
+                "id": "claim3",
+                "kind": "fact",
+                "text": "Receipt of the signed office note is necessary to resolve the documentation dependency but does not constitute a coverage decision.",
+                "supports": [
+                  {
+                    "reference": "K-PA.v2.s1",
+                    "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "claim1",
+                "supported": true,
+                "reason": "The synthetic case has been received and its documentation dependency remains unassessed (workflow:SC-01:revision:1:0), indicating that assessing the documentation dependency is the next required step."
+              },
+              {
+                "id": "claim2",
+                "supported": true,
+                "reason": "The submitted package lacks the signed office note required by the missing-document request N-101, and no receipt acknowledgment is recorded (CE-101-01.v1.s1)."
+              },
+              {
+                "id": "claim3",
+                "supported": true,
+                "reason": "The authoritative source states that supplying and receiving the signed office note resolves documentation dependency but does not constitute a coverage decision (K-PA.v2.s1)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.3df5c28c72ed3cf6149ed6f99a9261858d12bfa8c8f2b441",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "ask",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "Why?",
+      "queryHash": "499f097cf704535e383997289bfd4269ae0a156e9ae43e7dd32cc95a113d5457",
+      "workflowRevision": 1,
+      "disposition": "answer",
+      "message": "The submitted package does not contain the signed office note requested in the missing-document request DEMO-PA-101.",
+      "claims": [
+        {
+          "id": "claim1",
+          "kind": "fact",
+          "text": "The submitted package does not contain the signed office note requested in the missing-document request DEMO-PA-101.",
+          "supports": [
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101."
+            }
+          ]
+        },
+        {
+          "id": "claim2",
+          "kind": "fact",
+          "text": "Receipt of the signed office note is required but is not a coverage decision; no payer deadline is stated for this request.",
+          "supports": [
+            {
+              "reference": "K-PA.v2.s1",
+              "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision."
+            },
+            {
+              "reference": "N-101.v1.s1",
+              "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated."
+            }
+          ]
+        },
+        {
+          "id": "claim3",
+          "kind": "inference",
+          "text": "The documentation dependency has not yet been assessed because the required signed office note has not yet been received or acknowledged.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            },
+            {
+              "reference": "workflow:SC-01:revision:1:1",
+              "quote": "Recorded effects: 0 delivered or acknowledged."
+            },
+            {
+              "reference": "workflow:SC-01:revision:1:2",
+              "quote": "Recorded human decisions: 0."
+            },
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "No later receiving acknowledgment is recorded."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-7caee270c9bcec170acdd6dbb7bfd53834b94214c56efb32095ee74dffe66e36",
+      "evidenceHash": "7caee270c9bcec170acdd6dbb7bfd53834b94214c56efb32095ee74dffe66e36",
+      "reasonCodes": [],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": null,
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "evidence",
+        "follows": "agent.d40e77dc1cd367a14e92bce7950372033ae4f6aa334f01db",
+        "note": "Using the previous turn as conversational context; current evidence and permissions are checked again.",
+        "retrievalQuestion": "What should happen next?"
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "4e4ed4ed20729c69c939572206550f7cb610259b9a77467e8ad9441083d02f9a",
+        "contextHash": "d8bfbacd25ad7e9187212931ebf83ba297070eabbb8e518e79253b582f2c18af",
+        "latencyMs": 5392.017264999973,
+        "inputTokens": 1959,
+        "outputTokens": 470,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "claim1",
+                "kind": "fact",
+                "text": "The submitted package does not contain the signed office note requested in the missing-document request DEMO-PA-101.",
+                "supports": [
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101."
+                  }
+                ]
+              },
+              {
+                "id": "claim2",
+                "kind": "fact",
+                "text": "Receipt of the signed office note is required but is not a coverage decision; no payer deadline is stated for this request.",
+                "supports": [
+                  {
+                    "reference": "K-PA.v2.s1",
+                    "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision."
+                  },
+                  {
+                    "reference": "N-101.v1.s1",
+                    "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated."
+                  }
+                ]
+              },
+              {
+                "id": "claim3",
+                "kind": "inference",
+                "text": "The documentation dependency has not yet been assessed because the required signed office note has not yet been received or acknowledged.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  },
+                  {
+                    "reference": "workflow:SC-01:revision:1:1",
+                    "quote": "Recorded effects: 0 delivered or acknowledged."
+                  },
+                  {
+                    "reference": "workflow:SC-01:revision:1:2",
+                    "quote": "Recorded human decisions: 0."
+                  },
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "No later receiving acknowledgment is recorded."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "claim1",
+                "supported": true,
+                "reason": "CE-101-01.v1.s1 explicitly states the package does not contain the signed office note requested in N-101."
+              },
+              {
+                "id": "claim2",
+                "supported": true,
+                "reason": "K-PA.v2.s1 and N-101.v1.s1 together state receipt of the signed office note is required, is not a coverage decision, and no deadline is set."
+              },
+              {
+                "id": "claim3",
+                "supported": true,
+                "reason": "Workflow facts and CE-101-01.v1.s1 confirm no document receipt or acknowledgment, explaining why documentation dependency has not yet been assessed."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.31a8a9798d92e37340a036903692df56d79367d8a81e83e2",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "summary",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "Summarize this case for a supervisor.",
+      "queryHash": "35d0f77bbe78882e429af6ce3da6e8a83ae07f0e5facfa70efdd7e5556b649ba",
+      "workflowRevision": 1,
+      "disposition": "draft",
+      "message": "Supervisor briefing \u00b7 current dependency and ownership is ready for review.",
+      "claims": [
+        {
+          "id": "claim1",
+          "kind": "fact",
+          "text": "The synthetic case has been received but its documentation dependency has not yet been assessed.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            }
+          ]
+        },
+        {
+          "id": "claim2",
+          "kind": "fact",
+          "text": "The submitted package does not contain the signed office note required in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded.",
+          "supports": [
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+            }
+          ]
+        },
+        {
+          "id": "claim3",
+          "kind": "recommendation",
+          "text": "The next step is to assess the documentation dependency to proceed with the case processing.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "Its documentation dependency has not yet been assessed."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-ada5bbdfe38ede9fcca2477e355c9a69b0d86b40b96150a51d6b83090d72510c",
+      "evidenceHash": "ada5bbdfe38ede9fcca2477e355c9a69b0d86b40b96150a51d6b83090d72510c",
+      "reasonCodes": [
+        "DRAFT_NOT_SENT",
+        "EXECUTION_REQUIRES_SEPARATE_AUTHORIZATION"
+      ],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": {
+        "type": "summary",
+        "audience": "supervisor",
+        "channel": "email",
+        "tone": "concise",
+        "purpose": "Summarize this case for a supervisor.",
+        "body": "Supervisor briefing \u00b7 current dependency and ownership\n\nThe synthetic case has been received. Its documentation dependency has not yet been assessed.\n\nThe synthetic case has been received but its documentation dependency has not yet been assessed. [case record]\nThe submitted package does not contain the signed office note required in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded. [3]\nrecommendation: The next step is to assess the documentation dependency to proceed with the case processing. [case record]\n\nOpen: The documentation dependency has not reached its completion boundary. Prior authorization is pending; only the external payer can decide it.\n\nLatest communication (unverified): No synthetic channel interaction recorded in this conversation.\n\nNext: Assess the documentation dependency. Owner: Pathway Agent.\n\nCheckpoint: No pending checkpoint recorded.\n\nEvidence: supported; applicability: applicable; communication: allowed; action: allowed.\n\nCompletion boundary: Documentation dependency resolved; prior authorization pending.",
+        "requiredContent": [
+          "Synthetic identity",
+          "Administrative purpose",
+          "Current owner and next step",
+          "Review before use"
+        ],
+        "omittedContent": [
+          "Patient identifiers",
+          "Clinical recommendations",
+          "Coverage or payer approval claims",
+          "Unapproved document details in SMS",
+          "Any claim of actual sending"
+        ],
+        "status": "generated_not_sent",
+        "basedOn": null,
+        "reviewRequired": true
+      },
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "summary",
+        "follows": null,
+        "note": "Prepared for supervisor \u00b7 concise tone. You can correct these choices in your next message.",
+        "retrievalQuestion": null
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "3197405a88d3bdd1ce5396b74a8efbeade6f2f87f1f9b12392615b08ab356c3e",
+        "contextHash": "c1971d5cd1de73086991a87c3593ba47d121803884d85abdc10fc43ea48ffaa5",
+        "latencyMs": 4921.498223000031,
+        "inputTokens": 1927,
+        "outputTokens": 327,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "claim1",
+                "kind": "fact",
+                "text": "The synthetic case has been received but its documentation dependency has not yet been assessed.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              },
+              {
+                "id": "claim2",
+                "kind": "fact",
+                "text": "The submitted package does not contain the signed office note required in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded.",
+                "supports": [
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+                  }
+                ]
+              },
+              {
+                "id": "claim3",
+                "kind": "recommendation",
+                "text": "The next step is to assess the documentation dependency to proceed with the case processing.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "claim1",
+                "supported": true,
+                "reason": "The fact states the synthetic case has been received and its documentation dependency has not been assessed, matching the claim exactly."
+              },
+              {
+                "id": "claim2",
+                "supported": true,
+                "reason": "Source CE-101-01.v1.s1 confirms the submitted package lacks the signed office note and no acknowledgment has been recorded, supporting the claim."
+              },
+              {
+                "id": "claim3",
+                "supported": true,
+                "reason": "The workflow fact states documentation dependency has not been assessed, supporting the recommendation to assess it next."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.f366e28ff9dd637cc978c349046a83b3d6ab5b19ee485157",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "draft",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "Draft an office email.",
+      "queryHash": "2c01b75822f4a5d6b9dc15503068c73fac48a267c7d4b60d0f75a36c8a0dc56c",
+      "workflowRevision": 1,
+      "disposition": "draft",
+      "message": "The synthetic draft is ready for review. It has not been sent.",
+      "claims": [
+        {
+          "id": "claim_1",
+          "kind": "fact",
+          "text": "The synthetic case has been received but its documentation dependency has not yet been assessed.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            }
+          ]
+        },
+        {
+          "id": "claim_2",
+          "kind": "fact",
+          "text": "The submitted package does not contain the required signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded.",
+          "supports": [
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+            }
+          ]
+        },
+        {
+          "id": "claim_3",
+          "kind": "recommendation",
+          "text": "The office should supply the signed office note identified in the case-specific missing-document request DEMO-PA-101 to resolve the documentation dependency.",
+          "supports": [
+            {
+              "reference": "K-PA.v2.s1",
+              "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice."
+            },
+            {
+              "reference": "N-101.v1.s1",
+              "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-8afa5f68f09def63db2cee83942a3b8c9ab09a2e95193b37a58cf7190e80f156",
+      "evidenceHash": "8afa5f68f09def63db2cee83942a3b8c9ab09a2e95193b37a58cf7190e80f156",
+      "reasonCodes": [
+        "DRAFT_NOT_SENT",
+        "EXECUTION_REQUIRES_SEPARATE_AUTHORIZATION"
+      ],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": {
+        "type": "draft",
+        "audience": "office",
+        "channel": "email",
+        "tone": "concise",
+        "purpose": "Draft an office email.",
+        "body": "Subject: Synthetic documentation follow-up\n\nThe synthetic case has been received but its documentation dependency has not yet been assessed. [case record]\nThe submitted package does not contain the required signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded. [3]\nrecommendation: The office should supply the signed office note identified in the case-specific missing-document request DEMO-PA-101 to resolve the documentation dependency. [1] [2]\n\nPlease review the requested documentation in the case workspace and provide an administrative update.\n\nNext: Assess the documentation dependency. Owner: Pathway Agent.\n\nCheckpoint: No pending checkpoint recorded.\n\nEvidence: supported; applicability: applicable; communication: allowed; action: allowed.\n\nUnresolved: The documentation dependency has not reached its completion boundary. Prior authorization is pending; only the external payer can decide it.\n\nDocumentation dependency resolved; prior authorization pending.",
+        "requiredContent": [
+          "Synthetic identity",
+          "Administrative purpose",
+          "Current owner and next step",
+          "Review before use"
+        ],
+        "omittedContent": [
+          "Patient identifiers",
+          "Clinical recommendations",
+          "Coverage or payer approval claims",
+          "Unapproved document details in SMS",
+          "Any claim of actual sending"
+        ],
+        "status": "generated_not_sent",
+        "basedOn": null,
+        "reviewRequired": true
+      },
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "draft",
+        "follows": null,
+        "note": "Prepared for office \u00b7 email \u00b7 concise tone. You can correct these choices in your next message.",
+        "retrievalQuestion": null
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "5a41371cdae2adf5848b9ebd33dd9d4c09e02b22ff55f04ded87ce37b76baa4b",
+        "contextHash": "cd147c92fc5d5a8f0c3fbecc80a5f5d528be2707443370b1327120df65c9b9e9",
+        "latencyMs": 7005.653171999962,
+        "inputTokens": 2040,
+        "outputTokens": 419,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "claim_1",
+                "kind": "fact",
+                "text": "The synthetic case has been received but its documentation dependency has not yet been assessed.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              },
+              {
+                "id": "claim_2",
+                "kind": "fact",
+                "text": "The submitted package does not contain the required signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt has been recorded.",
+                "supports": [
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+                  }
+                ]
+              },
+              {
+                "id": "claim_3",
+                "kind": "recommendation",
+                "text": "The office should supply the signed office note identified in the case-specific missing-document request DEMO-PA-101 to resolve the documentation dependency.",
+                "supports": [
+                  {
+                    "reference": "K-PA.v2.s1",
+                    "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice."
+                  },
+                  {
+                    "reference": "N-101.v1.s1",
+                    "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "claim_1",
+                "supported": true,
+                "reason": "The workflow fact states the synthetic case has been received and its documentation dependency has not yet been assessed (workflow:SC-01:revision:1:0)."
+              },
+              {
+                "id": "claim_2",
+                "supported": true,
+                "reason": "Authoritative source confirms the submitted package lacks the signed office note requested in N-101 and no receipt acknowledgment was recorded (CE-101-01.v1.s1)."
+              },
+              {
+                "id": "claim_3",
+                "supported": true,
+                "reason": "Governing sources instruct to supply the signed office note identified in the missing-document request DEMO-PA-101 (K-PA.v2.s1, N-101.v1.s1)."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.15424179f900d07e308714aad08ba48b90111fc8473d9c90",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "draft",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "Make that warmer and shorter.",
+      "queryHash": "b3a8313fbecad8ed12ab6b814e6cb326f61be9dcef65ccd66804892956fb5df8",
+      "workflowRevision": 1,
+      "disposition": "draft",
+      "message": "The synthetic draft is ready for review. It has not been sent.",
+      "claims": [
+        {
+          "id": "1",
+          "kind": "fact",
+          "text": "The synthetic case has been received, but its documentation dependency has not yet been assessed.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "kind": "fact",
+          "text": "The submitted package lacks the signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt is recorded.",
+          "supports": [
+            {
+              "reference": "N-101.v1.s1",
+              "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+            },
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "kind": "recommendation",
+          "text": "The office should send the signed office note identified in the missing-document request DEMO-PA-101 to resolve the documentation dependency.",
+          "supports": [
+            {
+              "reference": "K-PA.v2.s1",
+              "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-5cd226c8c55d2517638431a4cc79ccc9366aa7716b333347361baf455ea339b6",
+      "evidenceHash": "5cd226c8c55d2517638431a4cc79ccc9366aa7716b333347361baf455ea339b6",
+      "reasonCodes": [
+        "DRAFT_NOT_SENT",
+        "EXECUTION_REQUIRES_SEPARATE_AUTHORIZATION"
+      ],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": {
+        "type": "draft",
+        "audience": "office",
+        "channel": "email",
+        "tone": "warm",
+        "purpose": "Make that warmer and shorter.",
+        "body": "Subject: Synthetic documentation follow-up\n\nThank you for helping with this administrative follow-up.\n\nThe synthetic case has been received, but its documentation dependency has not yet been assessed. [case record]\nThe submitted package lacks the signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt is recorded. [2] [3]\n\nPlease review the requested documentation in the case workspace and provide an administrative update.\n\nNext: Assess the documentation dependency. Owner: Pathway Agent.\n\nDocumentation dependency resolved; prior authorization pending.",
+        "requiredContent": [
+          "Synthetic identity",
+          "Administrative purpose",
+          "Current owner and next step",
+          "Review before use"
+        ],
+        "omittedContent": [
+          "Patient identifiers",
+          "Clinical recommendations",
+          "Coverage or payer approval claims",
+          "Unapproved document details in SMS",
+          "Any claim of actual sending"
+        ],
+        "status": "generated_not_sent",
+        "basedOn": "agent.f366e28ff9dd637cc978c349046a83b3d6ab5b19ee485157",
+        "reviewRequired": true
+      },
+      "inReplyTo": "agent.f366e28ff9dd637cc978c349046a83b3d6ab5b19ee485157",
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "refinement",
+        "follows": "agent.f366e28ff9dd637cc978c349046a83b3d6ab5b19ee485157",
+        "note": "Prepared for office \u00b7 email \u00b7 warm tone. You can correct these choices in your next message.",
+        "retrievalQuestion": null
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "72879e51aacfc2fdd5b6ed0a3a419ec49b26bff035122ae7d65e7fedacfa9ea3",
+        "contextHash": "cdda997a7f800f0a3d1fee88bd8f06022b5a6abb0fb3fd5d4cb7076d6b0630fb",
+        "latencyMs": 4883.236904999998,
+        "inputTokens": 2501,
+        "outputTokens": 399,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "1",
+                "kind": "fact",
+                "text": "The synthetic case has been received, but its documentation dependency has not yet been assessed.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              },
+              {
+                "id": "2",
+                "kind": "fact",
+                "text": "The submitted package lacks the signed office note requested in the missing-document request DEMO-PA-101, and no acknowledgment of receipt is recorded.",
+                "supports": [
+                  {
+                    "reference": "N-101.v1.s1",
+                    "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+                  },
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+                  }
+                ]
+              },
+              {
+                "id": "3",
+                "kind": "recommendation",
+                "text": "The office should send the signed office note identified in the missing-document request DEMO-PA-101 to resolve the documentation dependency.",
+                "supports": [
+                  {
+                    "reference": "K-PA.v2.s1",
+                    "quote": "For a missing-document request, supply the signed office note identified in the case-specific notice."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "1",
+                "supported": true,
+                "reason": "The synthetic case is confirmed received and the documentation dependency has not been assessed, as explicitly stated in workflow:SC-01:revision:1:0."
+              },
+              {
+                "id": "2",
+                "supported": true,
+                "reason": "The submitted package lacks the signed office note requested in DEMO-PA-101 and no acknowledgment is recorded, supported by references N-101.v1.s1 and CE-101-01.v1.s1."
+              },
+              {
+                "id": "3",
+                "supported": true,
+                "reason": "Recommendation to supply the signed office note is directly supported by governed_source K-PA.v2.s1 and aligns with the missing-document request procedure."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.2e73590244e03be6bc256180894ae201682f66576af273f6",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "draft",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "Turn it into an SMS.",
+      "queryHash": "000546156488cd26fa33f29640081dac5ce8fe129fa35c01be2226458b7faeaf",
+      "workflowRevision": 1,
+      "disposition": "draft",
+      "message": "The synthetic draft is ready for review. It has not been sent.",
+      "claims": [
+        {
+          "id": "c1",
+          "kind": "fact",
+          "text": "The synthetic case has been received but the documentation dependency has not been assessed yet.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            }
+          ]
+        },
+        {
+          "id": "c2",
+          "kind": "fact",
+          "text": "The submitted package is missing the signed office note requested in the missing-document request DEMO-PA-101, with no acknowledgment recorded.",
+          "supports": [
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+            }
+          ]
+        },
+        {
+          "id": "c3",
+          "kind": "recommendation",
+          "text": "Please review and submit the signed office note identified in the missing-document request to proceed.",
+          "supports": [
+            {
+              "reference": "N-101.v1.s1",
+              "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-d8d25fe4f1acdbd776eca83582dc07969ff3a1773a8b10df3893e1e4b7e15376",
+      "evidenceHash": "d8d25fe4f1acdbd776eca83582dc07969ff3a1773a8b10df3893e1e4b7e15376",
+      "reasonCodes": [
+        "DRAFT_NOT_SENT",
+        "EXECUTION_REQUIRES_SEPARATE_AUTHORIZATION"
+      ],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": {
+        "type": "draft",
+        "audience": "office",
+        "channel": "sms",
+        "tone": "warm",
+        "purpose": "Turn it into an SMS.",
+        "body": "Synthetic draft: An administrative update is available in the case workspace. Please review it there. No patient or document details are included.",
+        "requiredContent": [
+          "Synthetic label",
+          "Generic workspace notification",
+          "Review before use"
+        ],
+        "omittedContent": [
+          "Patient identifiers",
+          "Clinical recommendations",
+          "Coverage or payer approval claims",
+          "Unapproved document details in SMS",
+          "Any claim of actual sending"
+        ],
+        "status": "generated_not_sent",
+        "basedOn": "agent.15424179f900d07e308714aad08ba48b90111fc8473d9c90",
+        "reviewRequired": true
+      },
+      "inReplyTo": "agent.15424179f900d07e308714aad08ba48b90111fc8473d9c90",
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "refinement",
+        "follows": "agent.15424179f900d07e308714aad08ba48b90111fc8473d9c90",
+        "note": "Prepared for office \u00b7 sms \u00b7 warm tone. You can correct these choices in your next message.",
+        "retrievalQuestion": null
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "e7519d74d06512628052313d996963d129f5d97f078cfb5e849399fa5464cc8b",
+        "contextHash": "a849b5f563113d217192d68e91729ff0f28ae042ce267f4cce501b119181eeeb",
+        "latencyMs": 4630.692384999944,
+        "inputTokens": 2365,
+        "outputTokens": 341,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "c1",
+                "kind": "fact",
+                "text": "The synthetic case has been received but the documentation dependency has not been assessed yet.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  }
+                ]
+              },
+              {
+                "id": "c2",
+                "kind": "fact",
+                "text": "The submitted package is missing the signed office note requested in the missing-document request DEMO-PA-101, with no acknowledgment recorded.",
+                "supports": [
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded."
+                  }
+                ]
+              },
+              {
+                "id": "c3",
+                "kind": "recommendation",
+                "text": "Please review and submit the signed office note identified in the missing-document request to proceed.",
+                "supports": [
+                  {
+                    "reference": "N-101.v1.s1",
+                    "quote": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "c1",
+                "supported": true,
+                "reason": "Directly supported by workflow fact 0 stating the synthetic case has been received and documentation dependency is not assessed."
+              },
+              {
+                "id": "c2",
+                "supported": true,
+                "reason": "Supported by CE-101-01.v1.s1 fact indicating the submitted package lacks the signed office note and no receipt acknowledgment recorded."
+              },
+              {
+                "id": "c3",
+                "supported": true,
+                "reason": "Supported by N-101.v1.s1 indicating the need to supply the signed office note identified in the missing-document request DEMO-PA-101 to proceed."
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "agent.f506151b8d9dfbfddfb61a7ccbb5b4d52adc63f6fcf72c1e",
+      "conversationId": "conversation.538d9ae5-dbca-4d7e-9920-ac35118f76f6",
+      "caseId": "DEMO-101",
+      "operation": "ask",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "What should happen next?",
+      "queryHash": "8a1d89100a146bbfb22706d187de70e7b931adcb4c12b41d05e1cbd8400ae0f5",
+      "workflowRevision": 1,
+      "disposition": "answer",
+      "message": "The next step is to assess the documentation dependency for the synthetic case to address the missing signed office note.",
+      "claims": [
+        {
+          "id": "claim1",
+          "kind": "recommendation",
+          "text": "The next step is to assess the documentation dependency for the synthetic case to address the missing signed office note.",
+          "supports": [
+            {
+              "reference": "workflow:SC-01:revision:1:0",
+              "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+            },
+            {
+              "reference": "CE-101-01.v1.s1",
+              "quote": "The submitted package does not contain the signed office note requested in N-101."
+            }
+          ]
+        }
+      ],
+      "citations": [
+        {
+          "passageId": "K-PA.v2.s1",
+          "documentVersionId": "K-PA.v2",
+          "documentId": "K-PA",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "textHash": "eca5e72aef7a9c1e27896f368d00b826d2e55dc25bd992ce54e2ee32469dba97",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 137,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "documentVersionId": "N-101.v1",
+          "documentId": "N-101",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "documentVersionId": "CE-101-01.v1",
+          "documentId": "CE-101-01",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "locator": {
+            "section": "section-1",
+            "start": 0,
+            "end": 128,
+            "lineStart": 1,
+            "lineEnd": 1,
+            "table": null
+          },
+          "artifactVersion": "artifact-v1"
+        }
+      ],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.3",
+          "text": "For a missing-document request, supply the signed office note identified in the case-specific notice. Receipt is not a coverage decision.",
+          "origin": "governed_source",
+          "reference": "K-PA.v2.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.4",
+          "text": "For request DEMO-PA-101, supply the signed office note identified in this missing-document request. No payer deadline is stated.",
+          "origin": "governed_source",
+          "reference": "N-101.v1.s1",
+          "authoritative": true
+        },
+        {
+          "id": "source.fact.5",
+          "text": "The submitted package does not contain the signed office note requested in N-101. No later receiving acknowledgment is recorded.",
+          "origin": "governed_source",
+          "reference": "CE-101-01.v1.s1",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": "EV-c25b1e4e20335d5355b9453baca44d15f173523f2ebe32e63f6b9ef50c9b7be3",
+      "evidenceHash": "c25b1e4e20335d5355b9453baca44d15f173523f2ebe32e63f6b9ef50c9b7be3",
+      "reasonCodes": [],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": null,
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-UT": "DEMO Utah document process",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-UNDATED": "DEMO undated source",
+          "K-TABLE": "DEMO structured requirement list",
+          "K-COMM": "DEMO communication process",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-APL": "DEMO appeal administration",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-FIN": "DEMO generic support intake"
+        }
+      },
+      "interpretation": {
+        "intent": "next_action",
+        "follows": null,
+        "note": "",
+        "retrievalQuestion": "case_status"
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "known": [
+          "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "No synthetic channel interaction recorded in this conversation.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The synthetic case has been received. Its documentation dependency has not yet been assessed.",
+        "permission": {
+          "sourceSupport": "supported",
+          "applicability": "applicable",
+          "communication": "allowed",
+          "action": "allowed",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "model-synthesis",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-synthesis-v3",
+        "promptHash": "9c40ea4725ed4d3546095dd15b7c7762b0dc8607c072df59756afaa85e3bb88b",
+        "contextHash": "d8908c4a880c5c0ef14ee2911c21533e8f996c557de193639f5117359ab3b88b",
+        "latencyMs": 2303.381017000007,
+        "inputTokens": 2079,
+        "outputTokens": 165,
+        "estimatedCostUsd": null,
+        "costBasis": "Token usage measured; deployment pricing is not configured. Not a billing record.",
+        "requests": 2,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability",
+          "reviewed_sc01_synthesis_exact_fact_set",
+          "exact_eligible_quotes_verified",
+          "model_support_review_passed_fallible"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "generated": {
+            "claims": [
+              {
+                "id": "claim1",
+                "kind": "recommendation",
+                "text": "The next step is to assess the documentation dependency for the synthetic case to address the missing signed office note.",
+                "supports": [
+                  {
+                    "reference": "workflow:SC-01:revision:1:0",
+                    "quote": "The synthetic case has been received. Its documentation dependency has not yet been assessed."
+                  },
+                  {
+                    "reference": "CE-101-01.v1.s1",
+                    "quote": "The submitted package does not contain the signed office note requested in N-101."
+                  }
+                ]
+              }
+            ]
+          },
+          "verification": {
+            "claims": [
+              {
+                "id": "claim1",
+                "supported": true,
+                "reason": "The documentation dependency has not yet been assessed (workflow.fact.0), and the submitted package lacks the required signed office note (source.fact.5), so assessing documentation dependency is the appropriate next step."
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "checkSourceSha256": "0b6e8f1faa1894cccd61e5eb39c071fc21884d4501d11a97c87ec26ff5dcc10f"
+}

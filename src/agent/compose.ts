@@ -74,6 +74,9 @@ export async function composeAgent(options: {
   response.reasonCodes = ['USER_EDITED_UNVERIFIED', 'DRAFT_NOT_SENT']; return finish();
  }
  if (options.interpretation?.intent === 'human_action') { response.disposition = 'pause'; response.message = 'That step needs the separate case or knowledge-governance controls and the assigned human role. I can explain the requirements or prepare an unsent draft here.'; response.reasonCodes.push('SEPARATE_AUTHORIZATION_REQUIRED', 'NO_EXECUTION'); return finish(); }
+ if (options.interpretation?.intent === 'clarification' && /\b(?:record|log|summari[sz]e)\b[\s\S]*\b(?:transcript|call note|interaction|message|call)\b/i.test(query)) {
+  response.disposition = 'clarify'; response.message = 'What synthetic text should I record for this interaction? Paste the call or message content in your next reply. I will keep it as unverified conversation memory; a prepared draft does not prove that an interaction occurred.'; response.reasonCodes = ['INTERACTION_TEXT_REQUIRED', 'CONVERSATION_NOT_AUTHORITATIVE']; return finish();
+ }
  if (r.operation === 'ask') {
   response.clarification = options.interpretation?.follows ? null : clarificationFor(query);
   if (options.interpretation?.intent === 'clarification' && !response.clarification) response.clarification = { question: 'Would you like a case summary or a draft for the office?', why: 'There is no earlier work product in this knowledge context to refine.', options: [{ value: 'workflow_status', label: 'Current workflow status' }, { value: 'office', label: 'Office staff' }], scope: 'conversation_only', status: 'open', resolvedBy: null };
