@@ -52,5 +52,6 @@ export function buildContext(snapshot: Snapshot, evidence: EvidenceRecord | null
   context.why = 'The current retrieval did not establish a supported, applicable answer. Historical answers cannot restore current authority.';
   context.unresolved.unshift('Current evidence is unavailable, inapplicable or insufficient.');
  }
+ if (!sandbox) facts.push({id:'workflow.next',text:`Recommended next administrative step: ${context.nextAction}. This recommendation does not authorize execution.`,origin:'workflow',reference:`workflow:${snapshot.id}:revision:${snapshot.revision}:next-action`,authoritative:true});
  return { context, facts };
 }

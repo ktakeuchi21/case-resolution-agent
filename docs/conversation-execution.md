@@ -22,15 +22,15 @@ The deployed worker has durable conversation, guarded synthesis and a complete S
 - Settings use bounded, role-approved values. Exact citations, abstention, memory separation, human authority and execution permissions are fixed constraints. Settings cannot weaken them or accept arbitrary model endpoints/prompts.
 - Preserve navy, ivory and teal tokens and system fonts. The reviewed UI/UX search matched conversational minimal chrome; its generic purple palette and streaming animation recommendations are not adopted. A scrollable conversation above an in-flow composer prevents sticky overlays from covering focused controls.
 
-## Acceptance evidence still required
+## Acceptance evidence
 
-All twenty browser criteria in the active charter remain pending until a retained report records: homepage→picker→sample chat; visible/changeable knowledge; no per-turn settings/attestation; Enter and Shift+Enter; automatic answer and contextual Why; natural summary and draft refinement; citations/next action/advanced audit; upload→isolated sandbox chat; unchanged assignment; workflow/retirement; responsive navigation; route error clearing; post-deployment smoke.
+The twenty browser criteria are tracked across retained local and public browser reports: homepage→picker→sample chat; visible/changeable knowledge; no per-turn settings/attestation; Enter and Shift+Enter; automatic answer and contextual Why; natural summary and draft refinement; citations/next action/advanced audit; upload→isolated sandbox chat; unchanged assignment; workflow/retirement; responsive navigation; route error clearing; post-deployment smoke.
 
 Automated additions must cover acknowledgement, sample selection, selected context, expiry/isolation, inferred intent and corrections, replay/failure/loading/keyboard behavior, exact citations, provider pauses and preservation of governance. Prior tests must continue passing. No deterministic test result will be reported as live-model quality.
 
 ## Measurements
 
-The first public-request probe was launched before other requests in this goal after an observed period of inactivity. Its command session ended across a context handoff before timing output could be retained; it is not a usable cold-start measurement. A repeat measurement with durable on-disk timing output is required. The earlier user-observed roughly 50-second start remains an observation, not a measured result from this execution.
+The first probe lost its timing output across a context handoff and is not counted. The retained September 8 21:50 UTC probe received application HTML in **12.307 seconds**; authenticated Render logs show a new instance beginning to listen during that request. This is one cold-instance sample with uncontrolled platform scheduling/other visitors, not a latency guarantee or a controlled before/after comparison. The public browser fast path subsequently measured **13.237 seconds from Launch guided demo to a useful cited response**, including selection and isolated-case creation; submission to the answer was 9.354 seconds. Initial page connection and cold wake are measured separately.
 
 ## Local checkpoint results (not final acceptance)
 
@@ -40,3 +40,9 @@ The first public-request probe was launched before other requests in this goal a
 - Startup investigation found that migrations/seeding are not run on server boot, provider construction is deferred to requests, and temporary cleanup does not block listening. Scoped registry reads previously made fourteen sequential database queries; they now use two, preserving every row hash/schema check and current transaction lock. Readiness table checks now share one SQL round trip. No current-authority snapshot is cached.
 
 The complete pre-deployment suite then passed 223 tests plus all reference evaluation/parity checks; retained frozen artifacts were unchanged (`verification-0304cac4…`). Production-build browser reports retained 31 fast-path assertions (`browser-ec9debc…`) and 14 upload/settings/workflow/retirement assertions (`browser-aafbed…`). The latter exercised the compiled Markdown parser, sandbox selection with an explicit provider pause, changed knowledge without lost history, Supervisor settings, role-bound ambiguity/resumption, separate receiving acknowledgement, PA_PENDING, retirement and exact historical citations. Production dependency audit found zero vulnerabilities. Live synthesis and public post-deployment acceptance remain to be measured.
+
+## Public checkpoint
+
+Render deployment `dep-dag8chp5efls73fhvjr0` served commit `db975f4`. The [public fast-path report](../artifacts/conversation/browser-1d722940856fe3f4161aebc46d56826406cff776863648d64db56efdcbf8e1ee.json) passed 34 assertions. Seven actual v3 model responses (question, Why, supervisor summary, office draft, warmer/shorter refinement, SMS and retry) passed exact citation checks and the fallible support review. Desktop, tablet and mobile screenshots were visually inspected. No model-quality generalization is inferred from this small, developer-authored scenario.
+
+Review of the actual wording found an unlabeled completion-boundary sentence in drafts. It now says “Target completion boundary” so the target cannot be mistaken for a completed event. A call-note request without supplied content now asks for the synthetic transcript and carries the requested channel into the reply. The refreshed [complete verification](../artifacts/digital-worker/verification-555272e926a4c53d8a3d468857d66983fbfe82f486f9131b558a4127550df588.json) passed 225 tests and all references/probes/parity; frozen artifacts remained unchanged. Render deployment `dep-dag8id67bikc7394r340` serves these fixes at `f480ea2`. Expanded public governance acceptance is being recorded separately.

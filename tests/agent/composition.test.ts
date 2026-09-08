@@ -143,6 +143,8 @@ test('model summary keeps unverified interaction outside authoritative provider 
  let captured:SynthesisInput|undefined;const adapter={...provider(),complete:async(i:SynthesisInput)=>{captured=i;return provider().complete(i);}};
  const result=await compose({operation:'summary',generation:'model'},[interaction],adapter);
  assert(!captured!.facts.some(f=>f.origin==='conversation'));assert(!captured!.conversation.some(h=>h.operation==='interaction'));
+ assert(captured!.facts.every(f=>!('id' in f)));assert.equal(captured!.conversation.length,0);
+ assert(captured!.facts.some(f=>f.reference.endsWith(':next-action')&&f.text.includes('does not authorize execution')));
  assert.match(result.workProduct!.body,/Latest communication \(unverified\)/);assert.equal(result.context.state,'RECEIVED');
 });
 test('saving a work product creates only unverified memory; review cannot execute an effect',async()=>{

@@ -1,0 +1,26 @@
+{
+  "schema": "pathway-public-request-timing-v1",
+  "startedAt": "2026-09-08T21:50:09.662842+00:00",
+  "url": "https://case-resolution-agent.onrender.com/",
+  "curlExit": 0,
+  "timing": {
+    "httpStatus": 200,
+    "dnsSeconds": 0.032803,
+    "connectSeconds": 0.040993,
+    "tlsSeconds": 0.05705,
+    "firstByteSeconds": 12.306619,
+    "totalSeconds": 12.306951,
+    "bytes": 998
+  },
+  "applicationHtml": true,
+  "caveat": "First new retained request probe during local redesign work. Render idle state and other visitors are not controlled; do not infer cold-start status from latency alone.",
+  "renderLogEvidence": {
+    "previousInstance": "4jp4d",
+    "previousListeningTimeMDT": "2026-09-08 15:15:02",
+    "newInstance": "2mdwt",
+    "newListeningTimeMDT": "2026-09-08 15:50:20",
+    "observedAt": "2026-09-08",
+    "source": "Authenticated Render application log for srv-dag1p2v40ujc73delf20"
+  },
+  "interpretation": "A new Render instance began listening during this request. Observed cold-instance wake to application HTML: 12.307 seconds. Other visitors and platform scheduling are not controlled; this is one sample, not a latency guarantee."
+}

@@ -21,7 +21,7 @@ async page => {
   await page.locator('.agent-turn').last().getByRole('button',{name:'Inspect supporting evidence',exact:true}).click();
   check('advanced generation provenance can be opened',await page.locator('.agent-turn').last().locator('.worker-turn > .advanced').getAttribute('open')!==null);
   await page.locator('.agent-turn').last().getByText('Generation audit and raw output',{exact:true}).click();
-  check('prompt and structured verification remain inspectable',(await page.locator('.agent-turn').last().innerText()).includes('pathway-synthesis-v3'));
+  check('prompt and structured verification remain inspectable',(await page.locator('.agent-turn').last().innerText()).includes('pathway-synthesis-v4'));
   await page.locator('.agent-turn').last().locator('.readable-citation summary').first().click();check('exact supporting passage can be inspected',await page.locator('.agent-turn').last().locator('.readable-citation blockquote').first().isVisible());
   await page.context().grantPermissions(['clipboard-read','clipboard-write']);await page.locator('.agent-turn').last().getByRole('button',{name:'Copy',exact:true}).click();
   check('copy exports the work product',await page.evaluate(async()=> (await navigator.clipboard.readText()).includes('CRM activity note')));
@@ -32,6 +32,8 @@ async page => {
   check('saving memory retains its non-authoritative label',(await page.locator('.agent-turn').last().innerText()).includes('remains unverified'));
   n=await page.locator('.agent-turn').count();await page.locator('.agent-turn').last().getByRole('button',{name:'Prepare for simulated review',exact:true}).click();await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n);
   check('review preparation rechecks without making a task or effect',(await page.locator('.agent-turn').last().innerText()).includes('No task or effect was created'));
+  response=await send('Draft an office email.');check('current prompt produces a cited unsent email',response.audit.method==='model-synthesis'&&response.workProduct?.channel==='email'&&response.workProduct.status==='generated_not_sent');const length=response.workProduct.body.length;
+  response=await send('Make that warmer and shorter.');check('current prompt preserves conversational refinement',response.audit.method==='model-synthesis'&&response.workProduct?.tone==='warm'&&response.workProduct.body.length<length);
   await page.setViewportSize({width:375,height:812});response=await send('Send the office email.');
   check('operational request pauses at separate authorization',response.reasonCodes.includes('SEPARATE_AUTHORIZATION_REQUIRED')&&response.audit.execution==='none');
   check('newest response is scrolled into the conversation',await page.locator('.conversation-stream').evaluate(n=>Math.abs(n.scrollHeight-n.clientHeight-n.scrollTop)<2));
