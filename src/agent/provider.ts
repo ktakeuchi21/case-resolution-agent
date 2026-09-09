@@ -19,6 +19,12 @@ export interface SynthesisProvider extends Partial<ContextualProvider> {
  verify(input: SynthesisInput, synthesis: Synthesis): Promise<{ output: unknown; usage: ProviderUsage }>;
 }
 export class AgentProviderFailure extends Error { readonly code: string; constructor(code: string) { super(code); this.code = code; this.name = 'AgentProviderFailure'; } }
+export function schemaRejectionCode(message:unknown){
+ const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format'];
+ const text=typeof message==='string'?message.toLowerCase():'';
+ const tags=allowed.filter(word=>text.includes(word.toLowerCase())).map(word=>word.replace(/\W/g,'_').toUpperCase());
+ return 'PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
+}
 export function validateClaims(output: unknown, input: SynthesisInput, evidence: EvidenceRecord | null) {
  const synthesis = Synthesis.parse(output);
  if (new Set(synthesis.claims.map(c => c.id)).size !== synthesis.claims.length) throw new AgentProviderFailure('DUPLICATE_CLAIM');
@@ -85,7 +91,7 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
     let code=response.status===429?'PROVIDER_RATE_LIMITED':response.status===400?'PROVIDER_REQUEST_REJECTED':'PROVIDER_UNAVAILABLE';
     // Inspect only a bounded request-error envelope; never retain or display
     // provider messages, which can echo user input or request data.
-    if(response.status===400&&response.body){const reader=response.body.getReader();try{const parts:Uint8Array[]=[];let bytes=0;while(bytes<=8192){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>8192)break;parts.push(part.value);}if(bytes<=8192){const error=JSON.parse(Buffer.concat(parts).toString('utf8'))?.error;if(error?.code==='invalid_json_schema')code='PROVIDER_SCHEMA_REJECTED';}}catch{}finally{await reader.cancel();reader.releaseLock();}}
+    if(response.status===400&&response.body){const reader=response.body.getReader();try{const parts:Uint8Array[]=[];let bytes=0;while(bytes<=8192){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>8192)break;parts.push(part.value);}if(bytes<=8192){const error=JSON.parse(Buffer.concat(parts).toString('utf8'))?.error;if(error?.code==='invalid_json_schema')code=schemaRejectionCode(error.message);}}catch{}finally{await reader.cancel();reader.releaseLock();}}
     else await response.body?.cancel();
     throw new AgentProviderFailure(code);
    }
