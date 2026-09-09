@@ -8,7 +8,7 @@ import { composeContextual,interpretContextual,validateCompleteTurn,validateFull
 import { TurnInterpretation,wordCount,turnSlots } from '../../src/agent/turn-contract.ts';
 import type { ProposedTurn } from '../../src/agent/turn-contract.ts';
 import type { CompositionInput } from '../../src/agent/conversation-provider.ts';
-import { compositionSchema } from '../../src/agent/conversation-provider.ts';
+import { compositionSchema, materializeProse } from '../../src/agent/conversation-provider.ts';
 import type { SynthesisProvider } from '../../src/agent/provider.ts';
 import { hash } from '../../src/integrity.ts';
 
@@ -41,3 +41,5 @@ test('unverified reports cannot be recast as authoritative facts',()=>{const x=i
 test('negative quality verdict never displays proposed recipient copy',async()=>{const p=provider();p.reviewTurn=async(_x,t)=>({output:{...review(t),answersActualRequest:false},usage});const r=await compose(p);assert.equal(r.disposition,'pause');assert.equal(r.workProduct,null);assert.equal(r.claims.length,0);assert(r.audit.rawOutput);});
 test('a draft acknowledgment without the requested copy is never accepted as a completed product',()=>{const x=input();x.interpretation=interpretation({intent:'draft'});assert.throws(()=>validateCompleteTurn(proposed(),x,evidence),/WORK_PRODUCT_MISSING/);});
 test('a question cannot acquire an unsolicited artifact from audience or channel defaults',()=>{const x=input();x.interpretation=interpretation({intent:'next_action',channel:'email'});const t=proposed();t.workProduct={subject:'Next step',body:'Please review.',audience:'case_manager',channel:'email',tone:'concise',purpose:'Follow up'};assert.throws(()=>validateCompleteTurn(t,x,evidence),/UNREQUESTED_WORK_PRODUCT/);assert.equal(compositionSchema(x).safeParse(t).success,false);t.workProduct=null;t.claims[0]!.locations=['body'];assert.equal(compositionSchema(x).safeParse(t).success,false);});
+test('model-authored complete prose and its claim ledger cannot drift apart',()=>{const text=quote.text;const wire={answer:[{text,kind:'fact',supports:[support]},{text:' Thank you.',kind:'style',supports:[]}],rationale:null,workProduct:null,requestedAction:null};const t=materializeProse(wire);assert.equal(t.answer,text+' Thank you.');assert.equal(t.claims[0]!.text,text);assert.deepEqual(t.claims[0]!.locations,['answer']);validateCompleteTurn(t,input(),evidence);wire.answer[0]!.supports=[];assert.throws(()=>materializeProse(wire),/MATERIAL_SEGMENT_REQUIRES_CITATIONS/);});
+test('payer timing prerequisites are rejected even if a model claims support',()=>{const t=proposed();t.answer='Prior authorization remains pending until documentation is complete.';t.claims=[];assert.throws(()=>validateCompleteTurn(t,input(),evidence),/UNSUPPORTED_PAYER_PREREQUISITE/);t.answer='The case cannot progress to prior authorization without the note.';assert.throws(()=>validateCompleteTurn(t,input(),evidence),/UNSUPPORTED_PAYER_PREREQUISITE/);});

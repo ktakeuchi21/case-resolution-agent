@@ -6,7 +6,7 @@ assert hashlib.sha256(cases.encode()).hexdigest()=='b69c46bfc4ddda87afbe57c3b225
 arm=sys.argv[2]
 assert arm in ['baseline','redesigned','fixture']
 group=sys.argv[3] if len(sys.argv)>3 else 'core'
-assert group in ['core','boundary','ui']
+assert group in ['core','boundary','ui','smoke']
 source=(folder/('contextual-'+group+'-checks.js')).read_text()
 script=source.replace('__CASES__',cases).replace('__ARM__',json.dumps(arm))
 wrapper=pathlib.Path.home()/'.codex/skills/playwright/scripts/playwright_cli.sh'

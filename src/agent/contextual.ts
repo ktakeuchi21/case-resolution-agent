@@ -8,7 +8,7 @@ import type { AgentSettings } from './preferences.ts';
 import { AgentProviderFailure, validateClaims } from './provider.ts';
 import type { SynthesisProvider, ProviderUsage } from './provider.ts';
 import type { CompositionInput, InterpretationInput } from './conversation-provider.ts';
-import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS } from './conversation-provider.ts';
+import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS, materializeProse } from './conversation-provider.ts';
 import { TurnInterpretation, ProposedTurn, FullTurnReview, TURN_VERSION, SMS_LIMIT, wordCount, turnSlots } from './turn-contract.ts';
 import { instructionContent, administrativeAnalysis } from './safety.ts';
 
@@ -20,7 +20,7 @@ export function conversationMemory(history:AgentResponse[],targetId?:string|null
  const artifact=history.find(h=>h.id===targetId)??history.filter(h=>h.workProduct).at(-1);
  if(artifact)ids.add(artifact.id);
  const interaction=history.filter(h=>h.operation==='interaction').at(-1);if(interaction)ids.add(interaction.id);
- return history.filter(h=>ids.has(h.id)).map(h=>({id:h.id,query:h.query.slice(0,2000),answer:h.message.slice(0,1400),intent:h.turn?.interpretation.intent??h.interpretation?.intent??h.operation,artifact:h.workProduct?{subject:h.workProduct.subject??null,body:h.workProduct.body,audience:h.workProduct.audience,channel:h.workProduct.channel,tone:h.workProduct.tone,notSent:true}:null,clarification:h.clarification,unverified:true}));
+ return history.filter(h=>ids.has(h.id)).map(h=>({id:h.id,query:h.query.slice(0,2000),answer:h.message.slice(0,1400),intent:h.turn?.interpretation.intent??h.interpretation?.intent??h.operation,disposition:h.disposition,artifact:h.workProduct?{subject:h.workProduct.subject??null,body:h.workProduct.body,audience:h.workProduct.audience,channel:h.workProduct.channel,tone:h.workProduct.tone,notSent:true}:null,clarification:h.clarification,unverified:true}));
 }
 export async function interpretContextual(message:{text:string;targetId?:string},history:AgentResponse[],settings:AgentSettings,snapshot:Snapshot,knowledge:{key:string;authority:string},provider?:SynthesisProvider):Promise<InterpretedTurn> {
  const input:InterpretationInput={query:message.text,canonicalCaseQuery:baseRequest().question,selectedKnowledge:knowledge,workflow:knowledge.authority==='sandbox_only'?{state:'SANDBOX_EXPLORATION',authority:'none'}:{state:snapshot.state,revision:snapshot.revision,openTasks:snapshot.tasks.filter(t=>t.status==='open').map(t=>t.question)},defaults:{audience:settings.audience,channel:settings.channel,tone:settings.tone},targetId:message.targetId??null,history:conversationMemory(history,message.targetId)};
@@ -59,6 +59,10 @@ export function validateCompleteTurn(raw:unknown,input:CompositionInput,evidence
   const {locations:_locations,...claim}=c;validateClaims({claims:[claim]},input,evidence);
  }
  for(const text of slots.values())if(instructionContent(text))throw new AgentProviderFailure('UNTRUSTED_OUTPUT_INSTRUCTIONS');
+ // Administrative documentation does not establish a payer decision timetable.
+ // This catches the concrete unsupported causal claim observed in live review,
+ // independently of the fallible prose reviewer.
+ for(const text of slots.values())if(/\b(?:prior authorization|coverage|payer (?:approval|decision))\b[^.!?\n]{0,100}\b(?:until|once|after|as soon as)\b[^.!?\n]{0,100}\b(?:document\w*|note|receipt|review\w*)\b|\b(?:cannot|can't)\s+(?:proceed|progress)\s+to\s+(?:prior authorization|coverage)\b/i.test(text))throw new AgentProviderFailure('UNSUPPORTED_PAYER_PREREQUISITE');
  if(turn.requestedAction!==null)throw new AgentProviderFailure('OUTPUT_REQUESTS_EXECUTION');
  if(turn.uncertainties.some(u=>!turn.answer.includes(u)&&!turn.rationale?.includes(u)))throw new AgentProviderFailure('UNCHECKED_UNCERTAINTY_TEXT');
  const p=turn.workProduct,i=input.interpretation;
@@ -99,12 +103,17 @@ export async function composeContextual(o:{request:AgentRequest;id:string;conver
  if(evidence&&(evidence.disposition!=='answer'||evidence.support.status!=='supported'||evidence.communication.status!=='allowed'||evidence.applicability.status!==(sandbox?'sandbox_only':'applicable'))){response.citations=[];response.facts=facts.filter(f=>!['governed_source','sandbox_source'].includes(f.origin));return pause('Current knowledge does not support a new answer to this request. Inspect the evidence pause in Knowledge Studio; historical answers remain unchanged and cannot restore current authority.',[...evidence.support.reasonCodes,...evidence.action.reasonCodes]);}
  const input:CompositionInput={task:{operation:r.operation,audience:r.audience,channel:r.channel,tone:r.tone},query:r.text!,facts:facts.map(({id:_id,...f})=>f),sources:(evidence?.evidenceUsed??[]).map(p=>({reference:p.passageId,text:p.text})),conversation:[],nextAction:context.nextAction,boundary:BOUNDARY,interpretation:i,operator:context,knowledge:o.knowledge??null,memory:conversationMemory(o.history,i.artifactId),activeArtifact:prior?.workProduct?{id:prior.id,subject:prior.workProduct.subject??null,body:prior.workProduct.body}:null,constraints:{maximumWords,smsLimit:SMS_LIMIT,requiredFacts:i.intent==='refinement'&&prior?.workProduct&&/signed office note/i.test(prior.workProduct.body)&&evidence?.evidenceUsed.some(p=>/signed office note/i.test(p.text))?['signed office note']:[]}};
  if(i.intent==='interaction')input.facts.push({text:r.text!,reference:`conversation:${o.id}`,origin:'conversation',authoritative:false});
+ if(!sandbox){
+  const extra=[{id:'workflow.rationale',text:context.why,reference:`workflow:${o.snapshot.id}:revision:${o.snapshot.revision}:rationale`,origin:'workflow' as const,authoritative:true},{id:'workflow.payer-boundary',text:BOUNDARY+' Only the external payer decides prior authorization. Documentation receipt, review or completion does not establish payer approval or its timing.',reference:`workflow:${o.snapshot.id}:revision:${o.snapshot.revision}:payer-boundary`,origin:'workflow' as const,authoritative:true}];
+  for(const f of extra){response.facts.push(f);const {id:_id,...fact}=f;input.facts.push(fact);}
+ }
  response.audit.contextHash=hash({interpretation:it.input,composition:input});
  const addUsage=(u:ProviderUsage)=>{response.audit.inputTokens+=u.inputTokens;response.audit.outputTokens+=u.outputTokens;response.audit.estimatedCostUsd=response.audit.estimatedCostUsd===null||u.estimatedCostUsd===null?null:response.audit.estimatedCostUsd+u.estimatedCostUsd;response.audit.costBasis=u.costBasis;};
  try{
-  o.stage?.('composing');response.audit.requests++;const generated=await o.provider!.composeTurn!(input);addUsage(generated.usage);response.audit.rawOutput={interpretation:it.raw,generated:generated.output};
-  const checked=validateCompleteTurn(generated.output,input,evidence);
-  o.stage?.('validating');response.audit.requests++;const reviewed=await o.provider!.reviewTurn!(input,checked);addUsage(reviewed.usage);response.audit.rawOutput={interpretation:it.raw,generated:generated.output,verification:reviewed.output};
+  o.stage?.('composing');response.audit.requests++;const generated=await o.provider!.composeTurn!(input);addUsage(generated.usage);response.audit.rawOutput={interpretation:it.raw,generated:generated.output,prose:generated.wireOutput??null};
+  const checked=validateCompleteTurn(generated.wireOutput?materializeProse(generated.wireOutput):generated.output,input,evidence);
+  response.audit.rawOutput={interpretation:it.raw,generated:checked,prose:generated.wireOutput??null};
+  o.stage?.('validating');response.audit.requests++;const reviewed=await o.provider!.reviewTurn!(input,checked);addUsage(reviewed.usage);response.audit.rawOutput={interpretation:it.raw,generated:checked,prose:generated.wireOutput??null,verification:reviewed.output};
   validateFullTurnReview(reviewed.output,checked);
   response.message=checked.answer;response.claims=checked.claims.map(({locations:_locations,...c})=>c);response.turn!.rationale=checked.rationale;response.turn!.uncertainties=checked.uncertainties;
   response.audit.validation.push('exact_eligible_quotes_verified','output_claim_spans_verified','full_text_coverage_review_passed_fallible','transformation_constraints_verified');
