@@ -1,6 +1,6 @@
 # Pathway Agent
 
-Current release status: the [static frontend and loading screen](docs/static-frontend.md) are deployed for review, with 140–552 ms observed first contentful paint. Public-link promotion is held because Render's static rewrite buffers streaming updates. The original demo link below remains in use. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
+Current hosting: the [static frontend and loading screen](docs/static-frontend.md) are live, with 392 ms observed first contentful paint on the released revision. Launch waits for readiness, then opens the existing backend workspace with secure sessions and progressive streaming. All 31 deployed transport checks passed. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
 
 Conversation redesign: [experience and contracts](docs/conversation-experience.md), [execution and acceptance](docs/conversation-execution.md). The default journey is choose knowledge, then chat; the twelve-step technical walkthrough remains optional.
 
@@ -8,7 +8,7 @@ Earlier digital worker increment: [product and architecture](docs/digital-worker
 
 A browser-based persistent AI operations agent that helps HCP offices resolve specialty-therapy access dependencies using governed Knowledge Packs, with visible evidence, bounded authority, and human ownership of exceptions.
 
-**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-agent.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Automatic conversation uses grounded live synthesis when the server provider is configured; otherwise it labels deterministic composition. Missing semantic vectors or failed providers pause explicitly. No real outreach, patient data or payer approval is involved.
+**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-frontend.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Automatic conversation uses grounded live synthesis when the server provider is configured; otherwise it labels deterministic composition. Missing semantic vectors or failed providers pause explicitly. No real outreach, patient data or payer approval is involved.
 
 ## Run the browser demonstration
 
@@ -55,7 +55,7 @@ When a decision changes, add a dated decision-log entry, update affected documen
 
 The original headless phases remain frozen. Current digital-worker implementation, measured results and provider limitations are recorded in the [digital-worker architecture](docs/digital-worker.md) and [execution ledger](docs/digital-worker-execution.md). Live generation utility, independent retrieval holdouts, production retention/restore and enterprise integrations require separate evidence.
 
-## Conversation release acceptance
+## Earlier conversation release acceptance
 
 The deployed fast path is **Launch → Use sample knowledge → ask Pathway**. The final public visitor reached a cited answer in **11.3 seconds** after wake. All 20 browser acceptance criteria and 225 automated tests passed; live v5 qualification accepted 7/7 generated responses. Earlier rejected citations remain retained. See [the acceptance, exact steps and limitations](docs/conversation-experience.md).
 

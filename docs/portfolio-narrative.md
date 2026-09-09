@@ -1,6 +1,6 @@
 # Pathway Agent: evidence, persistence and bounded authority
 
-**Portfolio status:** [Pathway Agent is live](https://case-resolution-agent.onrender.com) on Render with durable Supabase PostgreSQL/pgvector. The container build, database qualification and HTTPS checks passed; hosted browser acceptance passed. Everything in this project is synthetic.
+**Portfolio status:** [Pathway Agent is live](https://case-resolution-frontend.onrender.com) on Render with durable Supabase PostgreSQL/pgvector. The container build, database qualification and HTTPS checks passed; hosted browser acceptance passed. Everything in this project is synthetic.
 
 ## Problem → approach → demonstration
 
