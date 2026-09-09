@@ -60,4 +60,4 @@
 .notice { transform:none; left:auto; bottom:auto; }
 .citation-list>summary::before,.answer-next>summary::before,.advanced>summary::before { content:'›'; display:inline-block; margin-right:9px; font-size:18px; color:var(--teal); }
 .citation-list[open]>summary::before,.answer-next[open]>summary::before,.advanced[open]>summary::before { transform:rotate(90deg); }
-@media(max-width:600px){.chat-workspace{height:calc(100dvh - 32px);min-height:560px;max-height:none}.knowledge-context{gap:2px}.knowledge-context span{font-size:11px}.knowledge-context a{min-height:32px}}
+@media(max-width:600px){.chat-workspace{height:calc(100dvh - 32px);min-height:0;max-height:none}.knowledge-context{gap:2px}.knowledge-context span{font-size:11px}.knowledge-context a{min-height:32px}}

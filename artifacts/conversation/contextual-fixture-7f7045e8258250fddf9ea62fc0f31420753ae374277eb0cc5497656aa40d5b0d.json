@@ -1,0 +1,123 @@
+{
+  "schema": "pathway-contextual-ui-v1",
+  "timestamp": "2026-09-09T12:19:35.490Z",
+  "environment": "Local deterministic provider fixture; UI/API contract checks only, NOT live model quality",
+  "results": [
+    {
+      "name": "Shift Enter inserts a newline",
+      "pass": true
+    },
+    {
+      "name": "failure preserves typed input",
+      "pass": true
+    },
+    {
+      "name": "retry succeeds without losing question",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 2",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 2",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 3",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 3",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 4",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 4",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 5",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 5",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 6",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 6",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 7",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 7",
+      "pass": true
+    },
+    {
+      "name": "composer visible at turn 8",
+      "pass": true
+    },
+    {
+      "name": "latest conversation visible at turn 8",
+      "pass": true
+    },
+    {
+      "name": "older turns compacted",
+      "pass": true
+    },
+    {
+      "name": "sources collapsed by default",
+      "pass": true
+    },
+    {
+      "name": "exact evidence expands within conversation",
+      "pass": true
+    },
+    {
+      "name": "evidence does not move composer offscreen",
+      "pass": true
+    },
+    {
+      "name": "feedback persisted",
+      "pass": true
+    },
+    {
+      "name": "regeneration bounded in UI",
+      "pass": true
+    },
+    {
+      "name": "regeneration uses new evidence IDs",
+      "pass": true
+    },
+    {
+      "name": "no overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "no overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "no overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "no browser exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "73397ff3d240ccb56d909a59e5e1f1d0bdccc9555c0db1a1ddf31bab91b72205"
+}

@@ -39,7 +39,7 @@ export function renderAgent(view) {
 export function bindAgent({view,api,perform,refresh,render,toast}) {
  if(!view)return;
  const $=s=>document.querySelector(s), key=draftKey(view);
- const finishFocus=()=>{if(location.hash!=='#agent')return;render();const stream=$('.conversation-stream');if(stream){stream.scrollTop=stream.scrollHeight;const newest=[...stream.querySelectorAll('.answer-lead')].at(-1);if(newest&&newest.getBoundingClientRect().top<stream.getBoundingClientRect().top+12)stream.scrollTop-=stream.getBoundingClientRect().top+12-newest.getBoundingClientRect().top;}$('#agent-text')?.focus({preventScroll:true});$('#agent-form')?.scrollIntoView({block:'nearest',behavior:'instant'});};
+ const finishFocus=()=>{if(location.hash!=='#agent')return;render();$('.chat-workspace')?.scrollIntoView({block:'start',behavior:'instant'});const stream=$('.conversation-stream');if(stream){stream.scrollTop=stream.scrollHeight;const newest=[...stream.querySelectorAll('.worker-turn')].at(-1);if(newest&&newest.getBoundingClientRect().top<stream.getBoundingClientRect().top+12)stream.scrollTop-=stream.getBoundingClientRect().top+12-newest.getBoundingClientRect().top;}$('#agent-text')?.focus({preventScroll:true});};
  const submit=async(payload,legacy=false)=>{
   if(sending)return;
   const fingerprint=JSON.stringify({payload,legacy,key});
