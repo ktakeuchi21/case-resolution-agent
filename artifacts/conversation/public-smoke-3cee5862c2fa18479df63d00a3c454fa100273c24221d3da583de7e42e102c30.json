@@ -1,0 +1,44 @@
+{
+  "schema": "pathway-public-release-smoke-v1",
+  "timestamp": "2026-09-09T12:36:08.611324+00:00",
+  "url": "https://case-resolution-agent.onrender.com",
+  "revision": "a83b0ab21f80cb9a6ae8ea9fe8178cd16d64de6b",
+  "renderDeployId": "dep-dagl2m15efls73b1rlf0",
+  "checks": [
+    {
+      "route": "/healthz",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "synthetic": true,
+        "service": "pathway-agent",
+        "version": "digital-worker-v1"
+      }
+    },
+    {
+      "route": "/agent.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "1571f388e16266e2464c4c969875b3083fce1026eac1c2b5af353ba0184d8857"
+    },
+    {
+      "route": "/app.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "7573005111c0a4f0e00ed9779a8f1ddab98bec07448305f0a47c583e47a17754"
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "a50ea9b3945c4433795cf0c3e32789c914fbb0e9f1ec893d13ce342df6ede56a"
+    },
+    {
+      "route": "/evaluation.json",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "015723e13d7a5bd6f59d71519b0b180b1f7372b9d88fecc81c97d0c3141cd61f"
+    }
+  ],
+  "limit": "Health and exact public asset verification; does not establish complete conversational acceptance."
+}

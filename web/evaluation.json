@@ -1,6 +1,6 @@
 {
   "schema": "pathway-digital-worker-verification-v1",
-  "timestamp": "2026-09-09T12:12:24.180Z",
+  "timestamp": "2026-09-09T12:50:34.306Z",
   "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
   "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
   "suites": [
@@ -9,7 +9,7 @@
       "command": "npm run typecheck",
       "passed": true,
       "tests": null,
-      "durationMs": 2751.0950000000003,
+      "durationMs": 4866.320834,
       "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
     },
     {
@@ -17,63 +17,63 @@
       "command": "npm test",
       "passed": true,
       "tests": 80,
-      "durationMs": 668.5106249999999,
-      "outputHash": "c5ebeb0742c670a21efcbed303c0499def05cc0ee44ed795ac98a44086a1ae0c"
+      "durationMs": 1091.5997500000003,
+      "outputHash": "79209eb57e452152162ba7d015b362e2544cf19b40500daa0e3c6d7f7ba9bd3e"
     },
     {
       "name": "Original generation",
       "command": "npm run test:generation",
       "passed": true,
       "tests": 12,
-      "durationMs": 464.2865840000004,
-      "outputHash": "8bab1ca2b555ade9102bf5abc37c7e7d0ef8a7abd67fbee76f839fadcd9b007d"
+      "durationMs": 788.3330419999993,
+      "outputHash": "bdf742f604d6d259afd6eb1d6feabb7e07299c480fa3acf914d40dbefdfb9649"
     },
     {
       "name": "Digital worker composition and conversational intent",
       "command": "npm run test:agent",
       "passed": true,
-      "tests": 64,
-      "durationMs": 503.5866249999999,
-      "outputHash": "d67e0c360b6c1f6ad7f4dcb4fd7a5b874ccaeafec37478191326ec15ea2ade7d"
+      "tests": 68,
+      "durationMs": 1291.3442089999999,
+      "outputHash": "4d1cc30084def7b609d0479fe0855133ededb3a62c4f696f4bbb8c5e9649193e"
     },
     {
       "name": "Document parsing and safety",
       "command": "npm run test:studio",
       "passed": true,
       "tests": 8,
-      "durationMs": 3485.9147919999996,
-      "outputHash": "fea5677d42a37c4e7a225f6dcf8606b19cf812d7fbe5df294476992f6c6d283e"
+      "durationMs": 3562.2365420000006,
+      "outputHash": "e0f80be4117162e95e14474f7ebdef6cd3a061f182be2951b7c505bc171f7627"
     },
     {
       "name": "PostgreSQL persistence",
       "command": "npm run test:postgres",
       "passed": true,
       "tests": 24,
-      "durationMs": 3683.6386669999993,
-      "outputHash": "137d8577951ff0511641f70a42bb3d24dfe43500c80bc9b6702266dee96d44a3"
+      "durationMs": 2965.3678330000002,
+      "outputHash": "30eb585c220875fe6f64ae7930f714226db40e6f72df53e04b84645e5437c97c"
     },
     {
       "name": "Workflow effects, roles and restart",
       "command": "npm run test:workflow",
       "passed": true,
       "tests": 30,
-      "durationMs": 10614.743625000001,
-      "outputHash": "c63d089c46d5ae3d899842c8083a79807b2cf1e6051740f8b0ebcc4d386f0f82"
+      "durationMs": 8751.966625000001,
+      "outputHash": "1f36e1355fb32899956c19f389c4c52b4cd2548ece193c7fe7da4f7583a2eccb"
     },
     {
       "name": "Application, isolation and Studio",
       "command": "node scripts/db/with-verification.ts app",
       "passed": true,
       "tests": 25,
-      "durationMs": 10043.72525,
-      "outputHash": "3a5e7856982d0c6fcec4b0433b7ee48bb1341d149c0a969988f69bb2dc5ce28c"
+      "durationMs": 8163.6651249999995,
+      "outputHash": "0d590aaacfb6d62220d0021a944b6492ce8d59bbffb133eba3adc631b6886c0e"
     },
     {
       "name": "Original reference evaluation",
       "command": "npm run eval",
       "passed": true,
       "tests": null,
-      "durationMs": 468.46933400000125,
+      "durationMs": 438.79133300000103,
       "outputHash": "2fe030e8cfd08f7a95804de84c44f604d3a1e3c3a996b13842618e6dc1ea8430"
     },
     {
@@ -81,7 +81,7 @@
       "command": "npm run demo",
       "passed": true,
       "tests": null,
-      "durationMs": 331.99529099999927,
+      "durationMs": 298.26679199999853,
       "outputHash": "f8de355caae48bb75d295a85bf9c89466d78d70d1cc5dbc0e8b80322fcd3cb68"
     },
     {
@@ -89,7 +89,7 @@
       "command": "npm run probes",
       "passed": true,
       "tests": null,
-      "durationMs": 330.2897920000032,
+      "durationMs": 300.5989580000023,
       "outputHash": "373301a9771a0908d570466ab62e6c675e6a8064cf4a51f2cd339cc2ddb168f6"
     },
     {
@@ -97,22 +97,22 @@
       "command": "npm run eval:postgres",
       "passed": true,
       "tests": null,
-      "durationMs": 7438.296541999996,
-      "outputHash": "49718e8d8a6503245ae1a7150d87041f994d3849fe920631245a890c0e85004e"
+      "durationMs": 6144.772499999999,
+      "outputHash": "6ea40de6a3edf600d0bf97c33bd6eb3a09e5393fe8b376b7cf55f6a75d4caedf"
     }
   ],
   "frozenArtifacts": {
-    "count": 130,
+    "count": 146,
     "unchanged": true,
-    "manifestHash": "ad087412693922826ec92298636dc3f96ac5966a47307afbc26a0af61eb5b95f"
+    "manifestHash": "dffc397461147caf12947f029b9d005867679dca5b076cdc2a8e53db87b3c7a1"
   },
   "retrieval": {
-    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions \u00b7 preserved real synthetic vectors",
     "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
     "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
   },
   "generation": {
-    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-contextual-v1; replaceable provider interface",
+    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 \u00b7 pathway-contextual-v1; replaceable provider interface",
     "summary": "Contextual interpretation and complete-turn contracts, full-text review coverage, transformation constraints, durable regeneration, feedback, legacy composition and fail-closed checks were exercised with explicit fixtures. No live synthesis quality score is claimed.",
     "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
   },
@@ -126,7 +126,7 @@
   ],
   "contextualComparison": {
     "schema": "pathway-contextual-comparison-v1",
-    "timestamp": "2026-09-09T12:20:03.822Z",
+    "timestamp": "2026-09-09T12:55:51.223Z",
     "status": "recorded_with_semantic_review",
     "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
     "baselineRevision": "acaabee",
@@ -312,11 +312,19 @@
     "caveats": [
       "Exact twelve-prompt core comparison; developer-authored synthetic conversation, not an independent holdout.",
       "Mechanical checks do not prove natural-language entailment or response usefulness; semantic review is separate.",
-      "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm’s own body field.",
+      "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm\u2019s own body field.",
       "Latency is end-to-end browser submission to saved display, including service/network effects. Cache and free-service cold starts may differ.",
       "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
       "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
     ],
-    "artifact": "artifacts/conversation/comparison-3418bf12cd39dfede9746be282e747b974c8e3e704cf2e6fab5c532eb85413cf.json"
+    "artifact": "artifacts/conversation/comparison-81df77461de9ab07cb0e0a857fc64bdb3b9668de58a97481f7f92897b9b1d5e3.json",
+    "latestCorrectionEvidence": {
+      "runtimeRevision": "a83b0ab21f80cb9a6ae8ea9fe8178cd16d64de6b",
+      "summary": "Later focused checks produced a valid 25-word office email with exact Copy output. The isolated scope, knowledge-switching and corrected retirement evidence checks passed. The latest local suite passes 247 tests. A fresh complete live comparison is still pending; the September 9 daily provider limit was reached. These targeted results do not replace the failed full comparison above.",
+      "draftArtifact": "artifacts/conversation/contextual-redesigned-450b67d17d8ebdc9d97bed820a2bc80f9fabd105cfd4f62b78d3cf20d7352d29.json",
+      "boundaryArtifact": "artifacts/conversation/contextual-redesigned-070a1e7d51768b9c99073f5408ddbbfc8b81e2c2db2290c5bb475b95e0aa751c.json",
+      "retirementProbeArtifact": "artifacts/conversation/contextual-redesigned-52414a2101f1d6ddb68b7cc6ccccf2e616e627df7daf8ce9691e4dfd2ca47dca.json",
+      "fullAcceptanceComplete": false
+    }
   }
 }

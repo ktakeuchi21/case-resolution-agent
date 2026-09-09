@@ -1,0 +1,889 @@
+{
+  "schema": "pathway-contextual-retirement-probe-v1",
+  "timestamp": "2026-09-09T12:45:04.072Z",
+  "arm": "redesigned",
+  "environment": "Explicit Knowledge Studio hybrid retrieval governance probe using the canonical cached query; no conversation synthesis and no weaker retrieval fallback. Not fresh model-quality evidence.",
+  "results": [
+    {
+      "name": "K-PA.v2 retirement committed",
+      "pass": true
+    },
+    {
+      "name": "fresh hybrid evidence pauses for retired required source",
+      "pass": true
+    },
+    {
+      "name": "all prior conversation entries unchanged",
+      "pass": true
+    },
+    {
+      "name": "workflow effects and decisions unchanged",
+      "pass": true
+    }
+  ],
+  "record": {
+    "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be",
+    "run": {
+      "id": "b6e9c811-2300-4d6b-b504-0e075d95836f",
+      "actorId": "avery",
+      "requestId": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be",
+      "evidenceId": "EV-667ef7969f52f2b5eb369d06bc3eeeaf8ffe18240244c29e3f74c0aeb5a5a538",
+      "generation": "90",
+      "diagnostics": {
+        "excluded": [
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_PAYER",
+              "WRONG_PLAN"
+            ],
+            "documentVersionId": "K-CEDAR.v1"
+          },
+          {
+            "reasonCodes": [
+              "USE_NOT_PERMITTED"
+            ],
+            "documentVersionId": "K-COMM.v1"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ],
+            "documentVersionId": "K-FIN.v1"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK"
+            ],
+            "documentVersionId": "K-PA-X.v1"
+          },
+          {
+            "reasonCodes": [
+              "EXPIRED",
+              "REVIEW_OVERDUE"
+            ],
+            "documentVersionId": "K-PA.expired"
+          },
+          {
+            "reasonCodes": [
+              "SUPERSEDED"
+            ],
+            "documentVersionId": "K-PA.superseded"
+          },
+          {
+            "reasonCodes": [
+              "SOURCE_RETIRED"
+            ],
+            "documentVersionId": "K-PA.v2"
+          },
+          {
+            "reasonCodes": [
+              "NOT_YET_EFFECTIVE"
+            ],
+            "documentVersionId": "K-PA.v3"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED"
+            ],
+            "documentVersionId": "K-TABLE.v1"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "UNAPPROVED",
+              "METADATA_UNKNOWN"
+            ],
+            "documentVersionId": "K-UNDATED.v1"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "WRONG_STATE"
+            ],
+            "documentVersionId": "K-UT.v1"
+          },
+          {
+            "reasonCodes": [
+              "NOT_IN_PACK",
+              "CASE_ACCESS_DENIED"
+            ],
+            "documentVersionId": "N-102.v1"
+          }
+        ],
+        "retrieved": [
+          {
+            "rank": 1,
+            "score": 0.03252247488101534,
+            "ranking": {
+              "rrfK": 60,
+              "method": "reciprocal_rank_fusion",
+              "lexical": {
+                "rank": 2,
+                "score": 2.77200599
+              },
+              "combined": {
+                "rank": 1,
+                "score": 0.03252247488101534
+              },
+              "semantic": {
+                "rank": 1,
+                "score": 0.774126608794792
+              },
+              "candidateDepth": 50,
+              "inclusionReason": "both",
+              "semanticMinCosine": null
+            },
+            "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+            "embedding": {
+              "model": "text-embedding-3-small",
+              "provider": "openai",
+              "dimensions": 1536,
+              "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+              "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+              "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+              "documentVectorKey": "d2c0fcefcdd6c376f2affb0b029762a486d8f02f6d24a4f3e389d4ca26e7733a",
+              "documentEmbeddedAt": "2026-09-08T02:46:52.785Z"
+            },
+            "passageId": "K-EDU.v1.s1",
+            "scoreKind": "hybrid_rrf",
+            "documentVersionId": "K-EDU.v1"
+          },
+          {
+            "rank": 2,
+            "score": 0.03252247488101534,
+            "ranking": {
+              "rrfK": 60,
+              "method": "reciprocal_rank_fusion",
+              "lexical": {
+                "rank": 1,
+                "score": 2.87263453
+              },
+              "combined": {
+                "rank": 2,
+                "score": 0.03252247488101534
+              },
+              "semantic": {
+                "rank": 2,
+                "score": 0.705512484744237
+              },
+              "candidateDepth": 50,
+              "inclusionReason": "both",
+              "semanticMinCosine": null
+            },
+            "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+            "embedding": {
+              "model": "text-embedding-3-small",
+              "provider": "openai",
+              "dimensions": 1536,
+              "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+              "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+              "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+              "documentVectorKey": "90cd402268ea065d376ce2c62bff3316e2a2460dc2cd6d782cb660abc84156a0",
+              "documentEmbeddedAt": "2026-09-08T02:46:55.145Z"
+            },
+            "passageId": "N-101.v1.s1",
+            "scoreKind": "hybrid_rrf",
+            "documentVersionId": "N-101.v1"
+          },
+          {
+            "rank": 3,
+            "score": 0.031746031746031744,
+            "ranking": {
+              "rrfK": 60,
+              "method": "reciprocal_rank_fusion",
+              "lexical": {
+                "rank": 3,
+                "score": 1.12238566
+              },
+              "combined": {
+                "rank": 3,
+                "score": 0.031746031746031744
+              },
+              "semantic": {
+                "rank": 3,
+                "score": 0.681374221904832
+              },
+              "candidateDepth": 50,
+              "inclusionReason": "both",
+              "semanticMinCosine": null
+            },
+            "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+            "embedding": {
+              "model": "text-embedding-3-small",
+              "provider": "openai",
+              "dimensions": 1536,
+              "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+              "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+              "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+              "documentVectorKey": "0aac542d1183543916025bd62b8c5fb8d446953784d90463258671b57fe5525d",
+              "documentEmbeddedAt": "2026-09-08T02:46:55.379Z"
+            },
+            "passageId": "CE-101-01.v1.s1",
+            "scoreKind": "hybrid_rrf",
+            "documentVersionId": "CE-101-01.v1"
+          },
+          {
+            "rank": 4,
+            "score": 0.03125,
+            "ranking": {
+              "rrfK": 60,
+              "method": "reciprocal_rank_fusion",
+              "lexical": {
+                "rank": 4,
+                "score": 0.4534437
+              },
+              "combined": {
+                "rank": 4,
+                "score": 0.03125
+              },
+              "semantic": {
+                "rank": 4,
+                "score": 0.321190631113487
+              },
+              "candidateDepth": 50,
+              "inclusionReason": "both",
+              "semanticMinCosine": null
+            },
+            "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+            "embedding": {
+              "model": "text-embedding-3-small",
+              "provider": "openai",
+              "dimensions": 1536,
+              "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+              "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+              "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+              "documentVectorKey": "2297d5f921140b8d050610bdaa5459b6101d4846fa1654739474d2c5e7e20522",
+              "documentEmbeddedAt": "2026-09-08T02:46:55.611Z"
+            },
+            "passageId": "K-APL.v1.s1",
+            "scoreKind": "hybrid_rrf",
+            "documentVersionId": "K-APL.v1"
+          }
+        ],
+        "assignmentId": "AS-101",
+        "selectedReleases": [
+          {
+            "id": "KP-ALDER.2026.09.1",
+            "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+          }
+        ],
+        "eligibleVersionIds": [
+          "CE-101-01.v1",
+          "K-APL.v1",
+          "K-EDU.v1",
+          "N-101.v1"
+        ]
+      },
+      "operationId": "b6e9c811-2300-4d6b-b504-0e075d95836f",
+      "reasonCodes": [
+        "REQUIRED_EVIDENCE_MISSING",
+        "SOURCE_RETIRED"
+      ],
+      "configuration": {
+        "mode": "hybrid",
+        "rrfK": 60,
+        "embedding": {
+          "model": "text-embedding-3-small",
+          "provider": "openai",
+          "revision": "configured-2026-09-07",
+          "dimensions": 1536,
+          "normalization": "none-v1"
+        },
+        "candidateDepth": 50,
+        "semanticMinCosine": null
+      },
+      "effectiveMode": "hybrid",
+      "requestedMode": "hybrid",
+      "transactionId": "5643",
+      "acknowledgment": null,
+      "embeddingUsage": {
+        "requests": 0,
+        "cacheHits": 5,
+        "cacheMisses": 0,
+        "inputTokens": 0
+      },
+      "decisionTimestamp": "2026-09-10T16:02:00.000Z",
+      "transactionOutcome": "committed"
+    },
+    "mode": "hybrid",
+    "record": {
+      "id": "EV-667ef7969f52f2b5eb369d06bc3eeeaf8ffe18240244c29e3f74c0aeb5a5a538",
+      "audit": [
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.access",
+          "type": "access",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [
+            "avery"
+          ],
+          "payloadHash": "618b7e080a559b04761130274595d2ea01d576eeb28d7d553c5d029f8d69d6f9",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.selection",
+          "type": "selection",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "payloadHash": "22ea804813c6dea8f03b96b7d2117e796189df33436f8199a8b8c977a1ab5eb5",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.filtering",
+          "type": "filtering",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [
+            "CE-101-01.v1",
+            "K-APL.v1",
+            "K-EDU.v1",
+            "N-101.v1"
+          ],
+          "payloadHash": "cdd538db620f2c6f1fc53a127e7483edbb3b0ea4e811ec4a98f41eaca0d73ec9",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.retrieval",
+          "type": "retrieval",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [
+            "K-EDU.v1.s1",
+            "N-101.v1.s1",
+            "CE-101-01.v1.s1",
+            "K-APL.v1.s1"
+          ],
+          "payloadHash": "088cecfe20fd1c7f521293761a560dffe7615549d01f613241115f603493fdc5",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.authority",
+          "type": "authority",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.support",
+          "type": "support",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "63f1aca4c33dd038fb78b49a6276dc04b8cc676b671235c75a12795adaa62813",
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.applicability",
+          "type": "applicability",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "e89006c80e705402188738ed994d0e2f6ef63851fc8f26817afe783e1147fadd",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.communication",
+          "type": "communication",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "d417fc2ed8f3e3087e4767778ebba9e37835f759380b375bca0b8144d2f89046",
+          "reasonCodes": [
+            "ELIGIBLE"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.action",
+          "type": "action",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "dd94871b076033dea9ec51a2a94730c9766feb183310077384c14eebb3f44809",
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        },
+        {
+          "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.evidence",
+          "type": "evidence",
+          "actorId": "avery",
+          "tenantId": "T-DEMO",
+          "timestamp": "2026-09-10T16:02:00.000Z",
+          "subjectIds": [],
+          "payloadHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "reasonCodes": [
+            "REQUIRED_EVIDENCE_MISSING"
+          ],
+          "policyVersion": "knowledge-policy-v1"
+        }
+      ],
+      "action": {
+        "status": "paused",
+        "timestamp": "2026-09-10T16:02:00.000Z",
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "supportingPassageIds": []
+      },
+      "answer": {
+        "claims": [],
+        "method": "deterministic-extractive-composition",
+        "message": "The current knowledge or provider state does not permit this recommendation. Dependent work is paused.",
+        "operationalKnowledge": true
+      },
+      "request": {
+        "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be",
+        "mode": "governed",
+        "task": "missing_document",
+        "caseId": "DEMO-101",
+        "channel": "chat",
+        "purpose": "recommend",
+        "question": "Which signed office note document is missing for this request?",
+        "maxResults": 8,
+        "releaseIds": [
+          "KP-ALDER.2026.09.1"
+        ],
+        "selectionId": "AS-101",
+        "requestedAction": "recommend_document"
+      },
+      "support": {
+        "status": "missing",
+        "timestamp": "2026-09-10T16:02:00.000Z",
+        "reasonCodes": [
+          "REQUIRED_EVIDENCE_MISSING"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "supportingPassageIds": []
+      },
+      "excluded": [
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_PAYER",
+            "WRONG_PLAN"
+          ],
+          "documentVersionId": "K-CEDAR.v1"
+        },
+        {
+          "reasonCodes": [
+            "USE_NOT_PERMITTED"
+          ],
+          "documentVersionId": "K-COMM.v1"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ],
+          "documentVersionId": "K-FIN.v1"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK"
+          ],
+          "documentVersionId": "K-PA-X.v1"
+        },
+        {
+          "reasonCodes": [
+            "EXPIRED",
+            "REVIEW_OVERDUE"
+          ],
+          "documentVersionId": "K-PA.expired"
+        },
+        {
+          "reasonCodes": [
+            "SUPERSEDED"
+          ],
+          "documentVersionId": "K-PA.superseded"
+        },
+        {
+          "reasonCodes": [
+            "SOURCE_RETIRED"
+          ],
+          "documentVersionId": "K-PA.v2"
+        },
+        {
+          "reasonCodes": [
+            "NOT_YET_EFFECTIVE"
+          ],
+          "documentVersionId": "K-PA.v3"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED"
+          ],
+          "documentVersionId": "K-TABLE.v1"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "UNAPPROVED",
+            "METADATA_UNKNOWN"
+          ],
+          "documentVersionId": "K-UNDATED.v1"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "WRONG_STATE"
+          ],
+          "documentVersionId": "K-UT.v1"
+        },
+        {
+          "reasonCodes": [
+            "NOT_IN_PACK",
+            "CASE_ACCESS_DENIED"
+          ],
+          "documentVersionId": "N-102.v1"
+        }
+      ],
+      "provider": {
+        "id": "local-rrf",
+        "kind": "hybrid",
+        "config": "{\"mode\":\"hybrid\",\"candidateDepth\":50,\"rrfK\":60,\"semanticMinCosine\":null,\"embedding\":{\"provider\":\"openai\",\"model\":\"text-embedding-3-small\",\"dimensions\":1536,\"revision\":\"configured-2026-09-07\",\"normalization\":\"none-v1\"},\"fusion\":\"sum(1/(rrfK+branch rank)); equal contributions; absent branch=0; ID ties\",\"lexical\":{\"id\":\"local-bm25\",\"version\":\"v1\",\"kind\":\"lexical\",\"config\":\"BM25 k1=1.2 b=0.75; stopwords-v1; ID tie-break; no query rewrite\"},\"semantic\":{\"id\":\"postgres-pgvector\",\"version\":\"exact-cosine-v1\",\"kind\":\"semantic\",\"config\":\"{\\\"mode\\\":\\\"hybrid\\\",\\\"candidateDepth\\\":50,\\\"rrfK\\\":60,\\\"semanticMinCosine\\\":null,\\\"embedding\\\":{\\\"provider\\\":\\\"openai\\\",\\\"model\\\":\\\"text-embedding-3-small\\\",\\\"dimensions\\\":1536,\\\"revision\\\":\\\"configured-2026-09-07\\\",\\\"normalization\\\":\\\"none-v1\\\"},\\\"storage\\\":\\\"pgvector-float4\\\",\\\"scoring\\\":\\\"1 - cosine distance; authorized universe only; no ANN\\\"}\"}}",
+        "version": "v1"
+      },
+      "retrieved": [
+        {
+          "rank": 1,
+          "score": 0.03252247488101534,
+          "ranking": {
+            "rrfK": 60,
+            "method": "reciprocal_rank_fusion",
+            "lexical": {
+              "rank": 2,
+              "score": 2.77200599
+            },
+            "combined": {
+              "rank": 1,
+              "score": 0.03252247488101534
+            },
+            "semantic": {
+              "rank": 1,
+              "score": 0.774126608794792
+            },
+            "candidateDepth": 50,
+            "inclusionReason": "both",
+            "semanticMinCosine": null
+          },
+          "textHash": "41afcb104fabbea14ccb843f24e4551971571f88dfd37f90c54496ae5546e6da",
+          "embedding": {
+            "model": "text-embedding-3-small",
+            "provider": "openai",
+            "dimensions": 1536,
+            "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+            "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+            "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+            "documentVectorKey": "d2c0fcefcdd6c376f2affb0b029762a486d8f02f6d24a4f3e389d4ca26e7733a",
+            "documentEmbeddedAt": "2026-09-08T02:46:52.785Z"
+          },
+          "passageId": "K-EDU.v1.s1",
+          "scoreKind": "hybrid_rrf",
+          "documentVersionId": "K-EDU.v1"
+        },
+        {
+          "rank": 2,
+          "score": 0.03252247488101534,
+          "ranking": {
+            "rrfK": 60,
+            "method": "reciprocal_rank_fusion",
+            "lexical": {
+              "rank": 1,
+              "score": 2.87263453
+            },
+            "combined": {
+              "rank": 2,
+              "score": 0.03252247488101534
+            },
+            "semantic": {
+              "rank": 2,
+              "score": 0.705512484744237
+            },
+            "candidateDepth": 50,
+            "inclusionReason": "both",
+            "semanticMinCosine": null
+          },
+          "textHash": "7f3bf8189028aacc0061a38fc523a10c34e4d1d58eeb9e31c3e2880320bab365",
+          "embedding": {
+            "model": "text-embedding-3-small",
+            "provider": "openai",
+            "dimensions": 1536,
+            "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+            "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+            "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+            "documentVectorKey": "90cd402268ea065d376ce2c62bff3316e2a2460dc2cd6d782cb660abc84156a0",
+            "documentEmbeddedAt": "2026-09-08T02:46:55.145Z"
+          },
+          "passageId": "N-101.v1.s1",
+          "scoreKind": "hybrid_rrf",
+          "documentVersionId": "N-101.v1"
+        },
+        {
+          "rank": 3,
+          "score": 0.031746031746031744,
+          "ranking": {
+            "rrfK": 60,
+            "method": "reciprocal_rank_fusion",
+            "lexical": {
+              "rank": 3,
+              "score": 1.12238566
+            },
+            "combined": {
+              "rank": 3,
+              "score": 0.031746031746031744
+            },
+            "semantic": {
+              "rank": 3,
+              "score": 0.681374221904832
+            },
+            "candidateDepth": 50,
+            "inclusionReason": "both",
+            "semanticMinCosine": null
+          },
+          "textHash": "c91ea0b8a980382e0cf3d71ce5664f9cc75b9671f103f7036691236822202bba",
+          "embedding": {
+            "model": "text-embedding-3-small",
+            "provider": "openai",
+            "dimensions": 1536,
+            "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+            "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+            "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+            "documentVectorKey": "0aac542d1183543916025bd62b8c5fb8d446953784d90463258671b57fe5525d",
+            "documentEmbeddedAt": "2026-09-08T02:46:55.379Z"
+          },
+          "passageId": "CE-101-01.v1.s1",
+          "scoreKind": "hybrid_rrf",
+          "documentVersionId": "CE-101-01.v1"
+        },
+        {
+          "rank": 4,
+          "score": 0.03125,
+          "ranking": {
+            "rrfK": 60,
+            "method": "reciprocal_rank_fusion",
+            "lexical": {
+              "rank": 4,
+              "score": 0.4534437
+            },
+            "combined": {
+              "rank": 4,
+              "score": 0.03125
+            },
+            "semantic": {
+              "rank": 4,
+              "score": 0.321190631113487
+            },
+            "candidateDepth": 50,
+            "inclusionReason": "both",
+            "semanticMinCosine": null
+          },
+          "textHash": "e6f5ae00fefd32a17188044dd23b20b871d82bcd3317c51bdd0af2d1b36e6c39",
+          "embedding": {
+            "model": "text-embedding-3-small",
+            "provider": "openai",
+            "dimensions": 1536,
+            "queryVectorKey": "ddc2c2d34fab9e696e4e02f98484b44f851e862419edf719f45750d45ba02bae",
+            "queryEmbeddedAt": "2026-09-08T02:46:47.354Z",
+            "configurationHash": "b5d8a5ed2c94c6f1f2b30062e6e5a5b99485932430874aa5b61cfd9bccf4af0b",
+            "documentVectorKey": "2297d5f921140b8d050610bdaa5459b6101d4846fa1654739474d2c5e7e20522",
+            "documentEmbeddedAt": "2026-09-08T02:46:55.611Z"
+          },
+          "passageId": "K-APL.v1.s1",
+          "scoreKind": "hybrid_rrf",
+          "documentVersionId": "K-APL.v1"
+        }
+      ],
+      "timestamp": "2026-09-10T16:02:00.000Z",
+      "corpusHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+      "escalation": {
+        "id": "studio-test.7f9cc7d6ce81e86f6ec819d8784acd3772fd17be.escalation",
+        "status": "proposed_not_dispatched",
+        "category": "missing_knowledge",
+        "ownerRole": "knowledge_admin",
+        "timestamp": "2026-09-10T16:02:00.000Z",
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "supportingPassageIds": []
+      },
+      "recordHash": "667ef7969f52f2b5eb369d06bc3eeeaf8ffe18240244c29e3f74c0aeb5a5a538",
+      "caseContext": {
+        "id": "DEMO-101",
+        "revision": "case-v1",
+        "tenantId": "T-DEMO",
+        "attributes": {
+          "plan": "Alder-Commercial",
+          "payer": "Alder",
+          "state": "CO",
+          "benefit": "pharmacy",
+          "product": "DEMO-PX1",
+          "indication": "Condition-Q",
+          "siteOfCare": null
+        },
+        "accessStatus": "pa_pending",
+        "assignmentId": "AS-101",
+        "evidenceVersionIds": [
+          "N-101.v1",
+          "CE-101-01.v1"
+        ]
+      },
+      "disposition": "pause",
+      "userContext": {
+        "id": "avery",
+        "roles": [
+          "operational"
+        ],
+        "caseIds": [
+          "DEMO-101",
+          "DEMO-102",
+          "DEMO-103",
+          "DEMO-CEDAR"
+        ],
+        "audience": "hcp",
+        "channels": [
+          "chat",
+          "sms",
+          "email"
+        ],
+        "tenantId": "T-DEMO",
+        "releaseIds": [
+          "KP-ALDER.2026.09.1",
+          "KP-CEDAR.2026.09.1",
+          "KP-SUPPORT.2026.09.1"
+        ],
+        "actionGrants": [
+          "recommend_document"
+        ],
+        "collectionIds": [],
+        "permittedUses": [
+          "explain",
+          "recommend"
+        ]
+      },
+      "evidenceUsed": [],
+      "registryHash": "da05b933d4554f57d6f03f98073d316b45d2b9c1aea158e5b23c8cb23d921bd1",
+      "applicability": {
+        "status": "unknown",
+        "timestamp": "2026-09-10T16:02:00.000Z",
+        "reasonCodes": [
+          "SOURCE_RETIRED"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "supportingPassageIds": []
+      },
+      "communication": {
+        "status": "allowed",
+        "timestamp": "2026-09-10T16:02:00.000Z",
+        "reasonCodes": [
+          "ELIGIBLE"
+        ],
+        "policyVersion": "knowledge-policy-v1",
+        "supportingPassageIds": []
+      },
+      "policyVersion": "knowledge-policy-v1",
+      "schemaVersion": "phase2b-v1",
+      "actionProposal": {
+        "type": "recommend_document",
+        "caseId": "DEMO-101",
+        "status": "paused",
+        "execution": "not_executed",
+        "evidencePassageIds": []
+      },
+      "selectedReleases": [
+        {
+          "id": "KP-ALDER.2026.09.1",
+          "manifestHash": "0a9f091e183781c4ebc8d54cca70d0cb6d43bee8f1b54a7cbc7866207a600e6c"
+        }
+      ],
+      "authorityFindings": [],
+      "collectionSnapshot": null,
+      "eligibleVersionIds": [
+        "CE-101-01.v1",
+        "K-APL.v1",
+        "K-EDU.v1",
+        "N-101.v1"
+      ],
+      "retrievalDiagnostics": [
+        {
+          "passageId": "K-EDU.v1.s1",
+          "releaseIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "metadataFilter": "ELIGIBLE",
+          "selectionReason": "both"
+        },
+        {
+          "passageId": "N-101.v1.s1",
+          "releaseIds": [],
+          "metadataFilter": "ELIGIBLE",
+          "selectionReason": "both"
+        },
+        {
+          "passageId": "CE-101-01.v1.s1",
+          "releaseIds": [],
+          "metadataFilter": "ELIGIBLE",
+          "selectionReason": "both"
+        },
+        {
+          "passageId": "K-APL.v1.s1",
+          "releaseIds": [
+            "KP-ALDER.2026.09.1"
+          ],
+          "metadataFilter": "ELIGIBLE",
+          "selectionReason": "both"
+        }
+      ]
+    },
+    "question": "Which signed office note document is missing for this request?",
+    "replayed": false,
+    "uploadId": null,
+    "latencyMs": 417.0313240000978,
+    "timestamp": "2026-09-10T16:02:00.000Z",
+    "collection": "governed",
+    "historical": false,
+    "requestHash": "34cbacfa58a8b3fe7d9f0b1277bd46867cc50fa5ea1357856e60d7088489673e"
+  },
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "1a440737734eb5ba4eae4445e1455f6993dadfb2d9cfc82e5f3cb10c3639901c"
+}

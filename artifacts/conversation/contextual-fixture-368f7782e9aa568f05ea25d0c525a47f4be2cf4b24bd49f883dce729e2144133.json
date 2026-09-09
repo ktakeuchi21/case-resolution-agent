@@ -1,0 +1,26 @@
+{
+  "schema": "pathway-governance-navigation-ui-v1",
+  "timestamp": "2026-09-09T12:47:31.007Z",
+  "environment": "Local isolated fixture workspace; actual persisted governance action, no model call or live quality claim",
+  "results": [
+    {
+      "name": "confirmed retirement survives immediate navigation",
+      "pass": true
+    },
+    {
+      "name": "conversation history unchanged",
+      "pass": true
+    },
+    {
+      "name": "workflow unchanged",
+      "pass": true
+    },
+    {
+      "name": "no browser exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "4ac6765e900fccc821633ddbf3a7f8fd3c138a0c702a5b28f85b72f9f79cd5ff"
+}
