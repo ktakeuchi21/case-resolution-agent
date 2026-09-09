@@ -1,0 +1,174 @@
+{
+  "schema": "pathway-static-rollout-browser-v1",
+  "timestamp": "2026-09-09T21:00:19.482Z",
+  "environment": "Public Render static overview, readiness rewrite and backend workspace handoff; isolated synthetic sessions; explicit evidence mode with retained vectors; no live model-quality claim",
+  "url": "https://case-resolution-frontend.onrender.com",
+  "measurements": [
+    {
+      "kind": "desktop_fresh_context",
+      "first-paint": 176,
+      "first-contentful-paint": 176,
+      "ttfbMs": 96.89999997615814,
+      "heroObservedMs": 533.5
+    }
+  ],
+  "results": [
+    {
+      "name": "CDN landing has CSP and browser protections",
+      "pass": true
+    },
+    {
+      "name": "landing issues no session request",
+      "pass": true
+    },
+    {
+      "name": "readiness rewrite returns uncached backend JSON",
+      "pass": true
+    },
+    {
+      "name": "workspace runs at the backend address",
+      "pass": true
+    },
+    {
+      "name": "frontend holds no session cookie",
+      "pass": true
+    },
+    {
+      "name": "handoff launch restores session and creates one backend case",
+      "pass": true
+    },
+    {
+      "name": "backend first-party session cookie retains Secure HttpOnly and Strict",
+      "pass": true,
+      "detail": {
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict",
+        "domain": "case-resolution-agent.onrender.com"
+      }
+    },
+    {
+      "name": "missing CSRF rejected at the selected request origin",
+      "pass": true
+    },
+    {
+      "name": "incorrect CSRF rejected at the selected request origin",
+      "pass": true
+    },
+    {
+      "name": "forged origin rejected at the selected request origin",
+      "pass": true
+    },
+    {
+      "name": "cross-site metadata rejected at the selected request origin",
+      "pass": true
+    },
+    {
+      "name": "rejected requests preserve workflow",
+      "pass": true
+    },
+    {
+      "name": "separate visitor starts with an empty isolated session",
+      "pass": true
+    },
+    {
+      "name": "separate visitor receives a distinct case",
+      "pass": true
+    },
+    {
+      "name": "synthetic upload parses at the selected request origin without caching",
+      "pass": true
+    },
+    {
+      "name": "original download round-trips bytes without caching",
+      "pass": true
+    },
+    {
+      "name": "another visitor cannot download the upload",
+      "pass": true
+    },
+    {
+      "name": "another visitor cannot list the upload",
+      "pass": true
+    },
+    {
+      "name": "CSRF tokens are session-bound",
+      "pass": true
+    },
+    {
+      "name": "direct workspace navigation restores the existing session",
+      "pass": true
+    },
+    {
+      "name": "synthetic role action survives forwarding",
+      "pass": true
+    },
+    {
+      "name": "test session explicitly selects evidence mode",
+      "pass": true
+    },
+    {
+      "name": "NDJSON stages and final response arrive uncached at the selected request origin",
+      "pass": true,
+      "detail": {
+        "status": 200,
+        "type": "application/x-ndjson",
+        "cache": "no-store",
+        "chunks": [
+          {
+            "ms": 123.40000003576279,
+            "stage": true,
+            "result": false
+          },
+          {
+            "ms": 948.9000000357628,
+            "stage": false,
+            "result": true
+          }
+        ],
+        "stages": [
+          "retrieving"
+        ],
+        "requests": 0,
+        "method": "deterministic-case-composition",
+        "hasResult": true,
+        "error": false
+      }
+    },
+    {
+      "name": "backend delivers a status chunk before the final result",
+      "pass": true
+    },
+    {
+      "name": "transport test makes zero model calls",
+      "pass": true
+    },
+    {
+      "name": "verification upload is deleted",
+      "pass": true
+    },
+    {
+      "name": "deployed landing fits 1440",
+      "pass": true
+    },
+    {
+      "name": "deployed landing fits 768",
+      "pass": true
+    },
+    {
+      "name": "deployed landing fits 375",
+      "pass": true
+    },
+    {
+      "name": "original backend frontend remains available",
+      "pass": true
+    },
+    {
+      "name": "no production browser exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "checkSourceSha256": "b9d5c8390900437d1e2324120aca77a2d2be0aafffca7b3a1d9b2a859c51beb8"
+}

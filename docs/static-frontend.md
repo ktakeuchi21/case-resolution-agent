@@ -4,7 +4,7 @@ Public entry: [Open Pathway Agent](https://case-resolution-frontend.onrender.com
 
 ## Latest application release
 
-The Conversation Launchpad release is live on both services at `9af626038f6fe22a016e00444494cd05b56f21c4`. The September 9 follow-up passed 31/31 public transport/security checks and 16/16 CDN asset checks; desktop first contentful paint measured 248 ms. See `conversation-launchpad.md` for release IDs, interface acceptance and the remaining default-provider budget pause. The initial hosting measurements below remain retained historical evidence.
+The Conversation Launchpad follow-up is live on both services at `a63de727aa2bc52c01cadca939dfa42b5c77ba1a`. It fixes return navigation and in-page upload expiry. The September 9 follow-up passed 31/31 public transport/security checks and 16/16 CDN asset checks; desktop first contentful paint measured 176 ms. See `conversation-launchpad.md` for release IDs, interface acceptance and the remaining default-provider budget pause. The initial hosting measurements below remain retained historical evidence.
 
 ## Initial static release configuration
 
