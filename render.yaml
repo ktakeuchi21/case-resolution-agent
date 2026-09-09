@@ -24,5 +24,46 @@ services:
         value: supabase-pg17-vector082
       - key: PATHWAY_DATABASE_CA_FILE
         value: /app/dist/config/supabase-ca.crt
+      # Exact static-site origin, configured after its URL is assigned.
+      - key: FRONTEND_ORIGIN
+        sync: false
+  - type: web
+    name: case-resolution-frontend
+    runtime: static
+    buildCommand: npm ci --ignore-scripts --no-audit --no-fund && npm run build
+    staticPublishPath: ./dist/web
+    autoDeployTrigger: "off"
+    envVars:
+      - key: NODE_VERSION
+        value: 24.20.0
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://case-resolution-agent.onrender.com/api/*
+      - type: rewrite
+        source: /healthz
+        destination: https://case-resolution-agent.onrender.com/healthz
+    headers:
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: no-referrer
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+      - path: /api/*
+        name: Cache-Control
+        value: no-store
+      - path: /healthz
+        name: Cache-Control
+        value: no-store
 # Administrator database credentials never belong in this public service.
 # Optional live generation settings are configured privately by the operator; see docs/digital-worker-runbook.md.

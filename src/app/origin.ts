@@ -13,3 +13,9 @@ export function configuredPublicOrigin(env: NodeJS.ProcessEnv = process.env): st
     (fromRender && (origin.protocol !== 'https:' || !origin.hostname.endsWith('.onrender.com')))) throw new Error('PUBLIC_ORIGIN_INVALID');
   return raw;
 }
+
+export function configuredFrontendOrigin(env: NodeJS.ProcessEnv = process.env): string | undefined {
+  if (!env.FRONTEND_ORIGIN) return undefined;
+  try { return configuredPublicOrigin({NODE_ENV:env.NODE_ENV, PUBLIC_ORIGIN:env.FRONTEND_ORIGIN}); }
+  catch { throw new Error('FRONTEND_ORIGIN_INVALID'); }
+}

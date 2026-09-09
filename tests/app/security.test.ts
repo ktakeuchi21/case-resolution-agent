@@ -12,7 +12,10 @@ import type { EvidenceRecord } from '../../src/contracts.ts';
 
 type View = Awaited<ReturnType<ReturnType<typeof createApplicationServer>['app']['view']>>;
 type Chat = Awaited<ReturnType<ReturnType<typeof createApplicationServer>['app']['chat']>>;
+const oldFrontendOrigin=process.env.FRONTEND_ORIGIN;
+process.env.FRONTEND_ORIGIN='https://frontend.example.invalid';
 const service = createApplicationServer();
+if(oldFrontendOrigin===undefined)delete process.env.FRONTEND_ORIGIN;else process.env.FRONTEND_ORIGIN=oldFrontendOrigin;
 const visitors = [0, 1].map(() => ({ token: randomBytes(32).toString('hex'), csrf: randomBytes(32).toString('hex') }));
 let origin: string;
 let first: View;
@@ -89,6 +92,15 @@ test('mutations reject missing/wrong CSRF, cross-origin and cross-site requests 
  ] as Record<string, string>[]) assert.equal((await request('/api/action', { input, headers })).status, 403);
  const current = await request<View>('/api/state');
  assert.deepEqual(current.body.timeline, first.timeline);
+});
+
+test('the configured frontend works through a same-origin proxy without bypassing CSRF or cross-site rejection',async()=>{
+ const input={scenario:'golden'};
+ const headers={Origin:'https://frontend.example.invalid','Sec-Fetch-Site':'same-origin'};
+ assert.equal((await request('/api/demo',{input,headers})).status,201);
+ for(const changed of [{'X-CSRF-Token':''},{Origin:'https://frontend.example.invalid.attacker.invalid'},{'Sec-Fetch-Site':'cross-site'}] as Record<string,string>[])assert.equal((await request('/api/demo',{input,headers:{...headers,...changed}})).status,403);
+ assert.equal((await request('/api/session',{headers})).headers.get('cache-control'),'no-store');
+ assert.deepEqual((await request<View>('/api/state')).body.timeline,first.timeline);
 });
 
 test('strict operation schemas reject forged actor, workspace, provider and raw workflow authority', async () => {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { configuredPublicOrigin } from '../src/app/origin.ts';
+import { configuredPublicOrigin, configuredFrontendOrigin } from '../src/app/origin.ts';
 
 test('production requires an exact trusted origin and redacts invalid inputs', () => {
   assert.throws(() => configuredPublicOrigin({NODE_ENV:'production'}), /PUBLIC_ORIGIN_REQUIRED/);
@@ -20,4 +20,9 @@ test('Render origin is used only under the provider flag and must be its exact H
 });
 test('local development retains an unconfigured loopback server path', () => {
   assert.equal(configuredPublicOrigin({}),undefined);
+});
+test('optional frontend origin is exact and never a wildcard or credential-bearing URL',()=>{
+  assert.equal(configuredFrontendOrigin({}),undefined);
+  assert.equal(configuredFrontendOrigin({FRONTEND_ORIGIN:'https://frontend.onrender.com'}),'https://frontend.onrender.com');
+  for(const raw of ['*','https://frontend.onrender.com/','https://frontend.onrender.com/path','http://frontend.onrender.com','https://user:secret@frontend.onrender.com','https://one.example,https://two.example'])assert.throws(()=>configuredFrontendOrigin({FRONTEND_ORIGIN:raw}),{message:'FRONTEND_ORIGIN_INVALID'});
 });

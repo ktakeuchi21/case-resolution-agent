@@ -8,7 +8,7 @@ import { Database,connection } from '../db/database.ts';
 import type { AgentService } from '../agent/service.ts';
 import { Application,uploadFixtures } from './service.ts';
 import { Sessions,HttpError } from './session.ts';
-import { configuredPublicOrigin } from './origin.ts';
+import { configuredPublicOrigin, configuredFrontendOrigin } from './origin.ts';
 import { databaseProfile,inspectDatabaseProfile } from '../db/profile.ts';
 const bodyLimit=12_000;
 async function body(req:IncomingMessage,limit=bodyLimit){
@@ -18,7 +18,7 @@ async function body(req:IncomingMessage,limit=bodyLimit){
 }
 function json(res:ServerResponse,status:number,value:unknown){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
 export function createApplicationServer(options:{db?:Database;sessionDb?:Database;webRoot?:string;agentProviders?:AgentService['testProviders']}={}){
- const publicOrigin=configuredPublicOrigin();
+ const publicOrigin=configuredPublicOrigin(),frontendOrigin=configuredFrontendOrigin();
  const db=options.db??new Database(),sessionDb=options.sessionDb??new Database({...connection(),max:4});
  const sessions=new Sessions(sessionDb),app=new Application(db,sessions,options.agentProviders);let active=0;
  const cleanup=setInterval(()=>{void app.studio.prune().catch(()=>{});},5*60_000);cleanup.unref();
@@ -35,7 +35,7 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
    if(url.pathname.startsWith('/api/')){
     if(req.headers['sec-fetch-site']==='cross-site')throw new HttpError(403,'Cross-site requests are not allowed.');
     const origin=req.headers.origin,expected=publicOrigin;
-    if(origin&&origin!==(expected??`http://${host}`))throw new HttpError(403,'Request origin is not allowed.');
+    if(origin&&origin!==(expected??`http://${host}`)&&origin!==frontendOrigin)throw new HttpError(403,'Request origin is not allowed.');
     if(active>=2)throw new HttpError(503,'The demo is busy. Please retry in a moment.');active++;counted=true;
     if(url.pathname==='/api/session'&&req.method==='GET'){
      const s=await sessions.get(req,res,true);await sessions.limit('read.'+s.token_hash,240,60);json(res,200,{csrf:s.csrf,session:{id:s.token_hash.slice(0,12),role:s.role,expiresAt:s.expires_at.toISOString()},data:s.workspace?await app.view(s):null});return;
