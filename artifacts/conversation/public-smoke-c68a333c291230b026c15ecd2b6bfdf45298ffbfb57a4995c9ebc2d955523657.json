@@ -1,0 +1,56 @@
+{
+  "schema": "pathway-public-release-smoke-v1",
+  "timestamp": "2026-09-09T13:02:03.303107+00:00",
+  "url": "https://case-resolution-agent.onrender.com",
+  "revision": "9d307d1f3e6ae6caca3c92716219c666854b82ae",
+  "renderDeployId": "dep-daglg6ijnfac73e3jh7g",
+  "checks": [
+    {
+      "route": "/healthz",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "synthetic": true,
+        "service": "pathway-agent",
+        "version": "digital-worker-v1"
+      }
+    },
+    {
+      "route": "/agent.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "1571f388e16266e2464c4c969875b3083fce1026eac1c2b5af353ba0184d8857"
+    },
+    {
+      "route": "/app.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "7573005111c0a4f0e00ed9779a8f1ddab98bec07448305f0a47c583e47a17754"
+    },
+    {
+      "route": "/studio.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "166975b7e70cf2e6af459783c61efd07b403affa60a128e38d3248064a79133b"
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "a50ea9b3945c4433795cf0c3e32789c914fbb0e9f1ec893d13ce342df6ede56a"
+    },
+    {
+      "route": "/tour.js",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "4a3fe4404295790791997c38b72bf5cc4ebc1d886f8886ad542f4e96a116215a"
+    },
+    {
+      "route": "/evaluation.json",
+      "status": 200,
+      "matchesLocal": true,
+      "sha256": "646802a87fba60411b8b92d6d77fe6dc1bae253c4046cc27102e8f8abae59382"
+    }
+  ],
+  "limit": "Health and exact public asset verification. Complete fresh live language acceptance remains pending the provider budget."
+}

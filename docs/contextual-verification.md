@@ -69,3 +69,10 @@ The latest local correction pairs exact quote choices with their current referen
 The public health endpoint returned HTTP 200 and agent.js, app.js, styles.css and evaluation.json matched the local release exactly at a83b0ab; retained `public-smoke-3cee5862c2fa18479df63d00a3c454fa100273c24221d3da583de7e42e102c30.json`. Final correction deployment is recorded separately below when complete.
 
 **Still required:** a fresh complete twelve-prompt paired run plus corrected boundary/mobile traces on the final runtime, full semantic review of that run, and final release qualification. The previous complete comparison remains a failed acceptance run. Targeted corrections and fixtures must not be substituted for it. On September 9 the configured daily request budget reached **100/100**. No cap increase or reset was applied. The pending request is temporary permission to raise PATHWAY_PROVIDER_DAILY_REQUESTS to 200 for testing and restore 100 afterward, or completion after the next UTC-day reset (September 9 at 6 PM MDT). All data, effects and identities remain synthetic.
+
+
+## Final correction deployment
+
+Code revision **9d307d1f3e6ae6caca3c92716219c666854b82ae** deployed successfully to [the public service](https://case-resolution-agent.onrender.com) in Render deployment **dep-daglg6ijnfac73e3jh7g** on September 9, 2026 at 6:59 AM MDT. Health and six public assets returned HTTP 200; every asset matched the verified local file exactly. Artifact: `public-smoke-c68a333c291230b026c15ecd2b6bfdf45298ffbfb57a4995c9ebc2d955523657.json`.
+
+The deployed exhausted-budget browser check passed 4/4: explicit request-limit message, zero outbound calls/tokens, no fallback/work product, and unchanged workflow. Artifact: `contextual-redesigned-6ccdb4b919fd0b415863f4090c7d072fc61f66af4db277afcb42dbe89a33d50e.json`. A hosted read confirmed daily reservations stayed **100**. The cap remains unchanged. These checks establish deployment and bounded failure behavior; they do not complete the pending live conversational acceptance. Subsequent report/artifact-only commits do not change the deployed runtime.
