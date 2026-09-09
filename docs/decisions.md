@@ -174,3 +174,11 @@ The correction passes local checks but its live composition schema is rejected. 
 ## 2026-09-09 — Serve the overview statically and enter the backend workspace after readiness
 
 The initial Render Static Site rewrite preserved cookies, CSRF and isolation but buffered streamed stages until the answer completed. Hold promotion on that failed gate. The owner approved keeping the CDN overview/loading screen and navigating to the existing backend workspace after readiness. This preserves first-party backend cookies and progressive delivery without changing providers, relaxing security or adding paid resources. Fixed public origins, allowlisted routes/scenarios and a carried 90-second entry deadline bound the handoff; no session tokens move between origins. Browser Back returns to the overview. All 31 deployed transport checks pass on the replacement arrangement. See [release details and measurements](static-frontend.md); contextual model acceptance remains a separate open gate.
+
+## September 9, 2026 — Conversation Launchpad is a presentation layer
+
+Chat now introduces synthetic Avery's current role, Pathway's AI purpose and bounded authority, active knowledge coverage and four deterministic suggestions. A suggestion uses the existing idempotent conversation submission directly. The first substantive submission collapses orientation into a persistent context bar; View context reopens it without altering history. A new conversation with known knowledge gets a concise welcome. Role, knowledge, eligibility and material workflow changes refresh presentation and accessible status.
+
+Server display metadata reuses canonical selection/source policy and support assessment. Explain-permitted guidance is distinguished from permission to recommend or execute. Eligible but lower-authority educational material remains inspectable without contributing authoritative coverage. Related source versions share one title in the disclosure. Temporary uploads use reviewed names and existing session/expiry checks, never a case assignment. No new database migration, model call, authority grant or acknowledgement is introduced.
+
+See `conversation-launchpad.md` for the implementation and verification record. Keep the independent contextual provider failure visible; launchpad rendering is not live model-quality acceptance.

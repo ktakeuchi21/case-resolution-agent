@@ -1,0 +1,57 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+const [runtime,origin='http://127.0.0.1:3013']=process.argv.slice(2);
+if(!runtime||!['http://127.0.0.1:3013','https://case-resolution-agent.onrender.com'].includes(origin))throw new Error('Supply the installed Playwright module and an approved target.');
+const {chromium}=await import(pathToFileURL(runtime).href),browser=await chromium.launch({channel:'chrome',headless:true});
+const results=[],check=(name,pass,detail)=>{results.push({name,pass:!!pass,...(detail===undefined?{}:{detail})});if(!pass)throw new Error(name);};
+const live=origin.startsWith('https'),report={schema:'pathway-launchpad-browser-v1',timestamp:new Date().toISOString(),origin,provider:live?'Configured production provider':'Explicit predetermined local fixture; not a model-quality result',results};
+try{
+ const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ let posts=0;page.on('request',r=>{if(r.url().endsWith('/api/conversation')&&r.method()==='POST')posts++;});
+ const api=async(path,input)=>page.evaluate(async({path,input})=>{const session=await(await fetch('/api/session',{cache:'no-store'})).json();const response=await fetch('/api/'+path,{method:input?'POST':'GET',headers:{'content-type':'application/json','x-csrf-token':session.csrf},...(input?{body:JSON.stringify(input)}:{})});const body=await response.json();if(!response.ok)throw new Error(body.error||'API failed');return body;},{path,input});
+ const state=()=>api('state');
+ await page.goto(origin);await page.locator('main').getByRole('button',{name:'Launch guided demo',exact:true}).click();await page.getByRole('button',{name:'Use sample knowledge →',exact:true}).click();await page.locator('#agent-text').waitFor();
+ check('A: sample opens full in-chat orientation without another gate',await page.locator('#conversation-launchpad').isVisible()&&await page.locator('[data-agent-suggestion]').count()===4&&await page.locator('[data-acknowledge-notice]').count()===0);
+ check('A: identity, AI and knowledge coverage are clear',(await page.locator('#conversation-launchpad').innerText()).includes('Office staff')&&(await page.locator('#conversation-launchpad').innerText()).includes('AI case worker')&&(await page.locator('#conversation-launchpad').innerText()).includes('administrative communication guidance'));
+ check('A: default Office prompts include drafting',await page.getByRole('button',{name:'Draft a short email requesting it.',exact:true}).count()===1);
+ check('A: composer focused',await page.locator('#agent-text').evaluate(n=>document.activeElement===n));
+ const baseline=await state(),workflow=JSON.stringify(baseline.workflow),assignment=baseline.knowledge.activeAssignmentId;
+ await mkdir('output/playwright/launchpad',{recursive:true});
+ for(const [size,width,height] of [['desktop',1440,1000],['tablet',768,1024],['mobile',375,812]]){
+  await page.setViewportSize({width,height});await page.locator('.chat-workspace').scrollIntoViewIfNeeded();
+  check('H: no horizontal overflow at '+size,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  check('H: prompt and context touch targets at '+size,await page.locator('[data-agent-suggestion],.context-actions button,.context-actions a').evaluateAll(nodes=>nodes.every(n=>{const r=n.getBoundingClientRect();return r.width>=44&&r.height>=44;})));
+  await page.screenshot({path:`output/playwright/launchpad/${live?'live-':''}after-${size}.png`,fullPage:false});
+ }
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await page.getByRole('button',{name:'What document is missing?',exact:true}).focus();await page.keyboard.press('Enter');
+ await page.waitForFunction(()=>document.querySelector('.agent-turn')&&document.querySelector('#agent-form').getAttribute('aria-busy')==='false',{},{timeout:90000});
+ check('B: keyboard suggestion submits directly exactly once',posts===1);
+ check('B: first substantive message collapses context',!(await page.locator('#conversation-launchpad').isVisible()));
+ const answered=await state(),first=answered.agent.entries.at(-1);
+ check('B: normal conversation keeps exact citations',first.disposition==='answer'&&first.citations.length>0,{disposition:first.disposition,method:first.audit.method,reasonCodes:first.reasonCodes});
+ check('B: composer focused after response',await page.locator('#agent-text').evaluate(n=>document.activeElement===n));
+ check('H: response and composer accessible on mobile',await page.locator('.worker-turn').last().evaluate(n=>{const s=n.closest('.conversation-stream').getBoundingClientRect(),r=n.getBoundingClientRect();return r.top<s.bottom&&r.top>=s.top;})&&await page.locator('#agent-text').evaluate(n=>{const r=n.getBoundingClientRect();return r.bottom<=innerHeight&&r.top>=0;}));
+ await page.screenshot({path:`output/playwright/launchpad/${live?'live-':''}after-mobile-conversation.png`,fullPage:false});
+ await page.getByRole('button',{name:'View context',exact:true}).click();check('View context reopens without resetting conversation',await page.locator('#conversation-launchpad').isVisible()&&await page.locator('.agent-turn').count()===1);
+ await page.getByRole('button',{name:'Change role',exact:true}).click();check('C: Change role reaches the native role selector',await page.locator('#role').evaluate(n=>document.activeElement===n));await page.locator('#role').selectOption('supervisor');await page.waitForFunction(()=>document.querySelector('.context-identity')?.textContent.includes('Supervisor'));
+ check('C: supervisor questions and accessible change announcement',await page.getByRole('button',{name:'Brief me on the case and current risk.',exact:true}).count()===1&&(await page.locator('#context-announcement').textContent()).includes('Supervisor'));
+ const changed=await state();check('C: role changes neither workflow nor history',JSON.stringify(changed.workflow)===workflow&&JSON.stringify(changed.agent.entries[0])===JSON.stringify(first));
+ await page.getByRole('button',{name:'Hide context',exact:true}).click();await page.getByRole('link',{name:'Change knowledge',exact:true}).click();await page.getByRole('button',{name:'Use sample knowledge →',exact:true}).click();await page.locator('#agent-text').waitFor();check('F: returning to same conversation stays compact',!await page.locator('#conversation-launchpad').isVisible()&&await page.locator('.agent-turn').count()===1);
+ await page.getByRole('button',{name:'New conversation',exact:true}).click();await page.waitForFunction(()=>document.querySelector('#launchpad-heading')?.textContent.includes('fresh conversation'));
+ check('New conversation gives concise welcome and preserves operational history',!(await page.locator('#conversation-launchpad').innerText()).includes('AI case worker')&&JSON.stringify((await state()).workflow)===workflow);
+ await page.getByRole('link',{name:'Change knowledge',exact:true}).click();await page.locator('[data-picker-tab="packs"]').click();const pack=baseline.agent.packs.find(p=>p.available);await page.locator(`[data-chat-pack="${pack.id}"]`).click();await page.locator('#conversation-launchpad').waitFor();
+ await page.getByText('View knowledge details',{exact:true}).click();check('D: pack details expose version and eligibility',await page.locator('.launchpad-details').evaluate(n=>n.open)&&(await page.locator('.launchpad-details').innerText()).includes(pack.version));
+ check('D: no duplicate source titles',await page.locator('.launchpad-sources>li>strong').evaluateAll(nodes=>new Set(nodes.map(n=>n.textContent)).size===nodes.length));
+ const upload=await api('studio-upload',{name:'launchpad-synthetic.md',synthetic:true,base64:Buffer.from('# Synthetic office guide\n\nThe office records a synthetic administrative review.').toString('base64')});
+ await page.getByRole('link',{name:'Change knowledge',exact:true}).click();await page.reload();await page.locator('#role').waitFor();await page.locator('[data-picker-tab="upload"]').click();await page.locator(`[data-chat-upload="${upload.id}"]`).click();await page.locator('#conversation-launchpad').waitFor();
+ check('E: upload has temporary boundary and document prompts',(await page.locator('#conversation-launchpad').innerText()).includes('cannot authorize operational actions')&&await page.getByRole('button',{name:'Summarize this document.',exact:true}).count()===1);
+ check('G: changed knowledge boundary is explicit',(await page.locator('#conversation-launchpad').innerText()).includes('Knowledge boundary changed'));
+ check('G: history retains original citations and assignment',JSON.stringify((await state()).agent.entries.find(e=>e.id===first.id))===JSON.stringify(first)&&(await state()).knowledge.activeAssignmentId===assignment);
+ await api('studio-action',{action:'delete',uploadId:upload.id,revision:upload.revision,confirmed:true,idempotencyKey:crypto.randomUUID()});await page.reload();await page.locator('#agent-text').waitFor();
+ check('Expired/deleted context offers new knowledge and no old source text',(await page.locator('#conversation-launchpad').innerText()).includes('expired')&&await page.getByRole('link',{name:'Choose new knowledge',exact:true}).count()===1&&(await state()).agent.orientation.sources.length===0);
+ check('No browser errors',errors.length===0,errors);
+}catch(e){report.error=e.message;}finally{await browser.close();}
+report.checkSourceSha256=createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex');
+const body=JSON.stringify(report,null,2)+'\n',file='artifacts/digital-worker/launchpad-browser-'+createHash('sha256').update(body).digest('hex')+'.json';await writeFile(file,body,{flag:'wx',mode:0o444});console.log(JSON.stringify({artifact:file,passed:results.filter(r=>r.pass).length,total:results.length,error:report.error}));if(report.error)process.exitCode=1;

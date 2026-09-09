@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "phase2c-empty-database-v1",
+  "database": "pathway_verify_8631939fcdd2473f91db6c5c8296223f",
+  "migrations": [
+    {
+      "name": "001_governance.sql",
+      "sha256": "42004aef2d00c519dfa20401cfc8250ae1e7525e2a321e148b43f12f851d9489",
+      "applied_at": "2026-09-09T20:19:57.045Z"
+    },
+    {
+      "name": "002_serialization.sql",
+      "sha256": "45cbe23f01345e5b3be27509b4355380a4dbcc72777778250c2b615dd17a594a",
+      "applied_at": "2026-09-09T20:19:57.053Z"
+    },
+    {
+      "name": "003_evidence_links_and_degraded_grants.sql",
+      "sha256": "d1b2bd0d701b544d0ae892cd1c65d401c4eabe0db4087836efbcc5c24818044d",
+      "applied_at": "2026-09-09T20:19:57.065Z"
+    },
+    {
+      "name": "004_correction_links.sql",
+      "sha256": "7dd3c1082a0df2087c6811ed72871feeede394d70b63f1ba45d9f6550358fc78",
+      "applied_at": "2026-09-09T20:19:57.072Z"
+    },
+    {
+      "name": "005_sc01_workflow.sql",
+      "sha256": "5a0f0e6610cad18e029a504b654a859ce4ef8bd6a6c1f6ffde31e80daa88e480",
+      "applied_at": "2026-09-09T20:19:57.097Z"
+    },
+    {
+      "name": "006_workflow_evidence_links.sql",
+      "sha256": "3619fe1987cce4ed825900bbd8fea13992fb49b00a9bc34d193f76ebc9162c1f",
+      "applied_at": "2026-09-09T20:19:57.110Z"
+    },
+    {
+      "name": "007_portfolio_sessions.sql",
+      "sha256": "c3abf259db3b713442e83b5aeb0a465fde174139e192cd7553e1a4679bca308b",
+      "applied_at": "2026-09-09T20:19:57.171Z"
+    },
+    {
+      "name": "008_application_evidence.sql",
+      "sha256": "2668f1b9036740b01fb3d1c862a39b5710484cea0a81ca61a728a2a8cffadec7",
+      "applied_at": "2026-09-09T20:19:57.183Z"
+    },
+    {
+      "name": "009_agent_memory.sql",
+      "sha256": "70526d9e1433351bad3215acdd771ee7c5ef0235d64b200f793e082e9dccbedf",
+      "applied_at": "2026-09-09T20:19:57.195Z"
+    },
+    {
+      "name": "010_knowledge_studio.sql",
+      "sha256": "be69074987fc6517168b38d4d4db663613e0c1d546cb6a367c731408a6194cbe",
+      "applied_at": "2026-09-09T20:19:57.208Z"
+    },
+    {
+      "name": "011_temporary_vectors.sql",
+      "sha256": "d61a752a5f0ff3ef3e4e23b1e7fa3badbf3302f43e54fc73c0fe2f6685a7aadd",
+      "applied_at": "2026-09-09T20:19:57.210Z"
+    },
+    {
+      "name": "012_conversation_preferences.sql",
+      "sha256": "2b86ebf667f05ed044b2ca5f23b5b1b12bc59f0ceb20350c9e48b3dc0d862528",
+      "applied_at": "2026-09-09T20:19:57.215Z"
+    },
+    {
+      "name": "013_conversation_feedback.sql",
+      "sha256": "b1025228b8035fad460db71bf78aba16f47fd7d99e47e1ba81690301e0ce9226",
+      "applied_at": "2026-09-09T20:19:57.218Z"
+    }
+  ],
+  "seed": {
+    "workspace": "empty-test",
+    "fixtureHash": "c7abc2603065e623d4d4cccf731086a48d1136b676d13f58775e42a4df42de7b",
+    "fixtureVersion": "phase2c-synthetic-v1"
+  },
+  "repeatSeedIdentical": true,
+  "hybridRun": "c7e95536-184c-4189-b1aa-40101dbe9f03",
+  "pass": true,
+  "note": "Disposable verification database retained; no automatic database or volume deletion."
+}

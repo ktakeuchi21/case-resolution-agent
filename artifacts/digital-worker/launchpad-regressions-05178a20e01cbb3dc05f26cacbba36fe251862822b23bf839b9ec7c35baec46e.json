@@ -1,0 +1,139 @@
+{
+  "timestamp": "2026-09-09T20:29:48.298Z",
+  "environment": "Local explicit fixture; no live model calls",
+  "reports": [
+    {
+      "group": "contextual-ui",
+      "schema": "pathway-contextual-ui-v1",
+      "timestamp": "2026-09-09T20:28:44.858Z",
+      "environment": "Local deterministic provider fixture; UI/API contract checks only, NOT live model quality",
+      "results": [],
+      "errors": [],
+      "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Launch guided demo', exact: true }).first()\u001b[22m\n",
+      "checkSourceSha256": "73397ff3d240ccb56d909a59e5e1f1d0bdccc9555c0db1a1ddf31bab91b72205"
+    },
+    {
+      "group": "static-startup",
+      "schema": "pathway-static-startup-browser-v1",
+      "timestamp": "2026-09-09T20:29:22.214Z",
+      "environment": "Local actual frontend and synthetic database; readiness delays controlled in the browser; zero live model calls",
+      "results": [
+        {
+          "name": "landing renders while backend is unavailable",
+          "pass": true
+        },
+        {
+          "name": "landing creates no session or case",
+          "pass": true
+        },
+        {
+          "name": "arrival starts background readiness only",
+          "pass": true
+        },
+        {
+          "name": "workspace entry has accessible busy state",
+          "pass": true
+        },
+        {
+          "name": "slow-start explanation appears after ten seconds",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 1440",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 768",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 375",
+          "pass": true
+        },
+        {
+          "name": "loading animation respects reduced motion",
+          "pass": true
+        },
+        {
+          "name": "automatic continuation creates exactly one case despite repeated clicks",
+          "pass": true
+        },
+        {
+          "name": "returning deep link restores the case without creation",
+          "pass": true
+        },
+        {
+          "name": "successful background wake still creates no session",
+          "pass": true
+        },
+        {
+          "name": "launch after readiness proceeds once",
+          "pass": true
+        },
+        {
+          "name": "timeout creates no session or case",
+          "pass": true
+        },
+        {
+          "name": "retry after readiness failure opens the new-visitor knowledge flow once",
+          "pass": true
+        },
+        {
+          "name": "back cancels workspace entry without creating a session",
+          "pass": true
+        },
+        {
+          "name": "an interrupted successful creation is recovered by GET without replaying POST",
+          "pass": true
+        }
+      ],
+      "errors": [
+        {
+          "route": "#knowledge",
+          "visibleStatus": "Demo rate limit reached. Please wait before trying again."
+        }
+      ],
+      "error": "TimeoutError: locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByText('The connection is ready, but no workspace was found. Return to the overview and launch the demo again.', { exact: true }) to be visible\u001b[22m\n",
+      "checkSourceSha256": "d07aadcf2b5221009a2d2dec136d651061fb9bbf8010f98b1526832ef9acd88b"
+    },
+    {
+      "group": "static-handoff",
+      "schema": "pathway-static-handoff-browser-v1",
+      "timestamp": "2026-09-09T20:29:48.285Z",
+      "environment": "Production-origin navigation with all frontend/backend requests intercepted to local real assets and isolated fixture APIs; zero public service or model calls",
+      "results": [
+        {
+          "name": "static overview appears while readiness is unavailable",
+          "pass": true
+        },
+        {
+          "name": "readiness failure does not navigate or create a session",
+          "pass": true
+        },
+        {
+          "name": "slow explanation remains accessible before handoff",
+          "pass": true
+        },
+        {
+          "name": "handoff loading screen fits 1440",
+          "pass": true
+        },
+        {
+          "name": "handoff loading screen fits 768",
+          "pass": true
+        },
+        {
+          "name": "handoff loading screen fits 375",
+          "pass": true
+        },
+        {
+          "name": "handoff loading respects reduced motion",
+          "pass": true
+        }
+      ],
+      "errors": [],
+      "error": "TimeoutError: locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.knowledge-picker') to be visible\u001b[22m\n\u001b[2m    - waiting for navigation to finish...\u001b[22m\n\u001b[2m    - navigated to \"https://case-resolution-agent.onrender.com/?entryScenario=golden&entryStarted=1788985763100#knowledge\"\u001b[22m\n",
+      "checkSourceSha256": "c7e9d59b9f3943f8050af1d77909641c523118443b89f559e1d946eb22a84c70"
+    }
+  ]
+}

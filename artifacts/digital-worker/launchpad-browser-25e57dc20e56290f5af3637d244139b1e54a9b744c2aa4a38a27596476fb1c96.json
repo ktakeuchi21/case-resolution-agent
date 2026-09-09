@@ -1,0 +1,18 @@
+{
+  "schema": "pathway-launchpad-browser-v1",
+  "timestamp": "2026-09-09T20:25:03.233Z",
+  "origin": "http://127.0.0.1:3013",
+  "provider": "Explicit predetermined local fixture; not a model-quality result",
+  "results": [
+    {
+      "name": "A: sample opens full in-chat orientation without another gate",
+      "pass": true
+    },
+    {
+      "name": "A: identity, AI and knowledge coverage are clear",
+      "pass": false
+    }
+  ],
+  "error": "A: identity, AI and knowledge coverage are clear",
+  "checkSourceSha256": "2e2474db76f48e4b7b4046ccb5352b6bdc7512a4f5be10a04d3fd01333c939a6"
+}

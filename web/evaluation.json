@@ -1,6 +1,6 @@
 {
   "schema": "pathway-digital-worker-verification-v1",
-  "timestamp": "2026-09-09T16:30:24.482Z",
+  "timestamp": "2026-09-09T20:31:26.598Z",
   "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
   "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
   "suites": [
@@ -9,71 +9,71 @@
       "command": "npm run typecheck",
       "passed": true,
       "tests": null,
-      "durationMs": 12646.113666000001,
+      "durationMs": 2928.929417,
       "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
     },
     {
       "name": "Core governance and retrieval",
       "command": "npm test",
       "passed": true,
-      "tests": 80,
-      "durationMs": 5477.709417,
-      "outputHash": "8726c34209d6fc92f046cd59481d2674436134bc37c0807e2a09088d77707ad4"
+      "tests": 81,
+      "durationMs": 707.4935419999997,
+      "outputHash": "15b26e4f9b6f57cae671fc541e3c328da862842a2c40de142058337dff62ef15"
     },
     {
       "name": "Original generation",
       "command": "npm run test:generation",
       "passed": true,
       "tests": 12,
-      "durationMs": 664.5684170000022,
-      "outputHash": "ff496bab97c3408fb65841aff2709d62f8f622b1995d967ad5ee05e0aa8accb4"
+      "durationMs": 518.6464169999999,
+      "outputHash": "19824ee27e8ffa96da1659d42a2dd729072081483992d545ec0138c2154a68c8"
     },
     {
       "name": "Digital worker composition and conversational intent",
       "command": "npm run test:agent",
       "passed": true,
-      "tests": 79,
-      "durationMs": 657.7518750000017,
-      "outputHash": "aa3e18b556b176a6f7415cd88f1fd387dae8c5062539ff47c8999c4b49d1c7e5"
+      "tests": 84,
+      "durationMs": 748.3967499999999,
+      "outputHash": "eb3cd1b165b825794ee5593d68ec9d1077bb1f127a88590f033dca056ab5d9fb"
     },
     {
       "name": "Document parsing and safety",
       "command": "npm run test:studio",
       "passed": true,
       "tests": 8,
-      "durationMs": 3809.935207999999,
-      "outputHash": "fe4f208180d4f85239755cca53721d96b069212489bbea6d7a4b5f296b834c36"
+      "durationMs": 3808.6047500000004,
+      "outputHash": "9756c270db02c466cd08c867ee5028b2a635d02e22ee7f3a4168f81620c32f8b"
     },
     {
       "name": "PostgreSQL persistence",
       "command": "npm run test:postgres",
       "passed": true,
       "tests": 24,
-      "durationMs": 5641.450000000001,
-      "outputHash": "f94bca58dcc843c848b312e05f23782348677a61dcd3a2be3e75526f9298d3f9"
+      "durationMs": 4093.0612090000013,
+      "outputHash": "27a5c6b09f9c9f821fac2c4259e0de7b09a56253d0fc5cc0561fa95b397cac32"
     },
     {
       "name": "Workflow effects, roles and restart",
       "command": "npm run test:workflow",
       "passed": true,
       "tests": 30,
-      "durationMs": 12928.419624999995,
-      "outputHash": "56888e4284b1233908767a130ffa5938dc0537578ccacac1a1bc9949158e6bf5"
+      "durationMs": 11612.847167,
+      "outputHash": "f6ffe4e21c18976a04e5184a1b57e5a70b3cd18a904e9c941f4b186632526e5a"
     },
     {
       "name": "Application, isolation and Studio",
       "command": "node scripts/db/with-verification.ts app",
       "passed": true,
-      "tests": 25,
-      "durationMs": 10044.222083,
-      "outputHash": "762d0fdb5b484fd95c6a57edba7969340264a7bbc2af621c1bb1b2e3ab106320"
+      "tests": 26,
+      "durationMs": 10188.784375,
+      "outputHash": "8b20d4670e37f3e1c5420f77478fce8f26f83a1c552d5f35b0a0d52909a59e2e"
     },
     {
       "name": "Original reference evaluation",
       "command": "npm run eval",
       "passed": true,
       "tests": null,
-      "durationMs": 483.4833340000041,
+      "durationMs": 470.22004200000083,
       "outputHash": "2fe030e8cfd08f7a95804de84c44f604d3a1e3c3a996b13842618e6dc1ea8430"
     },
     {
@@ -81,7 +81,7 @@
       "command": "npm run demo",
       "passed": true,
       "tests": null,
-      "durationMs": 340.66695799999434,
+      "durationMs": 362.30337499999587,
       "outputHash": "f8de355caae48bb75d295a85bf9c89466d78d70d1cc5dbc0e8b80322fcd3cb68"
     },
     {
@@ -89,7 +89,7 @@
       "command": "npm run probes",
       "passed": true,
       "tests": null,
-      "durationMs": 366.452833000003,
+      "durationMs": 512.9648749999978,
       "outputHash": "373301a9771a0908d570466ab62e6c675e6a8064cf4a51f2cd339cc2ddb168f6"
     },
     {
@@ -97,22 +97,22 @@
       "command": "npm run eval:postgres",
       "passed": true,
       "tests": null,
-      "durationMs": 7104.737500000003,
-      "outputHash": "e5b73e75e7467479dc641db452812d2979cc5ac817512ca1b9f68d61fd19d4be"
+      "durationMs": 7714.589249999997,
+      "outputHash": "8de9d120c031dff0781916b541978e574324ef8fb3dd358a4a2e1f86fb6ff983"
     }
   ],
   "frozenArtifacts": {
-    "count": 167,
+    "count": 193,
     "unchanged": true,
-    "manifestHash": "a2e90c4975d24a4ebb706ea6ab679876d5223f939325e81d0227b9794ea0a287"
+    "manifestHash": "200587c045535884b084e1fb4e4ed7f7ef444aff9fbeabaa30f7df6d21608f6d"
   },
   "retrieval": {
-    "model": "OpenAI text-embedding-3-small, 1536 dimensions \u00b7 preserved real synthetic vectors",
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
     "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
     "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
   },
   "generation": {
-    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 \u00b7 pathway-contextual-v1; replaceable provider interface",
+    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-contextual-v1; replaceable provider interface",
     "summary": "Contextual interpretation and complete-turn contracts, full-text review coverage, transformation constraints, durable regeneration, feedback, legacy composition and fail-closed checks were exercised with explicit fixtures. No live synthesis quality score is claimed.",
     "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
   },
@@ -126,7 +126,7 @@
   ],
   "contextualComparison": {
     "schema": "pathway-contextual-comparison-v1",
-    "timestamp": "2026-09-09T16:31:56.623Z",
+    "timestamp": "2026-09-09T20:34:31.348Z",
     "status": "recorded_with_semantic_review",
     "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
     "baselineRevision": "acaabee",
@@ -262,19 +262,11 @@
     "caveats": [
       "Exact twelve-prompt core comparison; developer-authored synthetic conversation, not an independent holdout.",
       "Mechanical checks do not prove natural-language entailment or response usefulness; semantic review is separate.",
-      "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm\u2019s own body field.",
+      "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm’s own body field.",
       "Latency is end-to-end browser submission to saved display, including service/network effects. Cache and free-service cold starts may differ.",
       "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
       "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
     ],
-    "artifact": "artifacts/conversation/comparison-087b2ed55a684bfe1062ab6bb9384a1025e9b051ade364cda09d0f15652cd282.json",
-    "latestCorrectionEvidence": {
-      "status": "provider_schema_rejected_live_qualification_incomplete",
-      "summary": "Subsequent authority corrections passed the full 258-test local verification; the bounded diagnostic addition passed type checking and 80 agent tests. Two focused live memory smokes failed provider schema validation, most recently with an allowlisted anyOf restriction category. No unvalidated answer was shown and the workflow was preserved. The temporary allowance reached 200 daily reservations; Render cap restored and verified as 100. Full fresh live qualification remains incomplete.",
-      "diagnosticRevision": "8478de860e9290e24ff3707b22397bcbd2aad51f",
-      "diagnosticArtifact": "artifacts/conversation/contextual-redesigned-b550c040878e6033c732a65cd25a90a7e2c23d13b99ca4bf8064c321f34ec7f3.json",
-      "restoredDailyLimit": 100,
-      "reservedRequestsOn20260909": 200
-    }
+    "artifact": "artifacts/conversation/comparison-ab08640b8a3c683cc47e9f9ecddcc4255ae6616d004c6641ce4a987d5e622557.json"
   }
 }

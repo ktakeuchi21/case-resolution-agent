@@ -60,3 +60,5 @@ The original headless phases remain frozen. Current digital-worker implementatio
 The deployed fast path is **Launch → Use sample knowledge → ask Pathway**. The final public visitor reached a cited answer in **11.3 seconds** after wake. All 20 browser acceptance criteria and 225 automated tests passed; live v5 qualification accepted 7/7 generated responses. Earlier rejected citations remain retained. See [the acceptance, exact steps and limitations](docs/conversation-experience.md).
 
 The contextual conversation revision is documented in [the worker contract](docs/contextual-worker.md): model-led references and complete copy, full-text validation, separate recipient/operator/evidence layers, measurable refinement, bounded regeneration, feedback and a compact chat interface. The frozen before/after catalog is retained alongside earlier acceptance artifacts; see the final verification report for revision-specific live results.
+
+Chat now includes a role-aware Conversation Launchpad, current eligible knowledge coverage, directly submitted suggestions and a compact persistent context bar. See [launchpad behavior and verification](docs/conversation-launchpad.md).

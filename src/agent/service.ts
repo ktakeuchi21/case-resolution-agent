@@ -1,3 +1,4 @@
+import { governedOrientation, uploadOrientation } from './launchpad.ts';
 import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import type { PoolClient } from 'pg';
@@ -47,9 +48,15 @@ export class AgentService {
    const r = registry ?? await this.db.transaction(scope, tx => loadRegistry(tx, scope));
    const now = clock ?? s.demo_clock.toISOString();
    const knowledge = await this.describeKnowledge(c, s, r, preferences.selection);
+   let orientation;
+   if (preferences.selection.kind === 'upload') {
+    let upload = null;
+    try { upload = await this.findUpload(c, s, preferences.selection.uploadId); } catch (e) { if (!(e instanceof HttpError && e.status === 404)) throw e; }
+    orientation = uploadOrientation(upload, preferences.selection.uploadId);
+   } else orientation = governedOrientation(r, preferences.selection, now);
    const acknowledged = (await c.query('SELECT notice_acknowledged_at FROM portfolio.sessions WHERE token_hash=$1', [s.token_hash])).rows[0]?.notice_acknowledged_at ?? null;
    const feedback=(await c.query('SELECT entry_id,rating FROM portfolio.agent_feedback WHERE workspace=$1',[scope.workspace])).rows;
-   return { conversations, activeConversationId: active, entries, feedback, preferences, knowledge, packs: packChoices(r, now),
+   return { conversations, activeConversationId: active, entries, feedback, preferences, knowledge, orientation, packs: packChoices(r, now),
     notice: { text: DEMO_NOTICE, acknowledgedAt: acknowledged }, policy: { ...fixedPolicy, promptVersion: providerConfiguration().enabled?TURN_VERSION:SYNTHESIS_PROMPT },
     memoryPolicy: 'Conversation is unverified context. Canonical case facts, human decisions and effects come only from the durable workflow and governed evidence. Starting a new conversation preserves operational history.',
     provider: { enabled: providerConfiguration().enabled, model: providerConfiguration().enabled ? 'gpt-4.1-mini-2025-04-14' : null, semanticModel: 'text-embedding-3-small', defaultRetrieval: 'hybrid', fallback: 'none', integration: 'synthetic_channels_only' },

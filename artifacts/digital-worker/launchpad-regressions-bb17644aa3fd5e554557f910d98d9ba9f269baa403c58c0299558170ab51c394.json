@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-09-09T20:33:30.127Z",
+  "environment": "Local explicit fixture; no live model calls",
+  "reports": [
+    {
+      "group": "static-startup",
+      "schema": "pathway-static-startup-browser-v1",
+      "timestamp": "2026-09-09T20:33:30.110Z",
+      "environment": "Local actual frontend and synthetic database; readiness delays controlled in the browser; zero live model calls",
+      "results": [
+        {
+          "name": "landing renders while backend is unavailable",
+          "pass": true
+        },
+        {
+          "name": "landing creates no session or case",
+          "pass": true
+        },
+        {
+          "name": "arrival starts background readiness only",
+          "pass": true
+        },
+        {
+          "name": "workspace entry has accessible busy state",
+          "pass": true
+        },
+        {
+          "name": "slow-start explanation appears after ten seconds",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 1440",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 768",
+          "pass": true
+        },
+        {
+          "name": "loading controls visible without overflow at 375",
+          "pass": true
+        },
+        {
+          "name": "loading animation respects reduced motion",
+          "pass": true
+        },
+        {
+          "name": "automatic continuation creates exactly one case despite repeated clicks",
+          "pass": true
+        },
+        {
+          "name": "returning deep link restores the case without creation",
+          "pass": true
+        },
+        {
+          "name": "successful background wake still creates no session",
+          "pass": true
+        },
+        {
+          "name": "launch after readiness proceeds once",
+          "pass": true
+        },
+        {
+          "name": "timeout creates no session or case",
+          "pass": true
+        },
+        {
+          "name": "retry after readiness failure opens the new-visitor knowledge flow once",
+          "pass": true
+        },
+        {
+          "name": "back cancels workspace entry without creating a session",
+          "pass": true
+        },
+        {
+          "name": "an interrupted successful creation is recovered by GET without replaying POST",
+          "pass": true
+        },
+        {
+          "name": "connection retry never replays a failed creation POST",
+          "pass": true
+        },
+        {
+          "name": "no browser exceptions",
+          "pass": true,
+          "detail": []
+        }
+      ],
+      "errors": [],
+      "checkSourceSha256": "d07aadcf2b5221009a2d2dec136d651061fb9bbf8010f98b1526832ef9acd88b"
+    }
+  ]
+}
