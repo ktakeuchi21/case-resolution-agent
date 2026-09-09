@@ -81,7 +81,14 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
     body: JSON.stringify({ model: this.identity.model, store: false, instructions, input: [{ role: 'user', content: JSON.stringify(input) }], max_output_tokens: 4800,
      text: { format: { type: 'json_schema', name, strict: true, schema: jsonSchema } } }),
    });
-   if (!response.ok) { await response.body?.cancel(); throw new AgentProviderFailure(response.status === 429 ? 'PROVIDER_RATE_LIMITED' : 'PROVIDER_UNAVAILABLE'); }
+   if (!response.ok) {
+    let code=response.status===429?'PROVIDER_RATE_LIMITED':response.status===400?'PROVIDER_REQUEST_REJECTED':'PROVIDER_UNAVAILABLE';
+    // Inspect only a bounded request-error envelope; never retain or display
+    // provider messages, which can echo user input or request data.
+    if(response.status===400&&response.body){const reader=response.body.getReader();try{const parts:Uint8Array[]=[];let bytes=0;while(bytes<=8192){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>8192)break;parts.push(part.value);}if(bytes<=8192){const error=JSON.parse(Buffer.concat(parts).toString('utf8'))?.error;if(error?.code==='invalid_json_schema')code='PROVIDER_SCHEMA_REJECTED';}}catch{}finally{await reader.cancel();reader.releaseLock();}}
+    else await response.body?.cancel();
+    throw new AgentProviderFailure(code);
+   }
    if (!response.body) throw new AgentProviderFailure('PROVIDER_RESPONSE_INVALID');
    const reader = response.body.getReader(), parts: Uint8Array[] = []; let length = 0;
    try { while (true) { const part = await reader.read(); if (part.done) break; length += part.value.byteLength; if (length > 100000) { await reader.cancel(); throw new AgentProviderFailure('PROVIDER_RESPONSE_LIMIT'); } parts.push(part.value); } } finally { reader.releaseLock(); }

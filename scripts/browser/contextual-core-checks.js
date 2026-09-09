@@ -17,6 +17,7 @@ async page => {
    check('mobile composer accessible after turn '+(i+1),await page.locator('#agent-form').evaluate(n=>{const r=n.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight+1;}));
    check('no mobile overflow after turn '+(i+1),await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
    check('newest direct answer visible after turn '+(i+1),await page.locator('.conversation-stream').evaluate(n=>{const lead=[...n.querySelectorAll('.answer-lead')].at(-1).getBoundingClientRect(),r=n.getBoundingClientRect();return lead.top>=Math.max(0,r.top)&&lead.top<Math.min(innerHeight,r.bottom);}));
+   if(r?.reasonCodes?.some(code=>['PROVIDER_UNAVAILABLE','PROVIDER_REQUEST_REJECTED','PROVIDER_SCHEMA_REJECTED','PROVIDER_RESPONSE_LIMIT','PROVIDER_BUDGET_EXHAUSTED'].includes(code)))throw new Error('Provider transport gate failed; remaining prompts were not submitted.');
   }
   const [next,why,longWhy,missing,evidence,email,warm,handoff,sms,interaction,recall,summary]=responses;
   check('A contextual rationale has no clarification',why.disposition==='answer'&&longWhy.disposition==='answer'&&why.interpretation?.follows===next.id);

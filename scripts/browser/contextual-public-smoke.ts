@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {textHash} from '../../src/integrity.ts';
+const [revision,deployment]=process.argv.slice(2);
+assert.match(revision??'',/^[a-f0-9]{40}$/);assert.match(deployment??'',/^dep-[a-z0-9]+$/);
+const origin='https://case-resolution-agent.onrender.com',assets=['agent.js','app.js','studio.js','styles.css','tour.js','evaluation.json'];
+const health=await fetch(origin+'/healthz',{signal:AbortSignal.timeout(60000)});assert.equal(health.status,200);assert.equal((await health.json() as {status:string}).status,'ok');
+const results=await Promise.all(assets.map(async name=>{const start=performance.now(),response=await fetch(origin+'/'+name,{signal:AbortSignal.timeout(30000)});assert.equal(response.status,200);const sha256=textHash(await response.text());assert.equal(sha256,textHash(readFileSync('web/'+name,'utf8')));return {name,status:response.status,sha256,latencyMs:Math.round(performance.now()-start)};}));
+const report={schema:'pathway-contextual-public-smoke-v1',timestamp:new Date().toISOString(),origin,revision,deployment,healthStatus:health.status,results,pass:true,limitations:'One read-only deployment/asset check. Revision and deployment were verified in the authenticated Render dashboard; asset parity alone cannot prove server code identity. No provider requests, load or uptime test.'};
+const bytes=JSON.stringify(report,null,2)+'\n',artifact='artifacts/conversation/public-smoke-'+textHash(bytes)+'.json';writeFileSync(artifact,bytes,{flag:'wx',mode:0o444});console.log(JSON.stringify({artifact,pass:true}));

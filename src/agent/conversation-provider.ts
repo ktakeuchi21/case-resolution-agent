@@ -62,7 +62,7 @@ export function exactQuoteChoices(text:string){
 // a missing inter-segment space is added without changing any material span.
 // There are no application-authored answer templates.
 // The same strings form the ledger, so a claim cannot drift from displayed copy.
-export const ProseSegment=z.strictObject({text:z.string().min(1).max(700),kind:z.enum(['fact','inference','recommendation','uncertainty','style']),supports:z.array(z.strictObject({reference:z.string().min(1),quote:z.string().min(1).max(1600)})).max(6)});
+export const ProseSegment=z.strictObject({kind:z.enum(['fact','inference','recommendation','uncertainty','style']),text:z.string().min(1).max(700),supports:z.array(z.strictObject({reference:z.string().min(1),quote:z.string().min(1).max(1600)})).max(6)});
 const prose=z.array(ProseSegment).min(1).max(12);
 export const ProseTurn=z.strictObject({answer:prose,rationale:prose.nullable(),workProduct:z.strictObject({subject:prose.nullable(),body:prose,audience:TurnInterpretation.shape.audience,channel:TurnInterpretation.shape.channel,tone:TurnInterpretation.shape.tone,purpose:z.string().min(1).max(200)}).nullable(),requestedAction:z.string().max(500).nullable()});
 export function materializeProse(raw:unknown) {
