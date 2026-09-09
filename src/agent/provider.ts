@@ -3,7 +3,7 @@ import { Claim, Synthesis, Verification } from './contracts.ts';
 import type { Fact } from './contracts.ts';
 import { hash, textHash } from '../integrity.ts';
 import type { EvidenceRecord } from '../contracts.ts';
-import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS, interpretationSchema, compositionSchema, FullTurnReview } from './conversation-provider.ts';
+import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS, interpretationSchema, compositionSchema, fullReviewSchema } from './conversation-provider.ts';
 import type { InterpretationInput, CompositionInput, ContextualProvider } from './conversation-provider.ts';
 import type { ProposedTurn } from './turn-contract.ts';
 import { instructionContent } from './safety.ts';
@@ -66,7 +66,7 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
  }
  async interpret(input: InterpretationInput) { return this.request(INTERPRET_INSTRUCTIONS,input,interpretationSchema(input),'pathway_interpretation'); }
  async composeTurn(input: CompositionInput) { const result=await this.request(COMPOSE_INSTRUCTIONS,input,compositionSchema(input),'pathway_complete_prose');return {...result,wireOutput:result.output}; }
- async reviewTurn(input: CompositionInput, turn: ProposedTurn) { return this.request(REVIEW_INSTRUCTIONS,{input,turn},FullTurnReview,'pathway_full_turn_review'); }
+ async reviewTurn(input: CompositionInput, turn: ProposedTurn) { const result=await this.request(REVIEW_INSTRUCTIONS,{input,turn},fullReviewSchema(turn),'pathway_full_turn_review');return {...result,wireOutput:result.output}; }
  private async request(instructions: string, input: unknown, schema: z.ZodType, name: string) {
   if (Buffer.byteLength(JSON.stringify(input)) > 48000) throw new AgentProviderFailure('GENERATION_INPUT_LIMIT');
   await this.#reserve();

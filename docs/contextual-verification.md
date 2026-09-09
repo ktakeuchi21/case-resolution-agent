@@ -47,3 +47,10 @@ The initial contextual language evaluation failed; the prose correction has pass
 ## Corrected viewport check
 
 The stricter local UI run passed 28/28 checks in `contextual-fixture-7f7045e8258250fddf9ea62fc0f31420753ae374277eb0cc5497656aa40d5b0d.json`. Actual 375×812 inspection immediately after a fixture response put the direct answer at y=142–250 and composer at y=609–779, with the message field focused. This is UI evidence only, not live language quality. The final alignment also retains the worker identity above the direct answer.
+
+
+## Focused prose run and subsequent schema correction
+
+The focused live run at `cd2c94576a9b8a8a6269bbe6e0f297ea3591a7ca` is retained in `contextual-redesigned-b9d7d757c47623f3c2d393668069336d3a96640a4d6d26bf539a6879fdc5df29.json`. The next-action answer passed with coherent current rationale and exact materialized prose. Four other turns paused: the Why reviewer returned duplicate verdict IDs, a requested email and SMS returned null work products, and shortening then had no accepted artifact. This focused sequence is not a replacement for the complete frozen comparison. It reports eleven provider requests and preserves all failures.
+
+The next schema correction requires a work-product object whenever the interpreted request needs one, and uses review objects keyed by the exact claim IDs/output slots, then materializes the same persisted review array. This prevents omitted work products and duplicate/missing review entries through the production response schema; runtime guards remain intact. Typecheck, all 66 agent tests, production build and hygiene passed after that change. Fresh live verification remains required.

@@ -8,7 +8,7 @@ import type { AgentSettings } from './preferences.ts';
 import { AgentProviderFailure, validateClaims } from './provider.ts';
 import type { SynthesisProvider, ProviderUsage } from './provider.ts';
 import type { CompositionInput, InterpretationInput } from './conversation-provider.ts';
-import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS, materializeProse } from './conversation-provider.ts';
+import { INTERPRET_INSTRUCTIONS, COMPOSE_INSTRUCTIONS, REVIEW_INSTRUCTIONS, materializeProse, materializeReview } from './conversation-provider.ts';
 import { TurnInterpretation, ProposedTurn, FullTurnReview, TURN_VERSION, SMS_LIMIT, wordCount, turnSlots } from './turn-contract.ts';
 import { instructionContent, administrativeAnalysis } from './safety.ts';
 
@@ -114,7 +114,9 @@ export async function composeContextual(o:{request:AgentRequest;id:string;conver
   const checked=validateCompleteTurn(generated.wireOutput?materializeProse(generated.wireOutput):generated.output,input,evidence);
   response.audit.rawOutput={interpretation:it.raw,generated:checked,prose:generated.wireOutput??null};
   o.stage?.('validating');response.audit.requests++;const reviewed=await o.provider!.reviewTurn!(input,checked);addUsage(reviewed.usage);response.audit.rawOutput={interpretation:it.raw,generated:checked,prose:generated.wireOutput??null,verification:reviewed.output};
-  validateFullTurnReview(reviewed.output,checked);
+  const verdict=reviewed.wireOutput?materializeReview(reviewed.wireOutput,checked):reviewed.output;
+  response.audit.rawOutput={interpretation:it.raw,generated:checked,prose:generated.wireOutput??null,verification:verdict,reviewWire:reviewed.wireOutput??null};
+  validateFullTurnReview(verdict,checked);
   response.message=checked.answer;response.claims=checked.claims.map(({locations:_locations,...c})=>c);response.turn!.rationale=checked.rationale;response.turn!.uncertainties=checked.uncertainties;
   response.audit.validation.push('exact_eligible_quotes_verified','output_claim_spans_verified','full_text_coverage_review_passed_fallible','transformation_constraints_verified');
   if(checked.workProduct){const p=checked.workProduct;response.workProduct={...p,type:i.intent==='summary'?'summary':'draft',requiredContent:input.constraints.requiredFacts,omittedContent:['Patient identifiers','Clinical or payer conclusions','Unsupported deadlines','Restricted case details in SMS'],status:'generated_not_sent',basedOn:i.artifactId,reviewRequired:true};response.disposition='draft';Object.assign(response.turn!.transformation,{words:wordCount(p.body),characters:p.body.length});response.reasonCodes.push('DRAFT_NOT_SENT');}
