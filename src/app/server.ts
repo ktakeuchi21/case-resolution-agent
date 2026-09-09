@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 import { resolve,extname } from 'node:path';
 import { z } from 'zod';
 import { Database,connection } from '../db/database.ts';
+import type { AgentService } from '../agent/service.ts';
 import { Application,uploadFixtures } from './service.ts';
 import { Sessions,HttpError } from './session.ts';
 import { configuredPublicOrigin } from './origin.ts';
@@ -16,10 +17,10 @@ async function body(req:IncomingMessage,limit=bodyLimit){
  try{return JSON.parse(Buffer.concat(parts).toString('utf8')) as unknown;}catch{throw new HttpError(400,'Invalid JSON request.');}
 }
 function json(res:ServerResponse,status:number,value:unknown){res.writeHead(status,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});res.end(JSON.stringify(value));}
-export function createApplicationServer(options:{db?:Database;sessionDb?:Database;webRoot?:string}={}){
+export function createApplicationServer(options:{db?:Database;sessionDb?:Database;webRoot?:string;agentProviders?:AgentService['testProviders']}={}){
  const publicOrigin=configuredPublicOrigin();
  const db=options.db??new Database(),sessionDb=options.sessionDb??new Database({...connection(),max:4});
- const sessions=new Sessions(sessionDb),app=new Application(db,sessions);let active=0;
+ const sessions=new Sessions(sessionDb),app=new Application(db,sessions,options.agentProviders);let active=0;
  const cleanup=setInterval(()=>{void app.studio.prune().catch(()=>{});},5*60_000);cleanup.unref();
  void app.studio.prune().catch(()=>{});
  const webRoot=resolve(options.webRoot??fileURLToPath(new URL('../../web/',import.meta.url)));
@@ -30,7 +31,7 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
   let counted=false;
   try{
    const host=req.headers.host??'localhost',url=new URL(req.url??'/',`http://${host}`);
-   if(url.pathname==='/healthz'){if(databaseProfile().hosted)await inspectDatabaseProfile(db.pool);await db.pool.query('SELECT 1 FROM portfolio.sessions WHERE false UNION ALL SELECT 1 FROM pathway.answers WHERE false UNION ALL SELECT 1 FROM portfolio.agent_entries WHERE false UNION ALL SELECT 1 FROM portfolio.studio_uploads WHERE false UNION ALL SELECT 1 FROM portfolio.agent_preferences WHERE false UNION ALL SELECT 1 FROM portfolio.temporary_agent_entries WHERE false');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'digital-worker-v1'});return;}
+   if(url.pathname==='/healthz'){if(databaseProfile().hosted)await inspectDatabaseProfile(db.pool);await db.pool.query('SELECT 1 FROM portfolio.sessions WHERE false UNION ALL SELECT 1 FROM pathway.answers WHERE false UNION ALL SELECT 1 FROM portfolio.agent_entries WHERE false UNION ALL SELECT 1 FROM portfolio.studio_uploads WHERE false UNION ALL SELECT 1 FROM portfolio.agent_preferences WHERE false UNION ALL SELECT 1 FROM portfolio.temporary_agent_entries WHERE false UNION ALL SELECT 1 FROM portfolio.agent_feedback WHERE false');json(res,200,{status:'ok',synthetic:true,service:'pathway-agent',version:'digital-worker-v1'});return;}
    if(url.pathname.startsWith('/api/')){
     if(req.headers['sec-fetch-site']==='cross-site')throw new HttpError(403,'Cross-site requests are not allowed.');
     const origin=req.headers.origin,expected=publicOrigin;
@@ -58,7 +59,16 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
     }
     if(url.pathname==='/api/action'){json(res,200,await app.action(s,input));return;}
     if(url.pathname==='/api/chat'){json(res,200,await app.chat(s,input));return;}
-    if(url.pathname==='/api/conversation'){json(res,200,await app.agent.respond(s,input,true));return;}
+    if(url.pathname==='/api/agent-feedback'){json(res,200,await app.agent.feedback(s,input));return;}
+    if(url.pathname==='/api/conversation'){
+     if(req.headers.accept==='application/x-ndjson'){
+      const stage=(stage:string)=>{if(!res.headersSent)res.writeHead(200,{'Content-Type':'application/x-ndjson','Cache-Control':'no-store','X-Accel-Buffering':'no'});if(!res.destroyed)res.write(JSON.stringify({type:'stage',stage})+'\n');};
+      const result=await app.agent.respond(s,input,true,stage);
+      if(!res.headersSent)res.writeHead(200,{'Content-Type':'application/x-ndjson','Cache-Control':'no-store'});
+      res.end(JSON.stringify({type:'result',result})+'\n');
+     }else json(res,200,await app.agent.respond(s,input,true));
+     return;
+    }
     if(url.pathname==='/api/agent-preferences'){json(res,200,await app.agent.configure(s,input));return;}
     if(url.pathname==='/api/agent'){json(res,200,await app.agent.respond(s,input));return;}
     if(url.pathname==='/api/studio-upload'){json(res,200,await app.studio.upload(s,input));return;}
@@ -81,7 +91,8 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
   }catch(error){
    const status=error instanceof HttpError?error.status:error instanceof z.ZodError?400:503;
    // Never return driver messages, connection strings, request payloads or provider responses.
-   json(res,status,{error:error instanceof HttpError?error.message:status===400?'Invalid request. Check the selected action and input.':'The service could not complete this request. Your durable case is preserved; retry or refresh.',code:status===503?'SERVICE_UNAVAILABLE':'REQUEST_REJECTED'});
+   const failure={error:error instanceof HttpError?error.message:status===400?'Invalid request. Check the selected action and input.':'The service could not complete this request. Your durable case is preserved; retry or refresh.',code:status===503?'SERVICE_UNAVAILABLE':'REQUEST_REJECTED'};
+   if(res.headersSent){if(!res.destroyed)res.end(JSON.stringify({type:'error',...failure})+'\n');}else json(res,status,failure);
   }finally{if(counted)active--;}
  });
  server.requestTimeout=15_000;server.headersTimeout=10_000;server.keepAliveTimeout=5_000;

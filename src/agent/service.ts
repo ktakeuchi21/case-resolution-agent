@@ -23,6 +23,9 @@ import { configuredProviders, providerConfiguration } from './runtime.ts';
 import { ConversationRequest, interpretMessage } from './intent.ts';
 import { AgentSettings, KnowledgeSelection, DEMO_NOTICE, fixedPolicy, acknowledgeNotice, governedSelection, packChoices, readablePackName, readPreferences, synthesisMode } from './preferences.ts';
 import { SYNTHESIS_PROMPT } from './provider.ts';
+import { interpretContextual, contextualRequest, composeContextual } from './contextual.ts';
+import type { Stage } from './contextual.ts';
+import { TURN_VERSION } from './turn-contract.ts';
 
 export class AgentService {
  readonly db: Database; readonly sessions: Sessions; readonly cache: EmbeddingCache;
@@ -45,8 +48,9 @@ export class AgentService {
    const now = clock ?? s.demo_clock.toISOString();
    const knowledge = await this.describeKnowledge(c, s, r, preferences.selection);
    const acknowledged = (await c.query('SELECT notice_acknowledged_at FROM portfolio.sessions WHERE token_hash=$1', [s.token_hash])).rows[0]?.notice_acknowledged_at ?? null;
-   return { conversations, activeConversationId: active, entries, preferences, knowledge, packs: packChoices(r, now),
-    notice: { text: DEMO_NOTICE, acknowledgedAt: acknowledged }, policy: { ...fixedPolicy, promptVersion: SYNTHESIS_PROMPT },
+   const feedback=(await c.query('SELECT entry_id,rating FROM portfolio.agent_feedback WHERE workspace=$1',[scope.workspace])).rows;
+   return { conversations, activeConversationId: active, entries, feedback, preferences, knowledge, packs: packChoices(r, now),
+    notice: { text: DEMO_NOTICE, acknowledgedAt: acknowledged }, policy: { ...fixedPolicy, promptVersion: providerConfiguration().enabled?TURN_VERSION:SYNTHESIS_PROMPT },
     memoryPolicy: 'Conversation is unverified context. Canonical case facts, human decisions and effects come only from the durable workflow and governed evidence. Starting a new conversation preserves operational history.',
     provider: { enabled: providerConfiguration().enabled, model: providerConfiguration().enabled ? 'gpt-4.1-mini-2025-04-14' : null, semanticModel: 'text-embedding-3-small', defaultRetrieval: 'hybrid', fallback: 'none', integration: 'synthetic_channels_only' },
    };
@@ -100,9 +104,20 @@ export class AgentService {
    return readPreferences(c, scope.workspace);
   });
  }
- async respond(session: Session, raw: unknown, conversational = false) {
+ async feedback(session:Session,raw:unknown){
+  const input=z.strictObject({entryId:z.string().min(1).max(200),rating:z.enum(['helpful','not_helpful'])}).parse(raw);
+  return this.sessions.exclusive(session,async(s,c)=>{
+   const history=await this.history(c,this.scope(s).workspace),entry=history.find(h=>h.id===input.entryId);
+   if(!entry)throw new HttpError(404,'That answer is not available in this workspace.');
+   const temporary=entry.knowledge?.kind==='upload';
+   await c.query('INSERT INTO portfolio.agent_feedback(workspace,entry_id,governed_entry_id,temporary_entry_id,rating) VALUES($1,$2,$3,$4,$5) ON CONFLICT DO NOTHING',[s.workspace,entry.id,temporary?null:entry.id,temporary?entry.id:null,input.rating]);
+   return (await c.query('SELECT entry_id,rating FROM portfolio.agent_feedback WHERE workspace=$1 AND entry_id=$2',[s.workspace,entry.id])).rows[0];
+  });
+ }
+ async respond(session: Session, raw: unknown, conversational = false, stage?: (s: Stage) => void) {
+  const started=performance.now();
   const message = conversational ? ConversationRequest.parse(raw) : null;
-  const original = message ? AgentRequest.parse({ ...message, synthetic: true }) : AgentRequest.parse(raw);
+  const original = message ? AgentRequest.parse({idempotencyKey:message.idempotencyKey,text:message.text,...(message.targetId?{targetId:message.targetId}:{}),synthetic:true}) : AgentRequest.parse(raw);
   let request = original;
   if (['ask', 'interaction', 'edit_draft'].includes(request.operation) && !request.text) throw new HttpError(400, 'Enter synthetic administrative text.');
   if (request.operation !== 'edit_draft' && (request.text?.length ?? 0) > 2000) throw new HttpError(400, 'Keep questions and synthetic interactions within 2,000 characters.');
@@ -118,8 +133,28 @@ export class AgentService {
    const allHistory = await this.history(c, scope.workspace);
    const preferences = await readPreferences(c, scope.workspace);
    const selectionKey = preferences.selection.kind === 'upload' ? preferences.selection.uploadId : preferences.selection.kind === 'pack' ? preferences.selection.releaseId : 'sample';
-   const history = allHistory.filter(h => h.conversationId === conversation && (h.knowledge?.key ?? 'sample') === selectionKey);
-   const interpreted = message ? interpretMessage(message, history, preferences.settings, synthesisMode(preferences.settings)) : null;
+   let history = allHistory.filter(h => h.conversationId === conversation && (h.knowledge?.key ?? 'sample') === selectionKey);
+   let regeneratedFrom:string|null=null;
+   let effectiveMessage=message;
+   if(message?.regenerateId){
+    const selected=history.find(h=>h.id===message.regenerateId),rootId=selected?.turn?.regeneratedFrom??selected?.id;
+    const root=history.find(h=>h.id===rootId);
+    if(!root||!root.turn||root.query!==message.text)throw new HttpError(409,'Regenerate an available contextual answer using its original question.');
+    if(history.filter(h=>h.turn?.regeneratedFrom===root.id).length>=2)throw new HttpError(429,'This answer has reached its two-regeneration limit.');
+    regeneratedFrom=root.id;
+    history=history.slice(0,history.findIndex(h=>h.id===root.id));
+    effectiveMessage={...message,...(root.turn.interpretation.artifactId?{targetId:root.turn.interpretation.artifactId}:{})};
+   }
+   await this.db.bindScope(c, scope);
+   const snapshot = (await timeline(c, scope, 'SC-01')).at(-1)!.snapshot;
+   const now = new Date(Math.max(s.demo_clock.getTime(), Date.parse(snapshot.updatedAt))).toISOString();
+   const providers = this.testProviders ?? configuredProviders(this.sessions, s.token_hash);
+   const modelConversation=!!message && (synthesisMode(preferences.settings)==='model'||!!this.testProviders?.provider?.interpret);
+   if(message?.regenerateId&&!modelConversation)throw new HttpError(409,'Regeneration requires the configured contextual provider. No fallback is used.');
+   if(modelConversation)stage?.('understanding');
+   const contextual=message&&modelConversation?await interpretContextual(effectiveMessage!,history,preferences.settings,snapshot,{key:selectionKey,authority:preferences.selection.kind==='upload'?'sandbox_only':'assigned_case_knowledge'},providers.provider):null;
+   const interpreted = message&&!modelConversation ? interpretMessage(message, history, preferences.settings, synthesisMode(preferences.settings)) : null;
+   if(contextual?.interpretation)request=contextualRequest(original,contextual.interpretation);
    if (interpreted) request = interpreted.request;
    if (message?.targetId && !history.some(h => h.id === message.targetId && h.workProduct)) throw new HttpError(404, 'That work product is not available in this conversation and knowledge context.');
    const productRestricted = ['draft', 'summary'].includes(request.operation) && (!preferences.settings.audiences.includes(request.audience) || !preferences.settings.channels.includes(request.channel) || (request.operation === 'draft' && !preferences.settings.drafting));
@@ -130,13 +165,10 @@ export class AgentService {
    const clarificationSource = request.operation === 'clarify' ? history.find(h => h.id === request.targetId && h.clarification?.status === 'open') : undefined;
    if (request.operation === 'clarify' && (!clarificationSource || history.some(h => h.clarification?.status === 'resolved' && h.inReplyTo === request.targetId))) throw new HttpError(409, 'Choose an open clarification in this conversation.');
    if (['edit_draft','save_memory','prepare_review'].includes(request.operation) && !history.some(h => h.id === request.targetId && h.workProduct)) throw new HttpError(404, 'That draft is not available in this conversation.');
-   // Evidence, the current workflow revision and the response commit atomically.
-   await this.db.bindScope(c, scope);
-   const snapshot = (await timeline(c, scope, 'SC-01')).at(-1)!.snapshot;
-   const now = new Date(Math.max(s.demo_clock.getTime(), Date.parse(snapshot.updatedAt))).toISOString();
-   const providers = this.testProviders ?? configuredProviders(this.sessions, s.token_hash);
+   // Evidence, the current workflow revision and response commit atomically.
    // A clarification is safe to ask without knowledge. Its resolution always rechecks knowledge.
-   const needsEvidence = requiresCaseRetrieval(request) && !(request.operation === 'ask' && !interpreted?.interpretation.follows && clarificationFor(request.text ?? ''));
+   const needsEvidence = contextual ? !!contextual.interpretation&&!contextual.failure&&!contextual.interpretation.clarification&&!['interaction','human_action','unsupported'].includes(contextual.interpretation.intent) : requiresCaseRetrieval(request) && !(request.operation === 'ask' && !interpreted?.interpretation.follows && clarificationFor(request.text ?? ''));
+   if(needsEvidence)stage?.('retrieving');
    const registry = await loadRegistry(c, scope);
    const selectedKnowledge = await this.describeKnowledge(c, s, registry, preferences.selection);
    const upload = preferences.selection.kind === 'upload' ? await this.findUpload(c, s, preferences.selection.uploadId) : null;
@@ -145,7 +177,7 @@ export class AgentService {
     let evidence = null;
     if (needsEvidence && upload) {
      const temporary = temporaryRegistry(upload, now), collection = canonicalUpload(upload, false, now).collection;
-     const question = interpreted?.interpretation.retrievalQuestion && interpreted.interpretation.retrievalQuestion !== 'case_status' ? interpreted.interpretation.retrievalQuestion : request.text ?? 'Summarize this document.';
+     const question = contextual?.interpretation?.retrievalQuestion ?? (interpreted?.interpretation.retrievalQuestion && interpreted.interpretation.retrievalQuestion !== 'case_status' ? interpreted.interpretation.retrievalQuestion : request.text ?? 'Summarize this document.');
      const req = sandboxRequest({ id: id + '.retrieval', selectionId: collection.id, question, maxResults: 6 });
      evidence = (await new PersistentRetrieval(this.db, { ...scope, environment: 'sandbox' }, () => now).exploreTemporary('viewer', req, temporary, { mode: 'hybrid', embeddingProvider: providers.embeddingProvider, cacheSource: new TemporaryEmbeddingCache(c, scope.workspace, upload.id, upload.expiresAt) })).record;
     } else if (needsEvidence) {
@@ -153,10 +185,11 @@ export class AgentService {
      // dependency. Free-form source questions retain their exact query for hybrid retrieval.
      const isStatus = request.operation !== 'ask' || /\b(?:what(?:'s| is)? next|next (?:step|action)|status|summary|summarize|owner|checkpoint|what happened|who (?:is|owns)|remember)\b/i.test(request.text ?? '');
      const followupQuery = interpreted?.interpretation.retrievalQuestion;
-     const question = isStatus || followupQuery === 'case_status' || interpreted?.interpretation.intent === 'next_action' || interpreted?.interpretation.follows ? baseRequest().question : request.text!;
+     const question = contextual?.interpretation?.retrievalQuestion ?? (isStatus || followupQuery === 'case_status' || interpreted?.interpretation.intent === 'next_action' || interpreted?.interpretation.follows ? baseRequest().question : request.text!);
      const req = baseRequest({ ...governedSelection(registry, preferences.selection, now), id: id + '.retrieval', question });
      evidence = (await new PersistentRetrieval(this.db, scope, () => now).runInTransaction(tx, 'avery', req, { cacheSource: this.cache, embeddingProvider: providers.embeddingProvider })).record;
     }
+    if(contextual)return composeContextual({request,id,conversationId:conversation!,timestamp:now,snapshot,evidence,history:contextHistory,provider:providers.provider,knowledge:selectedKnowledge??undefined,interpreted:contextual,started,stage,regeneratedFrom});
     return composeAgent({ request, id, conversationId: conversation!, timestamp: now, snapshot, evidence, history: contextHistory, provider: providers.provider, clarificationSource, interpretation: interpreted?.interpretation, knowledge: selectedKnowledge ?? undefined });
    })();
    if (upload) await c.query('INSERT INTO portfolio.temporary_agent_entries(workspace,id,conversation_id,upload_id,fingerprint,body,body_hash,expires_at) VALUES($1,$2,$3,$4,$5,$6,$7,$8)', [scope.workspace, id, conversation, upload.id, fingerprint, JSON.stringify(result), hash(result), upload.expiresAt]);

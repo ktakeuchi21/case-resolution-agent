@@ -36,8 +36,9 @@ test('conversation fast path: notice, inferred products, knowledge changes, memo
   const sandbox=await talk('What does this document say?');assert.equal(sandbox.disposition,'pause');assert.equal(sandbox.knowledge.authority,'sandbox_only');assert.equal(sandbox.temporaryEvidence.request.mode,'sandbox');assert.equal(sandbox.context.permission.action,'denied');assert(sandbox.reasonCodes.includes('PROVIDER_UNAVAILABLE'));assert(!sandbox.facts.some((f:{authoritative:boolean})=>f.authoritative));
   assert.equal((await service.sessionDb.pool.query('SELECT count(*)::int n FROM portfolio.agent_entries WHERE id=$1',[sandbox.id])).rows[0].n,0);
   assert.equal((await req('state')).knowledge.activeAssignmentId,assignment);
+  await req('agent-feedback',{entryId:sandbox.id,rating:'helpful'});
   await req('studio-action',{action:'delete',uploadId:upload.id,revision:upload.revision,confirmed:true,idempotencyKey:randomUUID()});
-  const deleted=await req('state');assert.equal(deleted.agent.knowledge,null);assert(!deleted.agent.entries.some((e:{id:string})=>e.id===sandbox.id));assert(deleted.agent.entries.some((e:{id:string})=>e.id===answer.id));assert.equal(hash(deleted.workflow),baseline);
+  const deleted=await req('state');assert.equal(deleted.agent.knowledge,null);assert(!deleted.agent.feedback.some((f:{entry_id:string})=>f.entry_id===sandbox.id));assert(!deleted.agent.entries.some((e:{id:string})=>e.id===sandbox.id));assert(deleted.agent.entries.some((e:{id:string})=>e.id===answer.id));assert.equal(hash(deleted.workflow),baseline);
   await req('agent-preferences',{action:'select',selection:{kind:'sample'}});assert.equal((await req('state')).agent.notice.acknowledgedAt,acknowledged);
  }finally{await service.close();}
 });

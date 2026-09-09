@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { TurnRecord } from './turn-contract.ts';
 import { EvidenceCitation, EvidenceRecord, Hash, Id, Timestamp } from '../contracts.ts';
 
 export const AGENT_VERSION = 'digital-worker-v1';
@@ -38,11 +39,13 @@ export const Analysis = z.strictObject({
  confidence: z.enum(['moderate', 'low']), supportingLanguage: z.array(z.string()), nextNeed: z.string(), uncertainty: z.string(), authority: z.literal('none'),
 });
 export const WorkProduct = z.strictObject({
+ subject: z.string().max(200).nullable().optional(),
  type: z.enum(['summary', 'draft', 'edited_draft']), audience: WorkAudience, channel: AgentChannel,
  tone: z.string(), purpose: z.string(), body: z.string().max(8000), requiredContent: z.array(z.string()), omittedContent: z.array(z.string()),
  status: z.literal('generated_not_sent'), basedOn: Id.nullable(), reviewRequired: z.literal(true),
 });
 export const AgentResponse = z.strictObject({
+ turn: TurnRecord.optional(),
  id: Id, conversationId: Id, caseId: z.literal('DEMO-101'), operation: AgentRequest.shape.operation,
  timestamp: Timestamp, query: z.string(), queryHash: Hash, workflowRevision: z.number().int().positive(),
  disposition: z.enum(['answer', 'pause', 'clarify', 'recorded', 'draft']), message: z.string(),

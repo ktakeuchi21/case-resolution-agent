@@ -1,0 +1,11 @@
+// Explicit local/browser contract fixture. Never configured by the production runtime.
+// This supplies predetermined transport outputs, not a model-quality evaluation.
+import type { SynthesisProvider } from '../../src/agent/provider.ts';
+import { baseRequest } from '../../src/evaluation.ts';
+import { turnSlots } from '../../src/agent/turn-contract.ts';
+const usage={requests:1,inputTokens:0,outputTokens:0,estimatedCostUsd:0,costBasis:'Predetermined local browser fixture. No live model quality or cost.'};
+export const contextualFixture:SynthesisProvider={identity:{provider:'local-contract-fixture',model:'not-a-live-model'},complete:async()=>{throw new Error('No legacy fixture fallback');},verify:async()=>{throw new Error('No legacy fixture fallback');},
+ interpret:async input=>({usage,output:{intent:input.query==='Draft a short email to the office requesting the missing document.'?'draft':'question',follows:input.history.at(-1)?.id??null,artifactId:null,audience:'office',channel:'email',tone:'concise',length:'unchanged',retrievalQuestion:baseRequest().question,clarification:null,requestedAction:null,note:'Predetermined local UI fixture'}}),
+ composeTurn:async input=>{const source=input.sources.find(s=>s.text.includes('supply the signed office note'))??input.sources[0]!,draft=input.interpretation.intent==='draft',text='Please provide the signed office note.';return {usage,output:{answer:draft?'Here is a draft for review.':source.text,rationale:null,workProduct:draft?{subject:'Requested note',body:text+' Thank you for your help.',audience:'office',channel:'email',tone:'concise',purpose:'Request note'}:null,claims:[{id:'fixture.claim',kind:draft?'recommendation':'fact',text:draft?text:source.text,locations:[draft?'body':'answer'],supports:[{reference:source.reference,quote:source.text}]}],uncertainties:[],requestedAction:null}};},
+ reviewTurn:async(_input,turn)=>({usage,output:{claims:turn.claims.map(c=>({id:c.id,supported:true,reason:'Predetermined fixture verdict'})),slots:turnSlots(turn).map(([slot])=>({slot,allMaterialStatementsCovered:true,supported:true,reason:'Predetermined fixture verdict'})),channelSafe:true,transformationFaithful:true,answersActualRequest:true}}),
+};

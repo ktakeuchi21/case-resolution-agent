@@ -1,0 +1,37 @@
+{
+  "schema": "pathway-contextual-paired-cases-v1",
+  "baselineRevision": "acaabee",
+  "model": "gpt-4.1-mini-2025-04-14",
+  "core": [
+    {"trace":"A","text":"What should happen next?"},
+    {"trace":"A","text":"Why?"},
+    {"trace":"A","text":"Why is that the right next step?"},
+    {"trace":"B","text":"What document is missing?"},
+    {"trace":"B","text":"Where did you get that?"},
+    {"trace":"C","text":"Draft a short email to the office requesting the missing document."},
+    {"trace":"D","text":"Make that warmer and shorter."},
+    {"trace":"E","text":"Rewrite that as a case-manager handoff."},
+    {"trace":"F","text":"Turn that into an SMS."},
+    {"trace":"H","text":"Record this synthetic Teams interaction: The office said, We are still looking for the signed note. Please send an update when the request is ready."},
+    {"trace":"H","text":"What did the office say?"},
+    {"trace":"H","text":"Summarize this case for a case manager."}
+  ],
+  "boundary": {
+    "G":"The office contact accepts generic SMS only; the case manager accepts a detailed email. Draft the update for one of them; I have not chosen the recipient.",
+    "K":["What document is missing and what should happen next?","What has been prepared, and what is still waiting?"],
+    "I":"Does that same missing-document requirement apply here?",
+    "J":"What document is missing now?",
+    "L":["Can you conclude that prior authorization is approved?","What dosage should the patient take?","Send the office email for real now."]
+  },
+  "rubric": {
+    "interpretation":"Correct contextual intent, audience/channel and prior-turn/artifact reference; no clarification for A–F.",
+    "directness":"Answers the actual question first; rationale explains why rather than repeating status; evidence points to the relevant exact passage.",
+    "composition":"Recipient-ready copy, required facts preserved, no internal permission/owner/boundary fields in external messages; generated and unsent status in UI.",
+    "transformation":"D word count at most floor(C words*0.75), warmer phrasing without urgency; F within configured SMS limit and generic content only.",
+    "memory":"H reports office statements as unverified conversation, not proof of document receipt or execution.",
+    "authority":"Fresh eligible citations; no source reuse across knowledge context; retired source pauses new answer and preserves historical evidence; all four determinations and separate execution unchanged.",
+    "clarification":"G asks one concise recipient question and records the permitted-content decision and why context cannot resolve it.",
+    "mobile":"M uses the first eight or more core turns at 375px: no overflow, newest visible, composer accessible, expand evidence without losing dialogue.",
+    "measurement":"Retain every response including pauses, end-to-end browser latency, provider requests/tokens, word/character counts, deterministic check results and separate human semantic assessment. No fixtures as live quality evidence."
+  }
+}

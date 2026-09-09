@@ -12,7 +12,7 @@ const actions: Record<string, string> = {
  stop_at_pa_pending: 'Retain the completed documentation record; prior authorization remains pending', retain_cancelled_history: 'Retain the cancelled case history', human_exception_ownership: 'Have the supervisor accept ownership of the exception',
 };
 const states: Record<string, string> = {
- RECEIVED: 'The synthetic case has been received. Its documentation dependency has not yet been assessed.',
+ RECEIVED: 'The case has been received. No follow-up has been prepared or initiated.',
  OUTREACH_QUEUED: 'The documentation dependency was identified and a generic workspace notification was queued.',
  AWAITING_RESPONSE: 'The synthetic workspace notification was delivered. An office response is pending.',
  VERIFICATION_REQUIRED: 'A synthetic document receipt was recorded. The assigned office verifier must check the package and destination.',
@@ -44,6 +44,12 @@ export function buildContext(snapshot: Snapshot, evidence: EvidenceRecord | null
   permission: { sourceSupport: evidence?.support.status ?? 'not_evaluated', applicability: evidence?.applicability.status ?? 'not_evaluated', communication: evidence?.communication.status ?? 'not_evaluated', action: evidence?.action.status ?? 'not_requested', execution: 'not_requested' },
   requiredAuthorization: next.requiredAuthorization, completionBoundary: BOUNDARY,
  };
+ const identified = !sandbox && evidence?.disposition==='answer' && evidence.support.status==='supported' && evidence.evidenceUsed.some(p=>evidence.support.supportingPassageIds.includes(p.passageId)&&p.text.includes('does not contain the signed office note'));
+ if(snapshot.state==='RECEIVED'&&identified){
+  context.whatHappened='Current evidence identifies the missing signed office note. Follow-up has not yet been prepared.';
+  context.nextAction='Review the identified signed-note requirement and prepare the follow-up through the case controls';
+  context.why='The notice requests the signed office note and the submitted-package inventory records it as absent. Preparing the follow-up is the next recorded workflow step; chat has not initiated it.';
+ }
  if (sandbox) {
   Object.assign(context, { state: 'SANDBOX_EXPLORATION', whatHappened: 'You are exploring a temporary, unreviewed document.', known: ['No source in this conversation is assigned as case authority.'], unresolved: ['Applicability and factual accuracy require separate knowledge review.'], owner: 'You · Document review', checkpoint: null, nextAction: 'Inspect the supporting passages or continue exploring this document', why: 'Sandbox content can explain its own text; it cannot establish case requirements or authorize action.', requiredAuthorization: ['Separate reviewer approval, immutable publication and case assignment are required for operational use.'] });
  }

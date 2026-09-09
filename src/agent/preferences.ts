@@ -57,7 +57,7 @@ export function packChoices(registry: Registry, now: string) {
   }
   const pack = registry.corpus.packs.find(p => p.id === release.packId)!;
   return { id: release.id, name: readablePackName(pack), version: release.version,
-   description: release.documentVersionIds.map(id => registry.document(registry.corpus.versions.find(v => v.id === id)!.documentId).title).join(' · '),
+   description: [...new Set(release.documentVersionIds.map(id => ({payer_guide:'Payer process guides',case_notice:'Case notices',case_inventory:'Package inventories',education:'Education',sop:'Administrative procedures',program_guide:'Program guides'}[registry.document(registry.corpus.versions.find(v => v.id === id)!.documentId).type])))].join(' · '),
    sourceCount: release.documentVersionIds.length, eligibleSourceCount, status: registry.isRetired(release.id) ? 'retired' : release.status,
    audiences: release.audiences, permittedUses: release.permittedUses,
    available: reasons.length === 0 && eligibleSourceCount > 0, reasons: [...new Set(reasons)], releaseIds,

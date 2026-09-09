@@ -4,7 +4,7 @@ import { AgentRequest } from './contracts.ts';
 import type { AgentResponse } from './contracts.ts';
 import type { AgentSettings } from './preferences.ts';
 
-export const ConversationRequest = z.strictObject({ idempotencyKey: Id, text: z.string().trim().min(1).max(2000), targetId: Id.optional() });
+export const ConversationRequest = z.strictObject({ idempotencyKey: Id, text: z.string().trim().min(1).max(2000), targetId: Id.optional(), regenerateId: Id.optional() });
 export type Interpretation = { intent: 'question' | 'summary' | 'draft' | 'refinement' | 'next_action' | 'evidence' | 'interaction' | 'clarification' | 'human_action'; follows: string | null; note: string; retrievalQuestion: string | null };
 
 /** A bounded interpretation of a message, never an authorization or command. */

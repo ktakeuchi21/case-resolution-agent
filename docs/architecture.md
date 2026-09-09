@@ -300,3 +300,7 @@ Public question privacy boundary: only the reviewed frozen synthetic questions, 
 
 
 September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import, deployed HTTPS and browser checks passed; see [hosted verification](hosted-verification.md).
+
+## Contextual composition revision
+
+Live `/api/conversation` now follows the [contextual worker contract](contextual-worker.md): model interpretation → fresh scoped PersistentRetrieval → complete proposed answer/artifact → deterministic quote, span, channel and transformation checks → full-text support review → immutable commit. No model phase receives tools or execution capabilities. Migration 013 adds feedback references; optional versioned response fields preserve historical hashes. JSON clients remain compatible; the chat client can receive only fixed progress stages before the validated result. Explicit commands and deterministic evidence mode retain their established handlers.
