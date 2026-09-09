@@ -3,7 +3,7 @@ import { readFile, writeFile, chmod } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 const [runtime,group]=process.argv.slice(2);
-if(!runtime||!['startup','transport'].includes(group))throw new Error('Provide an installed Playwright module path and startup or transport.');
+if(!runtime||!['startup','transport','handoff','rollout'].includes(group))throw new Error('Provide an installed Playwright module path and startup, transport, handoff or rollout.');
 const {chromium}=await import(pathToFileURL(runtime).href),browser=await chromium.launch({channel:'chrome',headless:true});
 try{
  const context=await browser.newContext(),page=await context.newPage();

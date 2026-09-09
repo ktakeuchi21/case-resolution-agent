@@ -1,0 +1,101 @@
+{
+  "schema": "pathway-static-handoff-browser-v1",
+  "timestamp": "2026-09-09T19:28:04.725Z",
+  "environment": "Production-origin navigation with all frontend/backend requests intercepted to local real assets and isolated fixture APIs; zero public service or model calls",
+  "results": [
+    {
+      "name": "static overview appears while readiness is unavailable",
+      "pass": true
+    },
+    {
+      "name": "readiness failure does not navigate or create a session",
+      "pass": true
+    },
+    {
+      "name": "slow explanation remains accessible before handoff",
+      "pass": true
+    },
+    {
+      "name": "handoff loading screen fits 1440",
+      "pass": true
+    },
+    {
+      "name": "handoff loading screen fits 768",
+      "pass": true
+    },
+    {
+      "name": "handoff loading screen fits 375",
+      "pass": true
+    },
+    {
+      "name": "handoff loading respects reduced motion",
+      "pass": true
+    },
+    {
+      "name": "ready handoff opens knowledge selection at backend origin",
+      "pass": true
+    },
+    {
+      "name": "static origin never requests sessions or creates a case",
+      "pass": true
+    },
+    {
+      "name": "repeated clicks create exactly one case at backend",
+      "pass": true
+    },
+    {
+      "name": "public handoff parameters are removed from browser address",
+      "pass": true
+    },
+    {
+      "name": "browser Back stays on the overview without a handoff loop",
+      "pass": true
+    },
+    {
+      "name": "static direct links restore the requested backend route and case",
+      "pass": true
+    },
+    {
+      "name": "restoring a direct link does not duplicate the case",
+      "pass": true
+    },
+    {
+      "name": "workspace overview link returns to the CDN",
+      "pass": true
+    },
+    {
+      "name": "background readiness creates no session before delayed Launch",
+      "pass": true
+    },
+    {
+      "name": "handoff preserves the selected exception scenario",
+      "pass": true
+    },
+    {
+      "name": "timeout remains on the frontend without creating a session",
+      "pass": true
+    },
+    {
+      "name": "retry after timeout hands off once and creates one case",
+      "pass": true
+    },
+    {
+      "name": "Back cancels the pending handoff",
+      "pass": true
+    },
+    {
+      "name": "the 90-second budget survives the origin change",
+      "pass": true
+    },
+    {
+      "name": "query and route text cannot choose another destination",
+      "pass": true
+    },
+    {
+      "name": "no handoff browser exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "checkSourceSha256": "c7e9d59b9f3943f8050af1d77909641c523118443b89f559e1d946eb22a84c70"
+}

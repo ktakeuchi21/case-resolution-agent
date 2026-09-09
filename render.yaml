@@ -37,6 +37,8 @@ services:
       - key: NODE_VERSION
         value: 24.20.0
     routes:
+      # Retained compatibility for the earlier review candidate. Current workspace
+      # navigation goes directly to the backend so streaming bypasses this proxy.
       - type: rewrite
         source: /api/*
         destination: https://case-resolution-agent.onrender.com/api/*

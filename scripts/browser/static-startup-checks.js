@@ -50,7 +50,7 @@ async page => {
   await absent.p.route('**/api/demo',async r=>{rejectedPosts++;await r.abort('failed');});await absent.p.goto(base);await absent.p.getByRole('button',{name:'Launch guided demo',exact:true}).first().click();await absent.p.getByRole('button',{name:'Retry',exact:true}).waitFor();await absent.p.getByRole('button',{name:'Retry',exact:true}).click();await absent.p.getByText('The connection is ready, but no workspace was found. Return to the overview and launch the demo again.',{exact:true}).waitFor();
   check('connection retry never replays a failed creation POST',rejectedPosts===1);
   check('no browser exceptions',errors.length===0,errors);
- }catch(e){error=String(e);}
+ }catch(e){error=String(e);errors.push({route:new URL(page.url()).hash,visibleStatus:await page.locator('#connection-status').innerText().catch(()=>'' )});}
  // The CLI owns browser lifetime; retain contexts until its result is captured.
  return {schema:'pathway-static-startup-browser-v1',timestamp:new Date().toISOString(),environment:'Local actual frontend and synthetic database; readiness delays controlled in the browser; zero live model calls',results,errors,...(error?{error}:{})};
 }

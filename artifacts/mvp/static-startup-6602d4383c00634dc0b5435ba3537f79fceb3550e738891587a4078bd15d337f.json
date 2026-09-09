@@ -1,0 +1,46 @@
+{
+  "schema": "pathway-static-startup-browser-v1",
+  "timestamp": "2026-09-09T19:29:38.833Z",
+  "environment": "Local actual frontend and synthetic database; readiness delays controlled in the browser; zero live model calls",
+  "results": [
+    {
+      "name": "landing renders while backend is unavailable",
+      "pass": true
+    },
+    {
+      "name": "landing creates no session or case",
+      "pass": true
+    },
+    {
+      "name": "arrival starts background readiness only",
+      "pass": true
+    },
+    {
+      "name": "workspace entry has accessible busy state",
+      "pass": true
+    },
+    {
+      "name": "slow-start explanation appears after ten seconds",
+      "pass": true
+    },
+    {
+      "name": "loading controls visible without overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "loading controls visible without overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "loading controls visible without overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "loading animation respects reduced motion",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "error": "TimeoutError: locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('heading', { name: 'Choose knowledge. Start talking.' }) to be visible\u001b[22m\n",
+  "checkSourceSha256": "84435e9891a8dda1b7c7ee23a204ac53fa48e8593e1b3e93b990c64456bab0bd"
+}
