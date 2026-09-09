@@ -15,6 +15,7 @@ import { instructionContent, administrativeAnalysis } from './safety.ts';
 export type Stage = 'understanding'|'retrieving'|'composing'|'validating';
 export interface InterpretedTurn { interpretation:TurnInterpretation|null; input:InterpretationInput; raw:unknown; usage:ProviderUsage; failure:string|null }
 const noUsage=():ProviderUsage=>({requests:0,inputTokens:0,outputTokens:0,estimatedCostUsd:0,costBasis:'No model request made.'});
+const noOutboundRequest=(code:string)=>['PROVIDER_BUDGET_EXHAUSTED','GENERATION_INPUT_LIMIT','GENERATION_SCHEMA_LIMIT'].includes(code);
 export function conversationMemory(history:AgentResponse[],targetId?:string|null):InterpretationInput['history'] {
  const ids=new Set(history.slice(-8).map(h=>h.id));
  const artifact=history.find(h=>h.id===targetId)??history.filter(h=>h.workProduct).at(-1);
@@ -44,7 +45,7 @@ export async function interpretContextual(message:{text:string;targetId?:string}
   if((i.intent==='clarification')!==!!i.clarification)throw new AgentProviderFailure('INVALID_CLARIFICATION');
   if(i.clarification&&(new Set(i.clarification.options.map(o=>o.value)).size!==i.clarification.options.length||instructionContent(JSON.stringify(i.clarification))))throw new AgentProviderFailure('INVALID_CLARIFICATION');
   result.interpretation=i;
- }catch(e){result.failure=e instanceof AgentProviderFailure?e.code:'INTERPRETATION_INVALID';if(result.failure==='PROVIDER_BUDGET_EXHAUSTED')result.usage=noUsage();}
+ }catch(e){result.failure=e instanceof AgentProviderFailure?e.code:'INTERPRETATION_INVALID';if(noOutboundRequest(result.failure))result.usage=noUsage();}
  return result;
 }
 export function contextualRequest(original:AgentRequest,i:TurnInterpretation):AgentRequest {
@@ -133,7 +134,7 @@ export async function composeContextual(o:{request:AgentRequest;id:string;conver
   if(sandbox)response.reasonCodes.push('SANDBOX_EXPLORATION_ONLY','SANDBOX_ACTION_DENIED');
  }catch(e){
   const code=e instanceof AgentProviderFailure?e.code:'TURN_RESPONSE_INVALID';
-  if(code==='PROVIDER_BUDGET_EXHAUSTED')response.audit.requests--;
+  if(noOutboundRequest(code))response.audit.requests--;
   const explanation=code==='PROVIDER_BUDGET_EXHAUSTED'?'The provider request limit was reached before this turn could finish. The unvalidated response is paused.':code==='SHORTENING_CONSTRAINT_FAILED'?`The proposed revision did not meet the requested limit of ${maximumWords} words. It was paused; no shortened draft was accepted.`:code==='REQUIRED_ARTIFACT_FACT_REMOVED'?'The proposed revision removed required supported document information, so I paused it.':code==='SMS_CONTENT_RESTRICTED'?`The proposed SMS exceeded ${SMS_LIMIT} characters or included restricted case details, so I paused it.`:code==='WORK_PRODUCT_MISSING'?'The model did not produce the requested work product. I paused this turn; no completed draft or refinement is available.':'I paused this turn because the complete response did not pass generation or validation.';
   return pause(explanation+' No fallback or workflow action occurred.',[code],true);
  }

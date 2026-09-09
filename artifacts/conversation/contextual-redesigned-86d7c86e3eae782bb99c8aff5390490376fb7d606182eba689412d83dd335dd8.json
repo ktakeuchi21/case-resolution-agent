@@ -1,0 +1,19 @@
+{
+  "schema": "pathway-contextual-core-v1",
+  "timestamp": "2026-09-09T15:57:59.156Z",
+  "arm": "redesigned",
+  "environment": "Live public Render; frozen paired prompts; configured provider",
+  "results": [
+    {
+      "name": "no browser exceptions",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "responses": [],
+  "latencies": [],
+  "errors": [],
+  "error": "TimeoutError: locator.waitFor: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Launch guided demo', exact: true }).first() to be visible\u001b[22m\n",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "f133c6329cac08734faa14ba1e3815942cb047e6d7cf07ec96fb1d397709bdc0"
+}

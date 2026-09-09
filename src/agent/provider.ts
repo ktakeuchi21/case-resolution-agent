@@ -69,13 +69,17 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
  async reviewTurn(input: CompositionInput, turn: ProposedTurn) { const result=await this.request(REVIEW_INSTRUCTIONS,{input,turn},fullReviewSchema(turn),'pathway_full_turn_review');return {...result,wireOutput:result.output}; }
  private async request(instructions: string, input: unknown, schema: z.ZodType, name: string) {
   if (Buffer.byteLength(JSON.stringify(input)) > 48000) throw new AgentProviderFailure('GENERATION_INPUT_LIMIT');
+  // Responses echoes the output schema in its envelope. Share repeated prose
+  // definitions so schema repetition cannot consume the bounded response body.
+  const jsonSchema=z.toJSONSchema(schema,{reused:['pathway_complete_prose','pathway_full_turn_review'].includes(name)?'ref':'inline'});
+  if(Buffer.byteLength(JSON.stringify(jsonSchema))>60000)throw new AgentProviderFailure('GENERATION_SCHEMA_LIMIT');
   await this.#reserve();
   const signal = AbortSignal.timeout(18000);
   try {
    const response = await this.#transport('https://api.openai.com/v1/responses', { method: 'POST', redirect: 'error', signal,
     headers: { Authorization: `Bearer ${this.#key}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({ model: this.identity.model, store: false, instructions, input: [{ role: 'user', content: JSON.stringify(input) }], max_output_tokens: 4800,
-     text: { format: { type: 'json_schema', name, strict: true, schema: z.toJSONSchema(schema) } } }),
+     text: { format: { type: 'json_schema', name, strict: true, schema: jsonSchema } } }),
    });
    if (!response.ok) { await response.body?.cancel(); throw new AgentProviderFailure(response.status === 429 ? 'PROVIDER_RATE_LIMITED' : 'PROVIDER_UNAVAILABLE'); }
    if (!response.body) throw new AgentProviderFailure('PROVIDER_RESPONSE_INVALID');
