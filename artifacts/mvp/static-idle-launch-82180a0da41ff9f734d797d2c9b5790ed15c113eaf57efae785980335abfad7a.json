@@ -1,0 +1,43 @@
+{
+  "schema": "pathway-static-idle-launch-v1",
+  "timestamp": "2026-09-09T19:53:02.411Z",
+  "idleStartedAt": "2026-09-09T19:36:43.561Z",
+  "idleMs": 960000,
+  "url": "https://case-resolution-frontend.onrender.com",
+  "revision": "2a79b56e8bbecc94916c69c708ddabde0694b056",
+  "measurement": "No requests by this verifier during the idle interval; other visitors can prevent service sleep. No independent host sleep-state API used.",
+  "firstContentfulPaintMs": 376,
+  "ttfbMs": 195.30000001192093,
+  "heroObservedMs": 646.1000000238419,
+  "loadingObservedMs": 760,
+  "readinessMs": 13910,
+  "workspaceMs": 17165,
+  "results": [
+    {
+      "name": "landing visible within one second",
+      "pass": true
+    },
+    {
+      "name": "workspace reaches backend knowledge selection",
+      "pass": true
+    },
+    {
+      "name": "static origin never creates a session",
+      "pass": true
+    },
+    {
+      "name": "one case creation after handoff",
+      "pass": true
+    },
+    {
+      "name": "readiness response is uncached",
+      "pass": true
+    },
+    {
+      "name": "no browser exceptions",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "liveModelCalls": 0
+}

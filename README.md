@@ -1,6 +1,6 @@
 # Pathway Agent
 
-Current hosting: the [static frontend and loading screen](docs/static-frontend.md) are live, with 392 ms observed first contentful paint on the released revision. Launch waits for readiness, then opens the existing backend workspace with secure sessions and progressive streaming. All 31 deployed transport checks passed. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
+Current hosting: the [static frontend and loading screen](docs/static-frontend.md) are live, with 376–392 ms observed first contentful paint on the released revision, including a visit after 16 minutes of idle time. Launch waits for readiness, then opens the existing backend workspace with secure sessions and progressive streaming. All 31 deployed transport checks and six idle-entry checks passed. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
 
 Conversation redesign: [experience and contracts](docs/conversation-experience.md), [execution and acceptance](docs/conversation-execution.md). The default journey is choose knowledge, then chat; the twelve-step technical walkthrough remains optional.
 

@@ -36,6 +36,7 @@ The static history entry becomes the overview before navigation, so browser Back
 - Origin-handoff browser checks: **23/23 passed**, `artifacts/mvp/static-handoff-f5488319b2a585973a7aec61e788d72f2592470c2f7aced35e822cc2084de88b.json`.
 - Public rollout: **31/31 passed**, `artifacts/mvp/static-rollout-34da3ef5674b70b8d505cc7a146f591c4a402ad2418665be01860cc32ed84d99.json`.
 - CDN assets and private-path exclusion: **15/15 passed**, `artifacts/mvp/static-assets-12094effed931f7b7658d56299efbd65e2795823e1ae24233826a603889190d0.json`; all 11 published frontend files match the release build.
+- Public entry after a 16-minute idle interval: **6/6 passed**, `artifacts/mvp/static-idle-launch-82180a0da41ff9f734d797d2c9b5790ed15c113eaf57efae785980335abfad7a.json`.
 - Production build: **246 files**, **160 validated retained embedding records**.
 - Secret/artifact hygiene: passed. No workflow or database contract changes were made.
 
@@ -47,7 +48,7 @@ The public checks verify the actual origin change, absence of frontend session c
 
 On the released revision, fresh-context desktop Chrome first contentful paint was **392 ms**, with the hero observed at **608 ms** and HTML first byte at **198 ms**. No CPU/network throttling was applied. These are observed samples, not a global percentile or one-second guarantee. Earlier static-candidate measurements were 140–552 ms.
 
-A final real-browser entry after a 16-minute no-request interval is being measured separately. The earlier candidate's first forwarded readiness request took **13.287 seconds**, consistent with an idle wake-up but without independent observation of Render's sleep state. Controlled-unavailable local checks prove landing rendering is independent of readiness.
+After a **16-minute interval without requests from the verifier**, a fresh browser visit painted the landing page at **376 ms**, observed its hero at **646 ms**, and displayed the workspace loading screen at **760 ms**. Readiness succeeded at **13.910 seconds** and backend knowledge selection opened automatically at **17.165 seconds**. All six checks passed: subsecond landing, backend workspace arrival, no frontend session request, one case creation, uncached health and no browser errors. No model calls occurred. Other visitors can prevent Render from sleeping, and no independent host sleep-state API was used; the observed delay is consistent with a free-service wake-up. The earlier candidate's first forwarded readiness request took 13.287 seconds. Controlled-unavailable local checks also establish that landing rendering does not await readiness.
 
 ## Why the initial routing changed
 
