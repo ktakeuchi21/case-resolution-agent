@@ -58,3 +58,8 @@ The three model phases add latency and request cost; staged UI does not remove t
 
 
 Request-budget exhaustion is shown explicitly in the primary pause message. A reservation rejected before an outbound provider call is counted as zero calls for that stage; prior completed stages retain their measured tokens and request count. Limits are never reset or bypassed by this accounting.
+# September 9 live correction: current status, memory and SMS
+
+The current dependency-status fact is separate from payer authority and the eventual completion boundary. The boundary is explicitly labeled as a target in composition input; only PA_PENDING supplies a resolved current-state fact. An independent validator also rejects the observed premature-completion wording. This is a targeted guard, not a proof of arbitrary English entailment.
+
+The production prose schema prevents conversation references from supporting fact/inference/recommendation segments. Such references are available only for uncertainty segments, and runtime validation requires the displayed sentence to say unverified. SMS body segments may cite only the application channel policy; document/workflow details remain in operator evidence and cannot be cited into SMS copy. Existing content/length and full-text review checks remain mandatory. Raw citation IDs are rejected in recipient copy, including internal handoffs.

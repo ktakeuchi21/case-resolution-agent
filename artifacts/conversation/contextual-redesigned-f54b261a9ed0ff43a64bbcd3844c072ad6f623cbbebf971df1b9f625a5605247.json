@@ -1,0 +1,11 @@
+{
+  "schema": "pathway-contextual-boundary-v1",
+  "timestamp": "2026-09-09T15:47:27.507Z",
+  "arm": "redesigned",
+  "results": [],
+  "responses": [],
+  "latencies": [],
+  "error": "TimeoutError: page.waitForFunction: Timeout 65000ms exceeded.",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "68fe6e30aa0e31caa1e4253bb2e397da829831c45062f0f6bf8971b859cc2ba5"
+}

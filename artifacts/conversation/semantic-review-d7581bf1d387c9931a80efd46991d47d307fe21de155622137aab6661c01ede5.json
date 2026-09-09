@@ -1,0 +1,42 @@
+{
+  "schema": "pathway-contextual-semantic-review-v1",
+  "timestamp": "2026-09-09T15:53:05.978912+00:00",
+  "reviewer": "Codex manual reading of complete stored answers, products, claims and supporting quotes; not independent human assessment",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "baselineArtifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+  "redesignedArtifact": "artifacts/conversation/contextual-redesigned-3e61ee017cf78caab43c7d610f1ba77d9a87f757995baba2da397bfabe97ad68.json",
+  "redesignedRevision": "9d307d1f3e6ae6caca3c92716219c666854b82ae",
+  "status": "failed_acceptance_requires_correction",
+  "summary": "Nine of twelve turns were accepted and shortening/mobile checks passed. SMS and reported-interaction recall paused. Handoff and summary incorrectly presented the eventual completion boundary as current completion. The full acceptance still fails; later corrections need fresh live qualification.",
+  "findings": [
+    {
+      "dimension": "intent and directness",
+      "result": "Contextual Why and evidence follow-ups no longer clarify. Rationale answers still add a spurious causal link to payer authority. Evidence answer names the source categories but mislabels the request ID as the note ID; exact passages remain in expandable citations."
+    },
+    {
+      "dimension": "products",
+      "result": "Email excludes internal metadata and warmer refinement reduces its length with correct lineage. Handoff and summary include raw citation IDs and falsely report dependency completion. The SMS proposed restricted note/request details and was correctly paused."
+    },
+    {
+      "dimension": "memory",
+      "result": "The interaction and recall were tagged as facts and correctly paused. The summary omitted the unverified report."
+    },
+    {
+      "dimension": "claim review",
+      "displayedLedgerClaims": 28,
+      "exactQuotes": 38,
+      "observedFalseCurrentCompletionClaims": 4,
+      "additionalIssues": "Two rationale segments attach payer authority as a cause for follow-up; one mislabels a request ID; seven segments include a request ID absent from their own supporting quotes. These are distinct semantic/citation-coverage issues, not proof that every underlying document statement is false.",
+      "limitation": "The reviewer accepted these issues. Exact quotes alone do not establish entailment or current-state correctness."
+    },
+    {
+      "dimension": "mobile and authority",
+      "result": "All strict viewport, composer, overflow, source expansion and feedback checks passed. Manual 375x812 screenshot confirms visible lead and composer. No workflow effects or decisions were created."
+    }
+  ],
+  "limitations": [
+    "Developer-authored repeated synthetic suite; no independent holdout.",
+    "A parallel boundary submission received the explicit demo-busy retry state and captured no turns. It does not establish boundary acceptance.",
+    "An earlier run before the cap was confirmed recorded twelve zero-call budget pauses; that artifact is retained."
+  ]
+}
