@@ -36,3 +36,22 @@ Visual record: [desktop before](screenshots/launchpad-before-desktop.png), [desk
 Static-startup regression passed **19/19** (`launchpad-regressions-bb17644aa3fd5e554557f910d98d9ba9f269baa403c58c0299558170ab51c394.json`). The earlier reused database reached its unchanged request limit; a separate retained local database was created for subsequent checks. The historical conversation comparison was recalculated against its matching existing semantic review (`comparison-ab08640b8a3c683cc47e9f9ecddcc4255ae6616d004c6641ce4a987d5e622557.json`); no new model-quality result is implied.
 
 Origin-handoff regression passed **23/23**: `artifacts/digital-worker/launchpad-regressions-91578b604901a49594e91224683bf4049b6bf5e44b7523708dab72d83081d70b.json`. Final production build contains 248 files and 160 validated embedding records; hygiene scanned 361 text files and verified 110 content-addressed retained artifacts. No workflow or provider schema was changed.
+
+## Production release — September 9, 2026
+
+Both manual Render services are live on **`9af626038f6fe22a016e00444494cd05b56f21c4`**:
+
+| Service | Deployment | Time (MDT) | Duration |
+| --- | --- | --- | --- |
+| Backend, Free | `dep-dags716q1p3s738n85l0` | 2:37:24 PM | 34.0 s |
+| Static frontend | `dep-dags7oid0e5s73b04t1g` | 2:38:58 PM | 21.5 s |
+
+Public entry: https://case-resolution-frontend.onrender.com. Interactive workspace: https://case-resolution-agent.onrender.com. The provider cap remains 100, automatic deployment remains Off, and no paid resources or new credentials were required. GitHub's first push returned HTTP 400 and did not update the remote. A buffered HTTP retry succeeded; deployment status and source revision were confirmed separately in Render.
+
+Public launchpad acceptance passed **27/28**: `artifacts/digital-worker/launchpad-browser-47ee4b39fb967f0feee8c39fd750107e6afda2bfa367a563dad8c603580031d4.json`. All interface checks passed: sample orientation, default Office prompts, keyboard direct submission, collapse, focus, three responsive widths, role change and announcements, unchanged workflow/history, returning conversation, concise new conversation, governed pack details, deduplicated titles, sandbox boundaries, knowledge switching and deletion recovery. The one unmet check is **B's successful default conversational answer**: the unchanged runtime returned `PROVIDER_BUDGET_EXHAUSTED`. The user message was submitted once and the provider pause displayed explicitly. No successful live LLM answer is claimed, and the previously documented schema failure is not resolved or retested past the exhausted budget. Full goal acceptance therefore remains incomplete.
+
+The released hosting/security path passed **31/31**, `artifacts/mvp/static-rollout-5d6e6fc4298a1abd22c538e3a9120194b832fb877e96a2a2a0e4c20f67cda181.json`. This separately selected evidence mode in isolated test sessions and made zero model calls. Cookie flags, CSRF/origin rejection, session separation, uploads/downloads, uncached responses and progressive delivery passed. A stream stage arrived at 138.7 ms; its separate final result arrived at 1,300.7 ms. Fresh desktop first contentful paint was **248 ms**, HTML first byte 192.5 ms and hero observed at 648 ms, without throttling. These are measured samples, not percentile guarantees.
+
+CDN asset verification passed **16/16**: `artifacts/mvp/static-assets-7289fe4bfbf0977d27663235fd18c5d5528c8866362f7087ca709ddf5d6f2670.json`. All 12 public frontend files match the build and private server/configuration paths return 404. The in-app browser was also manually exercised from the public landing page through Launch and Use sample knowledge: the deployed Office staff launchpad, all four prompts and focused composer were observed, with no additional model request. Live screenshots are retained under `output/playwright/launchpad/live-*` and `docs/screenshots/launchpad-live-*`.
+
+No manual Render configuration remains for this release. The remaining successful default-model acceptance requires available provider budget and resolution/verification of the separately documented provider-schema issue. Budget exhaustion is an explicit pause, not a silent fallback or a launchpad rendering failure.

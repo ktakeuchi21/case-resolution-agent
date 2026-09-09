@@ -30,7 +30,8 @@ try{
  check('B: keyboard suggestion submits directly exactly once',posts===1);
  check('B: first substantive message collapses context',!(await page.locator('#conversation-launchpad').isVisible()));
  const answered=await state(),first=answered.agent.entries.at(-1);
- check('B: normal conversation keeps exact citations',first.disposition==='answer'&&first.citations.length>0,{disposition:first.disposition,method:first.audit.method,reasonCodes:first.reasonCodes});
+ const normal=first.disposition==='answer'&&first.citations.length>0,answerDetail={disposition:first.disposition,method:first.audit.method,reasonCodes:first.reasonCodes};
+ if(live&&!normal){results.push({name:'B: normal conversation keeps exact citations',pass:false,detail:answerDetail});report.providerBlocked=answerDetail;}else check('B: normal conversation keeps exact citations',normal,answerDetail);
  check('B: composer focused after response',await page.locator('#agent-text').evaluate(n=>document.activeElement===n));
  check('H: response and composer accessible on mobile',await page.locator('.worker-turn').last().evaluate(n=>{const s=n.closest('.conversation-stream').getBoundingClientRect(),r=n.getBoundingClientRect();return r.top<s.bottom&&r.top>=s.top;})&&await page.locator('#agent-text').evaluate(n=>{const r=n.getBoundingClientRect();return r.bottom<=innerHeight&&r.top>=0;}));
  await page.screenshot({path:`output/playwright/launchpad/${live?'live-':''}after-mobile-conversation.png`,fullPage:false});
@@ -54,4 +55,4 @@ try{
  check('No browser errors',errors.length===0,errors);
 }catch(e){report.error=e.message;}finally{await browser.close();}
 report.checkSourceSha256=createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex');
-const body=JSON.stringify(report,null,2)+'\n',file='artifacts/digital-worker/launchpad-browser-'+createHash('sha256').update(body).digest('hex')+'.json';await writeFile(file,body,{flag:'wx',mode:0o444});console.log(JSON.stringify({artifact:file,passed:results.filter(r=>r.pass).length,total:results.length,error:report.error}));if(report.error)process.exitCode=1;
+const body=JSON.stringify(report,null,2)+'\n',file='artifacts/digital-worker/launchpad-browser-'+createHash('sha256').update(body).digest('hex')+'.json';await writeFile(file,body,{flag:'wx',mode:0o444});console.log(JSON.stringify({artifact:file,passed:results.filter(r=>r.pass).length,total:results.length,error:report.error}));if(report.error||results.some(r=>!r.pass))process.exitCode=1;

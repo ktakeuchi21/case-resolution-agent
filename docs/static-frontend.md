@@ -2,7 +2,11 @@
 
 Public entry: [Open Pathway Agent](https://case-resolution-frontend.onrender.com). The free Render Static Site serves only `dist/web` through the CDN. Launch waits for backend readiness, then opens the requested workspace at https://case-resolution-agent.onrender.com. The owner approved this routing adjustment after the initial static rewrite buffered streaming updates. All **31 deployed transport checks passed** on the new arrangement. The backend address also remains a working standalone fallback.
 
-## Released configuration
+## Latest application release
+
+The Conversation Launchpad release is live on both services at `9af626038f6fe22a016e00444494cd05b56f21c4`. The September 9 follow-up passed 31/31 public transport/security checks and 16/16 CDN asset checks; desktop first contentful paint measured 248 ms. See `conversation-launchpad.md` for release IDs, interface acceptance and the remaining default-provider budget pause. The initial hosting measurements below remain retained historical evidence.
+
+## Initial static release configuration
 
 Both services were manually deployed from revision `2a79b56e8bbecc94916c69c708ddabde0694b056` on September 9, 2026:
 
