@@ -8,6 +8,7 @@ import { composeContextual,interpretContextual,validateCompleteTurn,validateFull
 import { TurnInterpretation,wordCount,turnSlots } from '../../src/agent/turn-contract.ts';
 import type { ProposedTurn } from '../../src/agent/turn-contract.ts';
 import type { CompositionInput } from '../../src/agent/conversation-provider.ts';
+import { compositionSchema } from '../../src/agent/conversation-provider.ts';
 import type { SynthesisProvider } from '../../src/agent/provider.ts';
 import { hash } from '../../src/integrity.ts';
 
@@ -39,3 +40,4 @@ test('memory is explicitly unverified and bounded; artifact and latest interacti
 test('unverified reports cannot be recast as authoritative facts',()=>{const x=input(),t=proposed();x.facts.push({text:'The office said the note was found.',reference:'conversation:report',origin:'conversation',authoritative:false});t.answer='The office said the note was found.';t.claims=[{id:'report',kind:'fact',text:t.answer,locations:['answer'],supports:[{reference:'conversation:report',quote:t.answer}]}];assert.throws(()=>validateCompleteTurn(t,x,evidence),/CONVERSATION_IS_NOT_CASE_FACT/);});
 test('negative quality verdict never displays proposed recipient copy',async()=>{const p=provider();p.reviewTurn=async(_x,t)=>({output:{...review(t),answersActualRequest:false},usage});const r=await compose(p);assert.equal(r.disposition,'pause');assert.equal(r.workProduct,null);assert.equal(r.claims.length,0);assert(r.audit.rawOutput);});
 test('a draft acknowledgment without the requested copy is never accepted as a completed product',()=>{const x=input();x.interpretation=interpretation({intent:'draft'});assert.throws(()=>validateCompleteTurn(proposed(),x,evidence),/WORK_PRODUCT_MISSING/);});
+test('a question cannot acquire an unsolicited artifact from audience or channel defaults',()=>{const x=input();x.interpretation=interpretation({intent:'next_action',channel:'email'});const t=proposed();t.workProduct={subject:'Next step',body:'Please review.',audience:'case_manager',channel:'email',tone:'concise',purpose:'Follow up'};assert.throws(()=>validateCompleteTurn(t,x,evidence),/UNREQUESTED_WORK_PRODUCT/);assert.equal(compositionSchema(x).safeParse(t).success,false);t.workProduct=null;t.claims[0]!.locations=['body'];assert.equal(compositionSchema(x).safeParse(t).success,false);});

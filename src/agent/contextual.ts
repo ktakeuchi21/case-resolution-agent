@@ -63,6 +63,7 @@ export function validateCompleteTurn(raw:unknown,input:CompositionInput,evidence
  if(turn.uncertainties.some(u=>!turn.answer.includes(u)&&!turn.rationale?.includes(u)))throw new AgentProviderFailure('UNCHECKED_UNCERTAINTY_TEXT');
  const p=turn.workProduct,i=input.interpretation;
  if(p){
+  if(!['draft','summary','refinement'].includes(i.intent))throw new AgentProviderFailure('UNREQUESTED_WORK_PRODUCT');
   if(p.audience!==i.audience||p.channel!==i.channel||p.tone!==i.tone)throw new AgentProviderFailure('WORK_PRODUCT_TARGET_MISMATCH');
   if(i.channel==='email'&&!p.subject)throw new AgentProviderFailure('EMAIL_SUBJECT_REQUIRED');
   if(i.channel!=='email'&&p.subject)throw new AgentProviderFailure('SUBJECT_NOT_APPLICABLE');

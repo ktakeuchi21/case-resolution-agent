@@ -1,12 +1,12 @@
 async page => {
- const cases=__CASES__,arm=__ARM__,results=[],responses=[],latencies=[],captures=[];let error;
+ const cases=__CASES__,arm=__ARM__,results=[],responses=[],latencies=[];let error;
  const check=(name,pass,detail)=>results.push({name,pass:!!pass,...(detail!==undefined?{detail}:{})});
  const origin=page.url().split('/').slice(0,3).join('/');
- const capture=r=>{if(r.url().endsWith('/api/conversation')&&r.request().method()==='POST')captures.push(r.text().then(text=>{let body;try{body=JSON.parse(text);}catch{body=text.trim().split('\n').map(line=>JSON.parse(line)).find(item=>item.type==='result')?.result;}responses.push(body??{captureError:'No committed result in response'});}));};page.on('response',capture);
+
  const state=()=>page.evaluate(async()=>await(await fetch('/api/state')).json());
  const route=async hash=>{await page.goto(origin+'/#'+hash);await page.locator('#role').waitFor();};
  const ready=()=>page.waitForFunction(()=>!document.querySelector('#loading'));
- const talk=async text=>{await route('agent');const n=await page.locator('.agent-turn').count();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).fill(text);const start=Date.now();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).press('Enter');await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n,{timeout:65000});await Promise.all(captures);latencies.push({query:text,submissionToAnswerMs:Date.now()-start});return responses.at(-1);};
+ const talk=async text=>{await route('agent');const n=await page.locator('.agent-turn').count();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).fill(text);const start=Date.now();await page.getByRole('textbox',{name:'Message Pathway',exact:true}).press('Enter');await page.waitForFunction(n=>document.querySelectorAll('.agent-turn').length===n+1&&document.querySelector('#agent-form')?.getAttribute('aria-busy')==='false',n,{timeout:65000});const observedMs=Date.now()-start;const saved=await state();responses.push(saved.agent.entries.filter(e=>e.conversationId===saved.agent.activeConversationId).at(-1));latencies.push({query:text,submissionToAnswerMs:observedMs});return responses.at(-1);};
  try{
   await page.setViewportSize({width:1440,height:1000});
   await page.getByRole('button',{name:'Launch guided demo',exact:true}).first().waitFor({timeout:90000});await page.getByRole('button',{name:'Launch guided demo',exact:true}).first().click();await page.getByRole('button',{name:'Use sample knowledge →',exact:true}).click();
@@ -25,5 +25,5 @@ async page => {
   const retired=await talk(cases.boundary.J);check('J retirement pauses current answer',retired.disposition==='pause'&&retired.reasonCodes.includes('SOURCE_RETIRED'));check('J exact historical answer unchanged',JSON.stringify((await state()).agent.entries.find(e=>e.id===old.id))===JSON.stringify(old));
   await page.screenshot({path:'output/playwright/contextual-'+arm+'-retired.png',fullPage:true});
  }catch(e){error=String(e);}
- await Promise.all(captures);page.off('response',capture);return {schema:'pathway-contextual-boundary-v1',timestamp:new Date().toISOString(),arm,results,responses,latencies,...(error?{error}:{})};
+ return {schema:'pathway-contextual-boundary-v1',timestamp:new Date().toISOString(),arm,results,responses,latencies,...(error?{error}:{})};
 }
