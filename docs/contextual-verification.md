@@ -2,6 +2,8 @@
 
 Status: live acceptance remains failed. The subsequent authority correction passes local verification, but its live composition request is rejected by the provider schema validator. The approved temporary allowance has been exhausted and Render's daily cap has been restored to 100. The goal remains incomplete; this report does not represent a successful A–M acceptance.
 
+September 9 follow-up: a local schema comparison narrowed the change from the last provider-accepted contract to the neutral-style enum and consequent definition ordering; it does not prove a root cause. Keep the grounding restriction. The diagnostic now records a verified node index and schema fingerprint for a provider-reported context without retaining raw error messages, path names or document text. All **272 tests** pass (`verification-ce6c00b3f43c6e64d4fe313e0d25038d01a71a6bb053d19b207362d113b51f56.json`), including four diagnostic privacy tests and stronger application checks proving knowledge switching removes old context from model input. No live provider request, cap change, schema relaxation or claim of successful conversation acceptance was made. See [the current audit and next evidence gate](launchpad-acceptance-audit.md).
+
 ## Most recent qualification and correction
 
 Final report release: `b94101ecd05ad86fe2390bafc16ebc5e9e24fec8`, Render deployment `dep-dagots2fngtc73fgadq0`, succeeded September 9 at 10:53 AM MDT. The runtime code is the diagnostic revision described below; this release publishes the failed-qualification status. Health and all six public asset hashes passed in `public-smoke-49df0db4eddb26840371e4c6e24f31c93d14d4d86c44ee96d3448867b9a1fde0.json`. No model call was made by this deployment check.

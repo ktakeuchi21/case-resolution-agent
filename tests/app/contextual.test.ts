@@ -6,13 +6,14 @@ import { digest } from '../../src/app/session.ts';
 import { baseRequest } from '../../src/evaluation.ts';
 import { turnSlots } from '../../src/agent/turn-contract.ts';
 import type { SynthesisProvider } from '../../src/agent/provider.ts';
+import type { CompositionInput, InterpretationInput } from '../../src/agent/conversation-provider.ts';
 import { hash } from '../../src/integrity.ts';
 
-test('contextual API commits validated full turns, streams only stages, scopes feedback and bounds fresh regeneration',async()=>{
- let calls=0;const compositionInputs:unknown[]=[];
+test('contextual API commits validated turns, scopes knowledge and feedback, and bounds fresh regeneration',async()=>{
+ let calls=0;const compositionInputs:CompositionInput[]=[],interpretationInputs:InterpretationInput[]=[];
  const usage={requests:1,inputTokens:1,outputTokens:1,estimatedCostUsd:0,costBasis:'Deterministic integration fixture. No live quality evidence.'};
  const provider:SynthesisProvider={identity:{provider:'fixture',model:'contract-only'},complete:async()=>{throw new Error('Unexpected legacy composer');},verify:async()=>{throw new Error('Unexpected legacy verifier');},
-  interpret:async input=>{calls++;return {output:{intent:'question',follows:input.history.at(-1)?.id??null,artifactId:null,audience:'case_manager',channel:'chat',tone:'concise',length:'unchanged',retrievalQuestion:baseRequest().question,clarification:null,requestedAction:null,note:'Fixture'},usage};},
+  interpret:async input=>{calls++;interpretationInputs.push(input);return {output:{intent:'question',follows:input.history.at(-1)?.id??null,artifactId:null,audience:'case_manager',channel:'chat',tone:'concise',length:'unchanged',retrievalQuestion:baseRequest().question,clarification:null,requestedAction:null,note:'Fixture'},usage};},
   composeTurn:async input=>{calls++;compositionInputs.push(input);const s=input.sources[0]!;return {output:{answer:s.text,rationale:null,workProduct:null,claims:[{id:'claim.1',kind:'fact',text:s.text,locations:['answer'],supports:[{reference:s.reference,quote:s.text}]}],uncertainties:[],requestedAction:null},usage};},
   reviewTurn:async(_input,turn)=>{calls++;return {output:{claims:turn.claims.map(c=>({id:c.id,supported:true,reason:'Fixture'})),slots:turnSlots(turn).map(([slot])=>({slot,allMaterialStatementsCovered:true,supported:true,reason:'Fixture'})),channelSafe:true,transformationFaithful:true,answersActualRequest:true},usage};},
  };
@@ -34,5 +35,34 @@ test('contextual API commits validated full turns, streams only stages, scopes f
   await req('conversation',{idempotencyKey:randomUUID(),text:r.query,regenerateId:r.id},429);assert.equal(calls,before);
   await req('conversation',{idempotencyKey:randomUUID(),text:r.query,regenerateId:r.id},409,1);
   const state=await req('state');assert.equal(hash(state.agent.entries.find((e:{id:string})=>e.id===r.id)),hash(r));assert.equal(hash(state.workflow),baseline);
+  const pack=state.agent.packs.find((p:{available:boolean})=>p.available);assert(pack);
+  await req('agent-preferences',{action:'select',selection:{kind:'pack',releaseId:pack.id}});
+  const inPack=await req('conversation',{idempotencyKey:randomUUID(),text:input.text});
+  assert.equal(inPack.disposition,'answer');assert.notEqual(inPack.evidenceId,r.evidenceId);
+  assert.equal(interpretationInputs.at(-1)!.selectedKnowledge.key,pack.id);
+  assert.deepEqual(interpretationInputs.at(-1)!.history,[]);assert.deepEqual(compositionInputs.at(-1)!.memory,[]);
+  assert.equal(inPack.knowledge.key,pack.id);assert.equal(inPack.turn.interpretation.follows,null);
+  const afterPack=await req('state');assert.equal(afterPack.knowledge.activeAssignmentId,initial.knowledge.activeAssignmentId);
+  assert.equal(hash(afterPack.workflow),baseline);
+  for(const entry of state.agent.entries)assert.equal(hash(afterPack.agent.entries.find((e:{id:string})=>e.id===entry.id)),hash(entry));
+  const beforeOldRegeneration=calls;
+  await req('conversation',{idempotencyKey:randomUUID(),text:r.query,regenerateId:r.id},409);assert.equal(calls,beforeOldRegeneration);
+  await req('agent-preferences',{action:'select',selection:{kind:'sample'}});
+  const returned=await req('conversation',{idempotencyKey:randomUUID(),text:input.text});
+  assert.equal(returned.disposition,'answer');assert.notEqual(returned.evidenceId,r.evidenceId);
+  assert(interpretationInputs.at(-1)!.history.some(h=>h.id===r.id));
+  assert(!interpretationInputs.at(-1)!.history.some(h=>h.id===inPack.id));
+  assert(!compositionInputs.at(-1)!.memory.some(h=>h.id===inPack.id));
+  const upload=await req('studio-upload',{name:'isolated-knowledge.txt',synthetic:true,base64:Buffer.from('Synthetic temporary administrative instructions.').toString('base64')});
+  await req('agent-preferences',{action:'select',selection:{kind:'upload',uploadId:upload.id}});
+  const compositionsBeforeUpload=compositionInputs.length;
+  const sandbox=await req('conversation',{idempotencyKey:randomUUID(),text:'What does this document say?'});
+  assert.equal(interpretationInputs.at(-1)!.selectedKnowledge.authority,'sandbox_only');
+  assert.deepEqual(interpretationInputs.at(-1)!.history,[]);
+  assert.equal(sandbox.disposition,'pause');assert.equal(compositionInputs.length,compositionsBeforeUpload);
+  assert.equal(sandbox.knowledge.key,upload.id);assert.equal(sandbox.context.permission.action,'denied');
+  assert(!sandbox.citations.some((c:{passageId:string})=>r.citations.some((old:{passageId:string})=>old.passageId===c.passageId)));
+  const afterUpload=await req('state');assert.equal(hash(afterUpload.workflow),baseline);assert.equal(afterUpload.knowledge.activeAssignmentId,initial.knowledge.activeAssignmentId);
+  assert.equal(hash(afterUpload.agent.entries.find((e:{id:string})=>e.id===r.id)),hash(r));
  }finally{await service.close();}
 });

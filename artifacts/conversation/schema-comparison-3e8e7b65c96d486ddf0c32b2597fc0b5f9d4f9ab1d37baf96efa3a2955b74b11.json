@@ -1,0 +1,516 @@
+{
+  "schema": "pathway-offline-schema-comparison-v1",
+  "timestamp": "2026-09-09T21:11:57.991Z",
+  "environment": "Local synthetic two-reference question fixture. No provider or database request.",
+  "previousRevision": "ddf1ebf",
+  "currentRuntimeRevision": "a63de727aa2bc52c01cadca939dfa42b5c77ba1a",
+  "previousSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "answer": {
+        "$ref": "#/$defs/__schema0"
+      },
+      "rationale": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/__schema0"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "workProduct": {
+        "type": "null"
+      },
+      "requestedAction": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "answer",
+      "rationale",
+      "workProduct",
+      "requestedAction"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+      "__schema0": {
+        "minItems": 1,
+        "maxItems": 12,
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/__schema1"
+        }
+      },
+      "__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "style"
+              },
+              "text": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "supports": {
+                "maxItems": 0,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema3"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "fact",
+                  "inference",
+                  "recommendation"
+                ]
+              },
+              "text": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "supports": {
+                "minItems": 1,
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema4"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "uncertainty"
+              },
+              "text": {
+                "$ref": "#/$defs/__schema2"
+              },
+              "supports": {
+                "minItems": 1,
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema3"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "__schema2": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 700
+      },
+      "__schema3": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "workflow:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "Synthetic follow-up is not recorded."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "source:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "A synthetic note is missing."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "__schema4": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "workflow:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "Synthetic follow-up is not recorded."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "source:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "A synthetic note is missing."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "currentSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "answer": {
+        "$ref": "#/$defs/__schema0"
+      },
+      "rationale": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/__schema0"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "workProduct": {
+        "type": "null"
+      },
+      "requestedAction": {
+        "anyOf": [
+          {
+            "type": "string",
+            "maxLength": 500
+          },
+          {
+            "type": "null"
+          }
+        ]
+      }
+    },
+    "required": [
+      "answer",
+      "rationale",
+      "workProduct",
+      "requestedAction"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+      "__schema0": {
+        "minItems": 1,
+        "maxItems": 12,
+        "type": "array",
+        "items": {
+          "$ref": "#/$defs/__schema1"
+        }
+      },
+      "__schema1": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "style"
+              },
+              "text": {
+                "type": "string",
+                "enum": [
+                  "Hello,",
+                  " Hello,",
+                  "\n\nHello,",
+                  "Hello,\n\n",
+                  "Hi,",
+                  " Hi,",
+                  "\n\nHi,",
+                  "Hi,\n\n",
+                  "Dear Team,",
+                  " Dear Team,",
+                  "\n\nDear Team,",
+                  "Dear Team,\n\n",
+                  "Thank you.",
+                  " Thank you.",
+                  "\n\nThank you.",
+                  "Thank you.\n\n",
+                  "Thank you!",
+                  " Thank you!",
+                  "\n\nThank you!",
+                  "Thank you!\n\n",
+                  "Thanks so much!",
+                  " Thanks so much!",
+                  "\n\nThanks so much!",
+                  "Thanks so much!\n\n",
+                  "Here is an unsent draft.",
+                  " Here is an unsent draft.",
+                  "\n\nHere is an unsent draft.",
+                  "Here is an unsent draft.\n\n",
+                  "Here is the revised unsent draft.",
+                  " Here is the revised unsent draft.",
+                  "\n\nHere is the revised unsent draft.",
+                  "Here is the revised unsent draft.\n\n",
+                  "Here is an unsent summary.",
+                  " Here is an unsent summary.",
+                  "\n\nHere is an unsent summary.",
+                  "Here is an unsent summary.\n\n"
+                ]
+              },
+              "supports": {
+                "maxItems": 0,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema2"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "fact",
+                  "inference",
+                  "recommendation"
+                ]
+              },
+              "text": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "supports": {
+                "minItems": 1,
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema4"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "const": "uncertainty"
+              },
+              "text": {
+                "$ref": "#/$defs/__schema3"
+              },
+              "supports": {
+                "minItems": 1,
+                "maxItems": 6,
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/__schema2"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "text",
+              "supports"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "__schema2": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "workflow:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "Synthetic follow-up is not recorded."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "source:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "A synthetic note is missing."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      },
+      "__schema3": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 700
+      },
+      "__schema4": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "workflow:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "Synthetic follow-up is not recorded."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "reference": {
+                "type": "string",
+                "const": "source:1"
+              },
+              "quote": {
+                "type": "string",
+                "enum": [
+                  "A synthetic note is missing."
+                ]
+              }
+            },
+            "required": [
+              "reference",
+              "quote"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "previousSha256": "f0dad9f0ea8eb3e6b4713e7998e04f0cb46eb6fa9a8750f99c9602e23582d871",
+  "currentSha256": "a0205575796181e4320c7ff3f7ea06ebc3f9a1783d98a0fd8216e9ed71db644e",
+  "findings": [
+    "Both roots are objects without root anyOf.",
+    "The material schema change is the allowed neutral-style text enumeration. Shared definition indices shift as a consequence.",
+    "Removing the enumeration would admit material text as uncited style before validation. Retain the independently tested neutral-style runtime guard and exact support/entailment gates.",
+    "Official documentation allows nested anyOf; the retained category ANYOF_NOT_ALLOWED_FORMAT does not establish the rejected path."
+  ],
+  "source": "https://developers.openai.com/api/docs/guides/structured-outputs",
+  "limitations": [
+    "This is not the exact historical production request body.",
+    "Neither local Zod acceptance nor this comparison proves provider compatibility or identifies the root cause.",
+    "Do not revert grounding controls or claim a successful normal answer from this offline check.",
+    "A bounded structural diagnostic and the next available-budget live response are required to narrow the rejection."
+  ]
+}

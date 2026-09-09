@@ -1,5 +1,7 @@
 # Conversation Launchpad
 
+The current [requirement-by-requirement acceptance audit](launchpad-acceptance-audit.md) distinguishes verified interface/governance behavior from the remaining live-provider gate.
+
 ## Implementation plan
 
 Add an orientation layer inside the existing chat: synthetic identity and role, AI purpose and authority boundary, eligible knowledge coverage, and directly submitted suggested questions. Keep the composer usable throughout. After a substantive message, retain a compact context bar; reopening context must not change conversation or case history.

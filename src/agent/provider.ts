@@ -19,11 +19,27 @@ export interface SynthesisProvider extends Partial<ContextualProvider> {
  verify(input: SynthesisInput, synthesis: Synthesis): Promise<{ output: unknown; usage: ProviderUsage }>;
 }
 export class AgentProviderFailure extends Error { readonly code: string; constructor(code: string) { super(code); this.code = code; this.name = 'AgentProviderFailure'; } }
-export function schemaRejectionCode(message:unknown){
+export function schemaRejectionCode(message:unknown,schema?:unknown){
  const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format'];
  const text=typeof message==='string'?message.toLowerCase():'';
  const tags=allowed.filter(word=>text.includes(word.toLowerCase())).map(word=>word.replace(/\W/g,'_').toUpperCase());
- return 'PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
+ const category='PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
+ // Provider errors can echo private input. Retain only an index into our own
+ // schema plus its hash, never the provider's context path or message text.
+ const context=typeof message==='string'&&message.length<=8192?message.match(/\bIn context\s*=\s*\(([^)]{0,2048})\)/i):null;
+ if(!context||!schema||typeof schema!=='object')return category;
+ const parts=context[1]!.trim().replace(/,\s*$/,'');
+ const tokens=parts?parts.split(/,\s*/):[];
+ if(tokens.length>32)return category;
+ const path:string[]=[];
+ for(const token of tokens){const quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return category;}
+ let selected:unknown=schema;
+ for(const key of path){if(!selected||typeof selected!=='object'||!Object.hasOwn(selected,key))return category;selected=(selected as Record<string,unknown>)[key];}
+ if(!selected||typeof selected!=='object')return category;
+ let count=0,index:number|null=null;const target=JSON.stringify(path);
+ const visit=(node:unknown,at:string[]):void=>{if(!node||typeof node!=='object')return;const n=count++;if(JSON.stringify(at)===target)index=n;for(const [key,value] of Object.entries(node))visit(value,[...at,key]);};
+ visit(schema,[]);
+ return index===null?category:category+'_AT_NODE_'+index+'_SCHEMA_'+textHash(JSON.stringify(schema)).slice(0,12);
 }
 export function validateClaims(output: unknown, input: SynthesisInput, evidence: EvidenceRecord | null) {
  const synthesis = Synthesis.parse(output);
@@ -91,7 +107,7 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
     let code=response.status===429?'PROVIDER_RATE_LIMITED':response.status===400?'PROVIDER_REQUEST_REJECTED':'PROVIDER_UNAVAILABLE';
     // Inspect only a bounded request-error envelope; never retain or display
     // provider messages, which can echo user input or request data.
-    if(response.status===400&&response.body){const reader=response.body.getReader();try{const parts:Uint8Array[]=[];let bytes=0;while(bytes<=8192){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>8192)break;parts.push(part.value);}if(bytes<=8192){const error=JSON.parse(Buffer.concat(parts).toString('utf8'))?.error;if(error?.code==='invalid_json_schema')code=schemaRejectionCode(error.message);}}catch{}finally{await reader.cancel();reader.releaseLock();}}
+    if(response.status===400&&response.body){const reader=response.body.getReader();try{const parts:Uint8Array[]=[];let bytes=0;while(bytes<=8192){const part=await reader.read();if(part.done)break;bytes+=part.value.byteLength;if(bytes>8192)break;parts.push(part.value);}if(bytes<=8192){const error=JSON.parse(Buffer.concat(parts).toString('utf8'))?.error;if(error?.code==='invalid_json_schema')code=schemaRejectionCode(error.message,jsonSchema);}}catch{}finally{await reader.cancel();reader.releaseLock();}}
     else await response.body?.cancel();
     throw new AgentProviderFailure(code);
    }
