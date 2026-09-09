@@ -269,7 +269,12 @@
     ],
     "artifact": "artifacts/conversation/comparison-087b2ed55a684bfe1062ab6bb9384a1025e9b051ade364cda09d0f15652cd282.json",
     "latestCorrectionEvidence": {
-      "summary": "Subsequent local corrections restrict uncited text to neutral greetings/acknowledgments, require visible unverified report attribution, expose the active artifact to interpretation, and scope review to each claim\u2019s cited evidence. All 258 automated tests pass. Full fresh live qualification of these corrections remains pending."
+      "status": "provider_schema_rejected_live_qualification_incomplete",
+      "summary": "Subsequent authority corrections passed the full 258-test local verification; the bounded diagnostic addition passed type checking and 80 agent tests. Two focused live memory smokes failed provider schema validation, most recently with an allowlisted anyOf restriction category. No unvalidated answer was shown and the workflow was preserved. The temporary allowance reached 200 daily reservations; Render cap restored and verified as 100. Full fresh live qualification remains incomplete.",
+      "diagnosticRevision": "8478de860e9290e24ff3707b22397bcbd2aad51f",
+      "diagnosticArtifact": "artifacts/conversation/contextual-redesigned-b550c040878e6033c732a65cd25a90a7e2c23d13b99ca4bf8064c321f34ec7f3.json",
+      "restoredDailyLimit": 100,
+      "reservedRequestsOn20260909": 200
     }
   }
 }

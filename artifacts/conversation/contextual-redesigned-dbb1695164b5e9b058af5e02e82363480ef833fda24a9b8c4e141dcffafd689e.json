@@ -1,0 +1,160 @@
+{
+  "schema": "pathway-public-budget-pause-v1",
+  "timestamp": "2026-09-09T16:51:25.045Z",
+  "environment": "Public app at its already-exhausted daily budget; zero outbound model calls; not model-quality evidence",
+  "results": [
+    {
+      "name": "explicit request-limit pause",
+      "pass": true
+    },
+    {
+      "name": "no outbound model call counted",
+      "pass": true
+    },
+    {
+      "name": "no fallback or work product",
+      "pass": true
+    },
+    {
+      "name": "workflow unchanged",
+      "pass": true
+    }
+  ],
+  "responses": [
+    {
+      "id": "agent.308b4bae86e823248bf517c3426d2724d83a85ca104b8d10",
+      "conversationId": "conversation.2cde081b-c7a3-4181-8131-d684f6a23ca9",
+      "caseId": "DEMO-101",
+      "operation": "ask",
+      "timestamp": "2026-09-10T16:00:00.000Z",
+      "query": "What should happen next?",
+      "queryHash": "8a1d89100a146bbfb22706d187de70e7b931adcb4c12b41d05e1cbd8400ae0f5",
+      "workflowRevision": 1,
+      "disposition": "pause",
+      "message": "The provider request limit has been reached. This turn is paused; your case is unchanged and no fallback was used.",
+      "claims": [],
+      "citations": [],
+      "facts": [
+        {
+          "id": "workflow.fact.0",
+          "text": "The case has been received. No follow-up has been prepared or initiated.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:0",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.1",
+          "text": "Recorded effects: 0 delivered or acknowledged.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:1",
+          "authoritative": true
+        },
+        {
+          "id": "workflow.fact.2",
+          "text": "Recorded human decisions: 0.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:2",
+          "authoritative": true
+        },
+        {
+          "id": "conversation.latest",
+          "text": "Record this synthetic Teams interaction: The office said, We are still looking for the signed note. Please send an update when the request is ready.",
+          "origin": "conversation",
+          "reference": "conversation:agent.46df36c33f877f1669f02d2e913c6b26dd012f4c1b8047ba",
+          "authoritative": false
+        },
+        {
+          "id": "workflow.next",
+          "text": "Recommended next administrative step: Assess the documentation dependency. This recommendation does not authorize execution.",
+          "origin": "workflow",
+          "reference": "workflow:SC-01:revision:1:next-action",
+          "authoritative": true
+        }
+      ],
+      "evidenceId": null,
+      "evidenceHash": null,
+      "reasonCodes": [
+        "PROVIDER_BUDGET_EXHAUSTED"
+      ],
+      "clarification": null,
+      "analysis": null,
+      "workProduct": null,
+      "inReplyTo": null,
+      "knowledge": {
+        "key": "sample",
+        "kind": "sample",
+        "name": "Alder prior authorization knowledge",
+        "sourceCount": 9,
+        "authority": "assigned_case_knowledge",
+        "expiresAt": null,
+        "sourceNames": {
+          "K-PA": "DEMO Alder missing-document process",
+          "K-UT": "DEMO Utah document process",
+          "K-APL": "DEMO appeal administration",
+          "K-EDU": "DEMO educational summary with incorrect advice",
+          "K-FIN": "DEMO generic support intake",
+          "N-101": "Synthetic administrative evidence N-101.v1",
+          "N-102": "Synthetic administrative evidence N-102.v1",
+          "K-COMM": "DEMO communication process",
+          "K-PA-X": "DEMO conflicting verified payer notice",
+          "K-CEDAR": "DEMO Cedar administrative request",
+          "K-TABLE": "DEMO structured requirement list",
+          "CE-101-01": "Synthetic administrative evidence CE-101-01.v1",
+          "K-UNDATED": "DEMO undated source"
+        }
+      },
+      "context": {
+        "state": "RECEIVED",
+        "whatHappened": "The case has been received. No follow-up has been prepared or initiated.",
+        "known": [
+          "The case has been received. No follow-up has been prepared or initiated.",
+          "Recorded effects: 0 delivered or acknowledged.",
+          "Recorded human decisions: 0."
+        ],
+        "unresolved": [
+          "The documentation dependency has not reached its completion boundary.",
+          "Prior authorization is pending; only the external payer can decide it."
+        ],
+        "latestCommunication": "Synthetic interaction: Record this synthetic Teams interaction: The office said, We are still looking for the signed note. Please send an update when the request is ready.",
+        "owner": "Pathway Agent",
+        "checkpoint": null,
+        "nextAction": "Assess the documentation dependency",
+        "why": "The case has been received. No follow-up has been prepared or initiated.",
+        "permission": {
+          "sourceSupport": "not_evaluated",
+          "applicability": "not_evaluated",
+          "communication": "not_evaluated",
+          "action": "not_requested",
+          "execution": "not_requested"
+        },
+        "requiredAuthorization": [],
+        "completionBoundary": "Documentation dependency resolved; prior authorization pending."
+      },
+      "audit": {
+        "version": "digital-worker-v1",
+        "method": "provider-pause",
+        "provider": "openai",
+        "model": "gpt-4.1-mini-2025-04-14",
+        "promptVersion": "pathway-contextual-v1",
+        "promptHash": "d151c267c59ebdffd4de5bbd7af19675b51a0fb2303d2a028c118d56814712db",
+        "contextHash": "8035661239a4441a6ada2c7d94306e8d139a54e7df4ff0f2e7abc3fc604a4f5a",
+        "latencyMs": 227.33006799999566,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "estimatedCostUsd": 0,
+        "costBasis": "No model request made.",
+        "requests": 0,
+        "validation": [
+          "authoritative_context_separated",
+          "no_execution_capability"
+        ],
+        "execution": "none",
+        "rawOutput": {
+          "interpretation": null
+        }
+      }
+    }
+  ],
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "checkSourceSha256": "a4f971c3da6d504833da2656f0402c460220eccd749ed6c9227f3060ea1e258d"
+}
