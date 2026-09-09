@@ -1,0 +1,122 @@
+{
+  "schema": "pathway-static-stream-comparison-v1",
+  "timestamp": "2026-09-09T19:17:38.203660+00:00",
+  "timestampPrecision": "Completion time from local probe output-file modification time",
+  "environment": "Public HTTPS, isolated synthetic sessions, compression explicitly disabled, evidence composition and retained query vectors, zero model calls",
+  "scriptSha256": "c62ddb2d359b9339e03240a87f871b8d72eabd14d5e6161e17528350cdcf9e21",
+  "results": [
+    {
+      "base": "https://case-resolution-agent.onrender.com",
+      "status": 200,
+      "headers": {
+        "content-type": "application/x-ndjson",
+        "content-encoding": null,
+        "cache-control": "no-store",
+        "x-accel-buffering": null,
+        "transfer-encoding": "chunked"
+      },
+      "chunks": [
+        {
+          "ms": 108,
+          "bytes": 38,
+          "stage": true,
+          "result": false
+        },
+        {
+          "ms": 812,
+          "bytes": 1363,
+          "stage": false,
+          "result": true
+        },
+        {
+          "ms": 812,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 812,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 812,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 812,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 812,
+          "bytes": 619,
+          "stage": false,
+          "result": false
+        }
+      ],
+      "providerRequests": 0
+    },
+    {
+      "base": "https://case-resolution-frontend.onrender.com",
+      "status": 200,
+      "headers": {
+        "content-type": "application/x-ndjson",
+        "content-encoding": null,
+        "cache-control": "no-store",
+        "x-accel-buffering": null,
+        "transfer-encoding": "chunked"
+      },
+      "chunks": [
+        {
+          "ms": 660,
+          "bytes": 584,
+          "stage": true,
+          "result": true
+        },
+        {
+          "ms": 660,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 660,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 660,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 660,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 661,
+          "bytes": 1369,
+          "stage": false,
+          "result": false
+        },
+        {
+          "ms": 661,
+          "bytes": 67,
+          "stage": false,
+          "result": false
+        }
+      ],
+      "providerRequests": 0
+    }
+  ],
+  "qualification": "Direct backend streams progressively; static rewrite buffers stage until final result. Temporary static headers subsequently removed."
+}

@@ -1,0 +1,134 @@
+{
+  "schema": "pathway-static-transport-browser-v1",
+  "timestamp": "2026-09-09T19:14:33.549Z",
+  "environment": "Public Render static frontend and same-origin rewrites; isolated synthetic sessions; explicit evidence mode with retained vectors; no live model-quality claim",
+  "url": "https://case-resolution-frontend.onrender.com",
+  "revision": "969c46cee3a5912acb39c441f7ba7fd6d2a3ac22",
+  "measurements": [
+    {
+      "kind": "desktop_fresh_context",
+      "first-paint": 552,
+      "first-contentful-paint": 552,
+      "ttfbMs": 346.69999998807907,
+      "heroObservedMs": 787
+    }
+  ],
+  "results": [
+    {
+      "name": "CDN landing has CSP and browser protections",
+      "pass": true
+    },
+    {
+      "name": "landing issues no session request",
+      "pass": true
+    },
+    {
+      "name": "readiness rewrite returns uncached backend JSON",
+      "pass": true
+    },
+    {
+      "name": "frontend launch restores session and creates one case",
+      "pass": true
+    },
+    {
+      "name": "first-party session cookie retains Secure HttpOnly and Strict",
+      "pass": true,
+      "detail": {
+        "secure": true,
+        "httpOnly": true,
+        "sameSite": "Strict",
+        "domain": "case-resolution-frontend.onrender.com"
+      }
+    },
+    {
+      "name": "missing CSRF rejected through rewrite",
+      "pass": true
+    },
+    {
+      "name": "incorrect CSRF rejected through rewrite",
+      "pass": true
+    },
+    {
+      "name": "forged origin rejected through rewrite",
+      "pass": true
+    },
+    {
+      "name": "cross-site metadata rejected through rewrite",
+      "pass": true
+    },
+    {
+      "name": "rejected requests preserve workflow",
+      "pass": true
+    },
+    {
+      "name": "separate visitor starts with an empty isolated session",
+      "pass": true
+    },
+    {
+      "name": "separate visitor receives a distinct case",
+      "pass": true
+    },
+    {
+      "name": "synthetic upload parses through rewrite without caching",
+      "pass": true
+    },
+    {
+      "name": "original download round-trips bytes without caching",
+      "pass": true
+    },
+    {
+      "name": "another visitor cannot download the upload",
+      "pass": true
+    },
+    {
+      "name": "another visitor cannot list the upload",
+      "pass": true
+    },
+    {
+      "name": "CSRF tokens are session-bound",
+      "pass": true
+    },
+    {
+      "name": "direct workspace navigation restores the existing session",
+      "pass": true
+    },
+    {
+      "name": "synthetic role action survives forwarding",
+      "pass": true
+    },
+    {
+      "name": "test session explicitly selects evidence mode",
+      "pass": true
+    },
+    {
+      "name": "NDJSON stages and final response arrive uncached through rewrite",
+      "pass": true,
+      "detail": {
+        "status": 200,
+        "type": "application/x-ndjson",
+        "cache": "no-store",
+        "chunks": [
+          {
+            "ms": 1356,
+            "stage": true,
+            "result": true
+          }
+        ],
+        "stages": [
+          "retrieving"
+        ],
+        "requests": 0,
+        "method": "deterministic-case-composition",
+        "hasResult": true,
+        "error": false
+      }
+    },
+    {
+      "name": "proxy delivers a status chunk before the final result",
+      "pass": false
+    }
+  ],
+  "errors": [],
+  "error": "Error: proxy delivers a status chunk before the final result",
+  "checkSourceSha256": "c6b63ea56f7d9972d9f8a5de227593789c16bed9e70bda5b5b882ed86cc602c6"
+}

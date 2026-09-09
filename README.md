@@ -1,5 +1,7 @@
 # Pathway Agent
 
+Current release status: the [static frontend and loading screen](docs/static-frontend.md) are deployed for review, with 140–552 ms observed first contentful paint. Public-link promotion is held because Render's static rewrite buffers streaming updates. The original demo link below remains in use. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
+
 Conversation redesign: [experience and contracts](docs/conversation-experience.md), [execution and acceptance](docs/conversation-execution.md). The default journey is choose knowledge, then chat; the twelve-step technical walkthrough remains optional.
 
 Earlier digital worker increment: [product and architecture](docs/digital-worker.md), [operator runbook](docs/digital-worker-runbook.md), and [implementation ledger](docs/digital-worker-execution.md). The in-app Guided journey and Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
