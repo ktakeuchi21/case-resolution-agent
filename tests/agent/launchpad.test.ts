@@ -6,7 +6,7 @@ import { AgentSettings } from '../../src/agent/preferences.ts';
 import { hash } from '../../src/integrity.ts';
 // Browser presentation is deliberately a pure ES module without a build dependency.
 // @ts-expect-error Browser ES module is exercised directly by Node.
-import { suggestedPrompts, launchpadState, renderLaunchpad } from '../../web/launchpad.js';
+import { suggestedPrompts, launchpadState, renderLaunchpad, currentOrientation, leaveLaunchpad } from '../../web/launchpad.js';
 const settings=AgentSettings.parse({});
 const fixture=()=>({demoId:'test',role:'office',workflow:{state:'RECEIVED',dependency:'open',tasks:[] as {id:string;status:string}[]},agent:{orientation:governedOrientation(new Registry(loadCorpus()),{kind:'sample'},FIXED_TIME),entries:[] as {operation:string;conversationId:string;knowledge:{key:string}}[],activeConversationId:null as string|null,preferences:{settings}}});
 test('knowledge coverage contains distinct eligible categories and current source details only',()=>{
@@ -43,4 +43,26 @@ test('launchpad first, sending, returning, new conversation, context change and 
  v.agent.activeConversationId='chat2';assert.equal(launchpadState(v).mode,'concise');
  v.agent.orientation={...v.agent.orientation,key:'new-pack',revision:'new-revision'};const changed=launchpadState(v,role);assert.equal(changed.mode,'full');assert.equal(changed.boundaryChanged,true);
  const html=renderLaunchpad(v,changed);assert(!html.includes('acknowledge'));assert(html.includes('data-agent-suggestion'));assert(!html.includes('data-action='));assert.equal(hash(v.agent.entries),history);
+});
+
+test('leaving expanded context returns to a compact conversation without losing role-change detection',()=>{
+ const v=fixture();v.agent.activeConversationId='chat';v.agent.entries.push({operation:'ask',conversationId:'chat',knowledge:{key:'sample'}});
+ const compact=launchpadState(v),expanded=launchpadState(v,compact,{expanded:true});
+ assert.equal(launchpadState(v,leaveLaunchpad(v,expanded)).mode,'compact');
+ v.role='supervisor';assert.equal(launchpadState(v,leaveLaunchpad(v,expanded)).mode,'full');
+ const first=fixture();assert.equal(leaveLaunchpad(first,launchpadState(first)).mode,'full');
+});
+test('expired upload presentation removes source metadata and prompts without modifying saved context',()=>{
+ const expiry='2026-09-10T00:00:00Z',k={kind:'upload',key:'temporary',name:'Reviewed name',available:true,revision:'original',coverage:['Selected document'],sources:[{title:'Reviewed name',expiresAt:expiry}]};
+ const before=hash(k);assert.equal(currentOrientation(k,Date.parse(expiry)-1),k);
+ const expired=currentOrientation(k,Date.parse(expiry));assert.equal(expired.available,false);assert.deepEqual(expired.sources,[]);assert(expired.summary.includes('expired'));assert.equal(hash(k),before);
+ assert.deepEqual(suggestedPrompts({role:'office',knowledge:expired}),[]);
+});
+test('suggestions respond to lost governing coverage even before the workflow is reassessed',()=>{
+ const v=fixture(),r=new Registry(loadCorpus());r.retire('publisher','K-PA.v2',FIXED_TIME,'Withdrawn for review');
+ const knowledge=governedOrientation(r,{kind:'sample'},FIXED_TIME);
+ for(const role of ['office','manager','supervisor','knowledge_reviewer']){
+  const before=suggestedPrompts({role,knowledge:v.agent.orientation,workflow:v.workflow,settings});
+  const after=suggestedPrompts({role,knowledge,workflow:v.workflow,settings});assert.notDeepEqual(after,before);assert.equal(after.length,4);assert(!after.some((p:string)=>p.startsWith('Draft')));
+ }
 });

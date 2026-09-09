@@ -15,7 +15,7 @@ const categories: Record<string, string> = {
 const documentCategories: Record<string, string> = { payer_guide:'Payer process guidance', case_notice:'Case-specific request', case_inventory:'Submitted-package evidence', education:'Educational guidance', sop:'Administrative procedures', program_guide:'Program intake' };
 export function coverageSummary(coverage: string[]) {
  const distinct = [...new Set(coverage)];
- return distinct.length ? `Grounded in ${new Intl.ListFormat('en', {style:'long',type:'conjunction'}).format(distinct.map(s=>s[0]!.toLowerCase()+s.slice(1)))}.` : 'No currently eligible knowledge is available in this selection. Choose knowledge to continue.';
+ return distinct.length ? `Grounded in ${new Intl.ListFormat('en', {style:'long',type:'conjunction'}).format(distinct.map(s=>s[0]!.toLowerCase()+s.slice(1)))}.` : 'Current sources do not establish authoritative coverage. Inspect their eligibility or choose other knowledge.';
 }
 export function governedOrientation(registry: Registry, chosen: KnowledgeSelection, now: string) {
  const request = baseRequest({...governedSelection(registry, chosen, now),purpose:'explain'}), user = registry.user('avery');

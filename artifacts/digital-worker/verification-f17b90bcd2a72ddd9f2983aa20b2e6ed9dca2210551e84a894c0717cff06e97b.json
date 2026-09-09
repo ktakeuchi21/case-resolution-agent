@@ -1,0 +1,79 @@
+{
+  "schema": "pathway-digital-worker-verification-v1",
+  "timestamp": "2026-09-09T20:54:00.371Z",
+  "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
+  "summary": "Verification has an incomplete or failing check. See the recorded suites.",
+  "suites": [
+    {
+      "name": "TypeScript contracts",
+      "command": "npm run typecheck",
+      "passed": true,
+      "tests": null,
+      "durationMs": 2750.2247500000003,
+      "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
+    },
+    {
+      "name": "Core governance and retrieval",
+      "command": "npm test",
+      "passed": true,
+      "tests": 81,
+      "durationMs": 607.8111250000002,
+      "outputHash": "189c1dc814ea94c256f61ab53f5cce4c00f61f41173d5ece783a279984840293"
+    },
+    {
+      "name": "Original generation",
+      "command": "npm run test:generation",
+      "passed": true,
+      "tests": 12,
+      "durationMs": 447.2179580000002,
+      "outputHash": "eac4874160d9075d20755d42e4325d5c1c58d3eef784227dab4b563ba7b09dbe"
+    },
+    {
+      "name": "Digital worker composition and conversational intent",
+      "command": "npm run test:agent",
+      "passed": true,
+      "tests": 87,
+      "durationMs": 639.0474590000003,
+      "outputHash": "a98899899f7c526f62b7122303005a1369e9cb847c9fca1446d9170e6ecf4725"
+    },
+    {
+      "name": "Document parsing and safety",
+      "command": "npm run test:studio",
+      "passed": true,
+      "tests": 8,
+      "durationMs": 3572.0441250000003,
+      "outputHash": "3a441a3be80ec4cf3bb6ef033d4422a87f6bf3ab1fbdc0bde317ba3ef771da31"
+    },
+    {
+      "name": "PostgreSQL persistence",
+      "command": "npm run test:postgres",
+      "passed": false,
+      "tests": 24,
+      "durationMs": 682.9953339999993,
+      "outputHash": "9f4bf806a79979805356cd305140dab0b0bc84a02bc9090571a2e74b819313f7"
+    }
+  ],
+  "frozenArtifacts": {
+    "count": 199,
+    "unchanged": true,
+    "manifestHash": "e7cef044c5cd5707d8cb4d6ee778c96c630167c83a89b54c79fd52971cbf08c0"
+  },
+  "retrieval": {
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
+    "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
+    "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
+  },
+  "generation": {
+    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-contextual-v1; replaceable provider interface",
+    "summary": "Contextual interpretation and complete-turn contracts, full-text review coverage, transformation constraints, durable regeneration, feedback, legacy composition and fail-closed checks were exercised with explicit fixtures. No live synthesis quality score is claimed.",
+    "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
+  },
+  "limitations": [
+    "All cases, identities and integrations are synthetic. No real outreach, payer approval or clinical authority.",
+    "Live synthesis and new semantic vectors require explicitly configured server credentials and request budgets. Missing or failed providers pause with no silent fallback.",
+    "Model support review is fallible. Exact quote and eligibility checks do not prove every paraphrase is entailed.",
+    "TXT, Markdown, PDF and DOCX parsing is bounded: 1 MB, 20 PDF pages, 64,000 extracted characters and 128 passages. No OCR; PDF tables can have uncertain reading order.",
+    "Content screening and user attestation do not guarantee patient-data detection. Temporary sandbox data expires with the session; approved published sources and governed evidence remain immutable.",
+    "Enterprise identity, real channel integrations, independent healthcare validation, production load, backup restoration and patient outcomes are unverified."
+  ]
+}

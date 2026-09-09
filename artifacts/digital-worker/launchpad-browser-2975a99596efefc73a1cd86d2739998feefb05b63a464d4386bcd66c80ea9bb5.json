@@ -1,0 +1,123 @@
+{
+  "schema": "pathway-launchpad-browser-v1",
+  "timestamp": "2026-09-09T20:49:30.320Z",
+  "origin": "http://127.0.0.1:3013",
+  "provider": "Explicit predetermined local fixture; not a model-quality result",
+  "results": [
+    {
+      "name": "A: sample opens full in-chat orientation without another gate",
+      "pass": true
+    },
+    {
+      "name": "A: identity, AI and knowledge coverage are clear",
+      "pass": true
+    },
+    {
+      "name": "A: default Office prompts include drafting",
+      "pass": true
+    },
+    {
+      "name": "A: composer focused",
+      "pass": true
+    },
+    {
+      "name": "H: no horizontal overflow at desktop",
+      "pass": true
+    },
+    {
+      "name": "H: prompt and context touch targets at desktop",
+      "pass": true
+    },
+    {
+      "name": "H: no horizontal overflow at tablet",
+      "pass": true
+    },
+    {
+      "name": "H: prompt and context touch targets at tablet",
+      "pass": true
+    },
+    {
+      "name": "H: no horizontal overflow at mobile",
+      "pass": true
+    },
+    {
+      "name": "H: prompt and context touch targets at mobile",
+      "pass": true
+    },
+    {
+      "name": "B: keyboard suggestion submits directly exactly once",
+      "pass": true
+    },
+    {
+      "name": "B: first substantive message collapses context",
+      "pass": true
+    },
+    {
+      "name": "B: normal conversation keeps exact citations",
+      "pass": true,
+      "detail": {
+        "disposition": "answer",
+        "method": "model-synthesis",
+        "reasonCodes": []
+      }
+    },
+    {
+      "name": "B: composer focused after response",
+      "pass": true
+    },
+    {
+      "name": "H: response and composer accessible on mobile",
+      "pass": true
+    },
+    {
+      "name": "View context reopens without resetting conversation",
+      "pass": true
+    },
+    {
+      "name": "C: Change role reaches the native role selector",
+      "pass": true
+    },
+    {
+      "name": "C: supervisor questions and accessible change announcement",
+      "pass": true
+    },
+    {
+      "name": "C: role changes neither workflow nor history",
+      "pass": true
+    },
+    {
+      "name": "F: returning to same conversation stays compact",
+      "pass": true
+    },
+    {
+      "name": "New conversation gives concise welcome and preserves operational history",
+      "pass": true
+    },
+    {
+      "name": "D: pack details expose version and eligibility",
+      "pass": true
+    },
+    {
+      "name": "D: no duplicate source titles",
+      "pass": true
+    },
+    {
+      "name": "E: upload has temporary boundary and document prompts",
+      "pass": true
+    },
+    {
+      "name": "G: changed knowledge boundary is explicit",
+      "pass": true
+    },
+    {
+      "name": "G: history retains original citations and assignment",
+      "pass": true
+    },
+    {
+      "name": "Upload expires while chat remains open without another request",
+      "pass": false
+    }
+  ],
+  "error": "Upload expires while chat remains open without another request",
+  "checkSourceSha256": "b5eeaac9bf29b97dd8790b26b9d420bb18d10e7030974d01c239487656c1fdae"
+}

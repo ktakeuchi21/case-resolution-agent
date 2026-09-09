@@ -1,6 +1,9 @@
-import { launchpadState, renderContextBar, renderLaunchpad } from './launchpad.js';
+import { currentOrientation, leaveLaunchpad, launchpadState, renderContextBar, renderLaunchpad } from './launchpad.js';
 const orientations=new Map();
-let expandedContext=null;
+let expandedContext=null, expiryTimer=null, visibleRefresh=null;
+window.addEventListener('pagehide',()=>clearTimeout(expiryTimer));
+window.addEventListener('pageshow',()=>visibleRefresh?.());
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')visibleRefresh?.();});
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const label = s => String(s ?? '').replaceAll('_',' ').replace(/^./, c => c.toUpperCase()).replace(/\bCrm\b/g,'CRM').replace(/\bSms\b/g,'SMS');
 const date = s => s ? new Date(s).toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit',timeZone:'America/Denver'}) : 'No pending checkpoint';
@@ -29,23 +32,31 @@ function answer(view,e) {
  <details class="advanced"><summary>Evidence, permissions and generation details</summary><dl class="kv"><dt>Source support</dt><dd>${esc(label(e.context.permission.sourceSupport))}</dd><dt>Case applicability</dt><dd>${esc(label(e.context.permission.applicability))}</dd><dt>Communication</dt><dd>${esc(label(e.context.permission.communication))}</dd><dt>Action permission</dt><dd>${esc(label(e.context.permission.action))}</dd></dl>${e.temporaryEvidence?raw('Temporary evidence record · expires with this document',e.temporaryEvidence):e.evidenceId?`<button data-evidence="${esc(e.evidenceId)}">Open immutable evidence record</button>`:''}${raw('Claim support and authoritative facts',e.claims)}${raw('Contextual interpretation and transformation',e.turn??e.interpretation)}${raw('Generation audit and raw output',e.audit)}${raw('Reason codes', [...new Set(e.reasonCodes)])}</details></div></article>`;
 }
 export function renderAgent(view) {
+ const now=Date.now();view={...view,agent:{...view.agent,orientation:currentOrientation(view.agent.orientation,now),entries:view.agent.entries.filter(e=>e.knowledge?.kind!=='upload'||!e.knowledge.expiresAt||Date.parse(e.knowledge.expiresAt)>now)}};
  const state=view.agent, entries=state.entries.filter(e=>e.conversationId===state.activeConversationId&&e.operation!=='new_conversation');
  const orientation=launchpadState(view,orientations.get(view.demoId),{expanded:expandedContext,submitting:sending&&!pending?.legacy});expandedContext=null;orientations.set(view.demoId,orientation);
+ const canAsk=view.agent.orientation?.available!==false;
  const draft=drafts.get(draftKey(view))??'', task=view.workflow.tasks.some(t=>t.status==='open');
  return `<div class="chat-heading"><div><div class="eyebrow">Your digital case worker</div><h1>Talk with Pathway.</h1></div><div class="buttons"><a href="#settings">Agent Settings</a><button data-new-conversation>New conversation</button></div></div>
  <div class="chat-workspace">${renderContextBar(view,orientation)}
  <section class="conversation-stream" aria-label="Conversation history" tabindex="0">${renderLaunchpad(view,orientation,sending)}${entries.map((e,i)=>i<entries.length-3?`<details class="older-turn"><summary>${esc(e.query.slice(0,110))}<span class="small muted">${esc(label(e.disposition))} · ${date(e.timestamp)}</span></summary>${answer(view,e)}</details>`:answer(view,e)).join('')}${sending?`<div class="pending-turn"><p class="user-turn">${esc(pending?.payload.text??'Saving your work product…')}</p><p role="status" class="response-progress">${esc(progressLabel)}</p></div>`:''}</section>
- <form id="agent-form" class="agent-composer" aria-busy="${sending}"><label for="agent-text">Message Pathway</label><div class="composer-input"><textarea id="agent-text" rows="2" maxlength="2000" placeholder="Ask a question or tell me what you need…" ${sending?'readonly':''}>${esc(draft)}</textarea><button type="submit" class="primary" ${sending?'disabled':''}>${sending?'Working…':'Send'}</button></div><div id="composer-error" role="alert" class="message bad" ${composerError?'':'hidden'}>${esc(composerError)}${composerError?'<button type="button" data-retry-message>Retry message</button>':''}</div><div class="composer-footer"><span>Enter to send · Shift+Enter for a new line</span><span>Generated answers need review · Nothing is sent</span></div></form>
+ <form id="agent-form" class="agent-composer" aria-busy="${sending}"><label for="agent-text">Message Pathway</label><div class="composer-input"><textarea id="agent-text" rows="2" maxlength="2000" placeholder="Ask a question or tell me what you need…" ${sending||!canAsk?'readonly':''} aria-describedby="knowledge-availability">${esc(draft)}</textarea><button type="submit" class="primary" ${sending||!canAsk?'disabled':''}>${sending?'Working…':'Send'}</button></div><p id="knowledge-availability" class="small" ${canAsk?'hidden':''}>Choose available knowledge before sending a message.</p><div id="composer-error" role="alert" class="message bad" ${composerError?'':'hidden'}>${esc(composerError)}${composerError?'<button type="button" data-retry-message>Retry message</button>':''}</div><div class="composer-footer"><span>Enter to send · Shift+Enter for a new line</span><span>Generated answers need review · Nothing is sent</span></div></form>
  </div>
  <p class="small muted session-notice">${esc(state.notice.text)}</p>
  <div class="chat-secondary"><details class="card"><summary>Inspect case & conversation memory</summary><p>${esc(state.memoryPolicy)}</p><p>Temporary document conversations expire with their upload. Governed case records and answers remain durable.</p>${raw('Authoritative workflow, human decisions and effects',view.workflow)}${raw('Unverified conversation and work products',entries)}${state.conversations.filter(c=>c.archived_at).map(c=>raw('Earlier conversation · '+date(c.created_at),state.entries.filter(e=>e.conversationId===c.id))).join('')}</details><aside class="card"><h2>Continue the demonstration</h2><p class="small">Inspect a citation and the recommended next step above, then explore a human decision or knowledge governance.</p><div class="buttons"><a href="${task?'#review':'#workspace'}">${task?'Open human review':'Open case controls'} →</a><a href="#studio">Return to knowledge governance →</a><a href="#tour">Full technical walkthrough →</a></div><p class="small muted">Workflow stopping point: Documentation dependency resolved; prior authorization pending.</p></aside></div>`;
 }
 export function bindAgent({view,api,perform,refresh,render,toast}) {
+ clearTimeout(expiryTimer);
+ visibleRefresh=()=>{if(view&&location.hash==='#agent')render();};
  if(!view)return;
+ if(location.hash!=='#agent'){orientations.set(view.demoId,leaveLaunchpad(view,orientations.get(view.demoId)));expandedContext=null;return;}
+ const deadlines=[view.agent.orientation?.kind==='upload'?view.agent.orientation.sources?.[0]?.expiresAt:null,...view.agent.entries.filter(e=>e.knowledge?.kind==='upload').map(e=>e.knowledge.expiresAt)].filter(Boolean).map(Date.parse).filter(n=>n>Date.now());
+ if(deadlines.length)expiryTimer=setTimeout(()=>{if(location.hash==='#agent')render();},Math.min(2147483647,Math.max(1,Math.min(...deadlines)-Date.now()+1)));
  const $=s=>document.querySelector(s), key=draftKey(view);
  const finishFocus=()=>{if(location.hash!=='#agent')return;render();$('.chat-workspace')?.scrollIntoView({block:'start',behavior:'instant'});const stream=$('.conversation-stream');if(stream){stream.scrollTop=stream.scrollHeight;const newest=[...stream.querySelectorAll('.worker-turn')].at(-1);if(newest&&newest.getBoundingClientRect().top<stream.getBoundingClientRect().top+12)stream.scrollTop-=stream.getBoundingClientRect().top+12-newest.getBoundingClientRect().top;}$('#agent-text')?.focus({preventScroll:true});};
  const submit=async(payload,legacy=false)=>{
   if(sending)return;
+  if(!legacy&&currentOrientation(view.agent.orientation)?.available===false){composerError='Choose available knowledge before sending a message.';render();return;}
   const fingerprint=JSON.stringify({payload,legacy,key});
   if(!pending||pending.fingerprint!==fingerprint)pending={fingerprint,idempotencyKey:crypto.randomUUID(),payload,legacy,key};
   sending=true;composerError='';progressLabel='Understanding your message…';finishFocus();
