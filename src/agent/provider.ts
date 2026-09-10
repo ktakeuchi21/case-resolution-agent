@@ -24,15 +24,25 @@ export function schemaRejectionCode(message:unknown,schema?:unknown){
  const text=typeof message==='string'?message.toLowerCase():'';
  const tags=allowed.filter(word=>text.includes(word.toLowerCase())).map(word=>word.replace(/\W/g,'_').toUpperCase());
  const category='PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
+ // Always identify the actual submitted schema, including unrecognized error
+ // formats. The structural sketch uses only fixed schema words and punctuation;
+ // arbitrary words, values and numbers collapse to X and cannot be retained.
+ const diagnostic=()=>{
+  if(!schema||typeof schema!=='object')return category;
+  const vocabulary=new Set(['context','properties','items','anyof','oneof','allof','defs','ref','type','required','additionalproperties','answer','rationale','workproduct','subject','body','supports','reference','quote','requestedaction','kind','null','not','allowed','unsupported','format']);
+  const tail=typeof message==='string'&&message.length<=8192?message.slice(Math.max(0,message.toLowerCase().indexOf('context'))):'';
+  const sketch=(tail.match(/[A-Za-z0-9_$-]+|[()[\]{},:=.]/g)??[]).slice(0,80).map(token=>vocabulary.has(token.toLowerCase())?token.toUpperCase():/^[()[\]{},:=.]$/.test(token)?token:'X').join('_');
+  return category+'_SCHEMA_'+textHash(JSON.stringify(schema)).slice(0,12)+(sketch?'_SHAPE_'+sketch:'');
+ };
  // Provider errors can echo private input. Retain only an index into our own
  // schema plus its hash, never the provider's context path or message text.
  const context=typeof message==='string'&&message.length<=8192?message.match(/\bcontext\s*(?:=|:)\s*(?:\(([^)]{0,2048})\)|\[([^\]]{0,2048})\])/i):null;
- if(!context||!schema||typeof schema!=='object')return category;
+ if(!context||!schema||typeof schema!=='object')return diagnostic();
  const parts=(context[1]??context[2]??'').trim().replace(/,\s*$/,'');
  const tokens=parts?parts.split(/,\s*/):[];
- if(tokens.length>32)return category;
+ if(tokens.length>32)return diagnostic();
  const path:string[]=[];
- for(const part of tokens){const token=part.trim(),quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return category;}
+ for(const part of tokens){const token=part.trim(),quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return diagnostic();}
  let selected:unknown=schema,canonical:string[]=[];
  // Error locations can describe the expanded schema, stepping through a $ref
  // without including its definition path. Resolve only local JSON pointers.
@@ -42,8 +52,8 @@ export function schemaRejectionCode(message:unknown,schema?:unknown){
   for(const key of target){if(!node||typeof node!=='object'||!Object.hasOwn(node,key))return false;node=(node as Record<string,unknown>)[key];}
   selected=node;canonical=target;
  }return true;};
- for(const key of path){if(!selected||typeof selected!=='object')return category;if(!Object.hasOwn(selected,key)&&!resolveRef())return category;if(!selected||typeof selected!=='object'||!Object.hasOwn(selected,key))return category;selected=(selected as Record<string,unknown>)[key];canonical.push(key);}
- if(!selected||typeof selected!=='object')return category;
+ for(const key of path){if(!selected||typeof selected!=='object')return diagnostic();if(!Object.hasOwn(selected,key)&&!resolveRef())return diagnostic();if(!selected||typeof selected!=='object'||!Object.hasOwn(selected,key))return diagnostic();selected=(selected as Record<string,unknown>)[key];canonical.push(key);}
+ if(!selected||typeof selected!=='object')return diagnostic();
  let count=0,index:number|null=null;const target=JSON.stringify(canonical);
  const visit=(node:unknown,at:string[]):void=>{if(!node||typeof node!=='object')return;const n=count++;if(JSON.stringify(at)===target)index=n;for(const [key,value] of Object.entries(node))visit(value,[...at,key]);};
  visit(schema,[]);

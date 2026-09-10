@@ -16,7 +16,9 @@ test('schema location diagnostics contain only a node index and request-schema f
 test('unknown, scalar, inherited, oversized and malformed contexts cannot become diagnostic paths',()=>{
  const schema={type:'object',properties:{answer:{type:'string'}}};
  for(const context of ["'properties', 'absent_node'","'properties', 'answer', 'type'","'__proto__'","'properties'; code()","'properties', x",Array(34).fill("'properties'").join(','),"'"+'x'.repeat(2100)+"'"]){
-  assert.equal(schemaRejectionCode(`In context=(${context}), anyOf is not allowed.`,schema),'PROVIDER_SCHEMA_REJECTED_ANYOF_NOT_ALLOWED_CONTEXT'+(context.includes('properties')?'_PROPERTIES':'')+(context.includes('answer')?'_ANSWER':''));
+  const code=schemaRejectionCode(`In context=(${context}), anyOf is not allowed.`,schema);
+  assert(!code.includes('_AT_NODE_'));assert(code.includes('_SCHEMA_'+textHash(JSON.stringify(schema)).slice(0,12)));
+  assert(!/absent_node|__proto__|code\(\)|x{20}/i.test(code));assert(code.length<1200);
  }
 });
 
@@ -39,7 +41,8 @@ test('expanded error locations resolve local shared definitions without exposing
  assert.match(expanded,/_AT_NODE_\d+_SCHEMA_[a-f0-9]{12}$/);assert(!expanded.includes('private'));
  for(const ref of ['https://example.invalid/schema','#/$defs/absent','#/$defs/loop']){
   const unsafe={properties:{answer:{$ref:ref}},$defs:{loop:{$ref:'#/$defs/loop'}}};
-  assert.equal(schemaRejectionCode("In context=('properties', 'answer', 'items'), anyOf is not allowed",unsafe),'PROVIDER_SCHEMA_REJECTED_ANYOF_ITEMS_NOT_ALLOWED_CONTEXT_PROPERTIES_ANSWER');
+  const code=schemaRejectionCode("In context=('properties', 'answer', 'items'), anyOf is not allowed",unsafe);
+  assert(code.startsWith('PROVIDER_SCHEMA_REJECTED_ANYOF_ITEMS_NOT_ALLOWED_CONTEXT_PROPERTIES_ANSWER_SCHEMA_'));assert(!code.includes('_AT_NODE_'));
  }
 });
 
@@ -54,5 +57,12 @@ test('the actual provider transport associates a bounded rejection with its own 
  await assert.rejects(provider.interpret(input),error=>error instanceof AgentProviderFailure&&/^PROVIDER_SCHEMA_REJECTED_ANYOF_NOT_ALLOWED_CONTEXT_PROPERTIES_REQUESTEDACTION_AT_NODE_\d+_SCHEMA_[a-f0-9]{12}$/.test(error.code)&&error.code.endsWith(fingerprint)&&!error.message.includes('private-provider-marker'));
  assert.equal(reserved,1);
  const schema=z.toJSONSchema(z.strictObject({answer:z.string()}));
- assert.equal(schemaRejectionCode('An unknown private-provider-marker',schema),'PROVIDER_SCHEMA_REJECTED');
+ assert.equal(schemaRejectionCode('An unknown private-provider-marker',schema),'PROVIDER_SCHEMA_REJECTED_SCHEMA_'+textHash(JSON.stringify(schema)).slice(0,12)+'_SHAPE_X_X_X');
+});
+
+test('unrecognized provider context syntax retains a bounded structural sketch without private values',()=>{
+ const schema={type:'object',properties:{answer:{type:'string'}}};
+ const code=schemaRejectionCode('Invalid format. In context /properties/private-plaintext-1234: anyOf is not allowed. Bearer private-token-9876',schema);
+ assert(code.endsWith('_SHAPE_CONTEXT_PROPERTIES_X_:_ANYOF_X_NOT_ALLOWED_._X_X'));
+ assert(!/private|plaintext|Bearer|1234|9876/i.test(code));
 });
