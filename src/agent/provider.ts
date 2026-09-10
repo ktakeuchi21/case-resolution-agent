@@ -20,19 +20,19 @@ export interface SynthesisProvider extends Partial<ContextualProvider> {
 }
 export class AgentProviderFailure extends Error { readonly code: string; constructor(code: string) { super(code); this.code = code; this.name = 'AgentProviderFailure'; } }
 export function schemaRejectionCode(message:unknown,schema?:unknown){
- const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format','root','top level','top-level','context','nested','object','array','properties'];
+ const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format','root','top level','top-level','context','nested','object','array','properties','answer','rationale','workProduct','subject','body','supports','reference','quote','requestedAction','kind','null','union','discriminator'];
  const text=typeof message==='string'?message.toLowerCase():'';
  const tags=allowed.filter(word=>text.includes(word.toLowerCase())).map(word=>word.replace(/\W/g,'_').toUpperCase());
  const category='PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
  // Provider errors can echo private input. Retain only an index into our own
  // schema plus its hash, never the provider's context path or message text.
- const context=typeof message==='string'&&message.length<=8192?message.match(/\bIn context\s*=\s*\(([^)]{0,2048})\)/i):null;
+ const context=typeof message==='string'&&message.length<=8192?message.match(/\bcontext\s*(?:=|:)\s*(?:\(([^)]{0,2048})\)|\[([^\]]{0,2048})\])/i):null;
  if(!context||!schema||typeof schema!=='object')return category;
- const parts=context[1]!.trim().replace(/,\s*$/,'');
+ const parts=(context[1]??context[2]??'').trim().replace(/,\s*$/,'');
  const tokens=parts?parts.split(/,\s*/):[];
  if(tokens.length>32)return category;
  const path:string[]=[];
- for(const token of tokens){const quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return category;}
+ for(const part of tokens){const token=part.trim(),quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return category;}
  let selected:unknown=schema,canonical:string[]=[];
  // Error locations can describe the expanded schema, stepping through a $ref
  // without including its definition path. Resolve only local JSON pointers.
