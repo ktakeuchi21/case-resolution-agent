@@ -1,6 +1,6 @@
 {
   "schema": "pathway-digital-worker-verification-v1",
-  "timestamp": "2026-09-09T21:12:01.357Z",
+  "timestamp": "2026-09-10T18:16:49.740Z",
   "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
   "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
   "suites": [
@@ -9,7 +9,7 @@
       "command": "npm run typecheck",
       "passed": true,
       "tests": null,
-      "durationMs": 2913.5980839999997,
+      "durationMs": 2869.2113750000003,
       "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
     },
     {
@@ -17,63 +17,63 @@
       "command": "npm test",
       "passed": true,
       "tests": 81,
-      "durationMs": 644.6917090000002,
-      "outputHash": "37cc899b1a9465dc4ec1a704a2ade04d8f863b6d4303d4c781bd5992e6575e9f"
+      "durationMs": 699.0137499999996,
+      "outputHash": "2f9c3c8af0927d30014008d060518888a071b70e58d6e79719a62354c377390d"
     },
     {
       "name": "Original generation",
       "command": "npm run test:generation",
       "passed": true,
       "tests": 12,
-      "durationMs": 460.42995800000017,
-      "outputHash": "5ca81e0aba85dcabcb52d0d217b4b65cd5f171e2ab87b6826a9a7c3d30e21c70"
+      "durationMs": 477.3903339999997,
+      "outputHash": "ce02863a744888a69fed4f2fd690d6a8782bee8552b9362176062819d8ac3e7b"
     },
     {
       "name": "Digital worker composition and conversational intent",
       "command": "npm run test:agent",
       "passed": true,
-      "tests": 91,
-      "durationMs": 625.6814170000007,
-      "outputHash": "613597229a924f78b35f94f767148e88bcf2cdf8d34fb8afe869efd0405feac5"
+      "tests": 92,
+      "durationMs": 684.356667,
+      "outputHash": "a7d92827384ae3360d11e795cc72d4ac6feacaa959440e6268c664ef8b434683"
     },
     {
       "name": "Document parsing and safety",
       "command": "npm run test:studio",
       "passed": true,
       "tests": 8,
-      "durationMs": 3413.483625,
-      "outputHash": "70e995b7ce69ce415330a570a8575519a2e656ee18715f325d030c4bd96b2d31"
+      "durationMs": 3841.9117079999996,
+      "outputHash": "89bff5315ecd0127b070a6175c3c99d9ecc9d5be7d3776d936e4fcc4e777cc14"
     },
     {
       "name": "PostgreSQL persistence",
       "command": "npm run test:postgres",
       "passed": true,
       "tests": 24,
-      "durationMs": 4031.162291999999,
-      "outputHash": "935dca6d1fbe134605088ac321776f6d3dca796d508bafd0973b6dbab44c421a"
+      "durationMs": 5946.811834,
+      "outputHash": "7172491ccb1681a4f3d51ab3f9aeb3a6304d1489f1131a612ac01a4ed3cdb7c4"
     },
     {
       "name": "Workflow effects, roles and restart",
       "command": "npm run test:workflow",
       "passed": true,
       "tests": 30,
-      "durationMs": 10610.648459,
-      "outputHash": "bbecaed8cb49b26d28d3ce5f3016ba72e4b03627761105d3972e4232099149c8"
+      "durationMs": 14010.913666,
+      "outputHash": "ac0fcf2fd51576dbe9f837cf2d76dc3026365f43885117c4997569c8586efec5"
     },
     {
       "name": "Application, isolation and Studio",
       "command": "node scripts/db/with-verification.ts app",
       "passed": true,
-      "tests": 26,
-      "durationMs": 9708.937125,
-      "outputHash": "69359b2a1f6ea4c28b7bd62354363ff0af785498090a2bc673ff38fc5fcaeb68"
+      "tests": 29,
+      "durationMs": 10717.931334,
+      "outputHash": "ee7113e9ca7799adf0697a4fdcb5ae618b0c3fbc5d5bc3af9223cd99c8bd2c81"
     },
     {
       "name": "Original reference evaluation",
       "command": "npm run eval",
       "passed": true,
       "tests": null,
-      "durationMs": 439.6381249999977,
+      "durationMs": 498.12024999999994,
       "outputHash": "2fe030e8cfd08f7a95804de84c44f604d3a1e3c3a996b13842618e6dc1ea8430"
     },
     {
@@ -81,7 +81,7 @@
       "command": "npm run demo",
       "passed": true,
       "tests": null,
-      "durationMs": 334.156332999999,
+      "durationMs": 328.9459580000039,
       "outputHash": "f8de355caae48bb75d295a85bf9c89466d78d70d1cc5dbc0e8b80322fcd3cb68"
     },
     {
@@ -89,7 +89,7 @@
       "command": "npm run probes",
       "passed": true,
       "tests": null,
-      "durationMs": 304.85662500000035,
+      "durationMs": 439.03129199999967,
       "outputHash": "373301a9771a0908d570466ab62e6c675e6a8064cf4a51f2cd339cc2ddb168f6"
     },
     {
@@ -97,14 +97,14 @@
       "command": "npm run eval:postgres",
       "passed": true,
       "tests": null,
-      "durationMs": 7855.685958999995,
-      "outputHash": "a17a6214479207e8b0505e4b56eae4d03c9419b1e81e90d632d0c9bac297beb6"
+      "durationMs": 9450.020833000002,
+      "outputHash": "97555771e24ef8d3902795436ec0d88e7716e1202b78c9c9115b63143d01afd4"
     }
   ],
   "frozenArtifacts": {
-    "count": 205,
+    "count": 214,
     "unchanged": true,
-    "manifestHash": "6e10b9e5e4fee3c027c7ebd31ecb971e8791a315b4db81b1ec1eafdfc4a11c4b"
+    "manifestHash": "ed6af1a27e123139f5f7409e4da4934b579e47dcffa3e9f0b1a3e4cd11715a67"
   },
   "retrieval": {
     "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
@@ -126,7 +126,7 @@
   ],
   "contextualComparison": {
     "schema": "pathway-contextual-comparison-v1",
-    "timestamp": "2026-09-09T21:13:05.130Z",
+    "timestamp": "2026-09-10T18:17:24.711Z",
     "status": "recorded_with_semantic_review",
     "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
     "baselineRevision": "acaabee",
@@ -267,6 +267,6 @@
       "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
       "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
     ],
-    "artifact": "artifacts/conversation/comparison-455d22b506373c98fc2519d2321c7375a37d98b053717e7de8df1abe1b94e000.json"
+    "artifact": "artifacts/conversation/comparison-26a66ae172967b3f9e0042d9ac0eca80baf1ab45b5366080a6d15af929bf83a3.json"
   }
 }

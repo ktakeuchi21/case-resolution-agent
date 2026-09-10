@@ -1,5 +1,7 @@
 # Decision log
 
+**September 10 capacity decision:** The owner explicitly approved increasing the public demo's lifetime reservation cap from 64 to 128 after a read-only measurement showed 64 reservations and 81,890,451 database bytes. Preserve every historical record, existing session isolation, serialized reservation check, Free hosting and provider daily cap 100. This is a bounded capacity increase, not automatic cleanup or unlimited storage. Boundary tests admit reservation 128, reject 129 without a write, and retain idempotent existing reservations. Any future increase remains an owner decision.
+
 Version 0.2 · September 7, 2026 · Includes Phase 1.5 refinements
 
 Status vocabulary: **working decision** = chosen for current project work, not user ratification of a production policy; **proposed** = awaits evidence or a later implementation choice; **superseded** = retained with replacement reference.

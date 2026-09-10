@@ -2,6 +2,8 @@
 
 ## September 10 resumed verification
 
+The owner subsequently approved increasing lifetime workspace capacity to 128 while retaining history, Free resources and provider cap 100. The application change and three reservation boundary/idempotency tests are implemented. Full verification passed 276 tests, type checking, reference evaluations, retirement demonstration, probes and cached PostgreSQL parity; frozen artifacts are unchanged (`artifacts/digital-worker/verification-f101289b118a2f59196e584c70878b372bd5a53f721bed935a804d67c9e66c6d.json`). Deployment and renewed provider diagnosis follow. The approval supersedes the pending-decision status recorded below.
+
 At 16:32 UTC, the hosted counter reported zero reservations for the new day. The live launchpad trace then passed 27/28 checks (`artifacts/digital-worker/launchpad-browser-5a81c3b82e39cdafc126a76bf68eaf7dccc5cc760fab90cbbe483dd67c626608.json`); B now reaches the configured provider and fails with `PROVIDER_SCHEMA_REJECTED_ANYOF_NOT_ALLOWED_FORMAT`. Budget exhaustion is no longer the blocker. Normal governed answer acceptance remains incomplete. The goal's retained blocked status did not schedule an automatic resume.
 
 The diagnostic follow-up resolves local JSON-schema references when error locations describe expanded structure, with cycle/remote-reference guards, and adds fixed root/context/object/array category tokens. No raw provider text or schema path is emitted. Type checking, all 92 agent tests, production build and hygiene pass; successful generation behavior and schema restrictions are unchanged. The next live probe may narrow whether the rejection is specifically at the root or within a referenced structure.

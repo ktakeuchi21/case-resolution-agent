@@ -29,7 +29,7 @@ export class Sessions {
  async reserveWorkspace(workspace:string){
   const c=await this.db.pool.connect();try{await c.query('BEGIN');await c.query('SELECT pg_advisory_xact_lock(402061)');
    if(!(await c.query('SELECT 1 FROM portfolio.reservations WHERE workspace=$1',[workspace])).rowCount){
-    if((await c.query('SELECT count(*)::int n FROM portfolio.reservations')).rows[0].n>=64)throw new HttpError(429,'The public demo is at capacity. Please contact the portfolio owner.');
+    if((await c.query('SELECT count(*)::int n FROM portfolio.reservations')).rows[0].n>=128)throw new HttpError(429,'The public demo is at capacity. Please contact the portfolio owner.');
     await c.query('INSERT INTO portfolio.reservations(workspace) VALUES($1)',[workspace]);
    }await c.query('COMMIT');
   }catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}
