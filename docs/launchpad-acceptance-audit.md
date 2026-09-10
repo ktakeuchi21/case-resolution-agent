@@ -12,6 +12,8 @@ The final public hosting/security run passed **31/31** with zero model calls: `a
 
 Manual public CDN → Launch → sample navigation reached the Office orientation with four prompts, a focused composer and no overflow. Four final screenshots at desktop 1440, tablet 768 and mobile 375×812 were inspected; the collapsed mobile answer and composer remain visible. Files: `docs/screenshots/launchpad-live-2026-09-10-*.png`. The earlier local expiry, return, startup and handoff regressions remain applicable because the interface has not changed since those passing runs.
 
+The final matching report/evaluation release is `50a46a0bdbe205d24b25c5ae76b714e4160a3274`, Live on backend `dep-dahgc4142hec73clsuv0` and static `dep-dahgceh42hec73cltvd0`. Runtime source is identical to the tested `0aa0143` revision. Final health/asset checks and manual evaluation → chat navigation pass; exact evidence is in [the production runbook](production-runbook.md).
+
 ## Requirement-by-requirement evidence
 
 | Requirement | Authoritative evidence | Finding |

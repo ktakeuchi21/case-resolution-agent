@@ -111,3 +111,16 @@ Verified runtime: `0aa0143ce0ffa2feb0e98440ccae50915db86b65`, backend `dep-dahg6
 The public journey is **[overview](https://case-resolution-frontend.onrender.com) → Launch → Use sample knowledge → What document is missing?** The workspace shows the role, AI purpose, knowledge coverage and four prompts before the first message, then retains a compact context bar. Change role, Change knowledge and View context remain available. Governed packs and temporary sandbox documents retain their existing authority boundaries.
 
 Manual public navigation and desktop/tablet/mobile screenshots were inspected. The visible evaluation report retains the failed/incomplete broader multi-turn comparison; accepted Launchpad behavior is not general conversation-quality certification. See [the acceptance audit](launchpad-acceptance-audit.md) for the complete A–H mapping and artifact paths. The final report/evaluation release below contains the same runtime source as this tested revision.
+
+### Final matching report/evaluation deployment
+
+Release `50a46a0bdbe205d24b25c5ae76b714e4160a3274` is Live on both manual services. Its only changes after the verified `0aa0143` runtime are documentation, retained artifacts and `web/evaluation.json`; server and interface code are identical.
+
+| Service | Deployment | Render recorded start (MDT) | Duration | Result |
+| --- | --- | --- | --- | --- |
+| Backend | `dep-dahgc4142hec73clsuv0` | September 10, 1:33:36 PM | 34.7 s | Live |
+| Static frontend | `dep-dahgceh42hec73cltvd0` | September 10, 1:34:18 PM | 19.4 s | Live |
+
+Authenticated dashboard source links match the full release SHA. The final backend health and six public asset hashes pass in `artifacts/conversation/public-smoke-010da02698ee9b76ea5f26bec0247c91a84036688b6569280ca02cdf21b171a3.json`; the static build matches all public assets and excludes source/private paths, **16/16**, in `artifacts/mvp/static-assets-2c65428dafd22d8b03692dfe64e2578a297bd7160ef2aea70fc6c7b0f3b00b9c.json`. Build emits 248 runtime files and validates 160 cached embedding records. Hygiene passes.
+
+Manual post-deploy navigation displays the updated 285-test evaluation and the explicit four-of-ten partial conversation limitation, then returns to chat with its composer present and no horizontal overflow. No additional model call was needed for this report-only release. The following Git commit merely retains this post-deployment record and does not change the deployed application.
