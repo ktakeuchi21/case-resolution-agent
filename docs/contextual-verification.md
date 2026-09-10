@@ -1,5 +1,7 @@
 # Contextual worker verification
 
+Current partial qualification: `contextual-redesigned-311d42fc8e01b1c9729977b0bbbab53468a275b4e77f838ee28246726e2aaec4.json` reached 10/12 prompts, accepted four, and stopped on the reported-interaction schema branch. Manual review `semantic-review-da2c507035242f8eb3cf3364a0394cd80663066e3d58e22019ad798de4abc3f5.json` retains the failure and a corrected measured SMS length of 62 characters. The model did produce a generic policy-supported SMS after case context was withheld; new guards paused the unsupported office-draft prerequisite. The next repair removes the shared-reference sibling in report text, requires null execution requests and withholds internal workflow sequencing from office copy. All 100 agent tests and type/build/hygiene pass; complete conversational qualification remains open. Independently, the deployed Launchpad is now 28/28 with its actual live default answer.
+
 ### Subsequent conversation qualification and correction
 
 The canonical schema completed the frozen twelve-prompt run without schema errors: 8/12 accepted turns and 63/70 mechanical checks (`contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json`). Manual semantic review failed the accepted draft urgency/causal wording and greeting subjects; SMS/report/recall/summary paused safely. Review: `semantic-review-eaa0ca34a194c7a4395b874c51ab1cb8b7d73136234eb8320c0a048297d46ecf.json`. All earlier failures remain retained.

@@ -91,6 +91,22 @@ test('SMS composition receives current channel policy without case or artifact t
  assert.deepEqual(seen.sources,[]);assert.deepEqual(seen.memory,[]);assert.equal(seen.activeArtifact,null);
  assert(!seen.query.includes('signed office note'));assert.equal(seen.constraints.smsLimit,250);
 });
+
+test('reported-interaction schemas have no unsupported reference siblings and cannot request execution',async()=>{
+ const x=input();x.interpretation=interpretation({intent:'interaction'});x.facts.push({text:'Synthetic office report.',reference:'conversation:report',origin:'conversation',authoritative:false});
+ const p=new OpenAISynthesisProvider('fixture-only',async()=>{},async(_url,options)=>{
+  const schema=JSON.parse(String(options!.body)).text.format.schema;
+  const inspect=(v:any):void=>{if(!v||typeof v!=='object')return;if(v.$ref)assert.deepEqual(Object.keys(v),['$ref']);Object.values(v).forEach(inspect);};inspect(schema);
+  assert.deepEqual(schema.properties.requestedAction,{type:'null'});
+  return new Response(JSON.stringify({status:'completed',model:'gpt-4.1-mini-2025-04-14',output:[{type:'message',content:[{type:'output_text',text:'{}'}]}],usage:{input_tokens:1,output_tokens:1}}));
+ });await p.composeTurn(x);
+});
+
+test('office drafting receives document evidence without internal workflow sequencing',async()=>{
+ let seen:CompositionInput|undefined;const p=provider(interpretation({intent:'draft',audience:'office',channel:'email'}));
+ p.composeTurn=async x=>{seen=x;throw new Error('Stop fixture after input capture');};await compose(p,[],'Draft a short email to the office.');
+ assert(seen);assert(seen.sources.length>0);assert(!seen.facts.some(f=>f.origin==='workflow'));assert.deepEqual(seen.operator,{});assert.equal(seen.interpretation.note,'');
+});
 test('recording and summarizing a reported interaction require attributed uncertainty even if other quotes are exact',()=>{const x=input(),t=proposed();x.facts.push({reference:'conversation:report',text:'The office said the note was found.',origin:'conversation',authoritative:false});x.interpretation=interpretation({intent:'interaction'});assert.throws(()=>validateCompleteTurn(t,x,evidence),/CONVERSATION_LABEL_REQUIRED/);x.interpretation=interpretation({intent:'summary',channel:'email'});t.workProduct={subject:'Case summary',body:'The office said the note was found.',audience:'case_manager',channel:'email',tone:'concise',purpose:'Summary'};assert.throws(()=>validateCompleteTurn(t,x,evidence),/CONVERSATION_LABEL_REQUIRED/);});
 test('entailment review receives only the cited support with authority labels, without uncited history or interpretation notes',()=>{const x=input();x.interpretation=interpretation({note:'Uncited sensitive-looking report marker'});x.memory=[{id:'unused',query:'Uncited conversation marker',answer:'',intent:'interaction',disposition:'recorded',artifact:null,clarification:null,unverified:true}];const r=turnReviewInput(x,proposed()),text=JSON.stringify(r);assert(!text.includes('Uncited'));assert.equal(r.evidenceByClaimId['claim.1']![0]!.quote,support.quote);x.knowledge={authority:'sandbox_only'};assert.equal(turnReviewInput(x,proposed()).evidenceByClaimId['claim.1']![0]!.authoritative,false);});
 test('request identifiers require support in the claim citation rather than an unrelated available source',()=>{const x=input(),t=proposed();t.answer='The signed note for DEMO-PA-999 is missing.';t.claims[0]!.text=t.answer;assert.throws(()=>validateCompleteTurn(t,x,evidence),/IDENTIFIER_NOT_IN_CITED_EVIDENCE/);});

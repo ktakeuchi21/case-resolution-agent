@@ -1,5 +1,11 @@
 # Conversation Launchpad
 
+## September 10 — Deployed Launchpad acceptance
+
+The deployed Launchpad passed **28/28 checks** on `689de21bc745254ca725334bafc583c1585f6b35`: `artifacts/digital-worker/launchpad-browser-785a089025368e11f37e88f12aa0e95c833b1f3b082417ba32880d3b90954358.json`. This includes the real default model answer, direct keyboard submission, compact return behavior, role and knowledge changes, preserved history/assignment, sandbox deletion recovery, and desktop/tablet/mobile geometry and touch targets. Manual inspection of four fresh screenshots confirms the visible answer/composer; screenshots are `docs/screenshots/launchpad-live-2026-09-10-*.png`. Manual CDN → Launch → sample navigation also reached the full orientation with the composer focused and no overflow.
+
+The separate full conversation qualification remains incomplete. Its latest partial run reached ten prompts before a reported-interaction schema rejection; four answers were accepted, and unsupported draft wording was safely paused. A fresh report-text string schema removes the invalid shared-reference sibling, composition now requires `requestedAction:null`, and office drafts receive document evidence without internal workflow sequencing. All 100 agent tests, type checking, build and hygiene pass. Focused live checks follow; these do not substitute for a complete frozen conversation comparison. See `contextual-verification.md` and the current semantic review for the retained failures.
+
 ## September 10 resumed release
 
 The owner-approved lifetime workspace cap of 128 is deployed; new workspace entry is verified without deleting historical records. The separately blocking live schema issue was cleared for the default suggested question at `7a1fc250e234df84d242cf25cacde7b95e94acca`: nine canonical neutral greetings/acknowledgments replace their whitespace variants, preserving material-claim citations and all validation. The live result identifies the signed office note and cites both the notice and submitted-package inventory. Full verification passes 278 tests. Fresh full Launchpad and conversation qualification is being completed; see `launchpad-acceptance-audit.md` for final evidence.

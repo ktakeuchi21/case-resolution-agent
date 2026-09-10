@@ -132,6 +132,14 @@ export async function composeContextual(o:{request:AgentRequest;id:string;conver
   input.interpretation={...i,note:'',retrievalQuestion:'Current SMS channel policy'};
   input.nextAction='Review the unsent generic invitation';input.boundary='This draft does not authorize sending.';
  }
+ if(['draft','refinement'].includes(i.intent)&&i.audience==='office'&&i.channel!=='sms'){
+  // Office copy needs the document evidence, not internal workflow controls or
+  // their sequencing. Keep current quotes and any attributed report available.
+  input.facts=input.facts.filter(f=>f.origin!=='workflow');input.operator={};
+  input.nextAction='Prepare the requested unsent communication using the current document evidence.';
+  input.boundary='This draft does not authorize sending or workflow execution.';
+ }
+ input.interpretation={...input.interpretation,note:''};
  response.audit.contextHash=hash({interpretation:it.input,composition:input});
  const addUsage=(u:ProviderUsage)=>{response.audit.inputTokens+=u.inputTokens;response.audit.outputTokens+=u.outputTokens;response.audit.estimatedCostUsd=response.audit.estimatedCostUsd===null||u.estimatedCostUsd===null?null:response.audit.estimatedCostUsd+u.estimatedCostUsd;response.audit.costBasis=u.costBasis;};
  try{

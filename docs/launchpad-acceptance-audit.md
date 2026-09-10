@@ -1,5 +1,11 @@
 # Conversation Launchpad acceptance audit
 
+## September 10 — Deployed Launchpad acceptance
+
+The deployed Launchpad passed **28/28 checks** on `689de21bc745254ca725334bafc583c1585f6b35`: `artifacts/digital-worker/launchpad-browser-785a089025368e11f37e88f12aa0e95c833b1f3b082417ba32880d3b90954358.json`. This includes the real default model answer, direct keyboard submission, compact return behavior, role and knowledge changes, preserved history/assignment, sandbox deletion recovery, and desktop/tablet/mobile geometry and touch targets. Manual inspection of four fresh screenshots confirms the visible answer/composer; screenshots are `docs/screenshots/launchpad-live-2026-09-10-*.png`. Manual CDN → Launch → sample navigation also reached the full orientation with the composer focused and no overflow.
+
+The separate full conversation qualification remains incomplete. Its latest partial run reached ten prompts before a reported-interaction schema rejection; four answers were accepted, and unsupported draft wording was safely paused. A fresh report-text string schema removes the invalid shared-reference sibling, composition now requires `requestedAction:null`, and office drafts receive document evidence without internal workflow sequencing. All 100 agent tests, type checking, build and hygiene pass. Focused live checks follow; these do not substitute for a complete frozen conversation comparison. See `contextual-verification.md` and the current semantic review for the retained failures.
+
 ### Subsequent conversation qualification and correction
 
 The canonical schema completed the frozen twelve-prompt run without schema errors: 8/12 accepted turns and 63/70 mechanical checks (`contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json`). Manual semantic review failed the accepted draft urgency/causal wording and greeting subjects; SMS/report/recall/summary paused safely. Review: `semantic-review-eaa0ca34a194c7a4395b874c51ab1cb8b7d73136234eb8320c0a048297d46ecf.json`. All earlier failures remain retained.
