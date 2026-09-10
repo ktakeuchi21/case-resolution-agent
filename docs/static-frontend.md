@@ -1,5 +1,7 @@
 # Static frontend and workspace startup
 
+September 10 current update: the owner approved 128 lifetime workspaces; capacity revision `0f84e7a` is deployed and new workspace entry succeeds, preserving all history. Provider cap 100 and Free hosting remain unchanged. The backend now serves `7a1fc250e234df84d242cf25cacde7b95e94acca`, whose canonical neutral-style schema produced a normal live cited answer; matching static deployment and final qualification are being verified. The prior capacity and schema failure records below are historical.
+
 Public entry: [Open Pathway Agent](https://case-resolution-frontend.onrender.com). The free Render Static Site serves only `dist/web` through the CDN. Launch waits for backend readiness, then opens the requested workspace at https://case-resolution-agent.onrender.com. The owner approved this routing adjustment after the initial static rewrite buffered streaming updates. All **31 deployed transport checks passed** on the new arrangement. The backend address also remains a working standalone fallback.
 
 ## Latest application release

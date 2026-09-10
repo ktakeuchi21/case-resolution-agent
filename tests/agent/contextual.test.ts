@@ -58,6 +58,39 @@ test('preflight input and schema bounds count no outbound call for the rejected 
 test('provider schema rejection retains a fixed diagnostic code without its untrusted message',async()=>{const p=new OpenAISynthesisProvider('fixture-only',async()=>{},async()=>new Response(JSON.stringify({error:{code:'invalid_json_schema',message:'Untrusted provider message must never be retained.'}}),{status:400}));await assert.rejects(p.composeTurn(input()),e=>e instanceof AgentProviderFailure&&/^PROVIDER_SCHEMA_REJECTED_SCHEMA_[a-f0-9]{12}_SHAPE_/.test(e.code)&&!e.message.includes('Untrusted'));});
 test('provider schema diagnostics include only allowlisted keywords',async()=>{const p=new OpenAISynthesisProvider('fixture-only',async()=>{},async()=>new Response(JSON.stringify({error:{code:'invalid_json_schema',message:'private-marker enum whitespace not allowed'}}),{status:400}));await assert.rejects(p.composeTurn(input()),e=>e instanceof AgentProviderFailure&&/^PROVIDER_SCHEMA_REJECTED_ENUM_NOT_ALLOWED_WHITESPACE_SCHEMA_[a-f0-9]{12}_SHAPE_/.test(e.code)&&!e.message.includes('private-marker'));});
 test('factual prose cannot bypass the claim ledger by labeling itself style',()=>{const wire={answer:[{kind:'style',text:'The office said the note is ready.',supports:[]}],rationale:null,workProduct:null,requestedAction:null};assert.equal(compositionSchema(input()).safeParse(wire).success,false);assert.throws(()=>materializeProse(wire),/UNCITED_PROSE_NOT_NEUTRAL/);});
+
+test('live-observed unsupported urgency and follow-up prerequisites are rejected before model review',()=>{
+ for(const text of ['Please provide the signed office note as soon as possible.','Please send it at your earliest convenience.','No follow-up has been prepared because the signed note is missing.','Please send the signed office note so we can proceed with follow-up.']){
+  const turn=proposed();turn.answer=text;turn.claims[0]!.text=text;
+  assert.throws(()=>validateCompleteTurn(turn,input(),evidence),/UNSUPPORTED_(URGENCY|FOLLOWUP_PREREQUISITE)/);
+ }
+ assert.doesNotThrow(()=>validateCompleteTurn(proposed(),input(),evidence));
+});
+
+test('report prose requires a visible unverified label and the actual conversation reference',()=>{
+ const x=input(),text='The office reported looking for the note.',reference='conversation:report';x.interpretation=interpretation({intent:'interaction'});x.facts.push({text,reference,origin:'conversation',authoritative:false});
+ const wire={answer:[{kind:'uncertainty',text:'Unverified report: '+text,supports:[{reference,quote:text}]}],rationale:null,workProduct:null,requestedAction:null};
+ assert(compositionSchema(x).safeParse(wire).success);
+ for(const bad of [{...wire,answer:[{...wire.answer[0],text}]},{...wire,answer:[{...wire.answer[0],kind:'fact'}]},{...wire,answer:[{...wire.answer[0],supports:[support]}]}])assert.equal(compositionSchema(x).safeParse(bad).success,false);
+});
+
+test('recipient prose cannot be duplicated in the lead or replaced by a greeting subject',()=>{
+ const x=input();x.interpretation=interpretation({intent:'draft',channel:'email'});
+ const cited={kind:'fact',text:quote.text,supports:[support]},ack={kind:'style',text:'Here is an unsent draft.',supports:[]};
+ const wire={answer:[ack],rationale:null,workProduct:{subject:[cited],body:[cited],audience:x.interpretation.audience,channel:'email',tone:x.interpretation.tone,purpose:'Request missing document'},requestedAction:null};
+ assert(compositionSchema(x).safeParse(wire).success);
+ assert.equal(compositionSchema(x).safeParse({...wire,answer:[cited]}).success,false);
+ assert.equal(compositionSchema(x).safeParse({...wire,workProduct:{...wire.workProduct,subject:[ack]}}).success,false);
+});
+
+test('SMS composition receives current channel policy without case or artifact text',async()=>{
+ let seen:CompositionInput|undefined;const p=provider(interpretation({intent:'draft',channel:'sms'}));
+ p.composeTurn=async x=>{seen=x;throw new Error('Stop the contract fixture after capturing its input');};
+ await compose(p,[],'Draft an SMS about the signed office note.');
+ assert(seen);assert.equal(seen.facts.length,1);assert(seen.facts[0]!.reference.endsWith(':sms-policy'));
+ assert.deepEqual(seen.sources,[]);assert.deepEqual(seen.memory,[]);assert.equal(seen.activeArtifact,null);
+ assert(!seen.query.includes('signed office note'));assert.equal(seen.constraints.smsLimit,250);
+});
 test('recording and summarizing a reported interaction require attributed uncertainty even if other quotes are exact',()=>{const x=input(),t=proposed();x.facts.push({reference:'conversation:report',text:'The office said the note was found.',origin:'conversation',authoritative:false});x.interpretation=interpretation({intent:'interaction'});assert.throws(()=>validateCompleteTurn(t,x,evidence),/CONVERSATION_LABEL_REQUIRED/);x.interpretation=interpretation({intent:'summary',channel:'email'});t.workProduct={subject:'Case summary',body:'The office said the note was found.',audience:'case_manager',channel:'email',tone:'concise',purpose:'Summary'};assert.throws(()=>validateCompleteTurn(t,x,evidence),/CONVERSATION_LABEL_REQUIRED/);});
 test('entailment review receives only the cited support with authority labels, without uncited history or interpretation notes',()=>{const x=input();x.interpretation=interpretation({note:'Uncited sensitive-looking report marker'});x.memory=[{id:'unused',query:'Uncited conversation marker',answer:'',intent:'interaction',disposition:'recorded',artifact:null,clarification:null,unverified:true}];const r=turnReviewInput(x,proposed()),text=JSON.stringify(r);assert(!text.includes('Uncited'));assert.equal(r.evidenceByClaimId['claim.1']![0]!.quote,support.quote);x.knowledge={authority:'sandbox_only'};assert.equal(turnReviewInput(x,proposed()).evidenceByClaimId['claim.1']![0]!.authoritative,false);});
 test('request identifiers require support in the claim citation rather than an unrelated available source',()=>{const x=input(),t=proposed();t.answer='The signed note for DEMO-PA-999 is missing.';t.claims[0]!.text=t.answer;assert.throws(()=>validateCompleteTurn(t,x,evidence),/IDENTIFIER_NOT_IN_CITED_EVIDENCE/);});

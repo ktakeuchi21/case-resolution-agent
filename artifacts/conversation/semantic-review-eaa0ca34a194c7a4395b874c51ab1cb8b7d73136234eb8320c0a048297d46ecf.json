@@ -1,0 +1,38 @@
+{
+  "schema": "pathway-contextual-semantic-review-v1",
+  "timestamp": "2026-09-10T18:56:23.076Z",
+  "reviewer": "Codex manual reading of every saved answer, work product, claim and exact support, including paused generation; not independent human assessment",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "baselineArtifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+  "redesignedArtifact": "artifacts/conversation/contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json",
+  "redesignedRevision": "7a1fc250e234df84d242cf25cacde7b95e94acca",
+  "status": "failed_semantic_acceptance_requires_correction",
+  "summary": "Schema compatibility restored; eight of twelve turns accepted and 63/70 mechanical checks passed. Unsupported urgency/causal wording and poor subject/lead composition remain in accepted drafts; SMS and report/recall/summary pause safely.",
+  "findings": [
+    {
+      "dimension": "A-B rationale and evidence",
+      "result": "Direct missing-document answer cites both notice and inventory. Why is responsive but one recommended-step claim cites only the next-action fact while asserting absence. Evidence output includes exact passages but gives limited source naming."
+    },
+    {
+      "dimension": "C-D email and refinement",
+      "result": "Copy duplicates the lead, subjects are greetings, and body introduces unsupported as-soon-as-possible/earliest-convenience urgency and a false prerequisite that receiving the document enables follow-up preparation. The positive model reviewer fails to reject these additions. Shortening and lineage pass mechanically."
+    },
+    {
+      "dimension": "E-F handoff and SMS",
+      "result": "Handoff falsely says no follow-up occurred because the note is missing and adds an unsupported compliance requirement. SMS inherits the latest artifact ID but changes audience to office and includes restricted details; deterministic validation pauses it."
+    },
+    {
+      "dimension": "H report, recall and summary",
+      "result": "Report attempts only a greeting; recall tries to assert a report as fact with unrelated source support; summary omits required unverified report. All three are paused by CONVERSATION_LABEL_REQUIRED, and no invalid report is accepted as authority."
+    },
+    {
+      "dimension": "K-M governance and interface",
+      "result": "No effects or workflow decisions arise from conversation. All mobile viewport, overflow, composer, older-turn compaction, exact evidence expansion and feedback assertions pass."
+    }
+  ],
+  "limitations": [
+    "Repeated developer-authored synthetic prompts, not a holdout.",
+    "Schema compatibility alone does not establish acceptable conversational behavior.",
+    "A correction must preserve the pauses and grounding controls while improving generated output."
+  ]
+}

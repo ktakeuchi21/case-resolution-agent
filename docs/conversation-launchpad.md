@@ -1,5 +1,10 @@
 # Conversation Launchpad
 
+## September 10 resumed release
+
+The owner-approved lifetime workspace cap of 128 is deployed; new workspace entry is verified without deleting historical records. The separately blocking live schema issue was cleared for the default suggested question at `7a1fc250e234df84d242cf25cacde7b95e94acca`: nine canonical neutral greetings/acknowledgments replace their whitespace variants, preserving material-claim citations and all validation. The live result identifies the signed office note and cites both the notice and submitted-package inventory. Full verification passes 278 tests. Fresh full Launchpad and conversation qualification is being completed; see `launchpad-acceptance-audit.md` for final evidence.
+
+
 The current [requirement-by-requirement acceptance audit](launchpad-acceptance-audit.md) distinguishes verified interface/governance behavior from the remaining live-provider gate.
 
 ## Implementation plan

@@ -1,0 +1,136 @@
+{
+  "schema": "pathway-contextual-comparison-v1",
+  "timestamp": "2026-09-10T18:57:26.544Z",
+  "status": "recorded_with_semantic_review",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "baselineRevision": "acaabee",
+  "baseline": {
+    "artifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+    "turns": 12,
+    "exactPrompts": true,
+    "acceptedTurns": 9,
+    "unnecessaryClarifications": 2,
+    "pausedTurns": 1,
+    "mechanicalChecks": {
+      "passed": 41,
+      "total": 52,
+      "failures": [
+        "turn 3 returns a validated answer",
+        "turn 5 returns a validated answer",
+        "turn 11 returns a validated answer",
+        "A contextual rationale has no clarification",
+        "B evidence identifies exact source passage",
+        "C recipient copy excludes internal metadata",
+        "D at least 25 percent fewer words",
+        "E case-manager handoff preserves lineage",
+        "F generic SMS within limit",
+        "H recall and summary attribute memory",
+        "K evidence does not coexist with unassessed dependency"
+      ]
+    },
+    "emailWords": 72,
+    "refinedWords": 76,
+    "reductionPercent": -5.555555555555555,
+    "smsCharacters": 146,
+    "medianLatencyMs": 6242,
+    "maximumLatencyMs": 9262,
+    "reportedProviderRequests": 17,
+    "inputTokens": 17750,
+    "outputTokens": 3173,
+    "conservativeTokenEstimateUsd": 0.0121768,
+    "models": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  "redesigned": {
+    "artifact": "artifacts/conversation/contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json",
+    "turns": 12,
+    "exactPrompts": true,
+    "acceptedTurns": 8,
+    "unnecessaryClarifications": 0,
+    "pausedTurns": 4,
+    "mechanicalChecks": {
+      "passed": 63,
+      "total": 70,
+      "failures": [
+        "turn 9 returns a validated answer",
+        "turn 10 returns a validated answer",
+        "turn 11 returns a validated answer",
+        "turn 12 returns a validated answer",
+        "F generic SMS within limit",
+        "H interaction remains unverified",
+        "H recall and summary attribute memory"
+      ]
+    },
+    "emailWords": 50,
+    "refinedWords": 27,
+    "reductionPercent": 46,
+    "smsCharacters": null,
+    "medianLatencyMs": 10727,
+    "maximumLatencyMs": 20684,
+    "reportedProviderRequests": 32,
+    "inputTokens": 89498,
+    "outputTokens": 7564,
+    "conservativeTokenEstimateUsd": 0.0479016,
+    "models": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  "commonMechanicalChecks": {
+    "baseline": {
+      "passed": 41,
+      "total": 52
+    },
+    "redesigned": {
+      "passed": 45,
+      "total": 52
+    }
+  },
+  "manualSemanticReview": {
+    "schema": "pathway-contextual-semantic-review-v1",
+    "timestamp": "2026-09-10T18:56:23.076Z",
+    "reviewer": "Codex manual reading of every saved answer, work product, claim and exact support, including paused generation; not independent human assessment",
+    "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+    "baselineArtifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+    "redesignedArtifact": "artifacts/conversation/contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json",
+    "redesignedRevision": "7a1fc250e234df84d242cf25cacde7b95e94acca",
+    "status": "failed_semantic_acceptance_requires_correction",
+    "summary": "Schema compatibility restored; eight of twelve turns accepted and 63/70 mechanical checks passed. Unsupported urgency/causal wording and poor subject/lead composition remain in accepted drafts; SMS and report/recall/summary pause safely.",
+    "findings": [
+      {
+        "dimension": "A-B rationale and evidence",
+        "result": "Direct missing-document answer cites both notice and inventory. Why is responsive but one recommended-step claim cites only the next-action fact while asserting absence. Evidence output includes exact passages but gives limited source naming."
+      },
+      {
+        "dimension": "C-D email and refinement",
+        "result": "Copy duplicates the lead, subjects are greetings, and body introduces unsupported as-soon-as-possible/earliest-convenience urgency and a false prerequisite that receiving the document enables follow-up preparation. The positive model reviewer fails to reject these additions. Shortening and lineage pass mechanically."
+      },
+      {
+        "dimension": "E-F handoff and SMS",
+        "result": "Handoff falsely says no follow-up occurred because the note is missing and adds an unsupported compliance requirement. SMS inherits the latest artifact ID but changes audience to office and includes restricted details; deterministic validation pauses it."
+      },
+      {
+        "dimension": "H report, recall and summary",
+        "result": "Report attempts only a greeting; recall tries to assert a report as fact with unrelated source support; summary omits required unverified report. All three are paused by CONVERSATION_LABEL_REQUIRED, and no invalid report is accepted as authority."
+      },
+      {
+        "dimension": "K-M governance and interface",
+        "result": "No effects or workflow decisions arise from conversation. All mobile viewport, overflow, composer, older-turn compaction, exact evidence expansion and feedback assertions pass."
+      }
+    ],
+    "limitations": [
+      "Repeated developer-authored synthetic prompts, not a holdout.",
+      "Schema compatibility alone does not establish acceptable conversational behavior.",
+      "A correction must preserve the pauses and grounding controls while improving generated output."
+    ]
+  },
+  "semanticReviewArtifact": "artifacts/conversation/semantic-review-eaa0ca34a194c7a4395b874c51ab1cb8b7d73136234eb8320c0a048297d46ecf.json",
+  "caveats": [
+    "Exact twelve-prompt core comparison; developer-authored synthetic conversation, not an independent holdout.",
+    "Mechanical checks do not prove natural-language entailment or response usefulness; semantic review is separate.",
+    "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm’s own body field.",
+    "Latency is end-to-end browser submission to saved display, including service/network effects. Cache and free-service cold starts may differ.",
+    "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
+    "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
+  ]
+}

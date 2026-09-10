@@ -1,6 +1,6 @@
 {
   "schema": "pathway-digital-worker-verification-v1",
-  "timestamp": "2026-09-10T18:16:49.740Z",
+  "timestamp": "2026-09-10T18:56:09.139Z",
   "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
   "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
   "suites": [
@@ -9,7 +9,7 @@
       "command": "npm run typecheck",
       "passed": true,
       "tests": null,
-      "durationMs": 2869.2113750000003,
+      "durationMs": 2860.6222500000003,
       "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
     },
     {
@@ -17,63 +17,63 @@
       "command": "npm test",
       "passed": true,
       "tests": 81,
-      "durationMs": 699.0137499999996,
-      "outputHash": "2f9c3c8af0927d30014008d060518888a071b70e58d6e79719a62354c377390d"
+      "durationMs": 690.7317080000003,
+      "outputHash": "8ed16a28f25efa4b22493d4ac636283d726c288ef561cd9937b57305c6501c91"
     },
     {
       "name": "Original generation",
       "command": "npm run test:generation",
       "passed": true,
       "tests": 12,
-      "durationMs": 477.3903339999997,
-      "outputHash": "ce02863a744888a69fed4f2fd690d6a8782bee8552b9362176062819d8ac3e7b"
+      "durationMs": 476.1655420000002,
+      "outputHash": "d87237a3a7e0ac4839f4422feccff032283826627a5d27a9a73b1728ffa8d9a1"
     },
     {
       "name": "Digital worker composition and conversational intent",
       "command": "npm run test:agent",
       "passed": true,
-      "tests": 92,
-      "durationMs": 684.356667,
-      "outputHash": "a7d92827384ae3360d11e795cc72d4ac6feacaa959440e6268c664ef8b434683"
+      "tests": 98,
+      "durationMs": 685.1064160000005,
+      "outputHash": "8edbe2964600162c5e819585ecb2d0528d968d8275cd55b7c91b25878539217f"
     },
     {
       "name": "Document parsing and safety",
       "command": "npm run test:studio",
       "passed": true,
       "tests": 8,
-      "durationMs": 3841.9117079999996,
-      "outputHash": "89bff5315ecd0127b070a6175c3c99d9ecc9d5be7d3776d936e4fcc4e777cc14"
+      "durationMs": 3458.5540839999994,
+      "outputHash": "6cc2190e9557358d5e2b370ebe3967e7686b1587aa0a0abb30e2c979cb5cb830"
     },
     {
       "name": "PostgreSQL persistence",
       "command": "npm run test:postgres",
       "passed": true,
       "tests": 24,
-      "durationMs": 5946.811834,
-      "outputHash": "7172491ccb1681a4f3d51ab3f9aeb3a6304d1489f1131a612ac01a4ed3cdb7c4"
+      "durationMs": 4807.336875000001,
+      "outputHash": "8da11201f97b7f4817abc3f2542445a8d87c9e76ce7c3b579c8f2005cb2d4c9a"
     },
     {
       "name": "Workflow effects, roles and restart",
       "command": "npm run test:workflow",
       "passed": true,
       "tests": 30,
-      "durationMs": 14010.913666,
-      "outputHash": "ac0fcf2fd51576dbe9f837cf2d76dc3026365f43885117c4997569c8586efec5"
+      "durationMs": 11673.221334,
+      "outputHash": "d561e10cb457e154e1184712cc090c70d54f3b69f43b656f43c466c8ec7d7fef"
     },
     {
       "name": "Application, isolation and Studio",
       "command": "node scripts/db/with-verification.ts app",
       "passed": true,
       "tests": 29,
-      "durationMs": 10717.931334,
-      "outputHash": "ee7113e9ca7799adf0697a4fdcb5ae618b0c3fbc5d5bc3af9223cd99c8bd2c81"
+      "durationMs": 11557.362416,
+      "outputHash": "9a20cf66318b0d27adafba5411a15caacff1c21c3879be5aaf77db31fa6c323b"
     },
     {
       "name": "Original reference evaluation",
       "command": "npm run eval",
       "passed": true,
       "tests": null,
-      "durationMs": 498.12024999999994,
+      "durationMs": 507.05449999999837,
       "outputHash": "2fe030e8cfd08f7a95804de84c44f604d3a1e3c3a996b13842618e6dc1ea8430"
     },
     {
@@ -81,7 +81,7 @@
       "command": "npm run demo",
       "passed": true,
       "tests": null,
-      "durationMs": 328.9459580000039,
+      "durationMs": 348.7068749999962,
       "outputHash": "f8de355caae48bb75d295a85bf9c89466d78d70d1cc5dbc0e8b80322fcd3cb68"
     },
     {
@@ -89,7 +89,7 @@
       "command": "npm run probes",
       "passed": true,
       "tests": null,
-      "durationMs": 439.03129199999967,
+      "durationMs": 324.74104200000147,
       "outputHash": "373301a9771a0908d570466ab62e6c675e6a8064cf4a51f2cd339cc2ddb168f6"
     },
     {
@@ -97,14 +97,14 @@
       "command": "npm run eval:postgres",
       "passed": true,
       "tests": null,
-      "durationMs": 9450.020833000002,
-      "outputHash": "97555771e24ef8d3902795436ec0d88e7716e1202b78c9c9115b63143d01afd4"
+      "durationMs": 7135.002666,
+      "outputHash": "c4cb1c1252a15659a18ff666f6cec4f53c67cc309f1fa66f1447a717da331474"
     }
   ],
   "frozenArtifacts": {
-    "count": 214,
+    "count": 225,
     "unchanged": true,
-    "manifestHash": "ed6af1a27e123139f5f7409e4da4934b579e47dcffa3e9f0b1a3e4cd11715a67"
+    "manifestHash": "85fc21ea13cd0b6d1b1ceb974666650a35066924751ae1c92cc093bbe624ddb6"
   },
   "retrieval": {
     "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
@@ -126,7 +126,7 @@
   ],
   "contextualComparison": {
     "schema": "pathway-contextual-comparison-v1",
-    "timestamp": "2026-09-10T18:17:24.711Z",
+    "timestamp": "2026-09-10T18:57:26.544Z",
     "status": "recorded_with_semantic_review",
     "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
     "baselineRevision": "acaabee",
@@ -169,29 +169,35 @@
       ]
     },
     "redesigned": {
-      "artifact": "artifacts/conversation/contextual-redesigned-f134f7411c4cfa9373b130c35ea8342a9656a1069236495393cb09ce0ef92d09.json",
+      "artifact": "artifacts/conversation/contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json",
       "turns": 12,
       "exactPrompts": true,
-      "acceptedTurns": 12,
+      "acceptedTurns": 8,
       "unnecessaryClarifications": 0,
-      "pausedTurns": 0,
+      "pausedTurns": 4,
       "mechanicalChecks": {
-        "passed": 69,
+        "passed": 63,
         "total": 70,
         "failures": [
+          "turn 9 returns a validated answer",
+          "turn 10 returns a validated answer",
+          "turn 11 returns a validated answer",
+          "turn 12 returns a validated answer",
+          "F generic SMS within limit",
+          "H interaction remains unverified",
           "H recall and summary attribute memory"
         ]
       },
-      "emailWords": 41,
-      "refinedWords": 29,
-      "reductionPercent": 29.268292682926827,
-      "smsCharacters": 79,
-      "medianLatencyMs": 11625,
-      "maximumLatencyMs": 15617,
-      "reportedProviderRequests": 36,
-      "inputTokens": 108310,
-      "outputTokens": 7359,
-      "conservativeTokenEstimateUsd": 0.0550984,
+      "emailWords": 50,
+      "refinedWords": 27,
+      "reductionPercent": 46,
+      "smsCharacters": null,
+      "medianLatencyMs": 10727,
+      "maximumLatencyMs": 20684,
+      "reportedProviderRequests": 32,
+      "inputTokens": 89498,
+      "outputTokens": 7564,
+      "conservativeTokenEstimateUsd": 0.0479016,
       "models": [
         "gpt-4.1-mini-2025-04-14"
       ]
@@ -202,63 +208,49 @@
         "total": 52
       },
       "redesigned": {
-        "passed": 51,
+        "passed": 45,
         "total": 52
       }
     },
     "manualSemanticReview": {
       "schema": "pathway-contextual-semantic-review-v1",
-      "timestamp": "2026-09-09T16:31:56.273624+00:00",
-      "reviewer": "Codex manual reading of all saved answers, recipient copy, claim ledgers and exact quotes, with actual mobile screenshot inspection; not independent human assessment",
+      "timestamp": "2026-09-10T18:56:23.076Z",
+      "reviewer": "Codex manual reading of every saved answer, work product, claim and exact support, including paused generation; not independent human assessment",
       "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
       "baselineArtifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
-      "redesignedArtifact": "artifacts/conversation/contextual-redesigned-f134f7411c4cfa9373b130c35ea8342a9656a1069236495393cb09ce0ef92d09.json",
-      "redesignedRevision": "ddf1ebf",
+      "redesignedArtifact": "artifacts/conversation/contextual-redesigned-ae8491a4abff2ac83d2c8880527c5847ca50efa2cec7e2bf5ee410429d9bd3de.json",
+      "redesignedRevision": "7a1fc250e234df84d242cf25cacde7b95e94acca",
       "status": "failed_semantic_acceptance_requires_correction",
-      "summary": "All twelve prompts returned accepted turns and 69/70 mechanical checks passed. Semantic acceptance still failed: the office report became an unlabeled fact, content-bearing text bypassed the ledger as style, some identifiers were not covered by their cited quotes, and SMS selected an older artifact. These failures require correction and fresh qualification.",
+      "summary": "Schema compatibility restored; eight of twelve turns accepted and 63/70 mechanical checks passed. Unsupported urgency/causal wording and poor subject/lead composition remain in accepted drafts; SMS and report/recall/summary pause safely.",
       "findings": [
         {
-          "dimension": "A rationale",
-          "result": "Both Why variants respond without clarification. Longer Why links the missing note to preparing follow-up; the shorter Why still mixes payer-boundary boilerplate into its reason."
+          "dimension": "A-B rationale and evidence",
+          "result": "Direct missing-document answer cites both notice and inventory. Why is responsive but one recommended-step claim cites only the next-action fact while asserting absence. Evidence output includes exact passages but gives limited source naming."
         },
         {
-          "dimension": "B evidence",
-          "result": "Exact source passages are available and expand correctly, but the direct answer generically names workflow/governed sources rather than identifying the notice/inventory and quoting the relevant passage. Partial, not full semantic acceptance."
+          "dimension": "C-D email and refinement",
+          "result": "Copy duplicates the lead, subjects are greetings, and body introduces unsupported as-soon-as-possible/earliest-convenience urgency and a false prerequisite that receiving the document enables follow-up preparation. The positive model reviewer fails to reject these additions. Shortening and lineage pass mechanically."
         },
         {
-          "dimension": "C-D products",
-          "result": "Email is unsent and excludes labeled owner/permission fields but includes internal case-controls wording. Warmer shortening meets the word ceiling and lineage; its content-bearing body and subject were incorrectly labeled style with no claims. The phrase about moving forward on the recipient behalf lacks specific support."
+          "dimension": "E-F handoff and SMS",
+          "result": "Handoff falsely says no follow-up occurred because the note is missing and adds an unsupported compliance requirement. SMS inherits the latest artifact ID but changes audience to office and includes restricted details; deterministic validation pauses it."
         },
         {
-          "dimension": "E-F conversions",
-          "result": "Handoff carries the right prior artifact and missing note. SMS has no specific restricted details and fits 250 characters, but references the warmer email rather than the latest handoff; the mechanical SMS check did not test this lineage."
+          "dimension": "H report, recall and summary",
+          "result": "Report attempts only a greeting; recall tries to assert a report as fact with unrelated source support; summary omits required unverified report. All three are paused by CONVERSATION_LABEL_REQUIRED, and no invalid report is accepted as authority."
         },
         {
-          "dimension": "H memory and attribution",
-          "result": "Recorded interaction uses uncited style and omits unverified in the answer. Recall and summary assert the report as fact while citing unrelated workflow/document quotes. The reviewer borrowed the uncited report from full context and approved both. No authoritative workflow record was changed."
-        },
-        {
-          "dimension": "claim audit",
-          "displayedLedgerClaims": 23,
-          "exactQuoteChecks": 35,
-          "exactQuoteFailures": [],
-          "unsupportedOrInsufficientlyCitedLedgerClaims": 9,
-          "breakdown": "Seven claims include a request ID absent from their own quotes; three of these also assert receipt absent from their quote. Two claims assert an office communication without a conversation citation or unverified label. Additional material content outside the ledger occurs in turns 7 and 10, so a ledger-only unsupported rate understates the problem.",
-          "limitation": "Small repeated synthetic sample; neither positive model review nor an exact quote establishes entailment."
-        },
-        {
-          "dimension": "K-M workflow and mobile",
-          "result": "No premature dependency-completion claims, conversation effects or decisions. All strict actual-viewport, composer, overflow, source expansion, compaction and feedback checks passed. Manual 375x812 screenshot confirms the lead and composer are visible."
+          "dimension": "K-M governance and interface",
+          "result": "No effects or workflow decisions arise from conversation. All mobile viewport, overflow, composer, older-turn compaction, exact evidence expansion and feedback assertions pass."
         }
       ],
       "limitations": [
-        "The frozen prompts are developer-authored and repeatedly used; no independent holdout or human study.",
-        "Earlier failures and the unsuccessful transport traces remain immutable.",
-        "The separate current-runtime boundary run is still pending.",
-        "Neutral style restrictions, claim-scoped review input, visible memory requirements and explicit active-artifact context are subsequent local corrections, not evidence that this run passed."
+        "Repeated developer-authored synthetic prompts, not a holdout.",
+        "Schema compatibility alone does not establish acceptable conversational behavior.",
+        "A correction must preserve the pauses and grounding controls while improving generated output."
       ]
     },
-    "semanticReviewArtifact": "artifacts/conversation/semantic-review-7e42c2a11605b3713e89c671722f2499d078c31074551b7d5247171a487eb2f1.json",
+    "semanticReviewArtifact": "artifacts/conversation/semantic-review-eaa0ca34a194c7a4395b874c51ab1cb8b7d73136234eb8320c0a048297d46ecf.json",
     "caveats": [
       "Exact twelve-prompt core comparison; developer-authored synthetic conversation, not an independent holdout.",
       "Mechanical checks do not prove natural-language entailment or response usefulness; semantic review is separate.",
@@ -267,6 +259,6 @@
       "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
       "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
     ],
-    "artifact": "artifacts/conversation/comparison-26a66ae172967b3f9e0042d9ac0eca80baf1ab45b5366080a6d15af929bf83a3.json"
+    "artifact": "artifacts/conversation/comparison-da6ecd17e75646f3fb7a5644fe442489a2415ed42c8a4b83f429a24f5dc7e76a.json"
   }
 }

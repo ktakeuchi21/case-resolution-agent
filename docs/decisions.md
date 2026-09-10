@@ -1,5 +1,13 @@
 # Decision log
 
+## 2026-09-10 — Separate SMS context and strengthen response validation
+
+Live review found that a positive model verdict still admitted unsupported urgency and follow-up causality. Preserve exact quote/claim review, add deterministic guards for these observed claims, and evaluate the reviewer explanation before its verdict. Constrain draft lead, subject and report slots according to their existing purposes. Withhold case and artifact prose from generic SMS composition; preserve the original interpreted request and reference lineage in the durable response. This narrows available content and creates no new authority. Model quality remains fallible and must be qualified against the frozen prompts; a safe pause is not a successful conversational answer.
+
+## 2026-09-10 — Canonical neutral-style schema
+
+The provider rejected the schema containing whitespace variants of neutral style phrases. Bounded diagnostics confirmed the submitted schema fingerprint and a location relative to a shared union. Narrowing its enum to the nine canonical neutral expressions cleared the rejection for the actual default suggested question; full conversation qualification remains separate. Do not infer undocumented provider tokenizer internals from the redacted error. This narrows generated style choices: factual prose still requires current reference/quote pairs, an exact materialized claim ledger and claim-scoped review. Existing historical text and materialized paragraph strings remain immutable. The model, Free hosting and daily cap 100 remain unchanged.
+
 **September 10 capacity decision:** The owner explicitly approved increasing the public demo's lifetime reservation cap from 64 to 128 after a read-only measurement showed 64 reservations and 81,890,451 database bytes. Preserve every historical record, existing session isolation, serialized reservation check, Free hosting and provider daily cap 100. This is a bounded capacity increase, not automatic cleanup or unlimited storage. Boundary tests admit reservation 128, reject 129 without a write, and retain idempotent existing reservations. Any future increase remains an owner decision.
 
 Version 0.2 · September 7, 2026 · Includes Phase 1.5 refinements

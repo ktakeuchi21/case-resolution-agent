@@ -1,0 +1,127 @@
+{
+  "schema": "pathway-digital-worker-verification-v1",
+  "timestamp": "2026-09-10T18:56:09.139Z",
+  "environment": "Local Node 24 / PostgreSQL 18 / pgvector 0.8.6; isolated synthetic fixtures",
+  "summary": "All recorded automated suites passed. Live model quality was not measured in this run.",
+  "suites": [
+    {
+      "name": "TypeScript contracts",
+      "command": "npm run typecheck",
+      "passed": true,
+      "tests": null,
+      "durationMs": 2860.6222500000003,
+      "outputHash": "93865cfaf817562b18c37e7e5250b63b748b7c112651526787d37e980b77d716"
+    },
+    {
+      "name": "Core governance and retrieval",
+      "command": "npm test",
+      "passed": true,
+      "tests": 81,
+      "durationMs": 690.7317080000003,
+      "outputHash": "8ed16a28f25efa4b22493d4ac636283d726c288ef561cd9937b57305c6501c91"
+    },
+    {
+      "name": "Original generation",
+      "command": "npm run test:generation",
+      "passed": true,
+      "tests": 12,
+      "durationMs": 476.1655420000002,
+      "outputHash": "d87237a3a7e0ac4839f4422feccff032283826627a5d27a9a73b1728ffa8d9a1"
+    },
+    {
+      "name": "Digital worker composition and conversational intent",
+      "command": "npm run test:agent",
+      "passed": true,
+      "tests": 98,
+      "durationMs": 685.1064160000005,
+      "outputHash": "8edbe2964600162c5e819585ecb2d0528d968d8275cd55b7c91b25878539217f"
+    },
+    {
+      "name": "Document parsing and safety",
+      "command": "npm run test:studio",
+      "passed": true,
+      "tests": 8,
+      "durationMs": 3458.5540839999994,
+      "outputHash": "6cc2190e9557358d5e2b370ebe3967e7686b1587aa0a0abb30e2c979cb5cb830"
+    },
+    {
+      "name": "PostgreSQL persistence",
+      "command": "npm run test:postgres",
+      "passed": true,
+      "tests": 24,
+      "durationMs": 4807.336875000001,
+      "outputHash": "8da11201f97b7f4817abc3f2542445a8d87c9e76ce7c3b579c8f2005cb2d4c9a"
+    },
+    {
+      "name": "Workflow effects, roles and restart",
+      "command": "npm run test:workflow",
+      "passed": true,
+      "tests": 30,
+      "durationMs": 11673.221334,
+      "outputHash": "d561e10cb457e154e1184712cc090c70d54f3b69f43b656f43c466c8ec7d7fef"
+    },
+    {
+      "name": "Application, isolation and Studio",
+      "command": "node scripts/db/with-verification.ts app",
+      "passed": true,
+      "tests": 29,
+      "durationMs": 11557.362416,
+      "outputHash": "9a20cf66318b0d27adafba5411a15caacff1c21c3879be5aaf77db31fa6c323b"
+    },
+    {
+      "name": "Original reference evaluation",
+      "command": "npm run eval",
+      "passed": true,
+      "tests": null,
+      "durationMs": 507.05449999999837,
+      "outputHash": "2fe030e8cfd08f7a95804de84c44f604d3a1e3c3a996b13842618e6dc1ea8430"
+    },
+    {
+      "name": "Retirement and history demonstration",
+      "command": "npm run demo",
+      "passed": true,
+      "tests": null,
+      "durationMs": 348.7068749999962,
+      "outputHash": "f8de355caae48bb75d295a85bf9c89466d78d70d1cc5dbc0e8b80322fcd3cb68"
+    },
+    {
+      "name": "Retrieval probes",
+      "command": "npm run probes",
+      "passed": true,
+      "tests": null,
+      "durationMs": 324.74104200000147,
+      "outputHash": "373301a9771a0908d570466ab62e6c675e6a8064cf4a51f2cd339cc2ddb168f6"
+    },
+    {
+      "name": "Cached PostgreSQL retrieval parity",
+      "command": "npm run eval:postgres",
+      "passed": true,
+      "tests": null,
+      "durationMs": 7135.002666,
+      "outputHash": "c4cb1c1252a15659a18ff666f6cec4f53c67cc309f1fa66f1447a717da331474"
+    }
+  ],
+  "frozenArtifacts": {
+    "count": 225,
+    "unchanged": true,
+    "manifestHash": "85fc21ea13cd0b6d1b1ceb974666650a35066924751ae1c92cc093bbe624ddb6"
+  },
+  "retrieval": {
+    "model": "OpenAI text-embedding-3-small, 1536 dimensions · preserved real synthetic vectors",
+    "summary": "The frozen 36-question benchmark measured lexical 31/36 and semantic/hybrid 36/36 correct outcomes. The persistence suite replays 108 comparisons plus the 23 original references.",
+    "limitations": "Developer-authored synthetic cases, no independent holdout. Cached replay measures ranking/governance reproducibility; it is not fresh-provider quality, fair cold latency or new-upload quality."
+  },
+  "generation": {
+    "model": "Optional OpenAI gpt-4.1-mini-2025-04-14 · pathway-contextual-v1; replaceable provider interface",
+    "summary": "Contextual interpretation and complete-turn contracts, full-text review coverage, transformation constraints, durable regeneration, feedback, legacy composition and fail-closed checks were exercised with explicit fixtures. No live synthesis quality score is claimed.",
+    "cost": "No live model requests were made by this verification. Incremental model cost: $0. Historical embedding benchmark: 3,435 tokens, estimated $0.0000687 at its September 7 rate; cache order prevents fair cost comparison."
+  },
+  "limitations": [
+    "All cases, identities and integrations are synthetic. No real outreach, payer approval or clinical authority.",
+    "Live synthesis and new semantic vectors require explicitly configured server credentials and request budgets. Missing or failed providers pause with no silent fallback.",
+    "Model support review is fallible. Exact quote and eligibility checks do not prove every paraphrase is entailed.",
+    "TXT, Markdown, PDF and DOCX parsing is bounded: 1 MB, 20 PDF pages, 64,000 extracted characters and 128 passages. No OCR; PDF tables can have uncertain reading order.",
+    "Content screening and user attestation do not guarantee patient-data detection. Temporary sandbox data expires with the session; approved published sources and governed evidence remain immutable.",
+    "Enterprise identity, real channel integrations, independent healthcare validation, production load, backup restoration and patient outcomes are unverified."
+  ]
+}

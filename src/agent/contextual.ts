@@ -62,6 +62,10 @@ export function validateCompleteTurn(raw:unknown,input:CompositionInput,evidence
   const {locations:_locations,...claim}=c;validateClaims({claims:[claim]},input,evidence);
   for(const identifier of c.text.match(/\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+\b/g)??[])if(!c.supports.some(s=>s.quote.includes(identifier)||s.reference.includes(identifier)))throw new AgentProviderFailure('IDENTIFIER_NOT_IN_CITED_EVIDENCE');
   if(c.supports.some(s=>input.facts.some(f=>f.reference===s.reference&&f.origin==='conversation'))&&!/\bunverified\b/i.test(c.text))throw new AgentProviderFailure('CONVERSATION_LABEL_REQUIRED');
+  const urgency=c.text.match(/\b(?:as soon as possible|at your earliest convenience|promptly|urgent(?:ly)?|immediately|ASAP)\b/gi)??[];
+  if(c.kind!=='uncertainty'&&urgency.some(phrase=>!c.supports.some(s=>s.quote.toLowerCase().includes(phrase.toLowerCase()))))throw new AgentProviderFailure('UNSUPPORTED_URGENCY');
+  if(c.kind!=='uncertainty'&&/\bcompliance\b/i.test(c.text)&&!c.supports.some(s=>/\bcompliance\b/i.test(s.quote)))throw new AgentProviderFailure('UNSUPPORTED_REQUIREMENT');
+  if(/\bno follow[- ]up\b[^.!?\n]{0,90}\b(?:because|due to)\b|\b(?:provide|send|supply|receive|obtain)\b[^.!?\n]{0,160}\bso (?:we|I|the team)\b[^.!?\n]{0,40}\b(?:proceed|prepare|initiate|move forward)\b[^.!?\n]{0,60}\bfollow[- ]up\b/i.test(c.text))throw new AgentProviderFailure('UNSUPPORTED_FOLLOWUP_PREREQUISITE');
  }
  for(const text of slots.values())if(instructionContent(text))throw new AgentProviderFailure('UNTRUSTED_OUTPUT_INSTRUCTIONS');
  const currentState=(input.operator as {state?:string})?.state;
@@ -121,6 +125,12 @@ export async function composeContextual(o:{request:AgentRequest;id:string;conver
  if(i.channel==='sms'){
   const policy={id:'channel.sms',text:'This application permits an unsent SMS draft only as a generic invitation to check the workspace. It must omit case, document, person, medical, payer and status details. This permission does not authorize sending.',reference:`workflow:${o.snapshot.id}:revision:${o.snapshot.revision}:sms-policy`,origin:'workflow' as const,authoritative:true};
   response.facts.push(policy);const {id:_id,...fact}=policy;input.facts.push(fact);
+  // A generic notification needs only its current channel policy. Withholding
+  // case/artifact prose prevents those details from leaking into the SMS draft.
+  input.facts=[fact];input.sources=[];input.memory=[];input.activeArtifact=null;input.operator={};input.knowledge=null;
+  input.query='Prepare an unsent generic invitation to check the workspace, using the requested tone.';
+  input.interpretation={...i,note:'',retrievalQuestion:'Current SMS channel policy'};
+  input.nextAction='Review the unsent generic invitation';input.boundary='This draft does not authorize sending.';
  }
  response.audit.contextHash=hash({interpretation:it.input,composition:input});
  const addUsage=(u:ProviderUsage)=>{response.audit.inputTokens+=u.inputTokens;response.audit.outputTokens+=u.outputTokens;response.audit.estimatedCostUsd=response.audit.estimatedCostUsd===null||u.estimatedCostUsd===null?null:response.audit.estimatedCostUsd+u.estimatedCostUsd;response.audit.costBasis=u.costBasis;};
