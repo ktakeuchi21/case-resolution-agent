@@ -71,7 +71,8 @@ test('report prose requires a visible unverified label and the actual conversati
  const x=input(),text='The office reported looking for the note.',reference='conversation:report';x.interpretation=interpretation({intent:'interaction'});x.facts.push({text,reference,origin:'conversation',authoritative:false});
  const wire={answer:[{kind:'uncertainty',text:'Unverified report: '+text,supports:[{reference,quote:text}]}],rationale:null,workProduct:null,requestedAction:null};
  assert(compositionSchema(x).safeParse(wire).success);
- for(const bad of [{...wire,answer:[{...wire.answer[0],text}]},{...wire,answer:[{...wire.answer[0],kind:'fact'}]},{...wire,answer:[{...wire.answer[0],supports:[support]}]}])assert.equal(compositionSchema(x).safeParse(bad).success,false);
+ assert.throws(()=>validateCompleteTurn(materializeProse({...wire,answer:[{...wire.answer[0],text}]}),x,evidence),/CONVERSATION_LABEL_REQUIRED/);
+ for(const bad of [{...wire,answer:[{...wire.answer[0],kind:'fact'}]},{...wire,answer:[{...wire.answer[0],supports:[support]}]}])assert.equal(compositionSchema(x).safeParse(bad).success,false);
 });
 
 test('recipient prose cannot be duplicated in the lead or replaced by a greeting subject',()=>{

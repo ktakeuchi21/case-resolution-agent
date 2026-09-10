@@ -132,8 +132,14 @@ export class OpenAISynthesisProvider implements SynthesisProvider {
    if (!response.body) throw new AgentProviderFailure('PROVIDER_RESPONSE_INVALID');
    const reader = response.body.getReader(), parts: Uint8Array[] = []; let length = 0;
    try { while (true) { const part = await reader.read(); if (part.done) break; length += part.value.byteLength; if (length > 100000) { await reader.cancel(); throw new AgentProviderFailure('PROVIDER_RESPONSE_LIMIT'); } parts.push(part.value); } } finally { reader.releaseLock(); }
-   const raw = z.object({ status: z.literal('completed'), model: z.literal(this.identity.model), output: z.array(z.object({ type: z.string(), content: z.array(z.object({ type: z.string(), text: z.string().optional() })).optional() })), usage: z.object({ input_tokens: z.number().int().nonnegative(), output_tokens: z.number().int().nonnegative().max(4800) }) }).parse(JSON.parse(Buffer.concat(parts).toString('utf8')));
+   const envelope:unknown=JSON.parse(Buffer.concat(parts).toString('utf8'));
+   // Classify incomplete/refused envelopes without retaining their text. A
+   // bounded generation failure is distinct from malformed JSON or a schema 400.
+   const status=z.object({status:z.string(),incomplete_details:z.object({reason:z.string()}).nullable().optional()}).safeParse(envelope);
+   if(status.success&&status.data.status==='incomplete')throw new AgentProviderFailure(status.data.incomplete_details?.reason==='max_output_tokens'?'PROVIDER_OUTPUT_TOKEN_LIMIT':'PROVIDER_GENERATION_INCOMPLETE');
+   const raw = z.object({ status: z.literal('completed'), model: z.literal(this.identity.model), output: z.array(z.object({ type: z.string(), content: z.array(z.object({ type: z.string(), text: z.string().optional() })).optional() })), usage: z.object({ input_tokens: z.number().int().nonnegative(), output_tokens: z.number().int().nonnegative().max(4800) }) }).parse(envelope);
    const messages = raw.output.filter(o => o.type === 'message').flatMap(o => o.content ?? []);
+   if(messages.some(m=>m.type==='refusal'))throw new AgentProviderFailure('PROVIDER_REFUSED');
    if (messages.length !== 1 || messages[0]!.type !== 'output_text' || !messages[0]!.text) throw new AgentProviderFailure('PROVIDER_RESPONSE_INVALID');
    return { output: JSON.parse(messages[0]!.text) as unknown, usage: { inputTokens: raw.usage.input_tokens, outputTokens: raw.usage.output_tokens, requests: 1, estimatedCostUsd: null, costBasis: 'Token usage measured; deployment pricing is not configured. Not a billing record.' } };
   } catch (e) { if (signal.aborted) throw new AgentProviderFailure('PROVIDER_TIMEOUT'); if (e instanceof AgentProviderFailure) throw e; throw new AgentProviderFailure('PROVIDER_RESPONSE_INVALID'); }

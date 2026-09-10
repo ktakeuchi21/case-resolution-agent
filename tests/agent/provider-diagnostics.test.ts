@@ -66,3 +66,12 @@ test('unrecognized provider context syntax retains a bounded structural sketch w
  assert(code.endsWith('_SHAPE_CONTEXT_PROPERTIES_X_:_ANYOF_X_NOT_ALLOWED_._X_X'));
  assert(!/private|plaintext|Bearer|1234|9876/i.test(code));
 });
+
+test('incomplete and refused output retain only fixed classifications without raw provider content',async()=>{
+ const input={query:'Synthetic question',canonicalCaseQuery:'Synthetic question',selectedKnowledge:{key:'sample',authority:'assigned_case_knowledge'},workflow:{},defaults:{audience:'office',channel:'chat',tone:'concise'},targetId:null,history:[]};
+ for(const [body,code]of [
+  [{status:'incomplete',incomplete_details:{reason:'max_output_tokens'},output:'private-marker'},'PROVIDER_OUTPUT_TOKEN_LIMIT'],
+  [{status:'incomplete',incomplete_details:{reason:'private-marker'}},'PROVIDER_GENERATION_INCOMPLETE'],
+  [{status:'completed',model:'gpt-4.1-mini-2025-04-14',output:[{type:'message',content:[{type:'refusal',refusal:'private-marker'}]}],usage:{input_tokens:1,output_tokens:1}},'PROVIDER_REFUSED']
+ ]as const){const p=new OpenAISynthesisProvider('fixture-only',async()=>{},async()=>new Response(JSON.stringify(body)));await assert.rejects(p.interpret(input),e=>e instanceof AgentProviderFailure&&e.code===code&&!e.message.includes('private-marker'));}
+});

@@ -1,0 +1,11 @@
+{
+  "schema": "pathway-contextual-focused-repair-v1",
+  "timestamp": "2026-09-10T19:13:09.334Z",
+  "revision": "9fffd8a5997dac7ba8e8d114f46adafd280e34c8",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "environment": "Fresh queries in the retained isolated synthetic probe session; all prior history/counters preserved. Focused check, not the complete frozen comparison.",
+  "responses": [],
+  "results": [],
+  "latencies": [],
+  "error": "locator.waitFor: Timeout 90000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#agent-text') to be visible\u001b[22m\n"
+}

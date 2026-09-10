@@ -1,0 +1,113 @@
+{
+  "schema": "pathway-static-assets-v1",
+  "timestamp": "2026-09-10T19:14:45.071Z",
+  "revision": "9fffd8a5997dac7ba8e8d114f46adafd280e34c8",
+  "url": "https://case-resolution-frontend.onrender.com",
+  "claim": "CDN public assets match local released build. Static-only checks; no backend or provider requests.",
+  "results": [
+    {
+      "path": "web/agent.js",
+      "status": 200,
+      "expected": "526e4489ebae8d307b22eeb7135ac41c2557f67a730f29772459245d03e08358",
+      "actual": "526e4489ebae8d307b22eeb7135ac41c2557f67a730f29772459245d03e08358",
+      "pass": true
+    },
+    {
+      "path": "web/app.js",
+      "status": 200,
+      "expected": "2ba2d96c10538c95216883a74d42ee103c254510542f65346eb45df638a07fd3",
+      "actual": "2ba2d96c10538c95216883a74d42ee103c254510542f65346eb45df638a07fd3",
+      "pass": true
+    },
+    {
+      "path": "web/connection.js",
+      "status": 200,
+      "expected": "55ae48a0b18a67fdff19f8cf06fbd54b9ed36889c933a58763e5691e5acdaece",
+      "actual": "55ae48a0b18a67fdff19f8cf06fbd54b9ed36889c933a58763e5691e5acdaece",
+      "pass": true
+    },
+    {
+      "path": "web/evaluation.json",
+      "status": 200,
+      "expected": "188276cf59b8caffc8807353cd0b7a875c2e4dd4a9d2fd6b7b17a4c58716b151",
+      "actual": "188276cf59b8caffc8807353cd0b7a875c2e4dd4a9d2fd6b7b17a4c58716b151",
+      "pass": true
+    },
+    {
+      "path": "web/hosting.js",
+      "status": 200,
+      "expected": "5c1d0fcd51bab7022dde1e51255353faa7b21162b2020ebd9b0aa2a93e41a9bf",
+      "actual": "5c1d0fcd51bab7022dde1e51255353faa7b21162b2020ebd9b0aa2a93e41a9bf",
+      "pass": true
+    },
+    {
+      "path": "web/index.html",
+      "status": 200,
+      "expected": "a2c4667faa7c5ce4d8eb8fb71bbd4ff9d2738d257ce0523777ee62841a4be6d9",
+      "actual": "a2c4667faa7c5ce4d8eb8fb71bbd4ff9d2738d257ce0523777ee62841a4be6d9",
+      "pass": true
+    },
+    {
+      "path": "web/knowledge.js",
+      "status": 200,
+      "expected": "4c051f86426b7cef94e72c88406cd27c1b8e5a9cf29d658b34a5cec05103dd54",
+      "actual": "4c051f86426b7cef94e72c88406cd27c1b8e5a9cf29d658b34a5cec05103dd54",
+      "pass": true
+    },
+    {
+      "path": "web/launchpad.js",
+      "status": 200,
+      "expected": "065b5f18469ed8761ff3ef4b034ab01d06247fc4c122b642d783959e65c68ee7",
+      "actual": "065b5f18469ed8761ff3ef4b034ab01d06247fc4c122b642d783959e65c68ee7",
+      "pass": true
+    },
+    {
+      "path": "web/mark.svg",
+      "status": 200,
+      "expected": "077701f432294a6e0e6a367b8cda6b135c2d05bffe473bb8ae7a424d46c44f75",
+      "actual": "077701f432294a6e0e6a367b8cda6b135c2d05bffe473bb8ae7a424d46c44f75",
+      "pass": true
+    },
+    {
+      "path": "web/studio.js",
+      "status": 200,
+      "expected": "166975b7e70cf2e6af459783c61efd07b403affa60a128e38d3248064a79133b",
+      "actual": "166975b7e70cf2e6af459783c61efd07b403affa60a128e38d3248064a79133b",
+      "pass": true
+    },
+    {
+      "path": "web/styles.css",
+      "status": 200,
+      "expected": "0eb5c48c152e0b4188e3f997475fe25e856194923aca7fa4eefb40f232ff685d",
+      "actual": "0eb5c48c152e0b4188e3f997475fe25e856194923aca7fa4eefb40f232ff685d",
+      "pass": true
+    },
+    {
+      "path": "web/tour.js",
+      "status": 200,
+      "expected": "4a3fe4404295790791997c38b72bf5cc4ebc1d886f8886ad542f4e96a116215a",
+      "actual": "4a3fe4404295790791997c38b72bf5cc4ebc1d886f8886ad542f4e96a116215a",
+      "pass": true
+    },
+    {
+      "path": "/src/app/server.ts",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/.env",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/package.json",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "path": "/build-manifest.json",
+      "status": 404,
+      "pass": true
+    }
+  ]
+}
