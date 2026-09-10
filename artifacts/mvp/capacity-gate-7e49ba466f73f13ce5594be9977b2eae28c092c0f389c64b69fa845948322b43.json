@@ -1,0 +1,23 @@
+{
+  "schema": "pathway-capacity-gate-v1",
+  "observedAt": "2026-09-10T16:45:00.287Z",
+  "reservedWorkspaces": 64,
+  "lifetimeWorkspaceLimit": 64,
+  "databaseBytes": 81890451,
+  "activeWorkspaceSessions": 1,
+  "providerBudget": {
+    "day": "2026-09-10",
+    "reservedRequests": 2,
+    "dailyLimit": 100
+  },
+  "observedWorkspaceError": "The public demo is at capacity. Please contact the portfolio owner.",
+  "observedFrom": "Fresh isolated browser Launch; aggregate read-only database count/size query; separate read-only provider counter",
+  "proposedWorkspaceLimit": 128,
+  "proposalStatus": "Prepared locally; awaiting explicit owner approval; not applied",
+  "candidateChecks": {
+    "passed": 3,
+    "total": 3,
+    "scope": "Transaction boundary and idempotent reservation mocks, not live capacity or load validation"
+  },
+  "limitations": "Existing history retained. Provider schema rejection remains unresolved. No raw credentials, provider errors, session capabilities or user content included."
+}
