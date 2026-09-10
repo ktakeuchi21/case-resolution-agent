@@ -1,0 +1,143 @@
+{
+  "schema": "pathway-analytics-browser-v1",
+  "timestamp": "2026-09-10T21:52:56.392Z",
+  "environment": "Actual local application and reviewed Umami tracker, synthetic database, virtual production host routing, intercepted collector, zero real analytics/model sends",
+  "results": [
+    {
+      "name": "expected page-view count 1",
+      "pass": true,
+      "detail": {
+        "actual": 1
+      }
+    },
+    {
+      "name": "unavailable backend does not delay overview tracking or create a session",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 2",
+      "pass": true,
+      "detail": {
+        "actual": 2
+      }
+    },
+    {
+      "name": "hash navigation has its own readable page name",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 3",
+      "pass": true,
+      "detail": {
+        "actual": 3
+      }
+    },
+    {
+      "name": "expected page-view count 4",
+      "pass": true,
+      "detail": {
+        "actual": 4
+      }
+    },
+    {
+      "name": "connection loading does not count an undisplayed workspace page",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 5",
+      "pass": true,
+      "detail": {
+        "actual": 5
+      }
+    },
+    {
+      "name": "expected page-view count 6",
+      "pass": true,
+      "detail": {
+        "actual": 6
+      }
+    },
+    {
+      "name": "static handoff records only the displayed backend knowledge page",
+      "pass": true
+    }
+  ],
+  "errors": [
+    {
+      "url": "https://case-resolution-agent.onrender.com/#knowledge",
+      "visible": "PORTFOLIO DEMONSTRATION · Synthetic cases and simulated integrations\nNo real outreach · No payer approval\nYOUR FIRST STEP\nChoose knowledge. Start talking.\n\nBring a question. Pathway will keep the evidence and the next step in view.\n\n1. Choose knowledge\n2. Ask a question\n3. Inspect evidence & next step\n4. Explore human review\nRecommended · ready to use\nUse sample knowledge\n\nMeet the synthetic Alder case. Find the missing document, understand the next step, and prepare a useful handoff.\n\nUse sample knowledge →\n\nPreconfigured synthetic case · No upload or confirmation needed\n\nALREADY GOVERNED\nChoose a Knowledge Pack\n\nSee published packs, their source coverage, and which are currently permitted for this case.\n\nBrowse Knowledge Packs\nYOUR DOCUMENT\nUpload a document\n\nExplore a TXT, Markdown, PDF or DOCX file in your own temporary sandbox.\n\nChoose or drop a file\n\n1 MB maximum · Isolated to this session\n\nThis demonstration uses synthetic administrative content. Do not enter patient information, confidential data, or secrets. Full technical walkthrough →\n\nYour demonstration is isolated to this session. All identities, documents and communications are synthetic. No clinical judgment, coverage determination, financial-assistance eligibility, HIPAA certification or production readiness is claimed.\nVisitor analytics",
+      "requests": [
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/studio.js",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/agent.js",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/knowledge.js",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/launchpad.js",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/healthz",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/api/session",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/api/demo",
+          "method": "POST",
+          "status": 201
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-agent.onrender.com",
+          "path": "/vendor/umami.js",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://gateway.umami.is",
+          "path": "/api/send",
+          "method": "POST"
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Use sample knowledge', exact: true })\u001b[22m\n",
+  "checkSourceSha256": "0fe15ed870d32f2882ab5e5f62869149ded002ccececd9d19d6529a43dcdf90f"
+}

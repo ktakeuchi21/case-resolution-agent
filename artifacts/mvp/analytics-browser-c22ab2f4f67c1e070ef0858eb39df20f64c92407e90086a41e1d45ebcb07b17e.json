@@ -1,0 +1,239 @@
+{
+  "schema": "pathway-analytics-browser-v1",
+  "timestamp": "2026-09-10T21:54:16.695Z",
+  "environment": "Actual local application and reviewed Umami tracker, synthetic database, virtual production host routing, intercepted collector, zero real analytics/model sends",
+  "results": [
+    {
+      "name": "expected page-view count 1",
+      "pass": true,
+      "detail": {
+        "actual": 1
+      }
+    },
+    {
+      "name": "unavailable backend does not delay overview tracking or create a session",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 2",
+      "pass": true,
+      "detail": {
+        "actual": 2
+      }
+    },
+    {
+      "name": "hash navigation has its own readable page name",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 3",
+      "pass": true,
+      "detail": {
+        "actual": 3
+      }
+    },
+    {
+      "name": "expected page-view count 4",
+      "pass": true,
+      "detail": {
+        "actual": 4
+      }
+    },
+    {
+      "name": "connection loading does not count an undisplayed workspace page",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 5",
+      "pass": true,
+      "detail": {
+        "actual": 5
+      }
+    },
+    {
+      "name": "expected page-view count 6",
+      "pass": true,
+      "detail": {
+        "actual": 6
+      }
+    },
+    {
+      "name": "static handoff records only the displayed backend knowledge page",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 7",
+      "pass": true,
+      "detail": {
+        "actual": 7
+      }
+    },
+    {
+      "name": "role/message rendering does not add views or transmit content",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 8",
+      "pass": true,
+      "detail": {
+        "actual": 8
+      }
+    },
+    {
+      "name": "readable page: Case Workspace",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 9",
+      "pass": true,
+      "detail": {
+        "actual": 9
+      }
+    },
+    {
+      "name": "readable page: Knowledge Studio",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 10",
+      "pass": true,
+      "detail": {
+        "actual": 10
+      }
+    },
+    {
+      "name": "readable page: Evidence",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 11",
+      "pass": true,
+      "detail": {
+        "actual": 11
+      }
+    },
+    {
+      "name": "readable page: Human Review",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 12",
+      "pass": true,
+      "detail": {
+        "actual": 12
+      }
+    },
+    {
+      "name": "readable page: Walkthrough",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 13",
+      "pass": true,
+      "detail": {
+        "actual": 13
+      }
+    },
+    {
+      "name": "readable page: Settings",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 14",
+      "pass": true,
+      "detail": {
+        "actual": 14
+      }
+    },
+    {
+      "name": "readable page: Evaluation",
+      "pass": true
+    },
+    {
+      "name": "asynchronous evaluation rerender is not a second page view",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 15",
+      "pass": true,
+      "detail": {
+        "actual": 15
+      }
+    },
+    {
+      "name": "expected page-view count 16",
+      "pass": true,
+      "detail": {
+        "actual": 16
+      }
+    },
+    {
+      "name": "direct workspace reload records the restored displayed page once",
+      "pass": true
+    },
+    {
+      "name": "all transmitted payloads contain only bounded analytics fields",
+      "pass": true
+    },
+    {
+      "name": "no recorder, identify or performance calls",
+      "pass": true
+    },
+    {
+      "name": "on-page browser exclusion stops subsequent analytics",
+      "pass": true
+    },
+    {
+      "name": "disclosure readable without horizontal overflow at 1440",
+      "pass": true
+    },
+    {
+      "name": "disclosure readable without horizontal overflow at 768",
+      "pass": true
+    },
+    {
+      "name": "disclosure readable without horizontal overflow at 375",
+      "pass": true
+    },
+    {
+      "name": "dnt prevents tracker load and collection",
+      "pass": true
+    },
+    {
+      "name": "gpc prevents tracker load and collection",
+      "pass": true
+    },
+    {
+      "name": "excluded prevents tracker load and collection",
+      "pass": true
+    },
+    {
+      "name": "unconfigured prevents tracker load and collection",
+      "pass": true
+    },
+    {
+      "name": "local development does not load analytics",
+      "pass": true
+    },
+    {
+      "name": "scriptBlocked leaves landing and workspace usable",
+      "pass": true
+    },
+    {
+      "name": "collectorBlocked leaves landing and workspace usable",
+      "pass": true
+    },
+    {
+      "name": "no application browser exceptions",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "zero model requests",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "modelCalls": 0,
+  "checkSourceSha256": "9f1088efb3cb4ad9207abd406c3f22a4d547d183762177994a1121edbcabccd5"
+}

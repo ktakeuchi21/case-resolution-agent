@@ -1,0 +1,130 @@
+{
+  "schema": "pathway-analytics-browser-v1",
+  "timestamp": "2026-09-10T21:50:56.154Z",
+  "environment": "Actual local application and reviewed Umami tracker, synthetic database, virtual production host routing, intercepted collector, zero real analytics/model sends",
+  "results": [
+    {
+      "name": "expected page-view count 1",
+      "pass": true,
+      "detail": {
+        "actual": 1
+      }
+    },
+    {
+      "name": "unavailable backend does not delay overview tracking or create a session",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 2",
+      "pass": true,
+      "detail": {
+        "actual": 2
+      }
+    },
+    {
+      "name": "hash navigation has its own readable page name",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 3",
+      "pass": true,
+      "detail": {
+        "actual": 3
+      }
+    },
+    {
+      "name": "expected page-view count 4",
+      "pass": true,
+      "detail": {
+        "actual": 4
+      }
+    },
+    {
+      "name": "connection loading does not count an undisplayed workspace page",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 5",
+      "pass": true,
+      "detail": {
+        "actual": 5
+      }
+    }
+  ],
+  "errors": [
+    {
+      "url": "https://case-resolution-frontend.onrender.com/?private=ANALYTICS_CONTENT_CANARY#knowledge",
+      "visible": "Pathway\nAgent\nPreparing your workspace…\n\nThe demo is waking up. This can take about a minute.\n\nBack to overview\n\nA synthetic demonstration. No real outreach.",
+      "requests": [
+        {
+          "origin": "https://gateway.umami.is",
+          "path": "/api/send",
+          "method": "POST",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/healthz",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET"
+        },
+        {
+          "origin": "https://gateway.umami.is",
+          "path": "/api/send",
+          "method": "POST"
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/mark.svg",
+          "method": "GET",
+          "status": 200
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/healthz",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/healthz",
+          "method": "GET"
+        },
+        {
+          "origin": "https://case-resolution-frontend.onrender.com",
+          "path": "/healthz",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "modelCalls": 0,
+  "error": "TimeoutError: locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.knowledge-picker') to be visible\u001b[22m\n",
+  "checkSourceSha256": "5b03e095452ca62f604704c0402ee4b0372b118564050889a4316cdd9fc6cd61"
+}

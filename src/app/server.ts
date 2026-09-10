@@ -25,7 +25,7 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
  void app.studio.prune().catch(()=>{});
  const webRoot=resolve(options.webRoot??fileURLToPath(new URL('../../web/',import.meta.url)));
  const server=createServer(async(req,res)=>{
-  res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+  res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://gateway.umami.is; font-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
   res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','no-referrer');res.setHeader('Permissions-Policy','camera=(), microphone=(), geolocation=()');
   res.setHeader('X-Frame-Options','DENY');if(process.env.NODE_ENV==='production')res.setHeader('Strict-Transport-Security','max-age=31536000');
   let counted=false;

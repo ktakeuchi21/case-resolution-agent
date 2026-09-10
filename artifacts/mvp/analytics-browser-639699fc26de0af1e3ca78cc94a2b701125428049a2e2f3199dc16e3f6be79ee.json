@@ -1,0 +1,58 @@
+{
+  "schema": "pathway-analytics-browser-v1",
+  "timestamp": "2026-09-10T21:49:44.752Z",
+  "environment": "Actual local application and reviewed Umami tracker, synthetic database, virtual production host routing, intercepted collector, zero real analytics/model sends",
+  "results": [
+    {
+      "name": "expected page-view count 1",
+      "pass": true,
+      "detail": {
+        "actual": 1
+      }
+    },
+    {
+      "name": "unavailable backend does not delay overview tracking or create a session",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 2",
+      "pass": true,
+      "detail": {
+        "actual": 2
+      }
+    },
+    {
+      "name": "hash navigation has its own readable page name",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 3",
+      "pass": true,
+      "detail": {
+        "actual": 3
+      }
+    },
+    {
+      "name": "expected page-view count 4",
+      "pass": true,
+      "detail": {
+        "actual": 4
+      }
+    },
+    {
+      "name": "connection loading does not count an undisplayed workspace page",
+      "pass": true
+    },
+    {
+      "name": "expected page-view count 5",
+      "pass": true,
+      "detail": {
+        "actual": 5
+      }
+    }
+  ],
+  "errors": [],
+  "modelCalls": 0,
+  "error": "TimeoutError: locator.waitFor: Timeout 25000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('.knowledge-picker') to be visible\u001b[22m\n",
+  "checkSourceSha256": "fcf580f2d92d1eb7f7aa3b3bc885b022258a8354a65c54e8904f59541fb8b63d"
+}

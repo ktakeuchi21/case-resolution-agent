@@ -1,0 +1,22 @@
+{
+  "schema": "pathway-analytics-browser-v1",
+  "timestamp": "2026-09-10T21:48:54.535Z",
+  "environment": "Actual local application and reviewed Umami tracker, synthetic database, virtual production host routing, intercepted collector, zero real analytics/model sends",
+  "results": [
+    {
+      "name": "expected page-view count 1",
+      "pass": true,
+      "detail": {
+        "actual": 1
+      }
+    },
+    {
+      "name": "unavailable backend does not delay overview tracking or create a session",
+      "pass": false
+    }
+  ],
+  "errors": [],
+  "modelCalls": 0,
+  "error": "Error: unavailable backend does not delay overview tracking or create a session",
+  "checkSourceSha256": "576dc6014ea22c0aa3fe315af52359e57939704c8885841f6516f0a60d1b21f9"
+}
