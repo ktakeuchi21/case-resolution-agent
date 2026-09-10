@@ -42,7 +42,7 @@ Configure these names using the host's secret/environment controls. Never put se
 | `PATHWAY_DATABASE_CA_FILE` | `/app/dist/config/supabase-ca.crt` in the Docker runtime; required by the hosted profile |
 | `PATHWAY_ADMIN_DATABASE_URL` | Migration environment only; never present in the running public service |
 
-No OpenAI key is configured in the public deployment. Guests use reviewed cached embeddings and visibly deterministic evidence explanations. Unknown queries can pause on cache miss; the server does not silently substitute lexical retrieval or make paid provider calls. The optional server-only OpenAI explanation adapter is not enabled by this package.
+The current deployment uses the server-side configured `gpt-4.1-mini-2025-04-14` conversation provider with a durable daily cap of 100, an 18-second request deadline and a 4,800-output-token limit. Provider credentials stay in Render secret configuration. Retrieval keeps the governed durable entry point and reviewed cached embeddings; provider failure pauses explicitly, without automatic model retries or an undisclosed weaker fallback. The earlier deterministic evidence explanation remains a separately labeled mode, not proof of live model quality. See [contextual verification](contextual-verification.md) for current acceptance limits.
 
 The application offers cryptographic anonymous demo sessions, not production employee identity verification. Demo-role switching affects only a server-selected synthetic workspace. Request, body, concurrency, session and storage limits remain necessary; inspect current `src/app/session.ts` and `src/app/service.ts` and the public threat model before deployment. HTTPS is required for hosted session cookies. A plain-HTTP local test with `NODE_ENV=production` can inspect headers and static files, but browser cookie behavior must be tested over HTTPS or with the documented local-development environment.
 
@@ -100,3 +100,14 @@ Public question privacy boundary: only the reviewed frozen synthetic questions, 
 
 
 September 8 database release gate: [hosted qualification report](../artifacts/mvp/hosted-database-qualification-7761ac4f9bc7b6c55a4d3f82e87f4118259a9201eb0d37b54ce307cb4c9ec6df.json) records passing hosted access/RLS, exact vector/citation fidelity, immutable workflow links and retirement/history checks. The 459 vectors were verified using round-trippable float output; the audit changes only transaction-local formatting. Render secret import, deployed HTTPS and browser checks passed; see [hosted verification](hosted-verification.md).
+
+
+## September 10 verified Launchpad release
+
+The owner-approved capacity change from 64 to 128 lifetime workspaces is deployed without deleting history or changing Free resources or the daily provider cap of 100. The aggregate snapshot at 19:26 UTC recorded 72 workspace reservations and 87 provider request reservations for the day. The capacity is a lifetime bound, not an automatically replenished session allowance.
+
+Verified runtime: `0aa0143ce0ffa2feb0e98440ccae50915db86b65`, backend `dep-dahg60fqj5pc73aiq810`, static `dep-dahg64n40ujc73aj0pdg`. All 285 automated tests, 28/28 public Launchpad checks and 31/31 public transport/security checks pass. Desktop first contentful paint was 368 ms in the final warm/fresh-browser sample; this is not a guaranteed cold-start or model latency. The earlier idle-start measurement remains in the static frontend report.
+
+The public journey is **[overview](https://case-resolution-frontend.onrender.com) → Launch → Use sample knowledge → What document is missing?** The workspace shows the role, AI purpose, knowledge coverage and four prompts before the first message, then retains a compact context bar. Change role, Change knowledge and View context remain available. Governed packs and temporary sandbox documents retain their existing authority boundaries.
+
+Manual public navigation and desktop/tablet/mobile screenshots were inspected. The visible evaluation report retains the failed/incomplete broader multi-turn comparison; accepted Launchpad behavior is not general conversation-quality certification. See [the acceptance audit](launchpad-acceptance-audit.md) for the complete A–H mapping and artifact paths. The final report/evaluation release below contains the same runtime source as this tested revision.

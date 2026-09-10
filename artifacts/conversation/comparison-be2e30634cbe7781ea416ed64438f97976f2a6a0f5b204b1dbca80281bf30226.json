@@ -1,0 +1,133 @@
+{
+  "schema": "pathway-contextual-comparison-v1",
+  "timestamp": "2026-09-10T19:24:44.904Z",
+  "status": "recorded_with_semantic_review",
+  "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+  "baselineRevision": "acaabee",
+  "baseline": {
+    "artifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+    "turns": 12,
+    "exactPrompts": true,
+    "acceptedTurns": 9,
+    "unnecessaryClarifications": 2,
+    "pausedTurns": 1,
+    "mechanicalChecks": {
+      "passed": 41,
+      "total": 52,
+      "failures": [
+        "turn 3 returns a validated answer",
+        "turn 5 returns a validated answer",
+        "turn 11 returns a validated answer",
+        "A contextual rationale has no clarification",
+        "B evidence identifies exact source passage",
+        "C recipient copy excludes internal metadata",
+        "D at least 25 percent fewer words",
+        "E case-manager handoff preserves lineage",
+        "F generic SMS within limit",
+        "H recall and summary attribute memory",
+        "K evidence does not coexist with unassessed dependency"
+      ]
+    },
+    "emailWords": 72,
+    "refinedWords": 76,
+    "reductionPercent": -5.555555555555555,
+    "smsCharacters": 146,
+    "medianLatencyMs": 6242,
+    "maximumLatencyMs": 9262,
+    "reportedProviderRequests": 17,
+    "inputTokens": 17750,
+    "outputTokens": 3173,
+    "conservativeTokenEstimateUsd": 0.0121768,
+    "models": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  "redesigned": {
+    "artifact": "artifacts/conversation/contextual-redesigned-311d42fc8e01b1c9729977b0bbbab53468a275b4e77f838ee28246726e2aaec4.json",
+    "turns": 10,
+    "exactPrompts": false,
+    "acceptedTurns": 4,
+    "unnecessaryClarifications": 0,
+    "pausedTurns": 6,
+    "mechanicalChecks": {
+      "passed": 35,
+      "total": 41,
+      "failures": [
+        "turn 1 returns a validated answer",
+        "turn 4 returns a validated answer",
+        "turn 6 returns a validated answer",
+        "turn 7 returns a validated answer",
+        "turn 8 returns a validated answer",
+        "turn 10 returns a validated answer"
+      ]
+    },
+    "emailWords": 0,
+    "refinedWords": 0,
+    "reductionPercent": null,
+    "smsCharacters": 62,
+    "medianLatencyMs": 9948,
+    "maximumLatencyMs": 23530,
+    "reportedProviderRequests": 23,
+    "inputTokens": 48191,
+    "outputTokens": 3622,
+    "conservativeTokenEstimateUsd": 0.025071600000000003,
+    "models": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  "commonMechanicalChecks": {
+    "baseline": {
+      "passed": 28,
+      "total": 30
+    },
+    "redesigned": {
+      "passed": 24,
+      "total": 30
+    }
+  },
+  "manualSemanticReview": {
+    "schema": "pathway-contextual-semantic-review-v1",
+    "timestamp": "2026-09-10T19:08:54.144Z",
+    "reviewer": "Codex manual reading of all ten saved responses and their generated prose/claims/reviews; not independent human assessment",
+    "casesSha256": "b69c46bfc4ddda87afbe57c3b225d2b59cecd613692b60dbd1884a736e93ae26",
+    "baselineArtifact": "artifacts/conversation/contextual-baseline-c888e8d1b1bf0f2d2fb187cd21cd294675972bb14f182e5573066c8c31f271ee.json",
+    "redesignedArtifact": "artifacts/conversation/contextual-redesigned-311d42fc8e01b1c9729977b0bbbab53468a275b4e77f838ee28246726e2aaec4.json",
+    "redesignedRevision": "689de21bc745254ca725334bafc583c1585f6b35",
+    "status": "incomplete_failed_acceptance_requires_correction",
+    "summary": "The ten-turn partial run accepted four responses. A reported-interaction schema error stopped the final two prompts; this is not a complete twelve-prompt comparison. The separate Launchpad trace passed 28/28 on this revision.",
+    "findings": [
+      {
+        "dimension": "Transport and slot constraints",
+        "result": "Default next action paused because the model filled requestedAction; schema should require null as runtime already does. One evidence turn timed out during review. Report schema contains a derived text constraint beside a shared reference, rejected by the provider."
+      },
+      {
+        "dimension": "Office draft",
+        "result": "Subject is now informative and introduction is a separate neutral acknowledgment. The body still proposed an unsupported document-before-follow-up prerequisite and case-controls wording; deterministic validation correctly paused it. No accepted artifact existed for the next two refinements, which also paused."
+      },
+      {
+        "dimension": "SMS",
+        "result": "Withholding case context produced a valid 62-character generic workspace invitation with channel-policy support. It was generated/not sent and created no effect. This is a newly requested draft after paused predecessors, not a proof of valid conversion lineage."
+      },
+      {
+        "dimension": "Accepted rationale and evidence",
+        "result": "Rationale explains the current next step with current quoted support. Evidence describes source categories; exact citations remain inspectable, but the direct answer does not quote the requested source passage, so full evidence-answer usefulness is not established."
+      }
+    ],
+    "limitations": [
+      "Repeated synthetic prompts, no holdout or independent assessment.",
+      "Four accepted responses and a successful Launchpad trace do not establish complete conversational acceptance.",
+      "Fresh repair qualification and a later complete core remain necessary."
+    ],
+    "supersedesArtifact": "artifacts/conversation/semantic-review-046b82107f84eef3caac205487c01096efa7fabfd9c7dc0bc78538374b5daa9d.json",
+    "correction": "SMS body length measured from the saved response is 62 characters; the earlier review misstated it as 59."
+  },
+  "semanticReviewArtifact": "artifacts/conversation/semantic-review-da2c507035242f8eb3cf3364a0394cd80663066e3d58e22019ad798de4abc3f5.json",
+  "caveats": [
+    "Exact twelve-prompt core comparison; developer-authored synthetic conversation, not an independent holdout.",
+    "Mechanical checks do not prove natural-language entailment or response usefulness; semantic review is separate.",
+    "Old bodies include their template subject and internal metadata; each shortening ratio compares that arm’s own body field.",
+    "Latency is end-to-end browser submission to saved display, including service/network effects. Cache and free-service cold starts may differ.",
+    "Reported generation requests/tokens exclude embedding usage and unreported failed-request tokens. A conservative September 9, 2026 estimate uses $0.40/M input and $1.60/M output, ignoring cache discounts; not a billing record.",
+    "The earlier boundary continuation is a reference trace; the new boundary scenario is separately isolated. Only the core is presented as an exact conversational pair."
+  ]
+}

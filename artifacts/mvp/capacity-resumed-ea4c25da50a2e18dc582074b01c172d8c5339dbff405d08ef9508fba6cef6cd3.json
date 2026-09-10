@@ -1,0 +1,27 @@
+{
+  "schema": "pathway-capacity-resumed-v1",
+  "recordedAt": "2026-09-10T19:27:54.423Z",
+  "observedAt": "2026-09-10T19:26:38.931Z",
+  "ownerAuthorized": true,
+  "previousLimit": 64,
+  "lifetimeWorkspaceLimit": 128,
+  "reservedWorkspaces": 72,
+  "databaseBytes": 85150867,
+  "activeWorkspaceSessions": 9,
+  "providerDay": "2026-09-10",
+  "providerReservedRequests": 87,
+  "providerDailyCap": 100,
+  "resources": "Existing Free Render services and existing database; no new paid resource",
+  "historyDeleted": false,
+  "verification": {
+    "newWorkspaceEntry": "passed",
+    "launchpad": "28/28",
+    "publicTransport": "31/31",
+    "fullAutomatedTests": 285
+  },
+  "limitations": [
+    "Aggregate snapshot, not visitor records or an uptime/load test.",
+    "Workspace capacity remains a lifetime limit; expiry does not replenish it.",
+    "Broader conversation quality remains incompletely qualified."
+  ]
+}

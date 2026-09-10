@@ -1,17 +1,19 @@
 # Conversation Launchpad
 
-## September 10 — Deployed Launchpad acceptance
+**Current September 10 release:** the deployed Launchpad passes 28/28, including the actual live suggested answer; public hosting/security checks pass 31/31. Desktop first contentful paint measured 368 ms in the latest fresh-browser sample. The approved workspace cap is 128, existing history is preserved, Free hosting and daily provider cap 100 remain unchanged. The broader multi-turn conversation comparison remains incomplete and is not represented as passing. See [the current acceptance audit](launchpad-acceptance-audit.md) for final evidence; chronological checkpoints below are historical.
+
+## Earlier September 10 checkpoint — deployed Launchpad acceptance
 
 The deployed Launchpad passed **28/28 checks** on `689de21bc745254ca725334bafc583c1585f6b35`: `artifacts/digital-worker/launchpad-browser-785a089025368e11f37e88f12aa0e95c833b1f3b082417ba32880d3b90954358.json`. This includes the real default model answer, direct keyboard submission, compact return behavior, role and knowledge changes, preserved history/assignment, sandbox deletion recovery, and desktop/tablet/mobile geometry and touch targets. Manual inspection of four fresh screenshots confirms the visible answer/composer; screenshots are `docs/screenshots/launchpad-live-2026-09-10-*.png`. Manual CDN → Launch → sample navigation also reached the full orientation with the composer focused and no overflow.
 
 The separate full conversation qualification remains incomplete. Its latest partial run reached ten prompts before a reported-interaction schema rejection; four answers were accepted, and unsupported draft wording was safely paused. A fresh report-text string schema removes the invalid shared-reference sibling, composition now requires `requestedAction:null`, and office drafts receive document evidence without internal workflow sequencing. All 100 agent tests, type checking, build and hygiene pass. Focused live checks follow; these do not substitute for a complete frozen conversation comparison. See `contextual-verification.md` and the current semantic review for the retained failures.
 
-## September 10 resumed release
+## Earlier September 10 checkpoint — resumed release
 
 The owner-approved lifetime workspace cap of 128 is deployed; new workspace entry is verified without deleting historical records. The separately blocking live schema issue was cleared for the default suggested question at `7a1fc250e234df84d242cf25cacde7b95e94acca`: nine canonical neutral greetings/acknowledgments replace their whitespace variants, preserving material-claim citations and all validation. The live result identifies the signed office note and cites both the notice and submitted-package inventory. Full verification passes 278 tests. Fresh full Launchpad and conversation qualification is being completed; see `launchpad-acceptance-audit.md` for final evidence.
 
 
-The current [requirement-by-requirement acceptance audit](launchpad-acceptance-audit.md) distinguishes verified interface/governance behavior from the remaining live-provider gate.
+The current [requirement-by-requirement acceptance audit](launchpad-acceptance-audit.md) records the completed Launchpad scope and separate conversation-quality limitations.
 
 ## Implementation plan
 
@@ -30,7 +32,7 @@ Add an orientation layer inside the existing chat: synthetic identity and role, 
 - Presentation state is local to the chat component and derives its return/new-conversation behavior from durable entries. No new persistent schema, role grant, case assignment or acknowledgement is introduced.
 - Existing teal/ink application design and native controls remain. Target sizes are at least 44 CSS pixels; the composer stays in its own non-scrolling row. Full orientation scrolls inside chat on narrow screens.
 
-Verification and deployment evidence will be recorded after implementation. The independently documented provider-schema failure is not resolved by static orientation.
+Verification and deployment evidence are recorded in the current acceptance audit. Static orientation alone did not resolve the provider-schema failure; subsequent provider-schema corrections restored the default suggested answer.
 
 ## User journey and verification
 
