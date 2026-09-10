@@ -1,5 +1,11 @@
 # Conversation Launchpad acceptance audit
 
+## September 10 resumed verification
+
+At 16:32 UTC, the hosted counter reported zero reservations for the new day. The live launchpad trace then passed 27/28 checks (`artifacts/digital-worker/launchpad-browser-5a81c3b82e39cdafc126a76bf68eaf7dccc5cc760fab90cbbe483dd67c626608.json`); B now reaches the configured provider and fails with `PROVIDER_SCHEMA_REJECTED_ANYOF_NOT_ALLOWED_FORMAT`. Budget exhaustion is no longer the blocker. Normal governed answer acceptance remains incomplete. The goal's retained blocked status did not schedule an automatic resume.
+
+The diagnostic follow-up resolves local JSON-schema references when error locations describe expanded structure, with cycle/remote-reference guards, and adds fixed root/context/object/array category tokens. No raw provider text or schema path is emitted. Type checking, all 92 agent tests, production build and hygiene pass; successful generation behavior and schema restrictions are unchanged. The next live probe will identify whether the rejection is specifically at the root or within a referenced structure.
+
 Audited September 9, 2026 against the full active Conversation Launchpad objective, current source and retained execution evidence. The previous goal turn made progress: revision `a63de72` was deployed to both Render services, with successful public hosting/security checks. **Overall completion remains unproven because acceptance B lacks a successful response from the configured live provider.** Interface and fixture results cannot substitute for that response.
 
 ## Requirement-by-requirement evidence

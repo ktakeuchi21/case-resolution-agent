@@ -20,7 +20,7 @@ export interface SynthesisProvider extends Partial<ContextualProvider> {
 }
 export class AgentProviderFailure extends Error { readonly code: string; constructor(code: string) { super(code); this.code = code; this.name = 'AgentProviderFailure'; } }
 export function schemaRejectionCode(message:unknown,schema?:unknown){
- const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format'];
+ const allowed=['$ref','description','enum','const','maxItems','minItems','anyOf','oneOf','allOf','additionalProperties','required','pattern','$defs','items','unsupported','not permitted','not allowed','not supported','missing','duplicate','identical','first keys','whitespace','empty','maximum','minimum','format','root','top level','top-level','context','nested','object','array','properties'];
  const text=typeof message==='string'?message.toLowerCase():'';
  const tags=allowed.filter(word=>text.includes(word.toLowerCase())).map(word=>word.replace(/\W/g,'_').toUpperCase());
  const category='PROVIDER_SCHEMA_REJECTED'+(tags.length?'_'+tags.join('_'):'');
@@ -33,10 +33,18 @@ export function schemaRejectionCode(message:unknown,schema?:unknown){
  if(tokens.length>32)return category;
  const path:string[]=[];
  for(const token of tokens){const quoted=token.match(/^(['"])([^'"\r\n]{1,160})\1$/);if(quoted)path.push(quoted[2]!);else if(/^\d{1,4}$/.test(token))path.push(token);else return category;}
- let selected:unknown=schema;
- for(const key of path){if(!selected||typeof selected!=='object'||!Object.hasOwn(selected,key))return category;selected=(selected as Record<string,unknown>)[key];}
+ let selected:unknown=schema,canonical:string[]=[];
+ // Error locations can describe the expanded schema, stepping through a $ref
+ // without including its definition path. Resolve only local JSON pointers.
+ const resolveRef=()=>{const seen=new Set<string>();while(selected&&typeof selected==='object'&&Object.hasOwn(selected,'$ref')){
+  const ref=(selected as Record<string,unknown>).$ref;if(typeof ref!=='string'||!ref.startsWith('#/')||seen.has(ref)||seen.size>=32)return false;seen.add(ref);
+  const target=ref.slice(2).split('/').map(part=>part.replace(/~1/g,'/').replace(/~0/g,'~'));let node:unknown=schema;
+  for(const key of target){if(!node||typeof node!=='object'||!Object.hasOwn(node,key))return false;node=(node as Record<string,unknown>)[key];}
+  selected=node;canonical=target;
+ }return true;};
+ for(const key of path){if(!selected||typeof selected!=='object')return category;if(!Object.hasOwn(selected,key)&&!resolveRef())return category;if(!selected||typeof selected!=='object'||!Object.hasOwn(selected,key))return category;selected=(selected as Record<string,unknown>)[key];canonical.push(key);}
  if(!selected||typeof selected!=='object')return category;
- let count=0,index:number|null=null;const target=JSON.stringify(path);
+ let count=0,index:number|null=null;const target=JSON.stringify(canonical);
  const visit=(node:unknown,at:string[]):void=>{if(!node||typeof node!=='object')return;const n=count++;if(JSON.stringify(at)===target)index=n;for(const [key,value] of Object.entries(node))visit(value,[...at,key]);};
  visit(schema,[]);
  return index===null?category:category+'_AT_NODE_'+index+'_SCHEMA_'+textHash(JSON.stringify(schema)).slice(0,12);
