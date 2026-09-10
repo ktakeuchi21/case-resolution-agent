@@ -124,3 +124,10 @@ Release `50a46a0bdbe205d24b25c5ae76b714e4160a3274` is Live on both manual servic
 Authenticated dashboard source links match the full release SHA. The final backend health and six public asset hashes pass in `artifacts/conversation/public-smoke-010da02698ee9b76ea5f26bec0247c91a84036688b6569280ca02cdf21b171a3.json`; the static build matches all public assets and excludes source/private paths, **16/16**, in `artifacts/mvp/static-assets-2c65428dafd22d8b03692dfe64e2578a297bd7160ef2aea70fc6c7b0f3b00b9c.json`. Build emits 248 runtime files and validates 160 cached embedding records. Hygiene passes.
 
 Manual post-deploy navigation displays the updated 285-test evaluation and the explicit four-of-ten partial conversation limitation, then returns to chat with its composer present and no horizontal overflow. No additional model call was needed for this report-only release. The following Git commit merely retains this post-deployment record and does not change the deployed application.
+
+
+## Private visitor analytics release — September 10
+
+`bc42466472abbaa7b274f662d2cfac1e3d869618` adds the locally served reviewed Umami tracker, allowlisted manual page views and a footer opt-out on both public origins. Backend `dep-dahigkcs728c73b8phv0` and static `dep-dahigrks728c73b8qbig` are Live on the matching revision; the static dashboard CSP additionally permits only `https://gateway.umami.is` for connections. Scripts remain same-origin.
+
+Verification passes 89 core tests, 29 application/security tests, type checking/build/hygiene, 45 focused local browser checks, 19 CDN checks and eight public acceptance checks. A controlled six-page visit appears in the private Umami dashboard with approximate country information; first contentful paint was 464 ms in that sample. No model requests were made. Setup, privacy limits, exclusion, page mapping, dashboard URL and exact evidence are in [visitor analytics](analytics.md). Analytics is separate from retained workflow records and the outstanding conversation-quality work.

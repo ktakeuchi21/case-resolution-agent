@@ -4,7 +4,7 @@
 
 One private **Pathway Agent** website in Umami Cloud Hobby will cover the public overview and workspace. The integration uses page views only: estimated visitors/visits, popular pages, approximate geography and device breakdown. No paid analytics resource, database table, application collection endpoint, model request or custom administration page is added.
 
-**Activation status:** the owner signed into Umami and the private Pathway Agent website was created with public ID `ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5`. No share link exists. Replays/heatmaps are unavailable without a Business upgrade; no upgrade or paid trial was initiated. Local verification passes; deployment and the first actual dashboard event are pending.
+**Activation status: live and verified September 10, 2026.** The owner signed into Umami and the private Pathway Agent website was created with public ID `ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5`. No share link exists. Replays/heatmaps are unavailable without a Business upgrade; no upgrade or paid trial was initiated. Both Render services are Live on `bc42466472abbaa7b274f662d2cfac1e3d869618`. The controlled six-page visit was accepted by the collector and displayed in the authenticated dashboard as one visitor, one visit and six views, with United States under Location. These initial counts are verification traffic, not an audience-growth claim.
 
 Private dashboard: https://cloud.umami.is/analytics/us/websites/ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5 (owner login required).
 
@@ -34,7 +34,7 @@ The reviewed script is shipped with the application so a vendor script update ca
 2. Under Websites, add **Pathway Agent**, domain `case-resolution-frontend.onrender.com`. Use this one website ID for both application origins. Keep its share URL disabled and replay/heatmap recording disabled.
 3. Copy the public website ID from its tracking snippet into `web/analytics-config.js`. No account credential is required by the app.
 4. Deploy matching backend/frontend revisions manually. Update the existing static site's CSP header in Render as well as the repository Blueprint; existing dashboard-managed configuration does not automatically follow a file change.
-5. Open the private website dashboard, choose Today, Last 7 days, Last 30 days or a custom range. View Visitors, Visits, Views, Pages, Locations and Devices. Select the frontend hostname for public-entry traffic or the backend hostname for workspace usage. Page titles provide the readable names.
+5. Open the private website dashboard, choose Today, Last 7 days, Last 30 days or a custom range. View Visitors, Visits, Views, Pages, Locations and Devices. Select the frontend hostname for public-entry traffic or the backend hostname for workspace usage. Pages lists the paths below; Filter also supports Page title. Use **Filter → Hostname** to distinguish the two surfaces.
 6. A controlled post-deployment visit must appear in the dashboard before activation is reported complete. Deliver the authenticated dashboard URL, not a public share link.
 
 Do not sum visitor counts across the two hostnames as unique people. Anonymous estimates can count the same person more than once; shared networks, changing devices and VPNs also affect identity and geography. Counts begin at activation, with no historical backfill. Existing workspace reservations include tests and are not visitor statistics. Account quota/retention were not displayed in the website settings; no numeric allowance is promised. An allowance change is not authorization to upgrade.
@@ -55,3 +55,31 @@ Do Not Track and Global Privacy Control disable tracking before the tracker load
 Official references: [configuration](https://docs.umami.is/docs/tracker-configuration), [manual payloads](https://docs.umami.is/docs/tracker-functions), [metrics and geography](https://docs.umami.is/docs/metric-definitions), [free plan](https://docs.umami.is/docs/cloud/faq), [browser exclusion](https://docs.umami.is/docs/exclude-my-own-visits).
 
 September 10 local verification: **89 core tests (including eight analytics tests), 29 application/security tests, type checking, production build and hygiene pass**. The focused real-browser suite passes **45/45** with intercepted collection and zero model requests: `artifacts/mvp/analytics-browser-c22ab2f4f67c1e070ef0858eb39df20f64c92407e90086a41e1d45ebcb07b17e.json`. Desktop/tablet/mobile disclosure screenshots were inspected. Earlier retained browser failures were harness corrections (collector/app request distinction, full readiness contract and exact sample-button accessible name), not successful product traces.
+
+
+## September 10 deployment evidence
+
+| Service | Deployment | Render recorded start (MDT) | Result |
+| --- | --- | --- | --- |
+| Backend, existing Free instance | `dep-dahigkcs728c73b8phv0` | 3:59:45 PM | Live, 34.7 s |
+| Static frontend | `dep-dahigrks728c73b8qbig` | 4:00:14 PM | Live, 34.2 s |
+
+Both source links match `bc42466472abbaa7b274f662d2cfac1e3d869618`. The static dashboard CSP was saved and both live origins return the intended policy. Backend health/assets pass (`artifacts/conversation/public-smoke-2035505f83cdbe47811475a8ee403b75b25b8c7910671d7c2b2008ac0815dbdf.json`); static assets/private-path checks pass **19/19** (`artifacts/mvp/static-assets-e9c3769724704fc8af05bef1ab11602fd22408febd8604b1f8052be79767a4df.json`).
+
+The deliberately counted public acceptance visit passes **8/8** checks: `artifacts/mvp/analytics-public-9c3ec1852a8700dc71218facf621b6749f089832db34ea37e30c8e3bf7218f51.json`. Overview → Approach → Choose Knowledge → Chat → Knowledge Studio → Evaluation produced exactly six sanitized requests, all HTTP 200. The UI dashboard separately showed these six paths, one anonymous visitor/visit, Chrome and United States. First contentful paint was **464 ms**, TTFB **220 ms**, in this one desktop sample, not an uptime or cold-start guarantee. No model requests occurred.
+
+The post-release record is documentation/test evidence only; it does not require a second runtime deployment. Existing provider cap 100, workspace cap 128, retained history, manual deployment and Free services are unchanged. The separate failed/incomplete conversation-quality qualification remains unchanged by analytics.
+
+| Dashboard path | Page |
+| --- | --- |
+| `/` | Overview |
+| `/approach` | Approach |
+| `/knowledge` | Choose Knowledge |
+| `/agent` | Chat |
+| `/workspace` | Case Workspace |
+| `/studio` | Knowledge Studio |
+| `/evidence` | Evidence |
+| `/review` | Human Review |
+| `/tour` | Walkthrough |
+| `/settings` | Settings |
+| `/evaluation` | Evaluation |

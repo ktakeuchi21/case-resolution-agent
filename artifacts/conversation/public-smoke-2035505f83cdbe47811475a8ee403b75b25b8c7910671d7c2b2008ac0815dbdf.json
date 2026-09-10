@@ -1,0 +1,48 @@
+{
+  "schema": "pathway-contextual-public-smoke-v1",
+  "timestamp": "2026-09-10T22:02:11.688Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "revision": "bc42466472abbaa7b274f662d2cfac1e3d869618",
+  "deployment": "dep-dahigkcs728c73b8phv0",
+  "healthStatus": 200,
+  "results": [
+    {
+      "name": "agent.js",
+      "status": 200,
+      "sha256": "526e4489ebae8d307b22eeb7135ac41c2557f67a730f29772459245d03e08358",
+      "latencyMs": 71
+    },
+    {
+      "name": "app.js",
+      "status": 200,
+      "sha256": "e374bd88777300b354c695bb24aef71044c6f89db0f7c110010fa439a3fb40ce",
+      "latencyMs": 98
+    },
+    {
+      "name": "studio.js",
+      "status": 200,
+      "sha256": "166975b7e70cf2e6af459783c61efd07b403affa60a128e38d3248064a79133b",
+      "latencyMs": 122
+    },
+    {
+      "name": "styles.css",
+      "status": 200,
+      "sha256": "d192e0d68e587eceb24ff24d0097e39c0997c0d2aacab23ff067a04c7b5904c7",
+      "latencyMs": 138
+    },
+    {
+      "name": "tour.js",
+      "status": 200,
+      "sha256": "4a3fe4404295790791997c38b72bf5cc4ebc1d886f8886ad542f4e96a116215a",
+      "latencyMs": 106
+    },
+    {
+      "name": "evaluation.json",
+      "status": 200,
+      "sha256": "692052091a0b69bc641a041a50f7acdd87bb799b2ca4f5c4fcaaaa07371e3da1",
+      "latencyMs": 101
+    }
+  ],
+  "pass": true,
+  "limitations": "One read-only deployment/asset check. Revision and deployment were verified in the authenticated Render dashboard; asset parity alone cannot prove server code identity. No provider requests, load or uptime test."
+}

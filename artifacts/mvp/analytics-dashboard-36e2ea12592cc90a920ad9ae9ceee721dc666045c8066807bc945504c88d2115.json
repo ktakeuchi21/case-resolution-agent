@@ -1,0 +1,25 @@
+{
+  "schema": "pathway-analytics-dashboard-observation-v1",
+  "observedDate": "2026-09-10",
+  "websiteId": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+  "dashboard": "https://cloud.umami.is/analytics/us/websites/ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+  "source": "Authenticated Umami dashboard rendered UI, inspected through native browser automation",
+  "range": "Last 24 hours",
+  "visitors": 1,
+  "visits": 1,
+  "views": 6,
+  "pages": [
+    "/",
+    "/approach",
+    "/knowledge",
+    "/agent",
+    "/studio",
+    "/evaluation"
+  ],
+  "country": "United States",
+  "browser": "Chrome",
+  "sharing": "No share links",
+  "replayHeatmaps": "Unavailable without Business upgrade; not enabled",
+  "paidActionTaken": false,
+  "limitation": "Initial counts include the single intentional acceptance visit. Anonymous visitor identity and IP-derived geography are estimates. No personal account identity, cookies or IP address retained."
+}

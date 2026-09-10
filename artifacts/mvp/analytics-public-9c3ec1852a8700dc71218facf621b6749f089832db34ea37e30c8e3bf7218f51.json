@@ -1,0 +1,128 @@
+{
+  "schema": "pathway-analytics-public-v1",
+  "timestamp": "2026-09-10T22:02:09.555Z",
+  "revision": "bc42466472abbaa7b274f662d2cfac1e3d869618",
+  "results": [
+    {
+      "name": "overview event uses sanitized public route",
+      "pass": true
+    },
+    {
+      "name": "all six controlled page entries collected once",
+      "pass": true
+    },
+    {
+      "name": "collector accepts all page requests",
+      "pass": true
+    },
+    {
+      "name": "both production hostnames represented",
+      "pass": true
+    },
+    {
+      "name": "only allowlisted metadata and mapped paths transmitted",
+      "pass": true
+    },
+    {
+      "name": "exact collector allowed with local scripts at https://case-resolution-frontend.onrender.com",
+      "pass": true
+    },
+    {
+      "name": "exact collector allowed with local scripts at https://case-resolution-agent.onrender.com",
+      "pass": true
+    },
+    {
+      "name": "no browser errors or model requests",
+      "pass": true
+    }
+  ],
+  "events": [
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-frontend.onrender.com",
+        "url": "/",
+        "title": "Overview",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    },
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-frontend.onrender.com",
+        "url": "/approach",
+        "title": "Approach",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    },
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-agent.onrender.com",
+        "url": "/knowledge",
+        "title": "Choose Knowledge",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    },
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-agent.onrender.com",
+        "url": "/agent",
+        "title": "Chat",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    },
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-agent.onrender.com",
+        "url": "/studio",
+        "title": "Knowledge Studio",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    },
+    {
+      "type": "event",
+      "payload": {
+        "website": "ebedd5c5-0e67-4fa0-97c2-09b6d8256ee5",
+        "hostname": "case-resolution-agent.onrender.com",
+        "url": "/evaluation",
+        "title": "Evaluation",
+        "referrer": "",
+        "language": "en-US",
+        "screen": "1440x1000"
+      }
+    }
+  ],
+  "responses": [
+    200,
+    200,
+    200,
+    200,
+    200,
+    200
+  ],
+  "metrics": {
+    "firstContentfulPaintMs": 464,
+    "ttfbMs": 220.39999997615814
+  },
+  "errors": [],
+  "modelCalls": 0,
+  "claim": "One deliberately counted six-page public acceptance visit. Collector responses are verified; private dashboard observation is recorded separately. No model calls or identity claims."
+}
