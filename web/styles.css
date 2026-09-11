@@ -51,8 +51,6 @@
 .answer-lead,.answer-rationale { white-space:pre-line; }
 .answer-next>summary,.citation-list>summary { font-weight:600; cursor:pointer; }
 .answer-next[open]>summary,.citation-list[open]>summary { margin-bottom:12px; }
-.turn-feedback { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:14px 0; }
-.turn-feedback button { font-size:.78rem; padding:6px 10px; }
 .older-turn { border-bottom:1px solid var(--line); padding:10px 0; }
 .older-turn>summary { display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 20px; padding:10px 12px; cursor:pointer; }
 .older-turn[open]>summary { margin-bottom:12px; }

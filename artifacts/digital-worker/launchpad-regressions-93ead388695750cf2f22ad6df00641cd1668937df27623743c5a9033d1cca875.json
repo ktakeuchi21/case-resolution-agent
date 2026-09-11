@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-09-11T16:00:07.369Z",
+  "environment": "Local explicit fixture; no live model calls",
+  "reports": [
+    {
+      "group": "contextual-ui",
+      "schema": "pathway-contextual-ui-v1",
+      "timestamp": "2026-09-11T16:00:07.357Z",
+      "environment": "Local deterministic provider fixture; UI/API contract checks only, NOT live model quality",
+      "results": [],
+      "errors": [],
+      "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Use sample knowledge →', exact: true })\u001b[22m\n",
+      "checkSourceSha256": "61771e3c6f50628f5a359ac43fda35050fdc7b4fdd453f932f74d29f4defd9f4"
+    }
+  ]
+}

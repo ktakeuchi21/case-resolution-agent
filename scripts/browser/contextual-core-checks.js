@@ -41,8 +41,7 @@ async page => {
   await latest.locator('.citation-list>summary').click();await latest.locator('.readable-citation>summary').first().click();
   check('M exact evidence expands within conversation',await latest.locator('blockquote').first().isVisible());
   check('M evidence expansion preserves composer',await page.locator('#agent-form').evaluate(n=>{const r=n.getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight+1;}));
-  await latest.getByRole('button',{name:'Helpful answer',exact:true}).click();await page.waitForFunction(()=>document.body.textContent.includes('Feedback recorded. Thank you.'));
-  check('public feedback persisted',await page.evaluate(async()=>((await(await fetch('/api/state')).json()).agent.feedback.length===1)));
+  check('chat answers omit regeneration and feedback controls',await page.locator('.turn-feedback,[data-regenerate],[data-feedback]').count()===0);
   for(const width of [1440,768,375]){await page.setViewportSize({width,height:width===375?812:1000});check('no overflow at '+width,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:'output/playwright/contextual-'+arm+'-'+width+'.png',fullPage:true});}
  }catch(e){error=String(e);}
  page.off('pageerror',pageError);check('no browser exceptions',errors.length===0,errors);
