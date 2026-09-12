@@ -1,0 +1,1528 @@
+{
+  "suite": "rag-conversation-v1",
+  "mode": "work-product",
+  "runLabel": "",
+  "startedAt": "2026-09-12T12:44:24.286Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "live": true,
+  "results": [
+    {
+      "id": "alder-04",
+      "category": "work-product",
+      "reviewCriterion": "Complete office email with signed-note ask and secure-channel direction.",
+      "expected": [
+        "alder.COM-01.1",
+        "alder.N-101.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2789,
+      "humanReview": null,
+      "turn": {
+        "id": "cceb4e5e-04a4-4aa7-b16e-478d93af0f78",
+        "question": "Draft a short email requesting the document.",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:44:24.831Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a short draft requesting the signed office note. [1] [2] [3]",
+          "citations": [
+            "alder.COM-01.1",
+            "alder.N-101.1",
+            "alder.PROC-01.1"
+          ],
+          "suggestedFollowups": [
+            "Make it warmer and shorter",
+            "Add the case reference and secure-channel reminder"
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Request for signed office note – Case ALD-1042",
+            "body": "Dear Alder HCP Office,\n\nPlease send the signed office note for case ALD-1042, request N-101, through your established secure document channel. The signed note, including the signature page, is needed to complete the documentation package.\n\nThank you for your help.\n\nBest,\nAvery Chen",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Subject: draft email requesting the signed office note for case ALD-1042, request N-101. Next retrieval should focus on any wording tweaks, tone changes, or whether to add/remove the secure-channel reminder and completion language."
+        },
+        "trace": {
+          "question": "Draft a short email requesting the document.",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nCurrent question: Draft a short email requesting the document.",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0705196182396607,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0698447893569845,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0698412698412698,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0692389006342495,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0654761904761905,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652777777777778,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0647548566142461,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0640721404841006,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.COM-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.PROC-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1938,
+          "cachedInputTokens": 0,
+          "outputTokens": 297,
+          "requests": 1,
+          "latencyMs": 2638,
+          "estimatedCostUsd": 0.00279,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-05",
+      "category": "refinement",
+      "reviewCriterion": "Same email becomes warmer and at least 25% shorter.",
+      "expected": [
+        "alder.COM-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 3557,
+      "humanReview": null,
+      "turn": {
+        "id": "d6663522-839a-4b81-9f3d-b880e90e2e0f",
+        "question": "Make it warmer and shorter.",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:44:27.791Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a warmer, shorter draft based on the signed office note request and secure-channel guidance. [1] [2] [3]",
+          "citations": [
+            "alder.COM-01.1",
+            "alder.N-101.1",
+            "alder.PROC-01.1"
+          ],
+          "suggestedFollowups": [
+            "Make it even shorter.",
+            "Add a friendlier closing.",
+            "Rewrite it without the secure-channel reminder."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Request for signed office note – Case ALD-1042",
+            "body": "Hi Alder HCP Office,\n\nCould you please send the signed office note for case ALD-1042, request N-101, through your secure document channel? It would complete the documentation package.\n\nThanks so much,\nAvery",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Case ALD-1042, request N-101 signed office note email draft. Current draft is a warmer, shorter request to the Alder HCP Office, keeping the secure-channel ask and completion language."
+        },
+        "trace": {
+          "question": "Make it warmer and shorter.",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: draft email requesting the signed office note for case ALD-1042, request N-101. Next retrieval should focus on any wording tweaks, tone changes, or whether to add/remove the secure-channel reminder and completion language.\nRecent questions: Draft a short email requesting the document.\nCurrent question: Make it warmer and shorter.",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0725900116144019,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0709018718094158,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.070874861572536,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0681818181818182,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0647548566142461,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.FAQ-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "FAQ-01",
+              "title": "Receipt, completion and decisions",
+              "type": "FAQ",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority limits",
+              "text": "Pathway provides administrative support only. The payer decides prior authorization and coverage. Pathway cannot recommend treatment, determine clinical necessity, promise eligibility or approval, or send a real email.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0644444444444444,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.063386524822695,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0630385487528345,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.COM-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.PROC-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2149,
+          "cachedInputTokens": 0,
+          "outputTokens": 301,
+          "requests": 1,
+          "latencyMs": 3170,
+          "estimatedCostUsd": 0.0029685500000000004,
+          "embeddingInputTokens": 115,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-04",
+      "category": "work-product",
+      "reviewCriterion": "Asks for confirmed member identifier or legible card without approval promises.",
+      "expected": [
+        "access.OFFICE-2086.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2607,
+      "humanReview": null,
+      "turn": {
+        "id": "a7efe752-a60b-4208-83ba-4c6dfe9c2ce5",
+        "question": "Draft a follow-up email to the HCP office.",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:44:31.374Z",
+        "status": "complete",
+        "response": {
+          "answer": "Drafted a follow-up email based on the unreadable member identifier and the need to wait for corrected information before benefit verification can proceed [1] [2].",
+          "citations": [
+            "access.OFFICE-2086.2",
+            "access.BV-2086.1"
+          ],
+          "suggestedFollowups": [
+            "Shorten this email and make it warmer.",
+            "Revise it to sound more formal and office-friendly."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Follow-up: legible member identifier needed for benefit verification",
+            "body": "Hello Cedar HCP Office,\n\nThank you for your help. The member identifier on the Juniper Plan card image is unreadable, so we are not able to complete benefit verification yet.\n\nPlease send a legible copy of the card or confirm the member identifier through the established secure channel. Once we have that information, we can proceed with the benefit-verification review.\n\nBest,\nMorgan Lee\nField Reimbursement Manager",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Subject: follow-up email to Cedar HCP Office for ACC-2086. Referents: unreadable member identifier, secure-channel request for legible card or confirmed identifier, benefit verification not yet complete. Draft purpose: recipient-ready follow-up email."
+        },
+        "trace": {
+          "question": "Draft a follow-up email to the HCP office.",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nCurrent question: Draft a follow-up email to the HCP office.",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0700570835495589,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0676767676767677,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.PA-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "PA-GUIDE",
+              "title": "Prior-authorization administrative steps",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Before submission",
+              "text": "After current benefits and any prior-authorization requirement are confirmed, identify the applicable payer form and documentation, help the office assemble the package, submit through the authorized channel and track the payer acknowledgment. Only the payer can determine whether authorization is required and whether to approve it.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0676190476190476,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.067287784679089,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Who to contact",
+              "text": "Route unresolved benefit-verification discrepancies to the support program benefit-verification team. Route payer interpretation, exception or appeal questions to the payer or appropriate office specialist. A field reimbursement manager can explain the documented process and organize questions, but cannot overturn a payer decision.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0669197911722829,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0658090054428501,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office statement",
+              "text": "In the synthetic September 10, 2026 office exchange, staff reported: “The card image is blurry. We can check the member number and send a clearer copy.” No corrected identifier or new card receipt is recorded.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0640522875816993,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0636059301769488,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.OFFICE-2086.2"
+            },
+            {
+              "number": 2,
+              "passageId": "access.BV-2086.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1951,
+          "cachedInputTokens": 0,
+          "outputTokens": 356,
+          "requests": 1,
+          "latencyMs": 2376,
+          "estimatedCostUsd": 0.00306525,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-05",
+      "category": "refinement",
+      "reviewCriterion": "Same office email becomes warmer and at least 25% shorter.",
+      "expected": [
+        "access.OFFICE-2086.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2299,
+      "humanReview": null,
+      "turn": {
+        "id": "a841597f-4a27-40a0-ae81-070f450ac40d",
+        "question": "Make it warmer and shorter.",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:44:33.981Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a warmer, shorter version based on the unreadable member identifier and the need for a legible copy or confirmed identifier before benefit verification can continue [1] [2].",
+          "citations": [
+            "access.BV-2086.1",
+            "access.OFFICE-2086.2"
+          ],
+          "suggestedFollowups": [
+            "Shorten it even more and keep it very polite.",
+            "Make it sound a little more formal."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Follow-up: legible member identifier needed for benefit verification",
+            "body": "Hello Cedar HCP Office,\n\nThanks for your help. The member identifier on the Juniper Plan card image is unreadable, so we can’t complete benefit verification yet.\n\nPlease send a legible copy of the card or confirm the member identifier through the established secure channel.\n\nBest,\nMorgan Lee\nField Reimbursement Manager",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "ACC-2086 follow-up email to Cedar HCP Office. Current draft asks for a legible card or confirmed member identifier because benefit verification is blocked by an unreadable identifier. Next retrieval should support a warmer, shorter recipient-ready email without adding unsupported promises."
+        },
+        "trace": {
+          "question": "Make it warmer and shorter.",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nConversation subject: Subject: follow-up email to Cedar HCP Office for ACC-2086. Referents: unreadable member identifier, secure-channel request for legible card or confirmed identifier, benefit verification not yet complete. Draft purpose: recipient-ready follow-up email.\nRecent questions: Draft a follow-up email to the HCP office.\nCurrent question: Make it warmer and shorter.",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0714285714285714,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0688346883468835,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "No unsupported promises",
+              "text": "Do not predict approval, promise financial-assistance eligibility, give a patient-cost amount, recommend treatment or claim an email was sent. These are outside this synthetic administrative support demonstration.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0669197911722829,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0667311411992263,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652804642166344,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0652173913043478,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office statement",
+              "text": "In the synthetic September 10, 2026 office exchange, staff reported: “The card image is blurry. We can check the member number and send a clearer copy.” No corrected identifier or new card receipt is recorded.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0625,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.BV-2086.1"
+            },
+            {
+              "number": 2,
+              "passageId": "access.OFFICE-2086.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2171,
+          "cachedInputTokens": 0,
+          "outputTokens": 313,
+          "requests": 1,
+          "latencyMs": 2075,
+          "estimatedCostUsd": 0.00303921,
+          "embeddingInputTokens": 123,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-09",
+      "category": "summary",
+      "reviewCriterion": "Useful briefing separates known blocker, office next step and unknown benefits.",
+      "expected": [
+        "access.BV-2086.1",
+        "access.BV-2086.2",
+        "access.OFFICE-2086.2"
+      ],
+      "recall": 0.6666666666666666,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 3378,
+      "humanReview": null,
+      "turn": {
+        "id": "90520596-7aa3-4ca6-a442-cf0c15ecff4d",
+        "question": "Summarize this case for my next office conversation.",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:44:36.279Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a brief case summary for your next office conversation, based on the unreadable member identifier and the need to request a legible card or confirmed identifier before benefit verification can move forward [1] [2].",
+          "citations": [
+            "access.OFFICE-2086.2",
+            "access.BV-2086.1"
+          ],
+          "suggestedFollowups": [
+            "Draft a short speaking note from this summary.",
+            "Turn this into a warmer email to the office."
+          ],
+          "workProduct": {
+            "type": "summary",
+            "subject": "ACC-2086 office conversation summary",
+            "body": "ACC-2086 is currently blocked because the member identifier on the Juniper Plan insurance card is unreadable. For the next office conversation, ask the office to send a legible copy of the card or confirm the identifier through the established secure channel. Benefit verification can move forward once the required information is available, and no benefit result is recorded yet.",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "ACC-2086 summary for next office conversation. Referents: unreadable member identifier, request for legible card or confirmed identifier, benefit verification still incomplete, no benefit result recorded. Purpose: produce a concise office-ready summary without adding unsupported promises."
+        },
+        "trace": {
+          "question": "Summarize this case for my next office conversation.",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nConversation subject: ACC-2086 follow-up email to Cedar HCP Office. Current draft asks for a legible card or confirmed member identifier because benefit verification is blocked by an unreadable identifier. Next retrieval should support a warmer, shorter recipient-ready email without adding unsupported promises.\nRecent questions: Draft a follow-up email to the HCP office. → Make it warmer and shorter.\nCurrent question: Summarize this case for my next office conversation.",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office statement",
+              "text": "In the synthetic September 10, 2026 office exchange, staff reported: “The card image is blurry. We can check the member number and send a clearer copy.” No corrected identifier or new card receipt is recorded.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0684523809523809,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0678685047720042,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0677882236516576,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.066183574879227,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "No unsupported promises",
+              "text": "Do not predict approval, promise financial-assistance eligibility, give a patient-cost amount, recommend treatment or claim an email was sent. These are outside this synthetic administrative support demonstration.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0658627087198516,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0654761904761905,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.063543599257885,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.OFFICE-2086.2"
+            },
+            {
+              "number": 2,
+              "passageId": "access.BV-2086.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2338,
+          "cachedInputTokens": 0,
+          "outputTokens": 341,
+          "requests": 1,
+          "latencyMs": 3195,
+          "estimatedCostUsd": 0.00329074,
+          "embeddingInputTokens": 137,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-04",
+      "category": "work-product",
+      "reviewCriterion": "Recipient-ready update asks for consent signature and makes no shipment promise.",
+      "expected": [
+        "fulfillment.PATIENT-01.1",
+        "fulfillment.STATUS-3091.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 1975,
+      "humanReview": null,
+      "turn": {
+        "id": "709407bf-1884-4b73-a3cc-58aef7fe96b7",
+        "question": "Draft a patient-friendly status update.",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T12:44:39.933Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a patient-friendly status update draft based on the case details and requested tone [1][2].",
+          "citations": [
+            "fulfillment.PATIENT-01.1",
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.STATUS-3091.2",
+            "fulfillment.SHIP-01.2",
+            "fulfillment.ENROLL-01.1"
+          ],
+          "suggestedFollowups": [
+            "Make it warmer and shorter",
+            "Draft a version asking the patient to complete the consent form"
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Update on your enrollment status",
+            "body": "Hi Taylor,\n\nThanks for submitting your enrollment form. We’ve received it, and the pharmacy has recorded your prescription intake.\n\nOne item is still needed before the case can move forward: a signed consent form. Please complete the consent through the secure program channel you were given.\n\nOnce that is received and checked, the pharmacy can continue its administrative review. At this point, shipment cannot be confirmed.\n\nBest,\nJordan",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Current subject: patient-friendly status update for FUL-3091. Referents: Taylor Sample, enrollment received, prescription intake recorded, missing signed consent, no dispense release/shipment confirmation. Next draft purpose: patient-facing status email; keep calm, concise, and avoid promises or clinical advice."
+        },
+        "trace": {
+          "question": "Draft a patient-friendly status update.",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nCurrent question: Draft a patient-friendly status update.",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0714285714285714,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0698447893569845,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0692389006342495,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0657210401891253,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652173913043478,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority",
+              "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.063386524822695,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0622222222222222,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.PATIENT-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.STATUS-3091.2"
+            },
+            {
+              "number": 4,
+              "passageId": "fulfillment.SHIP-01.2"
+            },
+            {
+              "number": 5,
+              "passageId": "fulfillment.ENROLL-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1937,
+          "cachedInputTokens": 0,
+          "outputTokens": 314,
+          "requests": 1,
+          "latencyMs": 1842,
+          "estimatedCostUsd": 0.00286575,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-05",
+      "category": "refinement",
+      "reviewCriterion": "Same patient update becomes warmer and at least 25% shorter.",
+      "expected": [
+        "fulfillment.PATIENT-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2876,
+      "humanReview": null,
+      "turn": {
+        "id": "e1b1cc64-39be-4d36-9888-ac8b72ba538b",
+        "question": "Make it warmer and shorter.",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T12:44:41.911Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a warmer, shorter version based on the case details and status notes [1] [2].",
+          "citations": [
+            "fulfillment.PATIENT-01.1",
+            "fulfillment.STATUS-3091.1"
+          ],
+          "suggestedFollowups": [
+            "Make it even more friendly but still brief.",
+            "Tighten the subject line too."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Update on your enrollment status",
+            "body": "Hi Taylor,\n\nThanks for sending in your enrollment. We’ve received it, and the pharmacy has recorded your prescription intake.\n\nOne step is still needed: a signed consent form. Please complete consent through the secure program channel you were given.\n\nAfter that is received and checked, the pharmacy can continue its review. Shipment can’t be confirmed yet.\n\nBest,\nJordan",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Current subject: warmer, shorter patient-facing status email for FUL-3091. Referents: Taylor Sample, received enrollment, recorded prescription intake, missing signed consent, no shipment confirmation. Next draft purpose: keep it concise, warm, and patient-friendly without promising delivery."
+        },
+        "trace": {
+          "question": "Make it warmer and shorter.",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Current subject: patient-friendly status update for FUL-3091. Referents: Taylor Sample, enrollment received, prescription intake recorded, missing signed consent, no dispense release/shipment confirmation. Next draft purpose: patient-facing status email; keep calm, concise, and avoid promises or clinical advice.\nRecent questions: Draft a patient-friendly status update.\nCurrent question: Make it warmer and shorter.",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0725900116144019,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.070874861572536,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0682507583417594,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0681818181818182,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0666666666666667,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652065704330513,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.RX-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "RX-01",
+              "title": "Prescription intake and dispense readiness",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Intake sequence",
+              "text": "Prescription intake means the pharmacy recorded the prescription for review. The pharmacy must complete its required checks and confirm dispense readiness. Pathway can describe recorded administrative stages but cannot validate a prescription, decide treatment, release medication or override pharmacy checks.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0634782608695652,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority",
+              "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.063386524822695,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.PATIENT-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.STATUS-3091.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2184,
+          "cachedInputTokens": 0,
+          "outputTokens": 402,
+          "requests": 1,
+          "latencyMs": 2659,
+          "estimatedCostUsd": 0.0034497,
+          "embeddingInputTokens": 135,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    }
+  ],
+  "limitations": "Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.",
+  "completed": true,
+  "metrics": {
+    "cases": 7,
+    "meanExpectedPassageRecall": 0.9523809523809524,
+    "packIsolation": 7,
+    "medianLatencyMs": 2789,
+    "maxLatencyMs": 3557,
+    "inputTokens": 14668,
+    "cachedInputTokens": 0,
+    "outputTokens": 2324,
+    "embeddingInputTokens": 510,
+    "generationRequests": 7,
+    "embeddingRequests": 4,
+    "unmeasuredRequests": 0,
+    "estimatedCostUsd": 0.0214692,
+    "costScope": "Includes reported corpus/query preparation and turn generation/embedding usage in this run. Cached query vectors were charged when first prepared. Missing provider usage is unknown, not zero."
+  }
+}
