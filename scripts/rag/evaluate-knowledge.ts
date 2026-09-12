@@ -1,7 +1,7 @@
 // Explicit live evaluation only. Uses the existing bounded application API;
 // session secrets are never written to the report and provider limits stay in force.
-import { randomUUID } from 'node:crypto';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { createHash, randomUUID } from 'node:crypto';
+import { mkdirSync, writeFileSync, readFileSync } from 'node:fs';
 import { hash } from '../../src/integrity.ts';
 import { packs, passages } from '../../src/rag/corpus.ts';
 import { eligible } from '../../src/rag/retrieval.ts';
@@ -9,15 +9,24 @@ import { evaluationCases } from '../../src/rag/evaluation-cases.ts';
 import { knowledgeCases, knowledgeEvaluationVersion } from '../../src/rag/knowledge-evaluation-cases.ts';
 import type { RetrievalTrace, Turn } from '../../src/rag/contracts.ts';
 
-const [origin,mode]=process.argv.slice(2);
+const [origin,mode,selectedPack,savedVisitor]=process.argv.slice(2);
 if(!origin||!['retrieval','conversation'].includes(mode??''))throw new Error('Supply an explicit application origin and retrieval or conversation.');
+if(selectedPack&&!packs.some(p=>p.id===selectedPack))throw new Error('INVALID_PACK');
 const rows:any[]=[];
-const report:any={suite:knowledgeEvaluationVersion,mode,origin,startedAt:new Date().toISOString(),corpusHash:hash(passages),results:rows,
+const report:any={suite:knowledgeEvaluationVersion,mode,origin,selectedPack:selectedPack??null,startedAt:new Date().toISOString(),corpusHash:hash(passages),results:rows,
  limitations:'Source coverage and exact citation membership are mechanical checks, not semantic quality ratings. Read retained responses against the review criteria. Retrieval endpoint usage is not reported; generation usage excludes any separately prepared corpus/query embeddings.'};
 async function session(){
- const res=await fetch(origin+'/api/rag/session',{signal:AbortSignal.timeout(90000)});
+ // An explicit saved evaluation visitor lets an interrupted run continue within
+ // its original session allowance instead of creating more anonymous visitors.
+ let prior:any;
+ if(savedVisitor){
+  const path='.local/rag-evaluation/'+createHash('sha256').update(origin!).digest('hex')+'.json';
+  prior=JSON.parse(readFileSync(path,'utf8'))[savedVisitor];
+  if(!prior||Date.parse(prior.expiresAt)<=Date.now()||!/^pathway_session=[a-f0-9]{64}$/.test(prior.cookie))throw new Error('SAVED_VISITOR_UNAVAILABLE');
+ }
+ const res=await fetch(origin+'/api/rag/session',{headers:prior?{Cookie:prior.cookie}:{},signal:AbortSignal.timeout(90000)});
  if(!res.ok)throw new Error('SESSION_'+res.status);
- const body=await res.json() as any,cookie=res.headers.get('set-cookie')?.split(';')[0];
+ const body=await res.json() as any,cookie=res.headers.get('set-cookie')?.split(';')[0]??prior?.cookie;
  if(!cookie||!body.csrf||body.model!=='gpt-5-mini')throw new Error('SESSION_OR_MODEL_MISMATCH');
  return {cookie,csrf:body.csrf};
 }
@@ -32,7 +41,7 @@ function inspect(trace:RetrievalTrace,packId:typeof packs[number]['id']){
 }
 try{
  if(mode==='retrieval')report.preparation=await post(await session(),'prepare-evaluation',{});
- for(const pack of packs){
+ for(const pack of packs.filter(p=>!selectedPack||p.id===selectedPack)){
   const s=await session();
   if(mode==='retrieval'){
    for(const item of evaluationCases.filter(c=>c.packId===pack.id)){
