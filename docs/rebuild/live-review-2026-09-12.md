@@ -65,3 +65,17 @@ Remaining work-product issues prevent qualification: the access summary was ordi
 Prepared local corrections now require structured work products for summary/brief/refine requests, keep introductions separate from bodies, supply the previous draft's word count and a 75% word budget for shortening, and explicitly refer clinical questions to the clinician/pharmacist. The candidate moves the ordinary reasoning default from none to low because repeated live instruction-following failures justify comparing it. These changes need new live evaluation; they are not yet deployed or qualified.
 
 A date-bound provider allowance proposal is prepared but **inactive**. The session cooldown unlock did not authorize this distinct paid-API allowance. No provider counters were cleared or ceilings activated.
+
+## Approved acceptance allowance
+
+The user explicitly approved the prepared allowance. At approximately 12:31 UTC, the existing Render service received the non-secret acceptance date `2026-09-12`; no other environment setting was changed. Candidate `8083671` was pushed, then manually deployed. The RAG allowance is 250 reservations for this UTC day with ordinary limits restored automatically at 00:00 UTC. Counters were not reset. The next frozen run uses a new named cohort of test sessions so each retains its original 40-request ceiling; session creation still obeys the existing cooldown and global limits.
+
+## Low-reasoning run and citation-contract correction
+
+The low-v1 run stopped after 20 completed turns at access-09; its original artifact is `conversation-9cc377f307252a3d453456a2722e288dd686467457200e55a797c27840228842.json`. It used 42 provider reservations and an estimated $0.06860205. Runtime diagnostics identified `INVALID_CITATION_MAPPING` for both summary attempts.
+
+Inspection identified an unnecessarily strict server rule: it required every work-product source to be repeated as an inline marker in the brief introductory answer, even though the requested contract carries a separate citations array and keeps citation machinery outside the draft. Work products now accept their validated source list without repeating all markers in the introduction. Any markers that are present must still be valid; every returned citation must still be retrieved. Ordinary answer citation validation remains unchanged. This corrects the contract, rather than dropping membership checks.
+
+Low reasoning alone did not solve shortening: Alder reduced 37 words to 29 (21.6%); access reduced 64 to 52 (18.8%). The prompt now aims at 50% while retaining the frozen 25% acceptance threshold and explicitly removes long greetings, titles and repetitive context. The unsupported copay response also added a general relationship not stated in the pack; the gap instruction now expressly prohibits filling missing information with general domain explanations.
+
+A focused `work-product` evaluation reuses frozen cases 04/05 from each pack and access-09, with their original expectations. It is a seven-case regression subset, not a replacement benchmark. Run it using the existing default test visitors; use a new named cohort for the subsequent complete suite. No failed artifact or expected answer was edited.

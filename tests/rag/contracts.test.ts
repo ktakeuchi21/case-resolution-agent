@@ -70,3 +70,11 @@ test('the inactive acceptance allowance requires an exact configured UTC date an
   process.env.PATHWAY_RAG_ACCEPTANCE_DAY='2026-09-12';assert.equal(providerDailyCeiling('2026-09-12'),250);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
  }finally{if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;}
 });
+
+test('a work-product source list is valid without repeating all references in its brief introduction',()=>{
+ const workProduct={type:'email',subject:'Signed note',body:'Please send the signed office note through the secure channel.',status:'generated_not_sent'};
+ const value={...valid,answer:'Here is the draft for review.',workProduct};
+ assert.deepEqual(validateAnswer(value,trace),value);
+ assert.throws(()=>validateAnswer({...value,answer:'Here is the draft. [9]'},trace));
+ assert.throws(()=>validateAnswer({...value,citations:['not-retrieved']},trace));
+});
