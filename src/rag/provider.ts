@@ -104,7 +104,12 @@ export class OpenAIConversation {
   const productSchema=schema.properties!.workProduct as {description?:string;anyOf?:Array<{properties?:{body?:{description?:string}}}>};
   productSchema.description='Required non-null for requests to draft, summarize, brief, rewrite or refine. Use type summary for a case briefing. Null only when no work product is requested.';
   const bodySchema=productSchema.anyOf?.find(s=>s.properties?.body)?.properties?.body;
-  if(bodySchema)bodySchema.description='Complete recipient-ready content without citations or action commitments.'+(draftWords?` If the user requests shorter, target ${Math.floor(draftWords*.5)} words and use at most ${Math.floor(draftWords*.75)} words, counting the entire body including greeting and sign-off.`:'');
+  const caseDraftLimits=pack.id==='access'
+   ? ' Ask only for a legible insurance card or confirmed member identifier. Do not expand the identifier request into a list of extra fields such as date of birth, which the supplied record does not specify. Describe next administrative steps without committing the sender to perform them.'
+   :pack.id==='fulfillment'
+    ? ' Refer to the established secure program channel, with no assertion about which channel the patient previously used. The record does not establish an enrollment channel. Say that the consent signature is still needed, never that it is the one last or only step. The pharmacy must complete its checks; do not predict that it will finish them or that consent alone establishes shipping readiness. Avoid promises to check, contact or update.'
+    :'';
+  if(bodySchema)bodySchema.description='Complete recipient-ready content without citations or action commitments.'+caseDraftLimits+(draftWords?` If the user requests shorter, target ${Math.floor(draftWords*.5)} words and use at most ${Math.floor(draftWords*.75)} words, counting the entire body including greeting and sign-off.`:'');
   const input=JSON.stringify({draftLengthGuidance:draftWords?{previousBodyWords:draftWords,targetBodyWordsIfShorterRequested:Math.floor(draftWords*.5),maximumBodyWordsIfShorterRequested:Math.floor(draftWords*.75),appliesOnlyWhenUserRequestsShorter:true}:null,selectedScenario:{user:pack.user,agentRole:pack.agentRole,caseId:pack.caseId,caseContext:pack.caseContext,knowledgePack:pack.name,recipient:pack.recipient},
    recentConversation:prior.map(t=>({question:t.question,answer:t.response!.answer,workProduct:t.response!.workProduct})),
    contextualRetrievalQuery:trace.query,retrievedPassages:trace.passages.map(p=>({id:p.id,title:p.title,section:p.section,text:p.text})),currentQuestion:question});
