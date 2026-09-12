@@ -6,13 +6,16 @@ import { packs, documents, passages } from './corpus.ts';
 import { HttpError } from '../app/session.ts';
 import { providerConfiguration } from '../agent/runtime.ts';
 import { defaultConversationModel } from './provider.ts';
+import { providerDailyCeiling } from './service.ts';
 
 export async function ragHttp(req:IncomingMessage,res:ServerResponse,url:URL,service:RagService,body:(req:IncomingMessage,limit?:number)=>Promise<unknown>,json:(res:ServerResponse,status:number,value:unknown)=>void){
  const path=url.pathname.slice('/api/rag'.length);
  if(path==='/catalog'&&req.method==='GET'){json(res,200,{version:'rag-v1',synthetic:true,packs,documents,passages});return;}
  if(path==='/session'&&req.method==='GET'){
   const s=await service.sessions.get(req,res,true);await service.sessions.limit('read.'+s.token_hash,240,60);
-  json(res,200,{csrf:s.csrf,expiresAt:s.expires_at,live:providerConfiguration().enabled,model:process.env.PATHWAY_RAG_MODEL??defaultConversationModel});return;
+  const config=providerConfiguration();
+  json(res,200,{csrf:s.csrf,expiresAt:s.expires_at,live:config.enabled,model:process.env.PATHWAY_RAG_MODEL??defaultConversationModel,
+   limits:{dailyRequests:providerDailyCeiling(undefined,config.daily),sessionRequests:Math.min(config.perSession,40)}});return;
  }
  const s=await service.sessions.get(req,res);await service.sessions.limit('read.'+s.token_hash,240,60);
  if(path==='/conversation'&&req.method==='GET'){json(res,200,await service.read(s,url.searchParams.get('id')??''));return;}

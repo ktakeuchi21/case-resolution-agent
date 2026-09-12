@@ -4,6 +4,8 @@ import { randomBytes,randomUUID } from 'node:crypto';
 import type { AddressInfo } from 'node:net';
 import { createApplicationServer } from '../../src/app/server.ts';
 import { digest } from '../../src/app/session.ts';
+import { providerConfiguration } from '../../src/agent/runtime.ts';
+import { providerDailyCeiling } from '../../src/rag/service.ts';
 const server=createApplicationServer(),visitors=[0,1].map(()=>({token:randomBytes(32).toString('hex'),csrf:randomBytes(32).toString('hex')}));let origin='';
 before(async()=>{for(const v of visitors)await server.sessionDb.pool.query("INSERT INTO portfolio.sessions(token_hash,csrf,expires_at) VALUES($1,$2,clock_timestamp()+interval '1 hour')",[digest(v.token),v.csrf]);await new Promise<void>(resolve=>server.server.listen(0,'127.0.0.1',resolve));origin='http://127.0.0.1:'+(server.server.address() as AddressInfo).port;});
 after(async()=>{for(const v of visitors)await server.sessionDb.pool.query('DELETE FROM portfolio.sessions WHERE token_hash=$1',[digest(v.token)]);await server.close();});
@@ -17,4 +19,5 @@ test('RAG API authenticates sessions, rejects cross-origin and forged configurat
  const result=await request('send',{conversationId:created.body.id,requestId:randomUUID(),text:'What document is missing?'});assert.equal(result.body.status,'failed');assert.equal(result.body.trace,null);assert.equal(result.body.response,null);
  assert.equal((await request('conversation?id='+created.body.id)).body.turns[0].question,'What document is missing?');
  const session=await request('session');assert(!JSON.stringify(session.body).includes(visitors[0]!.token));assert.equal(session.headers.get('cache-control'),'no-store');
+ const config=providerConfiguration();assert.deepEqual(session.body.limits,{dailyRequests:providerDailyCeiling(undefined,config.daily),sessionRequests:Math.min(config.perSession,40)});
 });

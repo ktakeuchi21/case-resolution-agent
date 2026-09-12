@@ -11,11 +11,13 @@ import { getPack } from './corpus.ts';
 import { PersistentRetrieval } from './retrieval.ts';
 import { OpenAIConversation } from './provider.ts';
 
-// Inactive unless the operator explicitly authorizes and configures an acceptance day.
-// The exception expires automatically at the next UTC day; counters are never reset.
+// The operator can configure the user-approved persistent RAG ceiling separately
+// from the preserved legacy app. Invalid explicit settings fail closed.
 export function providerDailyCeiling(today=new Date().toISOString().slice(0,10),configuredLimit=100) {
- // The 400 ceiling is a prepared, inactive option requiring separate operator approval.
- // Existing acceptance deployments remain at 250 unless this exact setting is added.
+ const configured=process.env.PATHWAY_RAG_DAILY_REQUESTS;
+ if(configured!==undefined)return /^[1-9]\d{0,3}$/.test(configured)&&Number(configured)<=1000?Number(configured):0;
+ // Backward compatibility for the earlier dated acceptance deployments. These
+ // exceptions expire at the next UTC day; durable counters are never reset.
  return process.env.PATHWAY_RAG_ACCEPTANCE_DAY===today?(process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS==='400'?400:250):Math.min(configuredLimit,100);
 }
 export class RagService {

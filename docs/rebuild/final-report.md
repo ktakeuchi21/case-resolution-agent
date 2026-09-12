@@ -78,10 +78,10 @@ Verification passed: type checking, JavaScript syntax checks, 89 core tests, 21 
 - **Conversation:** `gpt-5-mini`, low reasoning. No flagship fallback. The active model was confirmed from public session metadata before generation.
 - **Embeddings:** `text-embedding-3-small`, 1,536 dimensions.
 - GPT-5 mini standard rates verified September 12: $0.25/M input, $0.025/M cached input, $2/M output ([official model documentation](https://developers.openai.com/api/docs/models/gpt-5-mini)). Embeddings are $0.02/M tokens ([official embedding documentation](https://developers.openai.com/api/docs/models/text-embedding-3-small)).
-- **Live source revision:** `c3468743b6e291d4f47bc27336d791eff65eda3b` on both existing Render services.
+- **Rebuild acceptance source revision:** `c3468743b6e291d4f47bc27336d791eff65eda3b` on both existing Render services at the original verification.
 - Backend deployment: `dep-daimbaek1f9s738ptdhg`; frontend deployment: `dep-daimbd3m8hqs73df2gcg`.
 - [Public frontend](https://case-resolution-frontend.onrender.com) · [Backend](https://case-resolution-agent.onrender.com) · [Release source](https://github.com/ktakeuchi21/case-resolution-agent/commit/c3468743b6e291d4f47bc27336d791eff65eda3b)
-- At final verification, **398/400 provider reservations** were used for September 12 UTC. Reservations include embeddings and repairs, so two remaining reservations do not necessarily mean two full answers. The approved exception expires at **6 PM MDT on September 12 / 00:00 UTC September 13**; the ordinary daily ceiling of at most 100 resumes then. No counters were reset. The 40-request session ceiling remains.
+- At original rebuild verification, **398/400 provider reservations** were used for September 12 UTC. This dated allowance was subsequently superseded by the user's request for a [persistent 1,000-request daily ceiling](persistent-allowance-2026-09-12.md). Reservations include embeddings and repairs, so they do not correspond one-to-one with answers. No counters are reset; the 40-request session ceiling remains.
 
 ## Screenshots
 
@@ -103,7 +103,7 @@ Fulfillment: corrected live patient-support status draft.
 
 This is a synthetic portfolio demo, not a production healthcare system. Valid source IDs do not prove that every generated phrase is fully supported. Drafts can still contain future-facing language such as “we will continue” or “they will complete their checks”; a reviewer should edit commitments before using copy. No actual outreach, clinical decision, payer decision or delivery guarantee occurred.
 
-The small curated corpus and repeated development questions limit generalization. Browser verification covers Chromium at mobile/tablet/desktop viewports; physical iOS/Android keyboard behavior and other browser engines have not been separately qualified. Anonymous sessions expire after four hours. Free-service cold starts, two concurrent API requests and the nearly exhausted daily allowance constrain immediate availability. Uploads and real integrations remain deferred.
+The small curated corpus and repeated development questions limit generalization. Browser verification covers Chromium at mobile/tablet/desktop viewports; physical iOS/Android keyboard behavior and other browser engines have not been separately qualified. Anonymous sessions expire after four hours. Free-service cold starts, two concurrent API requests and the daily/session request ceilings constrain availability. Uploads and real integrations remain deferred.
 
 The next useful phase is independent review on an unseen synthetic question set, with claim-level support scoring and draft commitment checks. Expand the corpus only after that review, then evaluate temporary session-isolated uploads as a separate feature. Real clinical data or external workflow effects would require a separate authorization and deployment design.
 

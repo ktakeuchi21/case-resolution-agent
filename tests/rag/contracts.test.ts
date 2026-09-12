@@ -74,15 +74,29 @@ test('citation normalization keeps only actual prose references and never repair
 });
 
 test('the inactive acceptance allowance requires an exact configured UTC date and expires automatically',()=>{
+ const beforeDaily=process.env.PATHWAY_RAG_DAILY_REQUESTS;
  const before=process.env.PATHWAY_RAG_ACCEPTANCE_DAY;
  const beforeRequests=process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;
  try{
+  delete process.env.PATHWAY_RAG_DAILY_REQUESTS;
   delete process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;
   delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;assert.equal(providerDailyCeiling('2026-09-12'),100);
   process.env.PATHWAY_RAG_ACCEPTANCE_DAY='2026-09-12';assert.equal(providerDailyCeiling('2026-09-12'),250);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
   process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS='400';assert.equal(providerDailyCeiling('2026-09-12'),400);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
   process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS='9999';assert.equal(providerDailyCeiling('2026-09-12'),250);
- }finally{if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;if(beforeRequests===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;else process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS=beforeRequests;}
+ }finally{if(beforeDaily===undefined)delete process.env.PATHWAY_RAG_DAILY_REQUESTS;else process.env.PATHWAY_RAG_DAILY_REQUESTS=beforeDaily;if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;if(beforeRequests===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;else process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS=beforeRequests;}
+});
+
+test('the approved persistent ceiling survives UTC rollover, overrides a dated exception, and rejects invalid limits',()=>{
+ const keys=['PATHWAY_RAG_DAILY_REQUESTS','PATHWAY_RAG_ACCEPTANCE_DAY','PATHWAY_RAG_ACCEPTANCE_REQUESTS'] as const;
+ const before=keys.map(key=>process.env[key]);
+ try{
+  process.env.PATHWAY_RAG_ACCEPTANCE_DAY='2026-09-12';process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS='400';
+  process.env.PATHWAY_RAG_DAILY_REQUESTS='1000';
+  assert.equal(providerDailyCeiling('2026-09-12',100),1000);assert.equal(providerDailyCeiling('2026-09-13',100),1000);
+  process.env.PATHWAY_RAG_DAILY_REQUESTS='25';assert.equal(providerDailyCeiling('2026-09-12'),25);
+  for(const value of ['','0','-1','1001','10000','1.5','1e3',' 1000','Infinity','invalid']){process.env.PATHWAY_RAG_DAILY_REQUESTS=value;assert.equal(providerDailyCeiling('2026-09-12'),0,value);}
+ }finally{keys.forEach((key,index)=>{if(before[index]===undefined)delete process.env[key];else process.env[key]=before[index];});}
 });
 
 test('a work-product source list is valid without repeating all references in its brief introduction',()=>{
