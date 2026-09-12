@@ -51,12 +51,19 @@ export function validateAnswer(value:unknown,trace:RetrievalTrace):Answer {
 }
 export function numberCitations(value:unknown,trace:RetrievalTrace):Answer {
  const answer=Answer.parse(value),allowed=new Set(trace.passages.map(p=>p.id));
- if(answer.citations.some(id=>!allowed.has(id)))throw new RagError('INVALID_CITATIONS');
- const text=answer.answer.replace(/\[([a-z]+\.[^\]\s]+)\]/g,(_marker,id:string)=>{
-  const i=answer.citations.indexOf(id);if(i<0||!allowed.has(id))throw new RagError('INVALID_CITATIONS');return `[${i+1}]`;
+ if(new Set(answer.citations).size!==answer.citations.length||answer.citations.some(id=>!allowed.has(id)))throw new RagError('INVALID_CITATIONS');
+ const cited:string[]=answer.workProduct?[...answer.citations]:[];
+ const text=answer.answer.replace(/\[(\d+|[a-z]+\.[^\]\s]+)\]/g,(_marker,reference:string)=>{
+  const id=/^\d+$/.test(reference)?answer.citations[Number(reference)-1]:reference;
+  if(!id||!allowed.has(id)||!answer.citations.includes(id))throw new RagError('INVALID_CITATIONS');
+  if(!cited.includes(id))cited.push(id);
+  return `[${cited.indexOf(id)+1}]`;
  });
+ // An ordinary answer's source list follows its actual inline references. Extra
+ // retrieved IDs in the model's list are not a reason to expand or rewrite prose.
+ if(!answer.workProduct&&answer.citations.length&&!cited.length)throw new RagError('INVALID_CITATION_MAPPING');
  if(answer.workProduct&&/\[(?:\d+|[a-z]+\.[^\]\s]+)\]/.test(answer.workProduct.body))throw new RagError('DRAFT_CITATION_LEAK');
- return validateAnswer({...answer,answer:text},trace);
+ return validateAnswer({...answer,answer:text,citations:cited},trace);
 }
 export class OpenAIConversation {
  embeddingInputTokens=0;embeddingRequests=0;unmeasuredRequests=0;
@@ -120,7 +127,7 @@ export class OpenAIConversation {
     const code=e instanceof RagError?e.code:e instanceof z.ZodError?'ANSWER_SCHEMA':'ANSWER_JSON';
     console.error(JSON.stringify({event:'rag_answer_format',attempt:attempt+1,code}));
     if(attempt===1)throw new RagError('ANSWER_FORMAT');
-    repair='\nA prior attempt did not match the answer schema or citation mapping. Produce a fresh valid object using exactly the same supplied evidence. Use each full cited passage ID in square brackets in answer, for example [alder.N-101.1]. Every citations entry must appear in answer. Do not use numeric markers.  Keep email body citation-free. Do not introduce new evidence.';
+    repair='\nA prior attempt did not match the answer schema or citation mapping. Produce a fresh valid object using exactly the same supplied evidence. For ordinary factual answers, put the full supporting passage IDs in brackets after the claims and list only those IDs in citations. For a work product, provide its brief introduction and supporting citations array, with all draft content in workProduct.body and no markers in that body. Do not introduce new evidence or expand the answer just to cite every retrieved passage.';
    }
   }
   throw new RagError('ANSWER_FORMAT');

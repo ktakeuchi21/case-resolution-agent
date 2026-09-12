@@ -63,6 +63,15 @@ test('provider passage-ID markers become stable user citations without changing 
  assert.throws(()=>numberCitations({...source,workProduct:{type:'email',subject:'Note',body:'Please send it. [alder.N-101.1]',status:'generated_not_sent'}},trace));
 });
 
+test('citation normalization keeps only actual prose references and never repairs claim text or accepts unknown IDs',()=>{
+ const extra=trace.passages.find(p=>p.id!==valid.citations[0])!.id;
+ assert.deepEqual(numberCitations({...valid,answer:'The signed office note is requested. [alder.N-101.1]',citations:[extra,'alder.N-101.1']},trace),valid);
+ assert.deepEqual(numberCitations({...valid,answer:'The signed office note is requested. [2]',citations:[extra,'alder.N-101.1']},trace),valid);
+ assert.throws(()=>numberCitations({...valid,answer:'An uncited claim.',citations:[extra]},trace));
+ assert.throws(()=>numberCitations({...valid,citations:['alder.N-101.1','not-retrieved']},trace));
+ assert.throws(()=>numberCitations({...valid,citations:['alder.N-101.1','alder.N-101.1']},trace));
+});
+
 test('the inactive acceptance allowance requires an exact configured UTC date and expires automatically',()=>{
  const before=process.env.PATHWAY_RAG_ACCEPTANCE_DAY;
  const beforeRequests=process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;
