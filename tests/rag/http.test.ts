@@ -10,7 +10,7 @@ after(async()=>{for(const v of visitors)await server.sessionDb.pool.query('DELET
 async function request(path:string,input?:unknown,visitor=0,headers:Record<string,string>={}){const v=visitors[visitor]!;const response=await fetch(origin+'/api/rag/'+path,{method:input?'POST':'GET',headers:{Cookie:'pathway_session='+v.token,'X-CSRF-Token':v.csrf,'Content-Type':'application/json',Origin:origin,...headers},body:input?JSON.stringify(input):undefined});return {status:response.status,headers:response.headers,body:await response.json() as any};}
 test('catalog contains synthetic source passages and no infrastructure/private key fields',async()=>{const r=await request('catalog');assert.equal(r.status,200);assert.equal(r.body.packs.length,3);assert.equal(r.body.documents.length,24);assert.equal(r.body.passages.length,38);assert(r.body.passages.every((p:any)=>p.synthetic));assert(!JSON.stringify(r.body).includes('OPENAI_API_KEY'));});
 test('RAG API authenticates sessions, rejects cross-origin and forged configuration, and retains errors without fabrication',async()=>{
- for(const headers of [{'X-CSRF-Token':''},{Origin:'https://untrusted.example'},{'Sec-Fetch-Site':'cross-site'}])assert.equal((await request('start',{scenarioId:'alder'},0,headers)).status,403);
+ for(const headers of [{'X-CSRF-Token':''},{Origin:'https://untrusted.example'},{'Sec-Fetch-Site':'cross-site'}] as Record<string,string>[])assert.equal((await request('start',{scenarioId:'alder'},0,headers)).status,403);
  assert.equal((await request('start',{scenarioId:'alder',model:'gpt-5.4-pro'})).status,400);
  const created=await request('start',{scenarioId:'alder'});assert.equal(created.status,201);
  assert.equal((await request('conversation?id='+created.body.id,undefined,1)).status,404);
