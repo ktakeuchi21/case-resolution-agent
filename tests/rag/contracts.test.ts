@@ -34,7 +34,7 @@ test('external work-product copy contains no citation machinery and cannot claim
 test('strict public input cannot select model, actor, database or evidence',()=>{
  const input={conversationId:crypto.randomUUID(),requestId:crypto.randomUUID(),text:'Hello'};
  SendInput.parse(input);for(const extra of [{model:'gpt-5.4-pro'},{actor:'owner'},{passages:[]},{session:'other'}])assert.throws(()=>SendInput.parse({...input,...extra}));
- assert.throws(()=>new OpenAIConversation('fixture',async()=>{},'gpt-5.4-pro'));
+ for(const model of ['gpt-5.4','gpt-5.4-pro','gpt-5.5','gpt-5.6-sol','gpt-6-astra','toString'])assert.throws(()=>new OpenAIConversation('fixture',async()=>{},model));
 });
 test('one bounded malformed-citation repair reuses evidence and accounts for both provider calls',async()=>{
  let reservations=0;const bodies:any[]=[];
@@ -77,4 +77,14 @@ test('a work-product source list is valid without repeating all references in it
  assert.deepEqual(validateAnswer(value,trace),value);
  assert.throws(()=>validateAnswer({...value,answer:'Here is the draft. [9]'},trace));
  assert.throws(()=>validateAnswer({...value,citations:['not-retrieved']},trace));
+});
+
+test('GPT-4.1 mini omits unsupported reasoning and measures its own cached, input and output prices',async()=>{
+ const bodies:any[]=[];
+ const transport=(async(_url:unknown,init:RequestInit)=>{bodies.push(JSON.parse(init.body as string));return new Response(JSON.stringify({status:'completed',usage:{input_tokens:1000,input_tokens_details:{cached_tokens:200},output_tokens:100},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify(valid)}]}]}));}) as typeof fetch;
+ const model=new OpenAIConversation('fixture',async()=>{},'gpt-4.1-mini',transport);
+ const result=await model.generate('missing?',packs[0]!,trace,[]);
+ assert.equal(bodies[0].model,'gpt-4.1-mini');assert.equal(Object.hasOwn(bodies[0],'reasoning'),false);
+ assert.equal(bodies[0].text.format.strict,true);assert.equal(result.usage.estimatedCostUsd,.0005);
+ assert.equal(result.usage.cachedInputTokens,200);assert.equal(result.usage.requests,1);
 });
