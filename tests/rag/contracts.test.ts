@@ -7,12 +7,13 @@ import { contextualQuery, eligible, lexicalControl } from '../../src/rag/retriev
 import { validateAnswer, numberCitations, OpenAIConversation } from '../../src/rag/provider.ts';
 import { providerDailyCeiling } from '../../src/rag/service.ts';
 import { evaluationCases } from '../../src/rag/evaluation-cases.ts';
-const trace:RetrievalTrace={question:'missing?',query:'signed note',packId:'alder',packName:'Alder',caseId:'ALD-1042',method:'hybrid',passages:lexicalControl('signed office note',passages,'alder'),citations:[]};
+// Citation/provider unit fixtures use a fixed evidence set; ranking is evaluated separately.
+const trace:RetrievalTrace={question:'missing?',query:'signed note',packId:'alder',packName:'Alder',caseId:'ALD-1042',method:'hybrid',passages:lexicalControl('signed office note',passages.filter(p=>['N-101','COM-01'].includes(p.sourceId)),'alder'),citations:[]};
 const valid={answer:'The signed office note is requested. [1]',citations:['alder.N-101.1'],suggestedFollowups:['Why?'],workProduct:null,retrievalContext:'Signed office note N-101'};
-test('three synthetic packs have eight source documents and deliberate current, superseded, wrong-case boundaries',()=>{
+test('three expanded synthetic packs preserve current, superseded and wrong-case source boundaries',()=>{
  for(const p of passages)Passage.parse(p);
  assert.equal(new Set(passages.map(p=>p.id)).size,passages.length);
- for(const p of packs){assert.equal(documents.filter(d=>d.packId===p.id).length,8);assert(p.user.email.endsWith('.example'));assert(evaluationCases.filter(c=>c.packId===p.id).length>=10);assert(passages.some(q=>q.packId===p.id&&!eligible(q,p.id)));}
+ for(const p of packs){assert.equal(documents.filter(d=>d.packId===p.id).length,14);assert.equal(new Set(passages.filter(q=>eligible(q,p.id)).map(q=>q.sourceId)).size,12);assert(p.user.email.endsWith('.example'));assert(evaluationCases.filter(c=>c.packId===p.id).length>=10);assert(passages.some(q=>q.packId===p.id&&!eligible(q,p.id)));}
 });
 test('wrong-pack, wrong-case and superseded sources never enter lexical retrieval even with exact matching wording',()=>{
  for(const p of packs){const results=lexicalControl('deadline five-business-day two-day shipped insurance card',passages,p.id,99);assert(results.length>0);assert(results.every(r=>eligible(r,p.id)));}

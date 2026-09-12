@@ -291,13 +291,14 @@ function conversation() {
 }
 function knowledge() {
   const item = pack(state.selectedPack), docs = state.catalog.documents.filter(d=>d.packId===item.id);
+  const applicable = docs.filter(d=>d.status==='current'&&(!d.caseId||d.caseId===item.caseId));
   return el('main', { id: 'main', tabindex: '-1', class: 'page knowledge-page' },
     state.conversation?.id ? link('← Return to conversation', '#conversation/' + state.conversation.id, 'back-link') : link('← Scenarios', '#home', 'back-link'),
-    p('AVAILABLE KNOWLEDGE', 'eyebrow'), el('h1', {}, 'Know what Pathway knows.'), p('Small, readable Knowledge Packs. Every answer starts with the one you select.', 'lede'),
+    p('AVAILABLE KNOWLEDGE', 'eyebrow'), el('h1', {}, 'Know what Pathway knows.'), p('Case records, practical checklists and communication examples. Every answer starts with the Knowledge Pack you select.', 'lede'),
     el('div', { class: 'pack-choices', 'aria-label': 'Knowledge Packs' }, state.catalog.packs.map(item => button(item.shortName, () => { state.selectedPack=item.id; render(); }, 'button secondary', { 'aria-pressed': String(item.id===state.selectedPack) }))),
     el('section', { class: 'pack-summary' }, el('div', {}, badge('Curated synthetic knowledge'), el('h2', {}, item.name), p(item.agentRole + ' · Case ' + item.caseId), p(item.covers.join(' · '), 'muted'),
-      p('Version ' + item.version + ' · 8 sources · 6 current and applicable', 'small')), button('Use this Knowledge Pack', async () => { if(state.conversation?.id) await configure({packId:item.id},true); else go('#scenario/' + item.id); }, 'button primary')),
-    p('Only the six current, applicable sources can support new answers. Archived and other-case documents stay visible here so you can inspect the boundary.', 'muted'),
+      p('Version ' + item.version + ' · ' + docs.length + ' sources · ' + applicable.length + ' current and applicable', 'small')), button('Use this Knowledge Pack', async () => { if(state.conversation?.id) await configure({packId:item.id},true); else go('#scenario/' + item.id); }, 'button primary')),
+    p('Only current, applicable sources can support new answers. Process guides and examples describe fictional procedures; they do not add events to the recorded case. Archived and other-case documents remain visible for inspection.', 'muted'),
     el('div', { class: 'knowledge-documents' }, docs.map(doc => {
       const eligible = doc.status === 'current' && (!doc.caseId || doc.caseId === item.caseId);
       return disclosure(doc.title, 'doc-' + item.id + doc.id, [p(doc.type + ' · Version ' + doc.version + ' · ' + (eligible ? 'Current · Used for this case' : doc.status === 'superseded' ? 'Superseded · Excluded from answers' : 'Different case · Excluded from answers'), 'small source-status'),
@@ -308,6 +309,7 @@ function knowledge() {
 function evaluation() {
   return el('main', { id: 'main', tabindex: '-1', class: 'page evaluation-page' }, link('← Scenarios','#home','back-link'), p('MEASURED, THEN REVIEWED','eyebrow'),
     el('h1', {}, 'A small demo.\nEvidence you can inspect.'), p('Frozen questions, actual model responses, and explicit limits on what the results prove.', 'lede'),
+    p('The retained results below cover Knowledge Pack version 1.0. Version 1.1 adds detailed process guides and examples; its retrieval and conversation checks are recorded separately.', 'muted'),
     el('div', { class: 'metric-grid' }, ...[['36 / 36','Live turns completed'],['98.6%','Expected-passage recall'],['115 / 115','Citations found in retrieval'],['6 / 6','Knowledge-switch checks']].map(([value,label])=>el('div',{class:'metric'},el('strong',{},value),p(label)))),
     el('h2',{},'What the conversations demonstrated'), el('ul',{class:'evaluation-list'},
       el('li',{},'Three 12-turn conversations cover direct questions, “Why?”, evidence requests, deadlines, email drafts, refinements and unsupported questions.'),
@@ -318,7 +320,8 @@ function evaluation() {
     p('Source membership is checked automatically. Whether each passage fully supports every phrase requires judgment. Drafts still need review: a formal rewrite offered a future follow-up, and tone can be restrained. These synthetic results are not an independent healthcare or production validation.', 'muted'),
     el('div',{class:'evaluation-detail'}, el('div',{},el('h2',{},'Model & measured cost'),p('GPT-5 mini · Low reasoning'),p('text-embedding-3-small · 1,536 dimensions'),p('Complete 36-turn run: $0.05972 estimated'),p('Median answer: 6.9 seconds · Slowest: 14.3 seconds'),p('109,241 input tokens · 21,888 cached · 18,630 output', 'small muted')),
       el('div',{},el('h2',{},'How retrieval works'),p('PostgreSQL stores section-sized passages and their vectors. The question and recent context rank current sources within the selected pack and case. The answer’s validated source IDs attach the exact stored text.'),p('Usually one generation call follows retrieval. A malformed response can use one repair with the same evidence. Seven repairs were needed in the complete run; none in the later six-turn source-list check.', 'small muted'))),
-    link('Read the retained evaluation & limitations ↗', 'https://github.com/ktakeuchi21/case-resolution-agent/blob/main/docs/rebuild/conversation-review-2026-09-12.md','button secondary'), footer());
+    link('Read the retained evaluation & limitations ↗', 'https://github.com/ktakeuchi21/case-resolution-agent/blob/main/docs/rebuild/conversation-review-2026-09-12.md','button secondary'),
+    link('Read Knowledge Pack 1.1 verification ↗', 'https://github.com/ktakeuchi21/case-resolution-agent/blob/main/docs/knowledge-packs.md','button secondary'), footer());
 }
 function render() {
   if (!state.catalog) return;

@@ -27,7 +27,7 @@ Do not recommend treatment or dosing, predict payer approval, determine eligibil
 
 # Conversation
 Resolve short follow-ups from the recent same-pack conversation. “Why?” asks the reason for the previously discussed requirement. “Where did you get that?” asks for its supporting sources. Clarify only when materially different interpretations remain plausible.
-Use concise, natural prose. Two or three sentences usually suffice for a factual answer. Avoid internal technical terminology. Never invent quotations or source names.
+Use concise, natural prose, with enough detail to answer every part of the question. A simple factual answer may need two or three sentences; a checklist, comparison or set of open questions needs the actual items. Avoid internal technical terminology. Never invent quotations or source names.
 
 # Citations
 Return the smallest set of retrieved passage IDs supporting the material facts in the answer in citations. One to three directly supporting passages usually suffice; do not list every retrieved passage just because it was available. Use only supplied IDs. Do not write citation markers, source IDs or numeric brackets in answer prose. The interface attaches numbered exact passages under Sources used for the whole answer. For an evidence question, name the actual source and explain what it supports.
@@ -41,7 +41,7 @@ Refine the latest same-pack work product unless the user specifies another. Pres
 Report unrecorded receipt as “no receipt is recorded,” never “has not arrived.” Report unconfirmed shipping as “no shipment confirmation is recorded,” never a definitive shipping outcome. Avoid commitments such as “we will contact” or “we will update.”
 Preserve the missing item's precision: a consent form missing a signature is not a missing consent form; say “the consent signature is missing.” Do not infer which channel a person used for earlier submissions. In a clinical, dosing or medication answer, explicitly tell the user to ask the treating clinician or pharmacist, even when you already declined to advise.
 Do not mention response-field names such as workProduct or retrievalContext in user-facing prose.
-For every summary or drafting/refinement request, fill workProduct and keep answer to its brief introduction. For ordinary questions, workProduct is null.
+Match the content to the fields actually returned: when workProduct is null, answer must contain the complete substantive response, including any requested facts, checklist or open questions. Never return only an introduction, an instruction to include unspecified facts, or a promise to provide content. When workProduct is non-null, its body must contain the complete requested content and answer may be a brief introduction. A question about what belongs in a briefing still needs the actual facts and open questions, whether answered directly or as a complete summary.
 Return two useful short suggestedFollowups and retrievalContext of at most 500 characters identifying the current referents and draft purpose for the next retrieval. That context does not establish new facts.`;
 export function validateAnswer(value:unknown,trace:RetrievalTrace):Answer {
  const answer=Answer.parse(value),allowed=new Set(trace.passages.map(p=>p.id));
@@ -100,7 +100,7 @@ export class OpenAIConversation {
   for(const turn of history.toReversed()){if(turn.packId!==pack.id)break;if(turn.response)prior.unshift(turn);if(prior.length>=8)break;}
   const latestDraft=prior.toReversed().find(t=>t.response?.workProduct)?.response?.workProduct;
   const draftWords=latestDraft?.body.trim().split(/\s+/).length;
-  (schema.properties!.answer as {description?:string}).description='For factual questions: a concise cited answer. For any drafting, summary or refinement request: one short introduction only; put the complete content in workProduct.';
+  (schema.properties!.answer as {description?:string}).description='When workProduct is null, the complete substantive answer, including the actual requested facts, steps or open questions. An introduction alone is insufficient. Only when a non-null workProduct contains the complete content may this field be a short introduction.';
   const productSchema=schema.properties!.workProduct as {description?:string;anyOf?:Array<{properties?:{body?:{description?:string}}}>};
   productSchema.description='Required non-null for requests to draft, summarize, brief, rewrite or refine. Use type summary for a case briefing. Null only when no work product is requested.';
   const bodySchema=productSchema.anyOf?.find(s=>s.properties?.body)?.properties?.body;

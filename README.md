@@ -48,7 +48,7 @@ Screenshots show the public demo with a saved synthetic answer.
 | **Coverage & access** · ACC-2086 | Morgan Lee, field reimbursement manager | An unreadable Juniper Plan member identifier blocks benefit verification. | An HCP-office briefing or follow-up email. |
 | **Specialty pharmacy fulfillment** · FUL-3091 | Jordan Rivera, patient-support case manager | The consent signature is missing; intake is recorded, but no dispense release or carrier handoff is recorded. | A patient-friendly administrative status message. |
 
-All people, organizations, plans, cases and documents are fictional. Each Knowledge Pack contains eight documents: six applicable sources, one superseded source and one record for another case. The complete corpus contains **24 documents and 38 passages**. Excluded documents are inspectable in the knowledge browser but cannot support a new answer.
+All people, organizations, plans, cases and documents are fictional. Each Knowledge Pack contains 14 documents: 12 applicable sources, one superseded source and one record for another case. The complete corpus contains **42 documents and 110 passages**, including practical checklists, troubleshooting, handoff worksheets and communication examples. The guides explain fictional procedures without adding events to the recorded cases. Excluded documents are inspectable in the knowledge browser but cannot support a new answer. See the [Knowledge Pack guide and verification](docs/knowledge-packs.md).
 
 ## Try a conversation
 
@@ -116,7 +116,7 @@ node scripts/verify-hygiene.ts
 
 The RAG suite requires the migrated local database. Automated checks use synthetic provider responses and make no paid model calls. The documented activity release passed **118 automated tests and 138 browser checks**, including desktop/mobile layouts, citations, copy, refinement, retries, knowledge switching, progress and reload.
 
-The retained 36-turn synthetic conversation evaluation completed all turns, with **98.61% expected-passage recall** and **115/115 cited IDs present in retrieval**. Its semantic review found **34/36 complete criterion matches**; the two partial results and targeted follow-up checks are documented. Citation membership alone does not prove every phrase is supported, and these results are not independent clinical validation.
+The retained 36-turn synthetic conversation evaluation of Knowledge Pack version 1.0 completed all turns, with **98.61% expected-passage recall** and **115/115 cited IDs present in retrieval**. Its semantic review found **34/36 complete criterion matches**; the two partial results and targeted follow-up checks are documented. Citation membership alone does not prove every phrase is supported, and these results are not independent clinical validation.
 
 - [Conversation evaluation and limitations](docs/rebuild/conversation-review-2026-09-12.md)
 - [Workspace behavior and browser checks](docs/rebuild/compact-workspace.md)
