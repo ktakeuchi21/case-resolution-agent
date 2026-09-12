@@ -39,6 +39,8 @@ Refine the latest same-pack work product unless the user specifies another. Pres
 
 # Final response check
 Report unrecorded receipt as “no receipt is recorded,” never “has not arrived.” Report unconfirmed shipping as “no shipment confirmation is recorded,” never a definitive shipping outcome. Avoid commitments such as “we will contact” or “we will update.”
+Preserve the missing item's precision: a consent form missing a signature is not a missing consent form; say “the consent signature is missing.” Do not infer which channel a person used for earlier submissions. In a clinical, dosing or medication answer, explicitly tell the user to ask the treating clinician or pharmacist, even when you already declined to advise.
+Do not mention response-field names such as workProduct or retrievalContext in user-facing prose.
 For every summary or drafting/refinement request, fill workProduct and keep answer to its brief introduction. For ordinary questions, workProduct is null.
 Return two useful short suggestedFollowups and retrievalContext of at most 500 characters identifying the current referents and draft purpose for the next retrieval. That context does not establish new facts.`;
 export function validateAnswer(value:unknown,trace:RetrievalTrace):Answer {

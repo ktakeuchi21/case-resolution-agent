@@ -1,0 +1,1303 @@
+{
+  "suite": "rag-conversation-v1",
+  "mode": "critical",
+  "runLabel": "compact-v1",
+  "startedAt": "2026-09-12T13:39:25.943Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "live": true,
+  "results": [
+    {
+      "id": "fulfillment-01",
+      "category": "direct",
+      "reviewCriterion": "Enrollment received/prescription intake; missing consent signature; not dispense-ready.",
+      "expected": [
+        "fulfillment.STATUS-3091.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 5762,
+      "humanReview": null,
+      "turn": {
+        "id": "e83e231b-354a-4bf8-a62c-c50aa0312215",
+        "question": "Where is this case in the fulfillment process?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:39:26.595Z",
+        "status": "complete",
+        "response": {
+          "answer": "This case (FUL-3091) has enrollment received and Birch Specialty Pharmacy has recorded prescription intake, but the consent form is missing the required signature. Because consent is incomplete, the case is not dispense‑ready and there is no dispense release, shipment confirmation, carrier handoff, or tracking recorded [1] [2] [3].",
+          "citations": [
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.ENROLL-01.1",
+            "fulfillment.SHIP-01.1"
+          ],
+          "suggestedFollowups": [
+            "Ask the patient to complete and sign the consent via the program channel and then confirm receipt with intake.",
+            "Request the pharmacy intake team to check and confirm when the signed consent is received so the case can be re‑assessed."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091 for Willow Support/Birch Specialty: enrollment received, prescription intake recorded, consent signature missing, no dispense release or shipping confirmation."
+        },
+        "trace": {
+          "question": "Where is this case in the fulfillment process?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nCurrent question: Where is this case in the fulfillment process?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0731707317073171,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0714285714285714,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.068733850129199,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0687103594080338,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Shipment terms",
+              "text": "Label created means shipping information was prepared; it does not confirm carrier possession. Shipped or carrier handoff requires an explicit shipment confirmation. Delivered requires a delivery confirmation. Intake received, enrollment received and dispense-ready do not mean shipped.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0652777777777778,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0647548566142461,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0642923219241443,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.063543599257885,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.ENROLL-01.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.SHIP-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 1936,
+          "cachedInputTokens": 1792,
+          "outputTokens": 366,
+          "requests": 1,
+          "latencyMs": 5460,
+          "estimatedCostUsd": 0.0008127999999999999,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-02",
+      "category": "followup",
+      "reviewCriterion": "Explains signed consent prerequisite without clarification.",
+      "expected": [
+        "fulfillment.ENROLL-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 5975,
+      "humanReview": null,
+      "turn": {
+        "id": "aa1b27a0-5e4a-4b5f-92c5-c3dcda20f1a0",
+        "question": "Why?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:39:32.397Z",
+        "status": "complete",
+        "response": {
+          "answer": "Because a signed consent is an administrative prerequisite for moving enrollment to dispense‑ready; without that completed signature the pharmacy cannot finish its checks or authorize dispense, so no dispense release or shipment confirmation is recorded [1] [2].",
+          "citations": [
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.ENROLL-01.1"
+          ],
+          "suggestedFollowups": [
+            "How can I have the patient complete and return the consent form?",
+            "Please draft a short patient message asking for the missing signature."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; next step is obtaining signed consent so pharmacy can complete checks and consider dispense readiness."
+        },
+        "trace": {
+          "question": "Why?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Case FUL-3091 for Willow Support/Birch Specialty: enrollment received, prescription intake recorded, consent signature missing, no dispense release or shipping confirmation.\nRecent questions: Where is this case in the fulfillment process?\nCurrent question: Why?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0238095238095238,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0232558139534884,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0227272727272727,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0222222222222222,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0217391304347826,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0212765957446809,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Shipment terms",
+              "text": "Label created means shipping information was prepared; it does not confirm carrier possession. Shipped or carrier handoff requires an explicit shipment confirmation. Delivered requires a delivery confirmation. Intake received, enrollment received and dispense-ready do not mean shipped.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0208333333333333,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.ENROLL-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2060,
+          "cachedInputTokens": 0,
+          "outputTokens": 371,
+          "requests": 1,
+          "latencyMs": 5691,
+          "estimatedCostUsd": 0.0012591199999999999,
+          "embeddingInputTokens": 106,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-04",
+      "category": "work-product",
+      "reviewCriterion": "Recipient-ready update asks for consent signature and makes no shipment promise.",
+      "expected": [
+        "fulfillment.PATIENT-01.1",
+        "fulfillment.STATUS-3091.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 10527,
+      "humanReview": null,
+      "turn": {
+        "id": "26e9c14a-6d85-4980-a8cb-14e947e8a68b",
+        "question": "Draft a patient-friendly status update.",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:39:38.276Z",
+        "status": "complete",
+        "response": {
+          "answer": "Below is a concise, patient-friendly status update you can send to Taylor.",
+          "citations": [
+            "fulfillment.PATIENT-01.1",
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.ENROLL-01.1",
+            "fulfillment.SHIP-01.2"
+          ],
+          "suggestedFollowups": [
+            "Ask the patient to confirm which secure program channel they used to submit consent, so intake can check receipt.",
+            "Request the intake team to confirm and timestamp consent receipt once the patient submits it."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Update on your enrollment and next steps",
+            "body": "Hello Taylor,\n\nThank you — we received your enrollment and the pharmacy has recorded the prescription intake. One item is still needed: the consent form requires your signature.\n\nPlease complete the consent using the same secure program channel you used for enrollment. The pharmacy must have a signed consent before it can finish its administrative checks and consider the case dispense‑ready; shipment cannot be confirmed until those steps are complete.\n\nIf you’ve already signed and submitted the consent, please let me know which channel you used so the intake team can check receipt and completeness.\n\nThanks,\nJordan Rivera\nWillow Support",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Draft patient update for synthetic case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; patient-facing status email."
+        },
+        "trace": {
+          "question": "Draft a patient-friendly status update.",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; next step is obtaining signed consent so pharmacy can complete checks and consider dispense readiness.\nRecent questions: Where is this case in the fulfillment process? → Why?\nCurrent question: Draft a patient-friendly status update.",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0703463203463204,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0703211517165006,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0698447893569845,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0657210401891253,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652173913043478,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority",
+              "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0625531914893617,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0622222222222222,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.PATIENT-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.ENROLL-01.1"
+            },
+            {
+              "number": 4,
+              "passageId": "fulfillment.SHIP-01.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2122,
+          "cachedInputTokens": 0,
+          "outputTokens": 618,
+          "requests": 1,
+          "latencyMs": 10323,
+          "estimatedCostUsd": 0.00176882,
+          "embeddingInputTokens": 116,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-05",
+      "category": "refinement",
+      "reviewCriterion": "Same patient update becomes warmer and at least 25% shorter.",
+      "expected": [
+        "fulfillment.PATIENT-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 8006,
+      "humanReview": null,
+      "turn": {
+        "id": "379f62ee-8672-4897-930e-05349924042e",
+        "question": "Make it warmer and shorter.",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:39:48.875Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a warmer, shorter patient-facing email based on the prior draft.",
+          "citations": [
+            "fulfillment.PATIENT-01.1",
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.STATUS-3091.2"
+          ],
+          "suggestedFollowups": [
+            "Send this to the patient now.",
+            "Check with intake whether a signed consent was already received and complete."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Quick update on your enrollment",
+            "body": "Hi Taylor,\n\nThanks — we’ve received your enrollment and the pharmacy has recorded the prescription intake. One thing remains: the consent form needs your signature via the same secure program channel you used before. The pharmacy must have a signed consent before it can finish checks or confirm shipment.\n\nIf you already signed, please tell me which channel you used.\n\nThanks,\nJordan Rivera\nWillow Support",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Refine latest patient email for synthetic case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; produce warmer, shorter patient-facing email."
+        },
+        "trace": {
+          "question": "Make it warmer and shorter.",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Draft patient update for synthetic case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; patient-facing status email.\nRecent questions: Why? → Draft a patient-friendly status update.\nCurrent question: Make it warmer and shorter.",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0714285714285714,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.068733850129199,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0681818181818182,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.066183574879227,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0652065704330513,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.RX-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "RX-01",
+              "title": "Prescription intake and dispense readiness",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Intake sequence",
+              "text": "Prescription intake means the pharmacy recorded the prescription for review. The pharmacy must complete its required checks and confirm dispense readiness. Pathway can describe recorded administrative stages but cannot validate a prescription, decide treatment, release medication or override pharmacy checks.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0638864241348713,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority",
+              "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.063386524822695,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.PATIENT-01.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.STATUS-3091.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2343,
+          "cachedInputTokens": 0,
+          "outputTokens": 526,
+          "requests": 1,
+          "latencyMs": 7753,
+          "estimatedCostUsd": 0.0016398699999999999,
+          "embeddingInputTokens": 106,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-08",
+      "category": "paraphrase",
+      "reviewCriterion": "No shipment confirmation or carrier handoff recorded.",
+      "expected": [
+        "fulfillment.STATUS-3091.1",
+        "fulfillment.SHIP-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 5577,
+      "humanReview": null,
+      "turn": {
+        "id": "0b1cd414-a382-4ff3-ae78-e95ca61f4829",
+        "question": "Has the medication shipped?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:39:56.811Z",
+        "status": "complete",
+        "response": {
+          "answer": "No — no shipment confirmation is recorded. The case is not dispense‑ready because the consent form lacks the required signature, and there is no dispense release, carrier handoff, tracking, or shipment confirmation in the record [1] [2]. The Knowledge Pack also contains no shipment date or delivery estimate for this case [3].",
+          "citations": [
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.SHIP-01.1",
+            "fulfillment.SHIP-01.2"
+          ],
+          "suggestedFollowups": [
+            "Please check whether the patient has already signed consent and which channel they used so intake can re-check receipt.",
+            "Contact the pharmacy intake team to ask them to confirm consent receipt and whether any other items are needed for dispense readiness."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091 status check: enrollment received, prescription intake recorded, consent signature missing; no dispense release or shipment confirmation recorded; preparing patient-facing short warmed email."
+        },
+        "trace": {
+          "question": "Has the medication shipped?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Refine latest patient email for synthetic case FUL-3091: enrollment received, prescription intake recorded, consent signature missing; produce warmer, shorter patient-facing email.\nRecent questions: Draft a patient-friendly status update. → Make it warmer and shorter.\nCurrent question: Has the medication shipped?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0715077605321508,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0697674418604651,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0692640692640693,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0688346883468835,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Shipment terms",
+              "text": "Label created means shipping information was prepared; it does not confirm carrier possession. Shipped or carrier handoff requires an explicit shipment confirmation. Delivered requires a delivery confirmation. Intake received, enrollment received and dispense-ready do not mean shipped.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0684523809523809,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0647548566142461,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0630385487528345,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.RX-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "RX-01",
+              "title": "Prescription intake and dispense readiness",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Intake sequence",
+              "text": "Prescription intake means the pharmacy recorded the prescription for review. The pharmacy must complete its required checks and confirm dispense readiness. Pathway can describe recorded administrative stages but cannot validate a prescription, decide treatment, release medication or override pharmacy checks.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0625531914893617,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.SHIP-01.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.SHIP-01.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2502,
+          "cachedInputTokens": 0,
+          "outputTokens": 338,
+          "requests": 1,
+          "latencyMs": 5455,
+          "estimatedCostUsd": 0.00130378,
+          "embeddingInputTokens": 114,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "fulfillment-12",
+      "category": "delivery-promise",
+      "reviewCriterion": "No delivery guarantee; explain pharmacy/carrier confirmation.",
+      "expected": [
+        "fulfillment.SHIP-01.2",
+        "fulfillment.FUL-ESC.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 6215,
+      "humanReview": null,
+      "turn": {
+        "id": "689c221e-ed91-45a3-bbb3-175f4af861a8",
+        "question": "Can you guarantee it will arrive tomorrow?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T13:40:02.389Z",
+        "status": "complete",
+        "response": {
+          "answer": "No — I cannot guarantee it will arrive tomorrow. There is no shipment confirmation recorded for FUL-3091, the consent signature is missing so the case is not dispense‑ready, and the Knowledge Pack contains no shipment date or delivery estimate; the support agent cannot promise delivery [1] [2] [3].",
+          "citations": [
+            "fulfillment.STATUS-3091.1",
+            "fulfillment.SHIP-01.2",
+            "fulfillment.FUL-ESC.2"
+          ],
+          "suggestedFollowups": [
+            "Can you check whether the patient has already signed the consent and which channel they used?",
+            "Please ask the pharmacy to confirm receipt and completeness after we get the signed consent."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091 for Willow Support/Birch Pharmacy: enrollment received, prescription intake recorded, consent signature missing; no dispense release, shipment confirmation, carrier handoff, or tracking recorded. Drafting patient update and confirming next administrative step."
+        },
+        "trace": {
+          "question": "Can you guarantee it will arrive tomorrow?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Case FUL-3091 status check: enrollment received, prescription intake recorded, consent signature missing; no dispense release or shipment confirmation recorded; preparing patient-facing short warmed email.\nRecent questions: Make it warmer and shorter. → Has the medication shipped?\nCurrent question: Can you guarantee it will arrive tomorrow?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.SHIP-01.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Dates and promises",
+              "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0720363017583664,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded patient question",
+              "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0714285714285714,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0698447893569845,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0692389006342495,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIP-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIP-01",
+              "title": "Pharmacy shipment-status glossary",
+              "type": "Status glossary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Shipment terms",
+              "text": "Label created means shipping information was prepared; it does not confirm carrier possession. Shipped or carrier handoff requires an explicit shipment confirmation. Delivered requires a delivery confirmation. Intake received, enrollment received and dispense-ready do not mean shipped.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0657210401891253,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0647754137115839,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Authority",
+              "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0638864241348713,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.ENROLL-01.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "ENROLL-01",
+              "title": "Enrollment and consent prerequisites",
+              "type": "Program terms",
+              "version": "1.0",
+              "status": "current",
+              "section": "Consent requirement",
+              "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0625554569653949,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.STATUS-3091.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.SHIP-01.2"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.FUL-ESC.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2572,
+          "cachedInputTokens": 0,
+          "outputTokens": 387,
+          "requests": 1,
+          "latencyMs": 6070,
+          "estimatedCostUsd": 0.00141936,
+          "embeddingInputTokens": 118,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    }
+  ],
+  "limitations": "Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.",
+  "expectedModel": "gpt-5-mini",
+  "selectedPack": "fulfillment",
+  "completed": true,
+  "metrics": {
+    "cases": 6,
+    "meanExpectedPassageRecall": 1,
+    "packIsolation": 6,
+    "medianLatencyMs": 6215,
+    "maxLatencyMs": 10527,
+    "inputTokens": 13535,
+    "cachedInputTokens": 1792,
+    "outputTokens": 2606,
+    "embeddingInputTokens": 560,
+    "generationRequests": 6,
+    "embeddingRequests": 5,
+    "unmeasuredRequests": 0,
+    "estimatedCostUsd": 0.00820375,
+    "costScope": "Includes reported corpus/query preparation and turn generation/embedding usage in this run. Cached query vectors were charged when first prepared. Missing provider usage is unknown, not zero."
+  }
+}
