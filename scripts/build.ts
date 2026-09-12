@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto';
 import { copyFileSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, extname, join, relative, resolve } from 'node:path';
 import { FileEmbeddingCache } from '../src/providers/embedding.ts';
+import { packs, documents, passages } from '../src/rag/corpus.ts';
 
 const root = resolve('.'), output = join(root, 'dist'), marker = '.pathway-build-v1';
 if (!existsSync(join(root, 'tsconfig.build.json')) || JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).name !== 'pathway-agent') throw new Error('Run the build from the Pathway Agent repository root.');
@@ -24,10 +25,11 @@ try {
       const destination = join(stage, relative(root, source)); mkdirSync(resolve(destination, '..'), { recursive: true }); copyFileSync(source, destination);
     }
   }
+  writeFileSync(join(stage,'web/rag-catalog.json'),JSON.stringify({version:'rag-v1',synthetic:true,packs,documents,passages})+'\n');
   const cache = new FileEmbeddingCache(join(stage, 'fixtures/embeddings'));
   const vectorFiles = walk(join(stage, 'fixtures/embeddings'));
   for (const file of vectorFiles) if (!await cache.get(basename(file, '.json'))) throw new Error('Missing packaged vector.');
-  for (const required of ['src/app/server.js','src/app/service.js','scripts/db/cli.js','fixtures/knowledge/corpus.json','fixtures/retrieval/gold-v1.json','fixtures/retrieval/experiment-v1.json','web/index.html','web/app.js','web/styles.css']) {
+  for (const required of ['src/app/server.js','src/app/service.js','scripts/db/cli.js','fixtures/knowledge/corpus.json','fixtures/retrieval/gold-v1.json','fixtures/retrieval/experiment-v1.json','web/index.html','web/rag-app.js','web/rag.css','web/rag-catalog.json']) {
     if (!existsSync(join(stage, required))) throw new Error(`Required production artifact missing: ${required}`);
   }
   const files = walk(stage).map(path => {

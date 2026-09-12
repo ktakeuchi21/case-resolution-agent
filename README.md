@@ -1,3 +1,16 @@
+# Pathway — RAG-first support demonstration
+
+The current public product is a synthetic pharmaceutical-support conversation experience: three scenarios, chat/email, exact Sources used, Knowledge Pack switching, and measured live evaluation. It uses server-side GPT-5 mini with low reasoning and `text-embedding-3-small`, PostgreSQL/pgvector, and the existing free Render services.
+
+- [Rebuild charter](docs/rebuild/charter.md)
+- [Live conversation results and limitations](docs/rebuild/conversation-review-2026-09-12.md)
+- [Interface and browser verification](docs/rebuild/interface-and-browser.md)
+- [Public demo](https://case-resolution-frontend.onrender.com)
+
+The previous implementation is preserved on `preserve/pre-rag-rebuild-2026-09-11`; its original documentation follows as historical context. It does not describe the new primary user interface.
+
+---
+
 # Pathway Agent
 
 Current hosting: the [static frontend and loading screen](docs/static-frontend.md) are live, with 376–392 ms observed first contentful paint on the released revision, including a visit after 16 minutes of idle time. Launch waits for readiness, then opens the existing backend workspace with secure sessions and progressive streaming. All 31 deployed transport checks and six idle-entry checks passed. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.

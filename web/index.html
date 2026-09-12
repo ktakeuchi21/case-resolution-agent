@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#142c36">
-  <meta name="description" content="Pathway Agent: a synthetic portfolio demonstration of a persistent, evidence-governed patient-access workforce.">
-  <title>Pathway Agent · Governed patient access</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,interactive-widget=resizes-content">
+  <meta name="theme-color" content="#f7f8f4">
+  <meta name="description" content="An AI support worker for synthetic pharmaceutical-support scenarios. Ask a question, prepare a draft, and inspect its exact sources.">
+  <title>Pathway · Support grounded in knowledge</title>
   <link rel="icon" href="/mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
-  <script type="module" src="/app.js"></script>
+  <link rel="stylesheet" href="/rag.css">
+  <script type="module" src="/rag-app.js"></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <div id="app"><main id="main" class="initial"><span class="brand">Pathway<span>Agent</span></span><p role="status">Connecting to your demonstration workspace…</p></main></div>
+  <div id="app"><main id="main" class="page"><p class="eyebrow">Pathway · Synthetic demonstration</p><h1>Support that knows its sources.</h1><p role="status">Loading the three scenarios…</p></main></div>
   <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
-  <noscript><p class="initial">JavaScript is required for this interactive synthetic demonstration.</p></noscript>
+  <div id="announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript><p class="page">JavaScript is required for this interactive synthetic demonstration.</p></noscript>
 </body>
 </html>
