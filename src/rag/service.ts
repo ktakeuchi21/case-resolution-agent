@@ -11,6 +11,11 @@ import { getPack } from './corpus.ts';
 import { PersistentRetrieval } from './retrieval.ts';
 import { OpenAIConversation } from './provider.ts';
 
+// Inactive unless the operator explicitly authorizes and configures an acceptance day.
+// The exception expires automatically at the next UTC day; counters are never reset.
+export function providerDailyCeiling(today=new Date().toISOString().slice(0,10),configuredLimit=100) {
+ return process.env.PATHWAY_RAG_ACCEPTANCE_DAY===today?250:Math.min(configuredLimit,100);
+}
 export class RagService {
  readonly db:Database;readonly sessions:Sessions;
  constructor(db:Database,sessions:Sessions){this.db=db;this.sessions=sessions;}
@@ -44,7 +49,7 @@ export class RagService {
  provider(session:Session){
   const config=providerConfiguration();if(!config.enabled)throw new RagError('PROVIDER_NOT_CONFIGURED');
   // Existing shared durable limits include this rebuild and the previous application.
-  const bounded={daily:Math.min(config.daily,100),perSession:Math.min(config.perSession,40)};
+  const bounded={daily:providerDailyCeiling(new Date().toISOString().slice(0,10),config.daily),perSession:Math.min(config.perSession,40)};
   return new OpenAIConversation(process.env.OPENAI_API_KEY!,()=>reserveProviderRequest(this.sessions,session.token_hash,bounded));
  }
  async retrieve(session:Session,input:unknown){

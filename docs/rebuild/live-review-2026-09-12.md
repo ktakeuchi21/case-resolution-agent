@@ -49,3 +49,19 @@ All are content-addressed and retained unchanged in `artifacts/rebuild/`:
 - `conversation-4a548d9ce0d55ff3d66c85721f84b64a92c5c9d721eda91fb41bb34d10dde691.json`
 - `retrieval-69a732a15dd78f23c5fc2fc250f81b4721290b0dd652c67f76848ca1941db658.json`
 - `conversation-658255e2cedfde5163bb31e53eee4a19c19788f115f1f86d6c75638d03518b0b.json`
+
+## User-authorized cooldown unlock
+
+At 12:21 UTC the user explicitly requested “unlock the limit.” The single session-IP cooldown associated with this run was expired once, under a transaction that required exactly one matching bucket. No session, provider or spending ceiling changed, and no provider-budget counter was reset. The first attempt matched a millisecond timestamp against PostgreSQL's finer precision and changed nothing; the guarded millisecond-range match cleared one bucket with 11 hits. The corrected conversation suite resumed with private session reuse enabled.
+
+## Resumed corrected conversation run
+
+The unlocked run is retained in `artifacts/rebuild/conversation-842b6eed9522a4dbf48e37a91943fe8e6108876cbea7a26ae0e05a1138639d4e.json`. It completed 31 turns; fulfillment-08 then failed before a model call because the shared daily provider counter reached 100. All 31 completed turns passed pack/case/status isolation, citation membership and exact passage checks. Their mean expected-passage recall is 95.70%. The run used 32 generation requests (one repair) and 28 embedding requests, with median HTTP latency 2,630 ms, maximum 6,760 ms, and estimated cost $0.08905002. Total estimated cost across this checkpoint's actual model/embedding runs is $0.14273129.
+
+The earlier Alder receipt/completeness errors were corrected in the actual output: after-submission now explains acknowledgment and completeness separately; missing-paperwork wording now says receipt is not recorded. The previously failing access email refinement returned successfully.
+
+Remaining work-product issues prevent qualification: the access summary was ordinary prose with `workProduct:null`; its email refinement shortened 67 words to 54 (19.4%, below the frozen 25% criterion), and fulfillment's refinement grew from 37 words to 42. Alder shortened 56 to 31 words (44.6%). Some responses also duplicated the whole draft in answer text.
+
+Prepared local corrections now require structured work products for summary/brief/refine requests, keep introductions separate from bodies, supply the previous draft's word count and a 75% word budget for shortening, and explicitly refer clinical questions to the clinician/pharmacist. The candidate moves the ordinary reasoning default from none to low because repeated live instruction-following failures justify comparing it. These changes need new live evaluation; they are not yet deployed or qualified.
+
+A date-bound provider allowance proposal is prepared but **inactive**. The session cooldown unlock did not authorize this distinct paid-API allowance. No provider counters were cleared or ceilings activated.

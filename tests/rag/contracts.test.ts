@@ -5,6 +5,7 @@ import type { RetrievalTrace, Turn } from '../../src/rag/contracts.ts';
 import { packs, passages, documents } from '../../src/rag/corpus.ts';
 import { contextualQuery, eligible, lexicalControl } from '../../src/rag/retrieval.ts';
 import { validateAnswer, numberCitations, OpenAIConversation } from '../../src/rag/provider.ts';
+import { providerDailyCeiling } from '../../src/rag/service.ts';
 import { evaluationCases } from '../../src/rag/evaluation-cases.ts';
 const trace:RetrievalTrace={question:'missing?',query:'signed note',packId:'alder',packName:'Alder',caseId:'ALD-1042',method:'hybrid',passages:lexicalControl('signed office note',passages,'alder'),citations:[]};
 const valid={answer:'The signed office note is requested. [1]',citations:['alder.N-101.1'],suggestedFollowups:['Why?'],workProduct:null,retrievalContext:'Signed office note N-101'};
@@ -60,4 +61,12 @@ test('provider passage-ID markers become stable user citations without changing 
  assert.deepEqual(numberCitations(source,trace),valid);
  assert.throws(()=>numberCitations({...source,answer:'A fact. [access.BV-2086.1]'},trace));
  assert.throws(()=>numberCitations({...source,workProduct:{type:'email',subject:'Note',body:'Please send it. [alder.N-101.1]',status:'generated_not_sent'}},trace));
+});
+
+test('the inactive acceptance allowance requires an exact configured UTC date and expires automatically',()=>{
+ const before=process.env.PATHWAY_RAG_ACCEPTANCE_DAY;
+ try{
+  delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;assert.equal(providerDailyCeiling('2026-09-12'),100);
+  process.env.PATHWAY_RAG_ACCEPTANCE_DAY='2026-09-12';assert.equal(providerDailyCeiling('2026-09-12'),250);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
+ }finally{if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;}
 });
