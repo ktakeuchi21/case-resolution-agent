@@ -37,7 +37,10 @@
     "test:app": "node --test --test-concurrency=1 tests/app/*.test.ts",
     "test:generation": "node --test tests/generation/*.test.ts",
     "test:agent": "node --test tests/agent/*.test.ts",
-    "test:studio": "node --test tests/studio/*.test.ts"
+    "test:studio": "node --test tests/studio/*.test.ts",
+    "test:rag": "node --test --test-concurrency=1 tests/rag/*.test.ts",
+    "eval:rag": "node scripts/rag/evaluate.ts",
+    "rag:seed": "node scripts/rag/seed.ts"
   },
   "dependencies": {
     "pdfjs-dist": "6.3.289",

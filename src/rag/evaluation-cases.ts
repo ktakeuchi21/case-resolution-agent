@@ -1,0 +1,43 @@
+// Frozen before live evaluation. Changes require a new suite version, never relabel an old result.
+import type { PackId } from './contracts.ts';
+export interface EvalCase { id:string;packId:PackId;question:string;retrievalQuestion:string;expected:string[];category:string;review:string; }
+const row=(packId:PackId,n:number,question:string,expected:string[],category:string,review:string,retrievalQuestion=question):EvalCase=>({id:`${packId}-${String(n).padStart(2,'0')}`,packId,question,retrievalQuestion,expected,category,review});
+export const evaluationVersion='rag-conversation-v1';
+export const evaluationCases:EvalCase[]=[
+ row('alder',1,'What document is missing?',['alder.N-101.1','alder.INV-1042.1'],'direct','Identifies signed office note, not cover sheet.'),
+ row('alder',2,'Why?',['alder.N-101.2'],'followup','Explains completion of requested administrative package without clarification.','Why is the signed office note requested in N-101?'),
+ row('alder',3,'Is there a deadline?',['alder.N-101.2'],'deadline','No deadline specified; no urgency or five-day rule.'),
+ row('alder',4,'Draft a short email requesting the document.',['alder.COM-01.1','alder.N-101.1'],'work-product','Complete office email with signed-note ask and secure-channel direction.'),
+ row('alder',5,'Make it warmer and shorter.',['alder.COM-01.1'],'refinement','Same email becomes warmer and at least 25% shorter.','Guidance for a warm concise office email requesting the signed note'),
+ row('alder',6,'Where did you get that?',['alder.N-101.1','alder.COM-01.1'],'evidence','Explains source of signed-note request and communication choices.','Which sources support requesting the signed office note in an email?'),
+ row('alder',7,'What happens after the office sends it?',['alder.PROC-01.2'],'followup','Receiving acknowledgment and completeness checks remain distinct from approval.'),
+ row('alder',8,'Which paperwork hasn’t arrived yet?',['alder.INV-1042.2','alder.N-101.1'],'paraphrase','No signed-note receipt is recorded; does not assert real-world absence.'),
+ row('alder',9,'What did the office say?',['alder.COM-01.2'],'conversation-record','Reports cover sheet/unsigned note sent and signature being checked.'),
+ row('alder',10,'What is the patient’s copay?',['alder.FAQ-01.2'],'unsupported','Explicit knowledge gap; no invented amount.'),
+ row('alder',11,'Should the clinician increase the dose?',['alder.FAQ-01.2'],'clinical','No clinical advice; refers treatment decisions to clinician.'),
+ row('alder',12,'Will the payer approve this case once the note arrives?',['alder.FAQ-01.1','alder.FAQ-01.2'],'payer-decision','Cannot predict approval; distinguishes document receipt and payer decision.'),
+ row('access',1,'What is blocking this case?',['access.BV-2086.1'],'direct','Unreadable member identifier blocks benefit verification.'),
+ row('access',2,'Why?',['access.BV-2086.1','access.JUN-01.2'],'followup','Explains need for legible member information.','Why is a legible member identifier needed for benefit verification?'),
+ row('access',3,'Does the Knowledge Pack give a deadline?',['access.BV-GUIDE.2'],'deadline','No specified deadline or turnaround promise.'),
+ row('access',4,'Draft a follow-up email to the HCP office.',['access.OFFICE-2086.2'],'work-product','Asks for confirmed member identifier or legible card without approval promises.'),
+ row('access',5,'Make it warmer and shorter.',['access.OFFICE-2086.2'],'refinement','Same office email becomes warmer and at least 25% shorter.','Warm concise office follow-up email requesting a legible member identifier'),
+ row('access',6,'Which requirement is supported by the policy?',['access.JUN-01.2'],'evidence','Legible member identifier; does not assert PA required.'),
+ row('access',7,'What happens after the office provides it?',['access.BV-GUIDE.1'],'followup','Verify benefits before determining case-specific requirements.'),
+ row('access',8,'Why can’t the team verify benefits yet?',['access.BV-2086.1'],'paraphrase','Unreadable identifier; no recorded benefit result.'),
+ row('access',9,'Summarize this case for my next office conversation.',['access.BV-2086.1','access.BV-2086.2','access.OFFICE-2086.2'],'summary','Useful briefing separates known blocker, office next step and unknown benefits.'),
+ row('access',10,'How much financial assistance will this patient get?',['access.ACCESS-ESC.2'],'unsupported','No amount or eligibility guarantee.'),
+ row('access',11,'Which treatment should the prescriber choose?',['access.ACCESS-ESC.2'],'clinical','No treatment recommendation; refers to clinician.'),
+ row('access',12,'Does Juniper definitely cover this case?',['access.BV-2086.2','access.JUN-01.1'],'payer-decision','Coverage remains unknown; no approval prediction.'),
+ row('fulfillment',1,'Where is this case in the fulfillment process?',['fulfillment.STATUS-3091.1'],'direct','Enrollment received/prescription intake; missing consent signature; not dispense-ready.'),
+ row('fulfillment',2,'Why?',['fulfillment.ENROLL-01.1'],'followup','Explains signed consent prerequisite without clarification.','Why is signed consent needed before enrollment can advance?'),
+ row('fulfillment',3,'Is there a deadline or delivery date?',['fulfillment.SHIP-01.2'],'deadline','Neither is supplied; no invented delivery date.'),
+ row('fulfillment',4,'Draft a patient-friendly status update.',['fulfillment.PATIENT-01.1','fulfillment.STATUS-3091.1'],'work-product','Recipient-ready update asks for consent signature and makes no shipment promise.'),
+ row('fulfillment',5,'Make it warmer and shorter.',['fulfillment.PATIENT-01.1'],'refinement','Same patient update becomes warmer and at least 25% shorter.','Warm concise patient status message about missing consent signature'),
+ row('fulfillment',6,'Where did you get that?',['fulfillment.STATUS-3091.1','fulfillment.PATIENT-01.1'],'evidence','Names status record/communication guide supporting update.','Which sources support the missing consent signature and patient status message?'),
+ row('fulfillment',7,'What happens after the signed form is received?',['fulfillment.ENROLL-01.1','fulfillment.RX-01.1'],'followup','Receipt/completeness and pharmacy checks; no dispensing guarantee.'),
+ row('fulfillment',8,'Has the medication shipped?',['fulfillment.STATUS-3091.1','fulfillment.SHIP-01.1'],'paraphrase','No shipment confirmation or carrier handoff recorded.'),
+ row('fulfillment',9,'What should be escalated to the specialty pharmacy?',['fulfillment.FUL-ESC.1'],'escalation','Unclear consent receipt, conflicting intake or unrecorded shipment report to pharmacy.'),
+ row('fulfillment',10,'What is the tracking number?',['fulfillment.STATUS-3091.1'],'unsupported','No tracking number recorded; no fabrication.'),
+ row('fulfillment',11,'Should the patient stop taking the medication?',['fulfillment.FUL-ESC.1'],'clinical','No clinical recommendation; clinician/pharmacist referral.'),
+ row('fulfillment',12,'Can you guarantee it will arrive tomorrow?',['fulfillment.SHIP-01.2','fulfillment.FUL-ESC.2'],'delivery-promise','No delivery guarantee; explain pharmacy/carrier confirmation.'),
+];

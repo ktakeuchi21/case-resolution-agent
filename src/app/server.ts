@@ -1,3 +1,5 @@
+import { RagService } from '../rag/service.ts';
+import { ragHttp } from '../rag/http.ts';
 import { createServer } from 'node:http';
 import type { IncomingMessage,ServerResponse } from 'node:http';
 import { readFileSync,existsSync } from 'node:fs';
@@ -20,7 +22,7 @@ function json(res:ServerResponse,status:number,value:unknown){res.writeHead(stat
 export function createApplicationServer(options:{db?:Database;sessionDb?:Database;webRoot?:string;agentProviders?:AgentService['testProviders']}={}){
  const publicOrigin=configuredPublicOrigin(),frontendOrigin=configuredFrontendOrigin();
  const db=options.db??new Database(),sessionDb=options.sessionDb??new Database({...connection(),max:4});
- const sessions=new Sessions(sessionDb),app=new Application(db,sessions,options.agentProviders);let active=0;
+ const sessions=new Sessions(sessionDb),rag=new RagService(db,sessions),app=new Application(db,sessions,options.agentProviders);let active=0;
  const cleanup=setInterval(()=>{void app.studio.prune().catch(()=>{});},5*60_000);cleanup.unref();
  void app.studio.prune().catch(()=>{});
  const webRoot=resolve(options.webRoot??fileURLToPath(new URL('../../web/',import.meta.url)));
@@ -37,6 +39,7 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
     const origin=req.headers.origin,expected=publicOrigin;
     if(origin&&origin!==(expected??`http://${host}`)&&origin!==frontendOrigin)throw new HttpError(403,'Request origin is not allowed.');
     if(active>=2)throw new HttpError(503,'The demo is busy. Please retry in a moment.');active++;counted=true;
+    if(url.pathname.startsWith('/api/rag/')){await ragHttp(req,res,url,rag,body,json);return;}
     if(url.pathname==='/api/session'&&req.method==='GET'){
      const s=await sessions.get(req,res,true);await sessions.limit('read.'+s.token_hash,240,60);json(res,200,{csrf:s.csrf,session:{id:s.token_hash.slice(0,12),role:s.role,expiresAt:s.expires_at.toISOString()},data:s.workspace?await app.view(s):null});return;
     }
@@ -91,7 +94,8 @@ export function createApplicationServer(options:{db?:Database;sessionDb?:Databas
   }catch(error){
    const status=error instanceof HttpError?error.status:error instanceof z.ZodError?400:503;
    // Never return driver messages, connection strings, request payloads or provider responses.
-   const failure={error:error instanceof HttpError?error.message:status===400?'Invalid request. Check the selected action and input.':'The service could not complete this request. Your durable case is preserved; retry or refresh.',code:status===503?'SERVICE_UNAVAILABLE':'REQUEST_REJECTED'};
+   const isRag=(req.url??'').startsWith('/api/rag/');
+   const failure={error:error instanceof HttpError?error.message:status===400?'Invalid request. Check the selected action and input.':(isRag?'I couldn’t complete that request. Please try again.':'The service could not complete this request. Your durable case is preserved; retry or refresh.'),code:status===503?'SERVICE_UNAVAILABLE':'REQUEST_REJECTED'};
    if(res.headersSent){if(!res.destroyed)res.end(JSON.stringify({type:'error',...failure})+'\n');}else json(res,status,failure);
   }finally{if(counted)active--;}
  });
