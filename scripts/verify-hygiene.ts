@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { spawnSync } from 'node:child_process';
 import { textHash } from '../src/integrity.ts';
 const walk=(dir:string):string[]=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(join(dir,e.name)):e.isFile()?[join(dir,e.name)]:[]);
-const roots=['src','web','fixtures','migrations','docs','tests','scripts'];
+const roots=['src','web','fixtures','migrations','docs','tests','scripts','artifacts/rebuild'];
 let inspected=0;for(const file of roots.flatMap(walk)){
  if(!['.ts','.js','.json','.md','.html','.css','.sql','.txt','.svg'].includes(extname(file)))continue;
  const raw=readFileSync(file,'utf8');
@@ -16,7 +16,7 @@ const dir=mkdtempSync(join(tmpdir(),'pathway-ignore-check-'));try{
  for(const path of ['.env','.env.local','.env.production','.local/embeddings/vector.json','.local/postgres/data','dist/web/app.js','output/playwright/session.json'])assert.equal(spawnSync('git',['-C',dir,'check-ignore','--quiet',path]).status,0);
  assert.equal(spawnSync('git',['-C',dir,'check-ignore','--quiet','.env.example']).status,1);
 }finally{rmSync(dir,{recursive:true});}
-const checked=[];for(const dir of ['artifacts/phase2b-live','artifacts/phase2c','artifacts/phase2d']){
+const checked=[];for(const dir of ['artifacts/phase2b-live','artifacts/phase2c','artifacts/phase2d','artifacts/rebuild']){
  for(const file of walk(dir)){const suffix=file.match(/-([a-f0-9]{64})\.json$/);if(suffix){assert.equal(textHash(readFileSync(file,'utf8')),suffix[1]);checked.push(file);}}
 }
 assert.equal(textHash(readFileSync('artifacts/phase2b-benchmark.json','utf8')),'06f526e60113b80a138ba605fcec2b29724315b675a5323a9ce2ddebf7207e6d');

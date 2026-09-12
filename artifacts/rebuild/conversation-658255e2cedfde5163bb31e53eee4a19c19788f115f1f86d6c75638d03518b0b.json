@@ -1,0 +1,26 @@
+{
+  "suite": "rag-conversation-v1",
+  "mode": "conversation",
+  "startedAt": "2026-09-12T12:14:04.588Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "live": true,
+  "results": [],
+  "limitations": "Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.",
+  "error": "SESSION_429",
+  "metrics": {
+    "cases": 0,
+    "meanExpectedPassageRecall": null,
+    "packIsolation": 0,
+    "medianLatencyMs": null,
+    "maxLatencyMs": null,
+    "inputTokens": 0,
+    "cachedInputTokens": 0,
+    "outputTokens": 0,
+    "embeddingInputTokens": 0,
+    "generationRequests": 0,
+    "embeddingRequests": 0,
+    "unmeasuredRequests": 0,
+    "estimatedCostUsd": 0,
+    "costScope": "Includes reported corpus/query preparation and turn generation/embedding usage in this run. Cached query vectors were charged when first prepared. Missing provider usage is unknown, not zero."
+  }
+}
