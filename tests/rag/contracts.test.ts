@@ -88,3 +88,11 @@ test('GPT-4.1 mini omits unsupported reasoning and measures its own cached, inpu
  assert.equal(bodies[0].text.format.strict,true);assert.equal(result.usage.estimatedCostUsd,.0005);
  assert.equal(result.usage.cachedInputTokens,200);assert.equal(result.usage.requests,1);
 });
+
+test('GPT-5 mini uses low reasoning and its lower token prices',async()=>{
+ const bodies:any[]=[];
+ const transport=(async(_url:unknown,init:RequestInit)=>{bodies.push(JSON.parse(init.body as string));return new Response(JSON.stringify({status:'completed',usage:{input_tokens:1000,input_tokens_details:{cached_tokens:200},output_tokens:100},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify(valid)}]}]}));}) as typeof fetch;
+ const model=new OpenAIConversation('fixture',async()=>{},'gpt-5-mini',transport);
+ const result=await model.generate('missing?',packs[0]!,trace,[]);
+ assert.equal(bodies[0].reasoning.effort,'low');assert.equal(result.usage.estimatedCostUsd,.000405);
+});

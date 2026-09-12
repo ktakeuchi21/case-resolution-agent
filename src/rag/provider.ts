@@ -4,10 +4,11 @@ import { Answer, RagError } from './contracts.ts';
 import type { KnowledgePack, RetrievalTrace, Turn, Usage } from './contracts.ts';
 import { dimensions, embeddingModel } from './retrieval.ts';
 
-export const defaultConversationModel='gpt-4.1-mini';
+export const defaultConversationModel='gpt-5-mini';
 // Standard token prices per million, verified against official model pages 2026-09-12.
 // Keep the previous mini available for reproducibility; flagship models are not allowed.
 const modelSettings:Record<string,{input:number;cache:number;output:number;reasoning:boolean}>={
+ 'gpt-5-mini':{input:.25,cache:.025,output:2,reasoning:true},
  'gpt-4.1-mini':{input:.4,cache:.1,output:1.6,reasoning:false},
  'gpt-4.1-mini-2025-04-14':{input:.4,cache:.1,output:1.6,reasoning:false},
  'gpt-5.4-mini':{input:.75,cache:.075,output:4.5,reasoning:true},

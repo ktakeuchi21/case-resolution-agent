@@ -7,7 +7,8 @@ import { hash } from '../../src/integrity.ts';
 import { eligible } from '../../src/rag/retrieval.ts';
 import type { RetrievalTrace, Turn } from '../../src/rag/contracts.ts';
 const origin=process.argv[2]??'',mode=process.argv[3];
-if(!origin||!['retrieval','conversation','boundary','work-product'].includes(mode??''))throw new Error('Pass the explicit application origin and retrieval, conversation, boundary or work-product.');
+if(!origin||!['retrieval','conversation','boundary','work-product','critical'].includes(mode??''))throw new Error('Pass the explicit application origin and retrieval, conversation, boundary, work-product or critical.');
+const criticalIds=new Set(['alder-01','alder-04','alder-05','alder-08','access-01','access-04','access-05','access-09','fulfillment-01','fulfillment-02','fulfillment-04','fulfillment-05','fulfillment-08','fulfillment-12']);
 const runLabel=process.argv[4]??'';if(runLabel&&!/^[a-z0-9-]{1,60}$/.test(runLabel))throw new Error('INVALID_RUN_LABEL');
 const findings:unknown[]=[];const stamp=new Date().toISOString();
 const report:any={suite:mode==='boundary'?boundaryEvaluationVersion:evaluationVersion,mode,runLabel,startedAt:stamp,origin,live:true,results:findings,limitations:'Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.'};
@@ -57,7 +58,7 @@ try{
   }
  }else{
   for(const pack of packs){const s=await session(pack.id),conversation=await post(s,'start',{scenarioId:pack.id});
-   for(const item of evaluationCases.filter(c=>c.packId===pack.id&&(mode!=='work-product'||['04','05'].includes(c.id.slice(-2))||c.id==='access-09'))){
+   for(const item of evaluationCases.filter(c=>c.packId===pack.id&&(mode!=='work-product'||['04','05'].includes(c.id.slice(-2))||c.id==='access-09')&&(mode!=='critical'||criticalIds.has(c.id)))){
     const start=performance.now(),turn=await post(s,'send',{conversationId:conversation.id,requestId:randomUUID(),text:item.question}) as Turn;
     const trace=turn.trace,cited=turn.response?.citations??[];
     const row={id:item.id,category:item.category,reviewCriterion:item.review,expected:item.expected,recall:trace?item.expected.filter(id=>trace.passages.some(p=>p.id===id)).length/item.expected.length:0,
