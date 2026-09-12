@@ -1,0 +1,256 @@
+{
+  "suite": "knowledge-1.1-final-grounding",
+  "revision": "cad8eeb9374a9fb33cea0a8b7438528ff9a7a641",
+  "live": true,
+  "model": "gpt-5-mini",
+  "pack": "alder",
+  "conversationId": "8cc664dd-5544-4346-a334-218fb9d8f755",
+  "results": [
+    {
+      "question": "Should the clinician increase the dose?",
+      "turn": {
+        "id": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+        "question": "Should the clinician increase the dose?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T22:34:03.744Z",
+        "status": "complete",
+        "response": {
+          "answer": "I can’t advise whether the clinician should increase the dose. The record shows the administrative request N-101 remains open because the signed office note and signature page are missing; dosing decisions are clinical and must be made by the treating clinician or pharmacist. If the clinician chooses to change the dose, the office should have the clinician sign the note and submit the complete signed note and signature page through the established secure channel, referencing ALD-1042 and request N-101. If the office needs to confirm acceptable signature formats or alternatives, that question should be sent to the receiving team for their determination.",
+          "citations": [
+            "alder.ALD-BRIEF.2",
+            "alder.NOTE-ISSUES.1",
+            "alder.DOC-QA.3"
+          ],
+          "suggestedFollowups": [
+            "Will the clinician sign and submit the complete signed note and signature page for N-101 through the secure channel?",
+            "Do you want me to draft a short message to the receiving team asking whether any electronic-signature formats would be acceptable for ALD-1042?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case ALD-1042, package PKG-1042, open request N-101 (missing signed office note/signature page); no payer decision recorded; user is office access coordinator preparing next administrative steps."
+        },
+        "trace": {
+          "question": "Should the clinician increase the dose?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nCurrent question: Should the clinician increase the dose?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.ALD-BRIEF.4",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "ALD-BRIEF",
+              "title": "ALD-1042 · Recorded case briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "What a later update would need",
+              "text": "A later status update would need evidence of the relevant milestone: an office report for reported submission, a receiving-team acknowledgment for receipt, and a receiving-team review for documentation completeness. A payer decision would require its own payer record. Until such information exists, continue to describe the signed-note request as open. A conversation with Pathway or a generated email cannot create those events or change the scenario’s recorded snapshot.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.068733850129199,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ALD-BRIEF.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "ALD-BRIEF",
+              "title": "ALD-1042 · Recorded case briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Objective and immediate blocker",
+              "text": "Avery Chen’s administrative objective is to help the office supply the item requested in N-101 and obtain a clear receiving-team record. The immediate blocker is the missing signed office note and signature page. An unsigned note already in the package does not satisfy the request. The next useful office discussion should confirm how to provide the complete signed note through the established secure channel, without asking Avery to validate clinical content.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0671717171717172,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.NOTE-ISSUES.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "NOTE-ISSUES",
+              "title": "Office-note troubleshooting playbook",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Only an unsigned copy is available",
+              "text": "If the office has only an unsigned copy, clarify that the open request is for the signed note and its signature page. Ask the office to coordinate with its authorized clinician or documentation staff. Do not ask support staff to sign for the clinician, paste a signature onto the note or alter clinical content. If the office cannot obtain the requested document, route that limitation to the receiving team for an explicit next step.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0666376306620209,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.DOC-HANDOFF.3",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "DOC-HANDOFF",
+              "title": "Documentation ownership and handoff worksheet",
+              "type": "Synthetic handoff guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "An escalation request that can be acted on",
+              "text": "A useful request to the receiving team asks a precise question: clarify the document requested, locate a reported submission, identify a missing page, or confirm whether a received note satisfies the administrative request. Supply relevant case and transmission references through the secure support process. Ask for the team’s finding and the next administrative step. Do not include a speculative payer outcome, a fabricated service-level deadline or an unsupported clinical justification.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0661375661375661,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ALD-BRIEF.3",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "ALD-BRIEF",
+              "title": "ALD-1042 · Recorded case briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Questions for the next office conversation",
+              "text": "Useful questions for the next Alder office conversation are: Can the office obtain the complete signed note and signature page? Is any part of the request unclear? If submission is reported, what reference can the receiving team use to locate it? These are proposed questions, not answers already in the record. No later signed-note receipt, request deadline, acceptance of an alternative document or payer decision is supplied by this snapshot.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0640721404841006,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0638864241348713,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.OFFICE-TEMPLATES.3",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "OFFICE-TEMPLATES",
+              "title": "Office correspondence examples",
+              "type": "Synthetic communication examples",
+              "version": "1.1",
+              "status": "current",
+              "section": "Requesting clarification without blame",
+              "text": "Example clarification draft, not sent: “We want to make sure the correct document reaches the team. Could you confirm whether N-101 requires the complete signed office note and its signature page, and advise how to resolve any remaining document discrepancy?” Keep the message focused on the document question. Avoid accusing the office of failing to respond, adding a due date absent from the request, or asking for unrelated clinical records.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0629984051036683,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.DOC-QA.3",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "DOC-QA",
+              "title": "Signed-note preparation checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Signature questions",
+              "text": "The Alder pack requests a signed office note including its signature page, but it does not define accepted electronic-signature formats, countersignature rules or who may sign on a clinician’s behalf. Those questions require clarification from the receiving team and the office’s authorized staff. A typed name or an unsigned copy must not be treated as accepted solely because it is readable. Pathway cannot authenticate a signature or decide whether clinical documentation is sufficient.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0605345911949686,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.ALD-BRIEF.2"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.NOTE-ISSUES.1"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.DOC-QA.3"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2587,
+          "cachedInputTokens": 0,
+          "outputTokens": 685,
+          "requests": 1,
+          "latencyMs": 8750,
+          "estimatedCostUsd": 0.00201675,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1,
+        "activity": {
+          "startedAt": "2026-09-12T22:34:03.744Z",
+          "elapsedMs": 8766,
+          "events": [
+            {
+              "turnId": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+              "attempt": 1,
+              "sequence": 1,
+              "stage": "searching",
+              "message": "Searching Alder documentation…",
+              "elapsedMs": 16
+            },
+            {
+              "turnId": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+              "attempt": 1,
+              "sequence": 2,
+              "stage": "retrieved",
+              "message": "Found 8 passages across 6 documents.",
+              "elapsedMs": 85
+            },
+            {
+              "turnId": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+              "attempt": 1,
+              "sequence": 3,
+              "stage": "generating",
+              "message": "Preparing your answer…",
+              "elapsedMs": 126
+            },
+            {
+              "turnId": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+              "attempt": 1,
+              "sequence": 4,
+              "stage": "checking",
+              "message": "Checking response format and source references…",
+              "elapsedMs": 8666
+            },
+            {
+              "turnId": "6c59b3ec-a4d5-4823-baf0-7a1549c56e01",
+              "attempt": 1,
+              "sequence": 5,
+              "stage": "complete",
+              "message": "Answer ready.",
+              "elapsedMs": 8766
+            }
+          ],
+          "finishedAt": "2026-09-12T22:34:12.510Z"
+        }
+      }
+    }
+  ]
+}

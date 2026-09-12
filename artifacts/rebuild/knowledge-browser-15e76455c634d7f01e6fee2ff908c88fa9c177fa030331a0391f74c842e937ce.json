@@ -1,0 +1,283 @@
+{
+  "suite": "knowledge-1.1-browser",
+  "frontendRevision": "4a088119c89cbea75aa6ae841ac20f52ac3f11e6",
+  "checks": [
+    {
+      "source": "knowledge-local-checks.log",
+      "results": [
+        {
+          "width": 1440,
+          "height": 900,
+          "pack": "Alder documentation",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pack": "Coverage & access",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 1440,
+          "height": 900,
+          "pack": "Specialty pharmacy fulfillment",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 850,
+          "pack": "Alder documentation",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 850,
+          "pack": "Coverage & access",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "height": 850,
+          "pack": "Specialty pharmacy fulfillment",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 640,
+          "pack": "Alder documentation",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 640,
+          "pack": "Coverage & access",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        },
+        {
+          "width": 375,
+          "height": 640,
+          "pack": "Specialty pharmacy fulfillment",
+          "documents": 14,
+          "applicable": 12,
+          "expandedDocuments": 6,
+          "keyboard": true,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "source": "knowledge-workspace-checks-final.log",
+      "results": [
+        {
+          "pack": "alder",
+          "width": 1440,
+          "height": 900,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "alder",
+          "width": 1440,
+          "height": 900,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "alder",
+          "width": 375,
+          "height": 520,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "alder",
+          "width": 375,
+          "height": 520,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "access",
+          "width": 1440,
+          "height": 900,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "access",
+          "width": 1440,
+          "height": 900,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "access",
+          "width": 375,
+          "height": 520,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "access",
+          "width": 375,
+          "height": 520,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "fulfillment",
+          "width": 1440,
+          "height": 900,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "fulfillment",
+          "width": 1440,
+          "height": 900,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "fulfillment",
+          "width": 375,
+          "height": 520,
+          "format": "Chat",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        },
+        {
+          "pack": "fulfillment",
+          "width": 375,
+          "height": 520,
+          "format": "Email",
+          "composer": true,
+          "context": true,
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "source": "knowledge-public-checks.log",
+      "results": [
+        {
+          "name": "Alder documentation",
+          "width": 1440,
+          "height": 900,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        },
+        {
+          "name": "Alder documentation",
+          "width": 375,
+          "height": 640,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        },
+        {
+          "name": "Coverage & access",
+          "width": 1440,
+          "height": 900,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        },
+        {
+          "name": "Coverage & access",
+          "width": 375,
+          "height": 640,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        },
+        {
+          "name": "Specialty pharmacy fulfillment",
+          "width": 1440,
+          "height": 900,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        },
+        {
+          "name": "Specialty pharmacy fulfillment",
+          "width": 375,
+          "height": 640,
+          "documents": 14,
+          "applicable": 12,
+          "guideSections": 4,
+          "overflow": false
+        }
+      ]
+    }
+  ],
+  "publicAssetsMatchBuild": [
+    "rag-app.js",
+    "rag-catalog.json"
+  ],
+  "catalog": {
+    "documents": 42,
+    "passages": 110,
+    "packVersion": "1.1"
+  },
+  "note": "Six public pack/viewport checks plus nine local knowledge and twelve local conversation combinations. Browser sources contain no provider credentials."
+}

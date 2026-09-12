@@ -1,0 +1,256 @@
+{
+  "suite": "knowledge-1.1-final-grounding",
+  "revision": "cad8eeb9374a9fb33cea0a8b7438528ff9a7a641",
+  "live": true,
+  "model": "gpt-5-mini",
+  "pack": "access",
+  "conversationId": "962fbca4-5792-4496-8fc3-485d4bd542c5",
+  "results": [
+    {
+      "question": "Which facts and unknowns belong in the ACC-2086 access briefing?",
+      "turn": {
+        "id": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+        "question": "Which facts and unknowns belong in the ACC-2086 access briefing?",
+        "packId": "access",
+        "createdAt": "2026-09-12T22:34:46.003Z",
+        "status": "complete",
+        "response": {
+          "answer": "Below is a concise summary of the facts to include and the open questions to keep visible in the ACC-2086 access briefing.",
+          "citations": [
+            "access.ACC-BRIEF.3",
+            "access.BV-2086.1"
+          ],
+          "suggestedFollowups": [
+            "Draft the office message requesting a legible card or confirmed member identifier referencing ACC-2086.",
+            "Request the office confirm which secure channel they will use to send a corrected identifier."
+          ],
+          "workProduct": {
+            "type": "summary",
+            "subject": "ACC-2086 access briefing — known facts and open questions",
+            "body": "Known facts:\n- Case: ACC-2086 (Cedar Support; Juniper Plan).\n- Benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable.\n- Prescriber details and the demographic form are on file.\n- Office report: staff can check the member number or send a clearer copy.\n- No prior-authorization submission or payer decision is recorded.\n\nOpen questions / unknowns to keep visible:\n- Whether a corrected member identifier or a legible card copy will be received (no corrected identifier or new card receipt is recorded).\n- Active benefits for the patient under the Juniper Plan.\n- Whether a prior authorization is required for the requested therapy for this case.\n- Patient cost (out-of-pocket responsibility) for the requested therapy.\n- Which network specialty pharmacy (if any) applies for this case.\n- Coverage outcome or payer decision (no payer decision or benefit result is recorded).\n\nNotes on next administrative sequence:\n- The immediate required step is to obtain a usable member identifier or legible card image; only then can the authorized benefit-verification inquiry proceed and the remaining unknowns be resolved. Keep the unknown items visible; do not substitute results from other cases, rules, or assumptions.",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "ACC-2086 briefing for Cedar Support (Juniper Plan); create a short access briefing summarizing recorded facts and open questions to send to HCP office."
+        },
+        "trace": {
+          "question": "Which facts and unknowns belong in the ACC-2086 access briefing?",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nCurrent question: Which facts and unknowns belong in the ACC-2086 access briefing?",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.ACC-BRIEF.3",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACC-BRIEF",
+              "title": "ACC-2086 · Recorded access briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Known facts and open questions",
+              "text": "For the ACC-2086 briefing, the known blocker is the unreadable card identifier, and the known office report is that staff can check it. Open questions include receipt of a correction, active benefits, prior-authorization requirement, patient cost, network specialty pharmacy and coverage outcome. No prior-authorization submission or payer decision is recorded. Keep these unknowns visible instead of filling them with another Juniper case’s result, a historical rule or a model-generated assumption.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0731707317073171,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACC-BRIEF.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACC-BRIEF",
+              "title": "ACC-2086 · Recorded access briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Snapshot and evidence map",
+              "text": "ACC-2086 concerns Cedar Support and fictional Juniper Plan. BV-2086 records incomplete benefit verification caused by an unreadable member identifier; prescriber details and the demographic form are on file. OFFICE-2086 records the office’s statement that the image is blurry and it can check the member number or send a clearer copy. No corrected identifier, new card receipt or returned benefit result is recorded. This briefing organizes those existing facts only.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.070874861572536,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACC-BRIEF.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACC-BRIEF",
+              "title": "ACC-2086 · Recorded access briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Objective and decision sequence",
+              "text": "Morgan Lee’s objective is to help the HCP office resolve the input problem and understand the next administrative step. First obtain usable member information; then the authorized benefit-verification inquiry can proceed. Current returned information is needed before explaining case-specific prior-authorization requirements, cost or network pharmacy. The general Juniper checklist supports asking for a legible identifier, but it does not establish that this case requires authorization or that any service is covered.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0692389006342495,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Known and unknown",
+              "text": "The prescriber name and demographic form are on file. Active benefits, prior-authorization requirements, patient cost, network specialty pharmacy and coverage outcome remain unknown. No prior-authorization submission or payer decision is recorded.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0666666666666667,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0654761904761905,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACC-BRIEF.4",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACC-BRIEF",
+              "title": "ACC-2086 · Recorded access briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "What would support a later status update",
+              "text": "An office confirmation or legible card receipt would support an update about corrected input. A returned benefit record with its source and date would support only the benefit details it actually states. A payer acknowledgment or decision would support its own separate milestone. None of those events is created by chatting with Pathway or drafting an email. The sidebar and this briefing remain the scenario’s recorded snapshot until the source catalog is deliberately updated.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0654545454545455,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-TEMPLATES.3",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACCESS-TEMPLATES",
+              "title": "HCP-office access conversation examples",
+              "type": "Synthetic communication examples",
+              "version": "1.1",
+              "status": "current",
+              "section": "Answering the approval question",
+              "text": "Example wording for the current ACC-2086 record: “We do not have a coverage or authorization result yet. The immediate step is to resolve the unreadable member identifier so the benefit-verification inquiry can proceed. Once the relevant information is returned, the team can explain what it confirms and what remains open.” This message separates process progress from payer authority and avoids presenting the general Juniper checklist as a requirement already confirmed for this case.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0629613547546678,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-TEMPLATES.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "ACCESS-TEMPLATES",
+              "title": "HCP-office access conversation examples",
+              "type": "Synthetic communication examples",
+              "version": "1.1",
+              "status": "current",
+              "section": "Clearer-card request example",
+              "text": "Example draft for ACC-2086, not sent: Subject: Member information for benefit verification. Body: “Hello Cedar HCP Office, benefit verification remains incomplete because the Juniper Plan member identifier is unreadable on the submitted card. Please confirm the identifier or provide a legible copy through your established secure channel, referencing ACC-2086. Once the required information is usable, the benefit-verification team can proceed with the inquiry. Thank you for your help.” No benefit result or completion date is implied.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0620929222752931,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.ACC-BRIEF.3"
+            },
+            {
+              "number": 2,
+              "passageId": "access.BV-2086.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2643,
+          "cachedInputTokens": 0,
+          "outputTokens": 622,
+          "requests": 1,
+          "latencyMs": 8738,
+          "estimatedCostUsd": 0.00190475,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1,
+        "activity": {
+          "startedAt": "2026-09-12T22:34:46.003Z",
+          "elapsedMs": 8752,
+          "events": [
+            {
+              "turnId": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+              "attempt": 1,
+              "sequence": 1,
+              "stage": "searching",
+              "message": "Searching Coverage & access…",
+              "elapsedMs": 14
+            },
+            {
+              "turnId": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+              "attempt": 1,
+              "sequence": 2,
+              "stage": "retrieved",
+              "message": "Found 8 passages across 3 documents.",
+              "elapsedMs": 57
+            },
+            {
+              "turnId": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+              "attempt": 1,
+              "sequence": 3,
+              "stage": "generating",
+              "message": "Preparing your answer…",
+              "elapsedMs": 101
+            },
+            {
+              "turnId": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+              "attempt": 1,
+              "sequence": 4,
+              "stage": "checking",
+              "message": "Checking response format and source references…",
+              "elapsedMs": 8740
+            },
+            {
+              "turnId": "2e3a515a-5da5-4d8d-b54e-c8f0eb636641",
+              "attempt": 1,
+              "sequence": 5,
+              "stage": "complete",
+              "message": "Answer ready.",
+              "elapsedMs": 8752
+            }
+          ],
+          "finishedAt": "2026-09-12T22:34:54.755Z"
+        }
+      }
+    }
+  ]
+}

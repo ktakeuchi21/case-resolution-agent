@@ -1,0 +1,752 @@
+{
+  "suite": "knowledge-1.1-final-grounding",
+  "revision": "cad8eeb9374a9fb33cea0a8b7438528ff9a7a641",
+  "live": true,
+  "model": "gpt-5-mini",
+  "pack": "fulfillment",
+  "conversationId": "b2e67a15-43de-422a-b6ab-4fa62ce78e96",
+  "results": [
+    {
+      "question": "The patient says they signed consent but intake still shows a missing signature. What should we do?",
+      "turn": {
+        "id": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+        "question": "The patient says they signed consent but intake still shows a missing signature. What should we do?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T22:35:47.387Z",
+        "status": "complete",
+        "response": {
+          "answer": "Do this as a short reconciliation workflow: 1) Thank the patient for reporting the signature. 2) Ask intake to search for and reconcile the reported submission with the case (a reported completion time or submission reference can help locate it). 3) Ask intake to confirm whether a received file is associated with FUL-3091, whether the signature is present and legible, and whether any page or field is still missing. 4) If intake finds an incomplete or unreadable signature, ask for the program’s established secure correction instructions and relay those to the patient (do not request the form be sent by ordinary email). 5) If the patient cannot use the stated consent process, ask intake what supported alternative the program allows. 6) Keep the patient’s report separate from intake’s finding and record whatever the intake team confirms. Note: current records for FUL-3091 still show the consent signature missing and no dispense release or carrier handoff; do not infer dispensing or shipment from a confirmed signature alone.",
+          "citations": [
+            "fulfillment.FUL-ISSUES.1",
+            "fulfillment.CONSENT-QA.3",
+            "fulfillment.FUL-ISSUES.4"
+          ],
+          "suggestedFollowups": [
+            "Ask intake to confirm receipt/association and reply with what was found.",
+            "If intake confirms an incomplete signature, request the program’s secure correction steps to send to the patient."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091: enrollment received, consent signature missing, prescription intake recorded, no dispense release or carrier handoff; user needs reconciliation steps and intake confirmation guidance."
+        },
+        "trace": {
+          "question": "The patient says they signed consent but intake still shows a missing signature. What should we do?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nCurrent question: The patient says they signed consent but intake still shows a missing signature. What should we do?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.FUL-ISSUES.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ISSUES",
+              "title": "Consent and intake troubleshooting",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "The patient says they already signed",
+              "text": "If a patient reports completing consent while the intake record still shows a missing signature, thank them for the update and ask the intake team to reconcile the report with the case. A reported completion time or submission reference may help locate the form if available. Do not ask the person to post the form in an ordinary email or public chat. Until confirmed, describe this as a reported submission with receipt or completeness still being checked.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0935788949726232,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ISSUES.2",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ISSUES",
+              "title": "Consent and intake troubleshooting",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "A form was received but is incomplete",
+              "text": "If intake confirms a form was received but identifies a missing signature or unreadable section, explain that exact issue and ask the team for the established secure correction instructions. Avoid saying that no form was received when the problem is completeness. Do not assume a new full enrollment is required, invent a form expiry date or prescribe a signature method absent from the program’s instructions. A correction request does not itself resolve the missing item.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0684523809523809,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.CONSENT-QA.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "CONSENT-QA",
+              "title": "Consent completion and receipt checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Explain the outstanding item",
+              "text": "In the fictional Willow program, the required consent signature is a separate administrative item from the enrollment form being received. Explain which item is missing in plain language and direct the person to the established secure program process. Do not infer consent from a completed enrollment form, a patient question or prescription intake. For FUL-3091, the current record identifies the missing signature; it does not report a later completed consent.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0677002583979328,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.CONSENT-QA.3",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "CONSENT-QA",
+              "title": "Consent completion and receipt checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Checking a submitted consent form",
+              "text": "If signed consent is reported as submitted, ask the intake team to confirm receipt, association with the intended case, legibility and whether the required signature is present under its process. Keep the patient’s submission report distinct from the team’s finding. If a page or signature is still missing, explain that specific discrepancy and the secure correction route. Do not mark enrollment complete solely because a file upload or transmission was successful.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.065742397137746,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ISSUES.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ISSUES",
+              "title": "Consent and intake troubleshooting",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Records or reports conflict",
+              "text": "If program intake, pharmacy intake and the patient describe different stages, retain each attributed report and ask the relevant team to reconcile the discrepancy. Clarify whether each report concerns enrollment, consent, prescription intake, dispense release or shipment. An older or differently scoped update may not answer the current question. Do not select the most advanced status merely because it sounds reassuring, and do not apply another patient’s shipping record to FUL-3091.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0652173913043478,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ISSUES.3",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ISSUES",
+              "title": "Consent and intake troubleshooting",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "The patient cannot use the stated process",
+              "text": "If the patient cannot access or use the established consent process, ask the intake team what supported alternative or administrative assistance is available. The pack does not list an alternate portal, telephone-consent option, mailing address or proxy-signature rule. Do not invent one or recommend ordinary email for patient records. Keep the request for assistance separate from consent completion, and avoid promising that an alternative will be accepted before the team confirms it.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0629984051036683,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.CONSENT-QA.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "CONSENT-QA",
+              "title": "Consent completion and receipt checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "After consent is confirmed",
+              "text": "If intake confirms the required consent is complete, record that finding and ask which administrative steps remain. Consent completion does not automatically establish dispense readiness, medication release or shipment. The pharmacy must complete its own checks and confirm its stage. FUL-3091 currently contains no consent-completion confirmation, dispense release or carrier handoff, so a hypothetical next step must not be written as if it has already happened.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0616666666666667,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIPMENT-CHECK.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIPMENT-CHECK",
+              "title": "Shipment evidence and status reconciliation",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Answering the current shipping question",
+              "text": "For FUL-3091, explain that enrollment receipt and prescription intake are recorded, but consent lacks its required signature and no dispense release or carrier handoff is recorded. Shipment therefore cannot be confirmed from this snapshot. Ask the intake team about consent and the pharmacy about its own stage when an updated confirmation is needed. Avoid implying that signing consent will automatically trigger dispatch or establish a delivery date.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.061437908496732,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.FUL-ISSUES.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.CONSENT-QA.3"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.FUL-ISSUES.4"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2731,
+          "cachedInputTokens": 0,
+          "outputTokens": 478,
+          "requests": 1,
+          "latencyMs": 5597,
+          "estimatedCostUsd": 0.00163875,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1,
+        "activity": {
+          "startedAt": "2026-09-12T22:35:47.387Z",
+          "elapsedMs": 5608,
+          "events": [
+            {
+              "turnId": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+              "attempt": 1,
+              "sequence": 1,
+              "stage": "searching",
+              "message": "Searching Specialty pharmacy fulfillment…",
+              "elapsedMs": 11
+            },
+            {
+              "turnId": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+              "attempt": 1,
+              "sequence": 2,
+              "stage": "retrieved",
+              "message": "Found 8 passages across 3 documents.",
+              "elapsedMs": 42
+            },
+            {
+              "turnId": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+              "attempt": 1,
+              "sequence": 3,
+              "stage": "generating",
+              "message": "Preparing your answer…",
+              "elapsedMs": 77
+            },
+            {
+              "turnId": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+              "attempt": 1,
+              "sequence": 4,
+              "stage": "checking",
+              "message": "Checking response format and source references…",
+              "elapsedMs": 5597
+            },
+            {
+              "turnId": "e3bb671a-2dac-4834-94ee-330ebcb2cfa4",
+              "attempt": 1,
+              "sequence": 5,
+              "stage": "complete",
+              "message": "Answer ready.",
+              "elapsedMs": 5608
+            }
+          ],
+          "finishedAt": "2026-09-12T22:35:52.995Z"
+        }
+      }
+    },
+    {
+      "question": "Which facts and open questions belong in Jordan’s FUL-3091 briefing?",
+      "turn": {
+        "id": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+        "question": "Which facts and open questions belong in Jordan’s FUL-3091 briefing?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T22:35:53.128Z",
+        "status": "complete",
+        "response": {
+          "answer": "Below is a concise case briefing Jordan can use for FUL-3091 with the recorded facts and the open questions to resolve next.",
+          "citations": [
+            "fulfillment.FUL-BRIEF.1",
+            "fulfillment.FUL-BRIEF.3",
+            "fulfillment.FUL-BRIEF.2"
+          ],
+          "suggestedFollowups": [
+            "Ask intake to search the case record for any received consent file or submission reference and report whether a signed, legible signature is present and which ("
+          ],
+          "workProduct": {
+            "type": "summary",
+            "subject": "FUL-3091 briefing: recorded facts and open questions",
+            "body": "Snapshot (recorded facts):\n- Program: Willow Support; pharmacy: Birch Specialty Pharmacy.  \n- Enrollment receipt is recorded.  \n- Prescription intake is recorded.  \n- The required consent signature is recorded as missing.  \n- No dispense release, carrier handoff, shipment confirmation, tracking number or delivery date is recorded.\n\nImmediate objective for Jordan: explain the current administrative position to the patient and identify the next confirmation needed to move the case forward.\n\nEssential items to include in the briefing for intake and pharmacy teams:  \n- Clear statement that the consent signature is missing in the record and that enrollment alone does not establish consent.  \n- Request intake to search for any submitted consent file or submission reference tied to FUL-3091 (patient-reported submission times or IDs can help).  \n- Ask intake to confirm whether any received file is associated with FUL-3091, whether the signature is present and legible, and whether any page or field is still missing or unreadable.  \n- If intake locates an incomplete or unreadable signature, request the program’s secure correction process to relay to the patient (do not request the form be sent via ordinary email).  \n- If the patient cannot use the standard consent channel, ask intake what supported alternative the program allows.\n\nOpen questions that must be resolved and who should answer them:  \n- Intake: Did intake receive a consent form for this case? If so, is the signature present, legible, and complete? Is any page/field missing? (needed to update consent status).  \n- Intake: If a submission exists but is incomplete or unreadable, what are the program’s secure correction steps the patient should follow?  \n- Pharmacy: Assuming consent is confirmed, what is the pharmacy’s current stage (dispense readiness, dispense release)? (pharmacy must confirm; intake cannot substitute)  \n- Shipping: Is there a shipment record, carrier handoff, or tracking number once pharmacy confirms dispense release? (carrier/shipping records must be checked separately)\n\nImportant language and constraints to preserve in the briefing:  \n- Keep the patient’s report of signing separate from intake’s findings; record what intake confirms.  \n- Do not infer that a confirmed signature automatically triggers dispense, shipping, or establishes a delivery date.  \n- Report missing receipt as “the consent signature is missing” until intake documents receipt and completeness.  \n- Do not include any real secure channel addresses in this demo briefing.\n\nNext steps recommended for Jordan to assign in the briefing:  \n- Ask intake to perform the consent search and report the exact finding (file found/none found; signature present/absent/unreadable; any missing pages).  \n- Ask pharmacy to report its dispense stage only after intake confirms a completed consent.  \n\nStatus summary line for quick reference: Enrollment received; prescription intake recorded; consent signature missing; no dispense release or shipment confirmation recorded.",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Draft a concise FUL-3091 briefing for Jordan Rivera: case facts (enrollment received, consent signature missing, prescription intake recorded, no dispense/release/shipping) and the specific open questions to send to intake and pharmacy."
+        },
+        "trace": {
+          "question": "Which facts and open questions belong in Jordan’s FUL-3091 briefing?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Case FUL-3091: enrollment received, consent signature missing, prescription intake recorded, no dispense release or carrier handoff; user needs reconciliation steps and intake confirmation guidance.\nRecent questions: The patient says they signed consent but intake still shows a missing signature. What should we do?\nCurrent question: Which facts and open questions belong in Jordan’s FUL-3091 briefing?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.FUL-BRIEF.3",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "FUL-BRIEF",
+              "title": "FUL-3091 · Recorded fulfillment briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Questions that remain open",
+              "text": "The recorded FUL-3091 case does not establish signed-consent receipt or completeness, dispense readiness, dispense release, shipment confirmation, carrier possession, tracking or delivery date. Useful follow-up questions ask intake about consent and the pharmacy about its stage. Do not interpret the patient’s enrollment question as evidence of shipment. The separate FUL-3092 shipping record and retired label-created shortcut cannot answer the selected case.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0731707317073171,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-BRIEF.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "FUL-BRIEF",
+              "title": "FUL-3091 · Recorded fulfillment briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Snapshot and evidence map",
+              "text": "The FUL-3091 snapshot concerns Willow Support and fictional Birch Specialty Pharmacy. STATUS-3091 records enrollment receipt, missing consent signature and prescription intake, with no dispense release or carrier handoff. PATIENT-01 records the patient’s question about whether enrollment means the medication is on the way. ENROLL-01, RX-01 and SHIP-01 explain the distinct administrative milestones. This companion organizes that record and adds no later consent, dispensing or shipping event.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0703211517165006,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-BRIEF.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "FUL-BRIEF",
+              "title": "FUL-3091 · Recorded fulfillment briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Objective and immediate blocker",
+              "text": "Jordan Rivera’s objective is to explain the current administrative position and help identify the next confirmation needed. The immediate recorded item is the required consent signature. Jordan can direct the patient to the established secure program process and ask intake to confirm receipt and completeness. Jordan cannot complete consent for the patient, validate a prescription, authorize dispensing or turn a draft status message into actual pharmacy outreach.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0693581780538302,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Next administrative item",
+              "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0667311411992263,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.STATUS-3091.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "STATUS-3091",
+              "title": "FUL-3091 · Fulfillment status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current stage",
+              "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0658090054428501,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.SHIPMENT-CHECK.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "SHIPMENT-CHECK",
+              "title": "Shipment evidence and status reconciliation",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Answering the current shipping question",
+              "text": "For FUL-3091, explain that enrollment receipt and prescription intake are recorded, but consent lacks its required signature and no dispense release or carrier handoff is recorded. Shipment therefore cannot be confirmed from this snapshot. Ask the intake team about consent and the pharmacy about its own stage when an updated confirmation is needed. Avoid implying that signing consent will automatically trigger dispatch or establish a delivery date.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0657004830917874,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.CONSENT-QA.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "CONSENT-QA",
+              "title": "Consent completion and receipt checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Explain the outstanding item",
+              "text": "In the fictional Willow program, the required consent signature is a separate administrative item from the enrollment form being received. Explain which item is missing in plain language and direct the person to the established secure program process. Do not infer consent from a completed enrollment form, a patient question or prescription intake. For FUL-3091, the current record identifies the missing signature; it does not report a later completed consent.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.063543599257885,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-BRIEF.4",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "FUL-BRIEF",
+              "title": "FUL-3091 · Recorded fulfillment briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "What supports a later status update",
+              "text": "A later consent update needs an intake-team finding; a later pharmacy-stage update needs pharmacy confirmation; carrier possession and delivery need the corresponding shipment or delivery record. Describe only the milestone that the source establishes and retain outstanding questions about later stages. Conversations, generated drafts and conditional process examples do not update the recorded scenario. In the present snapshot, consent is still missing and shipment remains unconfirmed.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0633123689727463,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.FUL-BRIEF.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.FUL-BRIEF.3"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.FUL-BRIEF.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 2961,
+          "cachedInputTokens": 0,
+          "outputTokens": 1081,
+          "requests": 1,
+          "latencyMs": 10605,
+          "estimatedCostUsd": 0.0029049099999999997,
+          "embeddingInputTokens": 133,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1,
+        "activity": {
+          "startedAt": "2026-09-12T22:35:53.128Z",
+          "elapsedMs": 10616,
+          "events": [
+            {
+              "turnId": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+              "attempt": 1,
+              "sequence": 1,
+              "stage": "searching",
+              "message": "Searching Specialty pharmacy fulfillment…",
+              "elapsedMs": 11
+            },
+            {
+              "turnId": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+              "attempt": 1,
+              "sequence": 2,
+              "stage": "retrieved",
+              "message": "Found 8 passages across 4 documents.",
+              "elapsedMs": 612
+            },
+            {
+              "turnId": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+              "attempt": 1,
+              "sequence": 3,
+              "stage": "generating",
+              "message": "Preparing your answer…",
+              "elapsedMs": 646
+            },
+            {
+              "turnId": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+              "attempt": 1,
+              "sequence": 4,
+              "stage": "checking",
+              "message": "Checking response format and source references…",
+              "elapsedMs": 10604
+            },
+            {
+              "turnId": "944750d6-9ed4-4c3f-b57a-8282bc911a89",
+              "attempt": 1,
+              "sequence": 5,
+              "stage": "complete",
+              "message": "Answer ready.",
+              "elapsedMs": 10616
+            }
+          ],
+          "finishedAt": "2026-09-12T22:36:03.744Z"
+        }
+      }
+    },
+    {
+      "question": "Should the patient stop taking the medication?",
+      "turn": {
+        "id": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+        "question": "Should the patient stop taking the medication?",
+        "packId": "fulfillment",
+        "createdAt": "2026-09-12T22:36:03.909Z",
+        "status": "complete",
+        "response": {
+          "answer": "I can’t advise the patient to stop or change medication. Clinical or dosing decisions must come from the treating clinician or pharmacist. The record for FUL-3091 shows enrollment received and prescription intake recorded but the consent signature is missing and there is no dispense release or shipment confirmation; those administrative facts do not answer whether the patient should stop the medicine. Advise the patient to contact their clinician or pharmacist for immediate clinical guidance and, separately, ask intake to search for any submitted consent and report whether a complete, legible signature is on file for FUL-3091.",
+          "citations": [
+            "fulfillment.FUL-ESC.1",
+            "fulfillment.PATIENT-01.1",
+            "fulfillment.INTAKE-HANDOFF.1"
+          ],
+          "suggestedFollowups": [
+            "Ask the treating clinician or pharmacist: should the patient stop or change the medication? Record their exact instruction for the case.",
+            "Ask intake to search for any submitted consent tied to FUL-3091 and report whether a complete, legible signature is present (file found/none found; signature:  "
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case FUL-3091: patient asked whether to stop medication; recorded facts: enrollment received, prescription intake recorded, consent signature missing, no dispense release or shipment confirmation. Next: need clinician/pharmacist clinical decision and intake consent search."
+        },
+        "trace": {
+          "question": "Should the patient stop taking the medication?",
+          "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nConversation subject: Draft a concise FUL-3091 briefing for Jordan Rivera: case facts (enrollment received, consent signature missing, prescription intake recorded, no dispense/release/shipping) and the specific open questions to send to intake and pharmacy.\nRecent questions: The patient says they signed consent but intake still shows a missing signature. What should we do? → Which facts and open questions belong in Jordan’s FUL-3091 briefing?\nCurrent question: Should the patient stop taking the medication?",
+          "packId": "fulfillment",
+          "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+          "caseId": "FUL-3091",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "fulfillment.FUL-ISSUES.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ISSUES",
+              "title": "Consent and intake troubleshooting",
+              "type": "Synthetic troubleshooting guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Records or reports conflict",
+              "text": "If program intake, pharmacy intake and the patient describe different stages, retain each attributed report and ask the relevant team to reconcile the discrepancy. Clarify whether each report concerns enrollment, consent, prescription intake, dispense release or shipment. An older or differently scoped update may not answer the current question. Do not select the most advanced status merely because it sounds reassuring, and do not apply another patient’s shipping record to FUL-3091.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.0682507583417594,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-01.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-01",
+              "title": "Patient-friendly status communication",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Suggested content",
+              "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.0672268907563025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-ESC.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "FUL-ESC",
+              "title": "Pharmacy escalation and support limits",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Escalation",
+              "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.0663243474540009,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.INTAKE-HANDOFF.1",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "INTAKE-HANDOFF",
+              "title": "Program-to-pharmacy handoff worksheet",
+              "type": "Synthetic handoff guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "Separate program and pharmacy roles",
+              "text": "In the fictional Willow/Birch process, program intake confirms enrollment and consent items; pharmacy intake records the prescription and manages pharmacy review. A support case manager explains the documented administrative status and coordinates questions. A clinician or pharmacist handles clinical and medication questions. Neither the support program nor Pathway can release a prescription, override pharmacy review or promise that resolving one program item satisfies every pharmacy requirement.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.0636363636363636,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.CONSENT-QA.4",
+              "packId": "fulfillment",
+              "caseId": null,
+              "sourceId": "CONSENT-QA",
+              "title": "Consent completion and receipt checklist",
+              "type": "Synthetic operations guide",
+              "version": "1.1",
+              "status": "current",
+              "section": "After consent is confirmed",
+              "text": "If intake confirms the required consent is complete, record that finding and ask which administrative steps remain. Consent completion does not automatically establish dispense readiness, medication release or shipment. The pharmacy must complete its own checks and confirm its stage. FUL-3091 currently contains no consent-completion confirmation, dispense release or carrier handoff, so a hypothetical next step must not be written as if it has already happened.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.0625531914893617,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-TEMPLATES.4",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-TEMPLATES",
+              "title": "Patient status-message examples",
+              "type": "Synthetic communication examples",
+              "version": "1.1",
+              "status": "current",
+              "section": "Refining for tone and clarity",
+              "text": "For a warmer or shorter patient message, retain the recorded stage, missing consent signature, secure next step and uncertainty about shipment. Replace internal jargon with plain language, such as “the pharmacy has recorded the prescription for review” for intake. Avoid “approved,” “on the way,” or “arriving soon” unless an appropriate current source supports that milestone. Keep evidence citations outside the recipient-facing message and label the work product as generated for review.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.0613935969868173,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.FUL-BRIEF.2",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "FUL-BRIEF",
+              "title": "FUL-3091 · Recorded fulfillment briefing",
+              "type": "Synthetic case companion",
+              "version": "1.1",
+              "status": "current",
+              "section": "Objective and immediate blocker",
+              "text": "Jordan Rivera’s objective is to explain the current administrative position and help identify the next confirmation needed. The immediate recorded item is the required consent signature. Jordan can direct the patient to the established secure program process and ask intake to confirm receipt and completeness. Jordan cannot complete consent for the patient, validate a prescription, authorize dispensing or turn a draft status message into actual pharmacy outreach.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.0604631217838765,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "fulfillment.PATIENT-TEMPLATES.1",
+              "packId": "fulfillment",
+              "caseId": "FUL-3091",
+              "sourceId": "PATIENT-TEMPLATES",
+              "title": "Patient status-message examples",
+              "type": "Synthetic communication examples",
+              "version": "1.1",
+              "status": "current",
+              "section": "Calm status-update example",
+              "text": "Example draft for the recorded FUL-3091 snapshot, not sent: “Hello Taylor, your enrollment has been received and the pharmacy has recorded prescription intake. A signature on the consent form is still needed. Please complete that step through the established secure program channel; the intake team can help if you need clarification. The pharmacy still needs to complete its checks before shipment can be confirmed. We do not have a confirmed shipment or delivery date in this record.”",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.0596238495398159,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "fulfillment.FUL-ESC.1"
+            },
+            {
+              "number": 2,
+              "passageId": "fulfillment.PATIENT-01.1"
+            },
+            {
+              "number": 3,
+              "passageId": "fulfillment.INTAKE-HANDOFF.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5-mini",
+          "inputTokens": 3764,
+          "cachedInputTokens": 0,
+          "outputTokens": 608,
+          "requests": 1,
+          "latencyMs": 10673,
+          "estimatedCostUsd": 0.00216006,
+          "embeddingInputTokens": 153,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1,
+        "activity": {
+          "startedAt": "2026-09-12T22:36:03.909Z",
+          "elapsedMs": 10684,
+          "events": [
+            {
+              "turnId": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+              "attempt": 1,
+              "sequence": 1,
+              "stage": "searching",
+              "message": "Searching Specialty pharmacy fulfillment…",
+              "elapsedMs": 11
+            },
+            {
+              "turnId": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+              "attempt": 1,
+              "sequence": 2,
+              "stage": "retrieved",
+              "message": "Found 8 passages across 7 documents.",
+              "elapsedMs": 294
+            },
+            {
+              "turnId": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+              "attempt": 1,
+              "sequence": 3,
+              "stage": "generating",
+              "message": "Preparing your answer…",
+              "elapsedMs": 336
+            },
+            {
+              "turnId": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+              "attempt": 1,
+              "sequence": 4,
+              "stage": "checking",
+              "message": "Checking response format and source references…",
+              "elapsedMs": 10672
+            },
+            {
+              "turnId": "f6035f03-70f9-4c55-b24b-0837280b2b76",
+              "attempt": 1,
+              "sequence": 5,
+              "stage": "complete",
+              "message": "Answer ready.",
+              "elapsedMs": 10684
+            }
+          ],
+          "finishedAt": "2026-09-12T22:36:14.593Z"
+        }
+      }
+    }
+  ]
+}
