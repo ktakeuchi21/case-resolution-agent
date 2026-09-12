@@ -1,78 +1,129 @@
-# Pathway — RAG-first support demonstration
+# Pathway
 
-The current public product is a synthetic pharmaceutical-support conversation experience: three scenarios, chat/email, exact Sources used, Knowledge Pack switching, and measured live evaluation. It uses server-side GPT-5 mini with low reasoning and `text-embedding-3-small`, PostgreSQL/pgvector, and the existing free Render services.
+**Support that knows its sources.**
 
-- [Delivered report and screenshots](docs/rebuild/final-report.md)
-- [Rebuild charter](docs/rebuild/charter.md)
-- [Live conversation results and limitations](docs/rebuild/conversation-review-2026-09-12.md)
-- [Interface and browser verification](docs/rebuild/interface-and-browser.md)
-- [Public demo](https://case-resolution-frontend.onrender.com)
+Pathway is an AI support agent for non-clinical pharmaceutical access and patient-support work. Choose a synthetic case, ask a question, prepare an email or case briefing, and inspect the knowledge behind the answer.
 
-The previous implementation is preserved on `preserve/pre-rag-rebuild-2026-09-11`; its original documentation follows as historical context. It does not describe the new primary user interface.
+**[Try the live demo](https://case-resolution-frontend.onrender.com/)** · [Explore the knowledge](https://case-resolution-frontend.onrender.com/#knowledge) · [View evaluation](https://case-resolution-frontend.onrender.com/#evaluation)
 
----
+![Pathway’s desktop workspace, with the user’s role, case snapshot, blocker and available knowledge alongside a chat answer and its sources](docs/screenshots/pathway-workspace.png)
 
-# Pathway Agent
+## The workspace
 
-Current hosting: the [static frontend and loading screen](docs/static-frontend.md) are live, with 376–392 ms observed first contentful paint on the released revision, including a visit after 16 minutes of idle time. Launch waits for readiness, then opens the existing backend workspace with secure sessions and progressive streaming. All 31 deployed transport checks and six idle-entry checks passed. The separately documented [contextual provider-schema error and incomplete acceptance](docs/contextual-verification.md) remain unresolved.
+Case context stays on the left; conversation and drafts have their own space on the right. On mobile, **Case context** opens a keyboard-accessible drawer. The composer stays visible beneath the conversation.
 
-Conversation redesign: [experience and contracts](docs/conversation-experience.md), [execution and acceptance](docs/conversation-execution.md). The default journey is choose knowledge, then chat; the twelve-step technical walkthrough remains optional.
+- **Understand the case.** See your role, the recorded case snapshot, where things are stuck, and the selected Knowledge Pack’s version, topics and applicable document count.
+- **Ask naturally.** Follow up with questions such as “Why?” or “What remains unknown?” Pathway uses recent conversation within the same knowledge boundary to resolve references.
+- **Work in Chat or Email.** Create office follow-ups, case briefings and patient-friendly administrative messages. Copy a draft or ask Pathway to refine it. Drafts are generated for review and never sent.
+- **Inspect the evidence.** **Sources** shows exact cited passages with document titles, sections and versions. **Grounding** explains the contextual query, retrieval ranks and passages used to prepare the answer.
+- **See work in progress.** Live activity shows knowledge search, retrieved document counts, answer preparation and source-reference checks. Elapsed time is visible while waiting; completed activity remains available above the answer.
+- **Keep control.** Copy, regenerate, give feedback or retry a failed request. Conversations, source snapshots and completed activity survive reload within the browser session.
 
-Earlier digital worker increment: [product and architecture](docs/digital-worker.md), [operator runbook](docs/digital-worker-runbook.md), and [implementation ledger](docs/digital-worker-execution.md). The in-app Guided journey and Evaluation distinguish deterministic composition, cached retrieval and optional live synthesis.
+The sidebar describes the scenario’s recorded snapshot. Conversation text does not change case status. Switching knowledge updates the current context while earlier answers retain their original case and sources.
 
-A browser-based persistent AI operations agent that helps HCP offices resolve specialty-therapy access dependencies using governed Knowledge Packs, with visible evidence, bounded authority, and human ownership of exceptions.
+<details>
+<summary><strong>See sources, activity and mobile views</strong></summary>
 
-**Live synthetic demo:** [Open Pathway Agent](https://case-resolution-frontend.onrender.com). Render deployed the verified Docker build to the dedicated Supabase database; hosted browser acceptance passed. PostgreSQL/pgvector persists SC-01, immutable knowledge/evidence and session-isolated demonstrations. The digital worker adds persistent conversation, summaries, editable synthetic drafts and bounded TXT/Markdown/PDF/DOCX ingestion. Automatic conversation uses grounded live synthesis when the server provider is configured; otherwise it labels deterministic composition. Missing semantic vectors or failed providers pause explicitly. No real outreach, patient data or payer approval is involved.
+### Exact supporting passages
 
-## Run the browser demonstration
+![An answer with its exact source passages expanded](docs/screenshots/pathway-sources.png)
 
-Requires Node.js 24.12+, PostgreSQL 18.6 and pgvector 0.8.6. No OpenAI key is required. The local database script supports the documented Homebrew installation; see the [runbook](docs/persistence-runbook.md) for other environments.
+### Visible activity
+
+![Saved activity showing knowledge search, retrieval, answer preparation and source-reference checks](docs/screenshots/pathway-activity.png)
+
+### Mobile conversation and case context
+
+<img src="docs/screenshots/pathway-mobile.png" alt="Mobile conversation with an anchored composer" width="320"> <img src="docs/screenshots/pathway-context.png" alt="Mobile case-context drawer showing the role, recorded case, blocker and available knowledge" width="320">
+
+Screenshots show the public demo with a saved synthetic answer.
+
+</details>
+
+## Three scenarios
+
+| Scenario | Your role | Recorded blocker | Useful output |
+| --- | --- | --- | --- |
+| **Documentation support** · ALD-1042 | Avery Chen, HCP office access coordinator | The submitted package has an unsigned office note; the signed note and signature page are missing. | An office email requesting the signed note. |
+| **Coverage & access** · ACC-2086 | Morgan Lee, field reimbursement manager | An unreadable Juniper Plan member identifier blocks benefit verification. | An HCP-office briefing or follow-up email. |
+| **Specialty pharmacy fulfillment** · FUL-3091 | Jordan Rivera, patient-support case manager | The consent signature is missing; intake is recorded, but no dispense release or carrier handoff is recorded. | A patient-friendly administrative status message. |
+
+All people, organizations, plans, cases and documents are fictional. Each Knowledge Pack contains eight documents: six applicable sources, one superseded source and one record for another case. The complete corpus contains **24 documents and 38 passages**. Excluded documents are inspectable in the knowledge browser but cannot support a new answer.
+
+## Try a conversation
+
+1. Open the demo and choose **HCP office documentation support**.
+2. Ask **“What document is missing?”**, then **“Why is it being requested?”**
+3. Ask **“Draft a short email requesting the document.”** Follow with **“Make it warmer and shorter.”**
+4. Open **Sources** to read the supporting passages, or **Grounding** to inspect retrieval.
+5. Switch Knowledge Packs to explore another case and its evidence boundary.
+
+## How it works
+
+```mermaid
+flowchart LR
+    A[Question and recent same-pack context] --> B[Current pack and case filters]
+    B --> C[Hybrid retrieval]
+    D[(PostgreSQL and pgvector)] --> C
+    C --> E[OpenAI GPT-5 mini]
+    E --> F[Response-format and source-ID validation]
+    F --> G[Saved answer, draft, sources and activity]
+    G --> H[Chat and Email workspace]
+```
+
+| Layer | Implementation |
+| --- | --- |
+| Interface | Semantic HTML, CSS and browser JavaScript; responsive context drawer and independent conversation scrolling. |
+| Server | Node.js 24 and TypeScript, with session-scoped HTTP APIs. |
+| Generation | OpenAI **GPT-5 mini** through the Responses API, with low reasoning effort and structured outputs. |
+| Retrieval | PostgreSQL/pgvector hybrid vector and lexical ranking; OpenAI `text-embedding-3-small` embeddings cached persistently. |
+| Evidence | Current-source, pack and case filtering; validated citation membership and saved exact source snapshots. |
+| Progress | Persisted application events streamed as NDJSON, with bounded status polling when the hosting proxy buffers updates. No additional model calls. |
+| Hosting | Render static frontend and Node backend, with a dedicated Supabase PostgreSQL database. |
+
+Generation uses retrieved evidence and explicit scenario context. Conversation history helps resolve references; it does not establish new facts. A malformed response can receive one bounded format repair using the same evidence. API keys stay on the server, and provider request budgets are enforced persistently.
+
+## Run locally
+
+Requires **Node.js 24.12+**, **PostgreSQL 18.6** and **pgvector 0.8.6**. The local launcher supports the documented macOS/Homebrew installation; see the [database setup guide](docs/persistence-runbook.md) for pinned binaries and connection configuration.
 
 ```sh
 npm ci
 npm run db:start
 npm run db:migrate
-node src/app/server.ts
+npm run rag:seed
+npm run build
+cp .env.example .env
 ```
 
-Open `http://127.0.0.1:3000`, choose **Launch guided demo**, then **Use sample knowledge** and ask **What should happen next?** Press Enter to send. Open **Full technical walkthrough** for the twelve-step document-to-case story. Without a provider, use the guide’s explicit sandbox exploration branch and the original cached case. Follow governed requirement detection → simulated follow-up → document receipt → human verification → receiving acknowledgment → **Documentation dependency resolved; prior authorization pending.** Inspect exact evidence, pause/resume, publish/assign a scoped release, and retire authority without altering history.
+In your ignored `.env` file, set `OPENAI_API_KEY` to your own key and `PATHWAY_LIVE_GENERATION=enabled` to enable answers. Keep `PATHWAY_RAG_MODEL=gpt-5-mini`, `PATHWAY_RAG_REASONING=low`, and positive provider request limits. Live answers and uncached embeddings use your OpenAI account’s API budget.
 
-Start with the [portfolio narrative](docs/portfolio-narrative.md), [demo walkthrough](docs/demo-walkthrough.md), [hosted release verification](docs/hosted-verification.md), and [production runbook](docs/production-runbook.md). `npm run build` creates the source-free production package. `npm test`, `npm run test:generation`, `npm run test:app`, `npm run test:postgres` and `npm run test:workflow` verify separate boundaries. `npm run eval:postgres` replays preserved quality evidence without new provider calls.
+```sh
+node --env-file=.env dist/src/app/server.js
+```
 
-Earlier headless artifacts remain frozen. Do not use artifact-writing historical demo/benchmark commands just to launch the interface. The live benchmark found lexical31/36 and semantic/hybrid36/36 correct outcomes; cached benchmark ordering prevents an apples-to-apples latency/cost claim. See [the comparison report](docs/phase2b-comparison.md).
+Open [localhost:3000](http://127.0.0.1:3000). Without live generation configured, the catalog and interface remain available, but Pathway cannot produce a live answer. The first enabled request indexes any missing corpus embeddings.
 
-## Read in this order
+## Verification
 
-1. [Product foundation](docs/product-foundation.md) — positioning, wedge, users, workflows, value, autonomy, scope, and measures.
-2. [Research and risk register](docs/research-and-risks.md) — sourced context, open assumptions, discovery plan, and validation owners.
-3. [Knowledge Studio and RAG lifecycle](docs/knowledge-studio.md) — two modes, metadata, packs, ingestion/governance failures and minimum UX surfaces.
-4. [System architecture](docs/architecture.md) — ingestion, hybrid retrieval, four determinations, provider interface, durable workflows and tools.
-5. [RAG evaluation](docs/rag-evaluation.md) — 26 reference cases covering the ten required demonstrations and quality/boundary metrics.
-6. [Deployment and retrieval ADR](docs/adr/001-deployment-and-retrieval.md) — AWS/managed retrieval/lightweight comparison, prototype/enterprise recommendations and migration.
-7. [Synthetic scenarios](docs/synthetic-scenarios.md) — three operational cases and governed pack bindings.
-8. [Roadmap and portfolio plan](docs/roadmap.md) — revised sequence and next concrete session.
-9. [Decision log](docs/decisions.md) — decisions, changed assumptions and tensions with Phase 1.
+```sh
+npm run typecheck
+npm test
+npm run test:rag
+npm run build
+node scripts/verify-hygiene.ts
+```
 
-## Demonstrated product story
+The RAG suite requires the migrated local database. Automated checks use synthetic provider responses and make no paid model calls. The documented activity release passed **118 automated tests and 138 browser checks**, including desktop/mobile layouts, citations, copy, refinement, retries, knowledge switching, progress and reload.
 
-The Knowledge Studio demonstrates governed knowledge configuration: upload, inspect, test, approve, publish, retrieve with traceable passages, and retire. Compare two packs in a playground, reject sandbox operational actions, and show an approved pack supporting SC-01's missing-document recommendation. The strongest moment is retiring that source: subsequent reliance stops while historical evidence remains inspectable.
+The retained 36-turn synthetic conversation evaluation completed all turns, with **98.61% expected-passage recall** and **115/115 cited IDs present in retrieval**. Its semantic review found **34/36 complete criterion matches**; the two partial results and targeted follow-up checks are documented. Citation membership alone does not prove every phrase is supported, and these results are not independent clinical validation.
 
-The case worker then follows the documentation dependency through: scheduled follow-up through a simulated channel, case memory, document intake, human verification, receiving-system acknowledgment, and resumable exception handoff.
+- [Conversation evaluation and limitations](docs/rebuild/conversation-review-2026-09-12.md)
+- [Workspace behavior and browser checks](docs/rebuild/compact-workspace.md)
+- [Activity, persistence and public verification](docs/rebuild/live-activity.md)
+- [Canonical scenario and knowledge definitions](src/rag/corpus.ts)
+- [Response and conversation contracts](src/rag/contracts.ts)
 
-The completed outcome is a resolved documentation dependency with receipt evidence. Coverage remains pending until a separately sourced payer decision arrives.
+## Demonstration boundaries
 
-## Maintaining continuity
-
-Treat the foundation as product intent; Knowledge Studio as the knowledge lifecycle/metadata contract; architecture as system/provider contracts; scenarios as operational examples; RAG evaluation as reference expectations; ADRs as deployment tradeoffs; and the roadmap as delivery status. Use stable decision (`D-`), assumption (`A-`), risk (`R-`), requirement (`M-`), scenario (`SC-`) and evaluation (`E-`) IDs.
-
-When a decision changes, add a dated decision-log entry, update affected documents and acceptance criteria in the same change, and record supporting evidence. Preserve superseded decisions rather than silently rewriting history. Research sources inform product design; they do not become runtime action permissions. Synthetic knowledge is a separate corpus.
-
-The original headless phases remain frozen. Current digital-worker implementation, measured results and provider limitations are recorded in the [digital-worker architecture](docs/digital-worker.md) and [execution ledger](docs/digital-worker-execution.md). Live generation utility, independent retrieval holdouts, production retention/restore and enterprise integrations require separate evidence.
-
-## Earlier conversation release acceptance
-
-The deployed fast path is **Launch → Use sample knowledge → ask Pathway**. The final public visitor reached a cited answer in **11.3 seconds** after wake. All 20 browser acceptance criteria and 225 automated tests passed; live v5 qualification accepted 7/7 generated responses. Earlier rejected citations remain retained. See [the acceptance, exact steps and limitations](docs/conversation-experience.md).
-
-The contextual conversation revision is documented in [the worker contract](docs/contextual-worker.md): model-led references and complete copy, full-text validation, separate recipient/operator/evidence layers, measurable refinement, bounded regeneration, feedback and a compact chat interface. The frozen before/after catalog is retained alongside earlier acceptance artifacts; see the final verification report for revision-specific live results.
-
-Chat now includes a role-aware Conversation Launchpad, current eligible knowledge coverage, directly submitted suggestions and a compact persistent context bar. See [launchpad behavior and verification](docs/conversation-launchpad.md).
+Use the supplied synthetic cases. Pathway does not provide clinical advice, make payer or eligibility decisions, promise dispensing or delivery, or perform real outreach. Review generated drafts before using their wording. Sessions expire after four hours; this portfolio demonstration is not a production healthcare system.
