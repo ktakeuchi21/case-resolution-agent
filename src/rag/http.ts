@@ -20,7 +20,7 @@ export async function ragHttp(req:IncomingMessage,res:ServerResponse,url:URL,ser
  const input=await body(req,12000);
  if(path==='/start'){json(res,201,await service.start(s,input));return;}
  if(path==='/configure'){json(res,200,await service.configure(s,input));return;}
- if(path==='/prepare-evaluation'){const provider=service.provider(s),retrieval=new PersistentRetrieval(service.db,texts=>provider.embed(texts));await retrieval.ensureEmbeddings();json(res,200,await retrieval.warmQueries(evaluationCases.map(t=>({packId:t.packId,text:t.retrievalQuestion}))));return;}
+ if(path==='/prepare-evaluation'){const provider=service.provider(s),retrieval=new PersistentRetrieval(service.db,texts=>provider.embed(texts));await retrieval.ensureEmbeddings();const preparation=await retrieval.warmQueries(evaluationCases.map(t=>({packId:t.packId,text:t.retrievalQuestion})));json(res,200,{...preparation,usage:provider.usageSnapshot()});return;}
  if(path==='/retrieve'){json(res,200,await service.retrieve(s,input));return;}
  if(path==='/feedback'){json(res,200,await service.feedback(s,input));return;}
  if(path==='/send'){

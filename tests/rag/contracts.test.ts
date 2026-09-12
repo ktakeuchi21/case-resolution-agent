@@ -45,3 +45,12 @@ test('provider errors do not fabricate an answer or trigger a format repair',asy
  let n=0;const model=new OpenAIConversation('fixture',async()=>{n++;},'gpt-5.4-mini',(async()=>new Response('{}',{status:503})) as typeof fetch);
  await assert.rejects(model.generate('missing?',packs[0]!,trace,[]));assert.equal(n,1);
 });
+
+test('failed bounded repairs retain measured usage; missing provider usage remains unknown',async()=>{
+ const payload={status:'completed',usage:{input_tokens:100,output_tokens:20},output:[{type:'message',content:[{type:'output_text',text:JSON.stringify({...valid,citations:['invalid']})}]}]};
+ const model=new OpenAIConversation('fixture',async()=>{},'gpt-5.4-mini',(async()=>new Response(JSON.stringify(payload))) as typeof fetch);
+ await assert.rejects(model.generate('missing?',packs[0]!,trace,[]));
+ assert.equal(model.usageSnapshot().requests,2);assert.equal(model.usageSnapshot().inputTokens,200);assert.equal(model.usageSnapshot().outputTokens,40);assert.equal(model.usageSnapshot().unmeasuredRequests,0);assert(model.usageSnapshot().estimatedCostUsd!>0);
+ const unavailable=new OpenAIConversation('fixture',async()=>{},'gpt-5.4-mini',(async()=>new Response('{}',{status:503})) as typeof fetch);
+ await assert.rejects(unavailable.generate('missing?',packs[0]!,trace,[]));assert.equal(unavailable.usageSnapshot().requests,1);assert.equal(unavailable.usageSnapshot().unmeasuredRequests,1);assert.equal(unavailable.usageSnapshot().estimatedCostUsd,null);
+});

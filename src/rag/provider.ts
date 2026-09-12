@@ -22,20 +22,29 @@ export function validateAnswer(value:unknown,trace:RetrievalTrace):Answer {
  return answer;
 }
 export class OpenAIConversation {
- embeddingInputTokens=0;embeddingRequests=0;
+ embeddingInputTokens=0;embeddingRequests=0;unmeasuredRequests=0;
+ #started=performance.now();
+ #generationUsage:Usage|null=null;
  readonly key:string;readonly reserve:()=>Promise<void>;readonly model:string;readonly transport:typeof fetch;
  constructor(key:string,reserve:()=>Promise<void>,model=process.env.PATHWAY_RAG_MODEL??'gpt-5.4-mini',transport:typeof fetch=fetch){
   if(!['gpt-5.4-mini','gpt-5.4','gpt-5.4-mini-2026-03-17'].includes(model))throw new RagError('MODEL_CONFIGURATION');
   this.key=key;this.reserve=reserve;this.model=model;this.transport=transport;
  }
+ usageSnapshot():Usage {
+  const usage=this.#generationUsage??{model:this.model,inputTokens:0,cachedInputTokens:0,outputTokens:0,requests:0,latencyMs:0,estimatedCostUsd:null};
+  const rate=this.model==='gpt-5.4'?{input:2.5,cache:.25,output:15}:{input:.75,cache:.075,output:4.5};
+  return {...usage,embeddingInputTokens:this.embeddingInputTokens,embeddingRequests:this.embeddingRequests,unmeasuredRequests:this.unmeasuredRequests,
+   latencyMs:Math.round(performance.now()-this.#started),estimatedCostUsd:this.unmeasuredRequests?null:
+    ((usage.inputTokens-usage.cachedInputTokens)*rate.input+usage.cachedInputTokens*rate.cache+usage.outputTokens*rate.output+this.embeddingInputTokens*.02)/1e6};
+ }
  async embed(texts:string[]){
-  await this.reserve();
+  await this.reserve();this.embeddingRequests++;this.unmeasuredRequests++;
   const result=await new OpenAIEmbeddingProvider({provider:'openai',model:embeddingModel,dimensions,revision:'rag-v1',normalization:'none-v1'},this.key,this.transport).embed(texts);
-  this.embeddingInputTokens+=result.inputTokens;this.embeddingRequests++;return result.vectors;
+  this.embeddingInputTokens+=result.inputTokens;this.unmeasuredRequests--;return result.vectors;
  }
  async generate(question:string,pack:KnowledgePack,trace:RetrievalTrace,history:Turn[]):Promise<{response:Answer;usage:Usage}> {
-  const start=performance.now();
   const usage:Usage={model:this.model,inputTokens:0,cachedInputTokens:0,outputTokens:0,requests:0,latencyMs:0,estimatedCostUsd:null};
+  this.#generationUsage=usage;
   const schema=z.toJSONSchema(Answer); delete schema.$schema;
   // Restrict IDs at generation time, then validate them against the actual retrieval again.
   (schema.properties!.citations as {items:unknown}).items={type:'string',enum:trace.passages.map(p=>p.id)};
@@ -47,23 +56,22 @@ export class OpenAIConversation {
   if(input.length>50000)throw new RagError('CONTEXT_LIMIT');
   let repair='';
   for(let attempt=0;attempt<2;attempt++){
-   await this.reserve();usage.requests++;
+   await this.reserve();usage.requests++;this.unmeasuredRequests++;
    const res=await this.transport('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},signal:AbortSignal.timeout(30000),
     body:JSON.stringify({model:this.model,store:false,instructions,reasoning:{effort:process.env.PATHWAY_RAG_REASONING??'none'},max_output_tokens:2400,input:input+repair,
      text:{format:{type:'json_schema',name:'pathway_rag_answer',strict:true,schema}}})});
    if(!res.ok)throw new RagError(res.status===429?'PROVIDER_LIMIT':'PROVIDER_UNAVAILABLE');
    const raw=await res.text();if(raw.length>150000)throw new RagError('PROVIDER_RESPONSE_LIMIT');
    let payload:any;try{payload=JSON.parse(raw);}catch{throw new RagError('PROVIDER_RESPONSE_INVALID');}
-   usage.inputTokens+=payload.usage?.input_tokens??0;usage.cachedInputTokens+=payload.usage?.input_tokens_details?.cached_tokens??0;usage.outputTokens+=payload.usage?.output_tokens??0;
+   const measured=z.object({input_tokens:z.number().int().nonnegative(),output_tokens:z.number().int().nonnegative(),input_tokens_details:z.object({cached_tokens:z.number().int().nonnegative()}).optional()}).safeParse(payload.usage);
+   if(measured.success&&(!measured.data.input_tokens_details||measured.data.input_tokens_details.cached_tokens<=measured.data.input_tokens)){
+    usage.inputTokens+=measured.data.input_tokens;usage.cachedInputTokens+=measured.data.input_tokens_details?.cached_tokens??0;usage.outputTokens+=measured.data.output_tokens;this.unmeasuredRequests--;
+   }
    if(payload.status!=='completed')throw new RagError('PROVIDER_INCOMPLETE');
    const output=payload.output?.filter((o:any)=>o.type==='message').flatMap((o:any)=>o.content??[]).filter((p:any)=>p.type==='output_text').map((p:any)=>p.text).join('');
    try {
     const response=validateAnswer(JSON.parse(output),trace);
-    usage.embeddingInputTokens=this.embeddingInputTokens;usage.embeddingRequests=this.embeddingRequests;
-    usage.latencyMs=Math.round(performance.now()-start);
-    const rate=this.model==='gpt-5.4'?{input:2.5,cache:.25,output:15}:{input:.75,cache:.075,output:4.5};
-    usage.estimatedCostUsd=((usage.inputTokens-usage.cachedInputTokens)*rate.input+usage.cachedInputTokens*rate.cache+usage.outputTokens*rate.output+this.embeddingInputTokens*.02)/1e6;
-    return {response,usage};
+    return {response,usage:this.usageSnapshot()};
    } catch {
     if(attempt===1)throw new RagError('ANSWER_FORMAT');
     repair='\nA prior attempt did not match the answer schema or citation mapping. Produce a fresh valid object using exactly the same supplied evidence. Use [1] etc in answer for every returned citation ID. Keep email body citation-free. Do not introduce new evidence.';

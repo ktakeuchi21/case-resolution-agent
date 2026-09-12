@@ -27,3 +27,12 @@ test('session expiration cleanup removes conversation derivatives and does not t
  const conversation=await service.start(visitor,{scenarioId:'fulfillment'});const before=(await db.pool.query('SELECT count(*)::int n FROM rag.passages')).rows[0].n;
  await db.pool.query('DELETE FROM portfolio.sessions WHERE token_hash=$1',[visitor.token_hash]);await assert.rejects(service.read(visitor,conversation.id));assert.equal((await db.pool.query('SELECT count(*)::int n FROM rag.passages')).rows[0].n,before);
 });
+
+test('knowledge switching preserves exact historical answer/citation snapshots',async()=>{
+ const a=visitors[0]!,conversation=await service.start(a,{scenarioId:'alder'});
+ const snapshot={id:randomUUID(),question:'What document is missing?',packId:'alder',createdAt:new Date().toISOString(),status:'complete',response:{answer:'Synthetic fixture answer [1]',citations:['alder.N-101.1'],suggestedFollowups:[],workProduct:null,retrievalContext:'Signed office note'},trace:{packId:'alder',passages:[{id:'alder.N-101.1',text:'Exact synthetic test passage'}],citations:[{number:1,passageId:'alder.N-101.1'}]},usage:null,error:null,feedback:null,attempt:1};
+ await service.scoped(a,c=>c.query('INSERT INTO rag.turns(id,conversation_id,session_hash,body) VALUES($1,$2,$3,$4)',[snapshot.id,conversation.id,a.token_hash,JSON.stringify(snapshot)]));
+ await service.configure(a,{conversationId:conversation.id,packId:'fulfillment'});
+ const switched=await service.read(a,conversation.id);assert.equal(switched.packId,'fulfillment');assert.deepEqual(switched.turns[0],snapshot);
+ await service.configure(a,{conversationId:conversation.id,packId:'alder'});assert.deepEqual((await service.read(a,conversation.id)).turns[0],snapshot);
+});

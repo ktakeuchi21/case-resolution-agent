@@ -72,8 +72,9 @@ export class RagService {
    const save=async()=>{const saved=await this.scoped(session,c=>c.query(`INSERT INTO rag.turns(id,conversation_id,session_hash,body) VALUES($1,$2,$3,$4)
     ON CONFLICT(id) DO UPDATE SET body=EXCLUDED.body WHERE rag.turns.session_hash=EXCLUDED.session_hash AND rag.turns.conversation_id=EXCLUDED.conversation_id`,[turn.id,conversation.id,session.token_hash,JSON.stringify(turn)]));if(!saved.rowCount)throw new HttpError(409,'Choose a new request identifier.');};
    await save();stage('Looking through the selected knowledge…');
+   let provider:OpenAIConversation|undefined;
    try {
-    const provider=this.provider(session),retrieval=new PersistentRetrieval(this.db,texts=>provider.embed(texts));
+    provider=this.provider(session);const currentProvider=provider,retrieval=new PersistentRetrieval(this.db,texts=>currentProvider.embed(texts));
     const history=conversation.turns.filter(t=>t.id!==turn.id);
     const trace=await retrieval.search(data.text,conversation.packId,history);
     stage('Preparing an answer with its sources…');
@@ -81,7 +82,7 @@ export class RagService {
     trace.citations=response.citations.map((passageId,i)=>({number:i+1,passageId}));
     turn.status='complete';turn.response=response;turn.trace=trace;turn.usage=usage;
    } catch(e) {
-    turn.status='failed';turn.error=recoveryMessage;
+    turn.status='failed';turn.error=recoveryMessage;turn.usage=provider?.usageSnapshot()??null;
     console.error(JSON.stringify({event:'rag_turn_failed',turnId:turn.id,code:e instanceof RagError?e.code:'SERVICE_FAILURE'}));
    }
    await save();return turn;

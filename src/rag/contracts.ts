@@ -24,7 +24,7 @@ export const Answer = z.strictObject({
 export type Answer = z.infer<typeof Answer>;
 export interface RetrievedPassage extends Passage { rank: number; score: number; reason: string; includedInGeneration: boolean }
 export interface RetrievalTrace { question: string; query: string; packId: PackId; packName: string; caseId: string; method: 'hybrid' | 'lexical-control'; passages: RetrievedPassage[]; citations: Array<{ number: number; passageId: string }>; }
-export interface Usage { model: string; inputTokens: number; cachedInputTokens: number; embeddingInputTokens?: number; embeddingRequests?: number; outputTokens: number; requests: number; latencyMs: number; estimatedCostUsd: number | null; }
+export interface Usage { model: string; inputTokens: number; cachedInputTokens: number; embeddingInputTokens?: number; embeddingRequests?: number; unmeasuredRequests?: number; outputTokens: number; requests: number; latencyMs: number; estimatedCostUsd: number | null; }
 export interface Turn {
  id: string; question: string; packId: PackId; createdAt: string; status: 'pending' | 'complete' | 'failed';
  response: Answer | null; trace: RetrievalTrace | null; usage: Usage | null; error: string | null;
