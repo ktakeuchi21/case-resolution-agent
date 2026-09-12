@@ -22,9 +22,10 @@ test('contextual follow-ups carry referents; a pack boundary drops previous case
  assert.match(contextualQuery('Why?','alder',[turn]),/Signed office note N-101/);
  const switched=contextualQuery('Why?','fulfillment',[turn]);assert(!switched.includes('N-101'));assert(!switched.includes('ALD-1042'));assert(switched.includes('FUL-3091'));
 });
-test('citation membership, uniqueness and inline numbering are validated against retrieved passages',()=>{
+test('citation membership, uniqueness and any supplied inline numbering are validated against retrieved passages',()=>{
  assert.deepEqual(validateAnswer(valid,trace),valid);
- for(const bad of [{...valid,citations:['fulfillment.STATUS-3091.1']},{...valid,citations:['not-retrieved']},{...valid,answer:'A fact. [2]'},{...valid,answer:'An uncited fact.'},{...valid,citations:[valid.citations[0],valid.citations[0]]}])assert.throws(()=>validateAnswer(bad,trace));
+ assert.equal(validateAnswer({...valid,answer:'The signed office note is requested.'},trace).citations[0],'alder.N-101.1');
+ for(const bad of [{...valid,citations:['fulfillment.STATUS-3091.1']},{...valid,citations:['not-retrieved']},{...valid,answer:'A fact. [2]'},{...valid,citations:[valid.citations[0],valid.citations[0]]}])assert.throws(()=>validateAnswer(bad,trace));
 });
 test('external work-product copy contains no citation machinery and cannot claim sent status',()=>{
  const workProduct={type:'email',subject:'Signed note',body:'Please send the note. [1]',status:'generated_not_sent'};
@@ -67,7 +68,7 @@ test('citation normalization keeps only actual prose references and never repair
  const extra=trace.passages.find(p=>p.id!==valid.citations[0])!.id;
  assert.deepEqual(numberCitations({...valid,answer:'The signed office note is requested. [alder.N-101.1]',citations:[extra,'alder.N-101.1']},trace),valid);
  assert.deepEqual(numberCitations({...valid,answer:'The signed office note is requested. [2]',citations:[extra,'alder.N-101.1']},trace),valid);
- assert.throws(()=>numberCitations({...valid,answer:'An uncited claim.',citations:[extra]},trace));
+ assert.deepEqual(numberCitations({...valid,answer:'The signed office note is requested.'},trace),{...valid,answer:'The signed office note is requested.'});
  assert.throws(()=>numberCitations({...valid,citations:['alder.N-101.1','not-retrieved']},trace));
  assert.throws(()=>numberCitations({...valid,citations:['alder.N-101.1','alder.N-101.1']},trace));
 });

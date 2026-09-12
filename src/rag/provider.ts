@@ -30,7 +30,7 @@ Resolve short follow-ups from the recent same-pack conversation. “Why?” asks
 Use concise, natural prose. Two or three sentences usually suffice for a factual answer. Avoid internal technical terminology. Never invent quotations or source names.
 
 # Citations
-Cite each material source-based claim with its supplied passage ID in brackets, such as [alder.N-101.1]. Include those distinct IDs in citations in the same order. Use the smallest sufficient set. Every citation must be retrieved; ordinary answers must show each referenced ID inline. The server assigns readable numbers.
+Return the smallest set of retrieved passage IDs supporting the material facts in the answer in citations. One to three directly supporting passages usually suffice; do not list every retrieved passage just because it was available. Use only supplied IDs. Do not write citation markers, source IDs or numeric brackets in answer prose. The interface attaches numbered exact passages under Sources used for the whole answer. For an evidence question, name the actual source and explain what it supports.
 
 # Work products
 A request to draft, summarize, brief, rewrite, or refine requires workProduct with type email or summary, subject, complete recipient-ready body and status generated_not_sent. “Summarize this case” requires a summary work product. Do not put a requested summary only in answer.
@@ -47,7 +47,7 @@ export function validateAnswer(value:unknown,trace:RetrievalTrace):Answer {
  const answer=Answer.parse(value),allowed=new Set(trace.passages.map(p=>p.id));
  if(new Set(answer.citations).size!==answer.citations.length||answer.citations.some(id=>!allowed.has(id)))throw new RagError('INVALID_CITATIONS');
  const markers=[...answer.answer.matchAll(/\[(\d+)\]/g)].map(m=>Number(m[1]));
- if(markers.some(n=>n<1||n>answer.citations.length)||(!answer.workProduct&&answer.citations.some((_,i)=>!markers.includes(i+1))))throw new RagError('INVALID_CITATION_MAPPING');
+ if(markers.some(n=>n<1||n>answer.citations.length))throw new RagError('INVALID_CITATION_MAPPING');
  if(answer.workProduct&&/\[\d+\]/.test(answer.workProduct.body))throw new RagError('DRAFT_CITATION_LEAK');
  return answer;
 }
@@ -63,7 +63,8 @@ export function numberCitations(value:unknown,trace:RetrievalTrace):Answer {
  });
  // An ordinary answer's source list follows its actual inline references. Extra
  // retrieved IDs in the model's list are not a reason to expand or rewrite prose.
- if(!answer.workProduct&&answer.citations.length&&!cited.length)throw new RagError('INVALID_CITATION_MAPPING');
+ // Whole-answer attribution is valid without inline markers, as in the public contract.
+ if(!cited.length)cited.push(...answer.citations);
  if(answer.workProduct&&/\[(?:\d+|[a-z]+\.[^\]\s]+)\]/.test(answer.workProduct.body))throw new RagError('DRAFT_CITATION_LEAK');
  return validateAnswer({...answer,answer:text,citations:cited},trace);
 }
@@ -94,6 +95,7 @@ export class OpenAIConversation {
   const schema=z.toJSONSchema(Answer); delete schema.$schema;
   // Restrict IDs at generation time, then validate them against the actual retrieval again.
   (schema.properties!.citations as {items:unknown}).items={type:'string',enum:trace.passages.map(p=>p.id)};
+  (schema.properties!.citations as {description?:string}).description='The smallest set of supplied passage IDs that directly support this answer or draft. Usually 1–3. Do not include all retrieved passages by default. The interface presents these exact sources; do not insert citation markers in prose.';
   const prior:Turn[]=[];
   for(const turn of history.toReversed()){if(turn.packId!==pack.id)break;if(turn.response)prior.unshift(turn);if(prior.length>=8)break;}
   const latestDraft=prior.toReversed().find(t=>t.response?.workProduct)?.response?.workProduct;
@@ -129,7 +131,7 @@ export class OpenAIConversation {
     const code=e instanceof RagError?e.code:e instanceof z.ZodError?'ANSWER_SCHEMA':'ANSWER_JSON';
     console.error(JSON.stringify({event:'rag_answer_format',attempt:attempt+1,code}));
     if(attempt===1)throw new RagError('ANSWER_FORMAT');
-    repair='\nA prior attempt did not match the answer schema or citation mapping. Produce a fresh valid object using exactly the same supplied evidence. For ordinary factual answers, put the full supporting passage IDs in brackets after the claims and list only those IDs in citations. For a work product, provide its brief introduction and supporting citations array, with all draft content in workProduct.body and no markers in that body. Do not introduce new evidence or expand the answer just to cite every retrieved passage.';
+    repair='\nA prior attempt did not match the answer schema or source references. Produce a fresh valid object using the same supplied evidence. Put the supporting passage IDs only in citations. Do not put citation markers or IDs in answer or workProduct.body. For a draft or summary, provide one short introduction in answer and the complete content in workProduct. Do not introduce new evidence or expand the prose to mention every retrieved passage.';
    }
   }
   throw new RagError('ANSWER_FORMAT');
