@@ -1,0 +1,442 @@
+{
+  "kind": "fresh-browser live draft regression",
+  "model": "gpt-5-mini",
+  "revision": "c3468743b6e291d4f47bc27336d791eff65eda3b",
+  "conversations": [
+    {
+      "id": "4071e279-c62c-4c4d-8abf-a76eb6cd6e44",
+      "scenarioId": "access",
+      "packId": "access",
+      "channel": "email",
+      "turns": [
+        {
+          "id": "8a34ba32-47e5-4872-aff5-bffe08ea106c",
+          "error": null,
+          "trace": {
+            "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nCurrent question: Draft a follow-up email to the HCP office.",
+            "caseId": "ACC-2086",
+            "method": "hybrid",
+            "packId": "access",
+            "packName": "Synthetic Coverage and Access Knowledge Pack",
+            "passages": [
+              {
+                "id": "access.OFFICE-2086.2",
+                "rank": 1,
+                "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+                "type": "Communication record",
+                "score": 0.0700570835495589,
+                "title": "Office support conversation record",
+                "caseId": "ACC-2086",
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Briefing and follow-up",
+                "version": "1.0",
+                "sourceId": "OFFICE-2086",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.BV-GUIDE.1",
+                "rank": 2,
+                "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+                "type": "Process guide",
+                "score": 0.0676767676767677,
+                "title": "Benefit-verification process",
+                "caseId": null,
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Administrative sequence",
+                "version": "1.0",
+                "sourceId": "BV-GUIDE",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.PA-GUIDE.1",
+                "rank": 3,
+                "text": "After current benefits and any prior-authorization requirement are confirmed, identify the applicable payer form and documentation, help the office assemble the package, submit through the authorized channel and track the payer acknowledgment. Only the payer can determine whether authorization is required and whether to approve it.",
+                "type": "Process guide",
+                "score": 0.0676190476190476,
+                "title": "Prior-authorization administrative steps",
+                "caseId": null,
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Before submission",
+                "version": "1.0",
+                "sourceId": "PA-GUIDE",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.JUN-01.2",
+                "rank": 4,
+                "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+                "type": "Synthetic policy summary",
+                "score": 0.067287784679089,
+                "title": "Juniper Plan administrative checklist",
+                "caseId": null,
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Policy support and limits",
+                "version": "1.0",
+                "sourceId": "JUN-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.ACCESS-ESC.1",
+                "rank": 5,
+                "text": "Route unresolved benefit-verification discrepancies to the support program benefit-verification team. Route payer interpretation, exception or appeal questions to the payer or appropriate office specialist. A field reimbursement manager can explain the documented process and organize questions, but cannot overturn a payer decision.",
+                "type": "Escalation guide",
+                "score": 0.0669197911722829,
+                "title": "Access support escalation and boundaries",
+                "caseId": null,
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Who to contact",
+                "version": "1.0",
+                "sourceId": "ACCESS-ESC",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.JUN-01.1",
+                "rank": 6,
+                "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+                "type": "Synthetic policy summary",
+                "score": 0.0658090054428501,
+                "title": "Juniper Plan administrative checklist",
+                "caseId": null,
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Common documentation",
+                "version": "1.0",
+                "sourceId": "JUN-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.OFFICE-2086.1",
+                "rank": 7,
+                "text": "In the synthetic September 10, 2026 office exchange, staff reported: “The card image is blurry. We can check the member number and send a clearer copy.” No corrected identifier or new card receipt is recorded.",
+                "type": "Communication record",
+                "score": 0.0640522875816993,
+                "title": "Office support conversation record",
+                "caseId": "ACC-2086",
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Office statement",
+                "version": "1.0",
+                "sourceId": "OFFICE-2086",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "access.BV-2086.1",
+                "rank": 8,
+                "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+                "type": "Status record",
+                "score": 0.0636059301769488,
+                "title": "ACC-2086 · Benefit-verification status",
+                "caseId": "ACC-2086",
+                "packId": "access",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Current blocker",
+                "version": "1.0",
+                "sourceId": "BV-2086",
+                "synthetic": true,
+                "includedInGeneration": true
+              }
+            ],
+            "question": "Draft a follow-up email to the HCP office.",
+            "citations": [
+              {
+                "number": 1,
+                "passageId": "access.OFFICE-2086.2"
+              },
+              {
+                "number": 2,
+                "passageId": "access.BV-2086.1"
+              }
+            ]
+          },
+          "usage": {
+            "model": "gpt-5-mini",
+            "requests": 1,
+            "latencyMs": 7559,
+            "inputTokens": 2145,
+            "outputTokens": 545,
+            "estimatedCostUsd": 0.00162625,
+            "cachedInputTokens": 0,
+            "embeddingRequests": 0,
+            "unmeasuredRequests": 0,
+            "embeddingInputTokens": 0
+          },
+          "packId": "access",
+          "status": "complete",
+          "attempt": 1,
+          "feedback": null,
+          "question": "Draft a follow-up email to the HCP office.",
+          "response": {
+            "answer": "Below is a ready-to-send follow-up email requesting a legible card or confirmed member identifier so benefit verification can proceed. It explains the next administrative step and avoids implying a coverage decision.",
+            "citations": [
+              "access.OFFICE-2086.2",
+              "access.BV-2086.1"
+            ],
+            "workProduct": {
+              "body": "Dear Cedar HCP Office,\n\nWe are following up on synthetic case ACC-2086. The Juniper Plan insurance card image you submitted is unreadable, and no corrected identifier is recorded. To proceed with benefit verification we need either a legible copy of the insurance card or a confirmed member identifier sent via your established secure channel.\n\nOnce we receive a legible card or a confirmed member identifier, we can submit the benefit-verification inquiry. Please note that submitting the inquiry is an administrative step; it is not a coverage approval or prior-authorization decision.\n\nIf you prefer, reply here after you upload the clearer card or send the identifier and we will continue the administrative process.\n\nThank you,\nMorgan Lee\nField Reimbursement Manager\nmorgan.lee@cedar-support.example",
+              "type": "email",
+              "status": "generated_not_sent",
+              "subject": "Request for legible Juniper Plan member identifier — ACC-2086"
+            },
+            "retrievalContext": "Case ACC-2086; Juniper Plan; benefit verification blocked by unreadable member identifier; no prior-authorization submitted or coverage decision recorded.",
+            "suggestedFollowups": [
+              "Please confirm when you’ve uploaded the legible card or sent the member identifier through the secure channel.",
+              "Would you like assistance submitting the benefit-verification inquiry once the identifier is provided?"
+            ]
+          },
+          "createdAt": "2026-09-12T14:48:02.551Z"
+        }
+      ]
+    },
+    {
+      "id": "bf7550f9-9dab-4f65-8bd8-7937d514ac87",
+      "scenarioId": "fulfillment",
+      "packId": "fulfillment",
+      "channel": "chat",
+      "turns": [
+        {
+          "id": "7367235b-9413-449f-9293-3177bb6fa2a0",
+          "error": null,
+          "trace": {
+            "query": "Selected synthetic case: FUL-3091. Synthetic case FUL-3091 for Willow Support and fictitious Birch Specialty Pharmacy. Enrollment is received, consent signature is missing, and prescription intake is recorded. There is no dispense release or carrier handoff.\nCurrent question: Draft a patient-friendly status update.",
+            "caseId": "FUL-3091",
+            "method": "hybrid",
+            "packId": "fulfillment",
+            "packName": "Synthetic Specialty Pharmacy Fulfillment Knowledge Pack",
+            "passages": [
+              {
+                "id": "fulfillment.PATIENT-01.1",
+                "rank": 1,
+                "text": "Explain that enrollment has been received and prescription intake is recorded, but a signature on the consent form is still needed. Ask the patient to complete consent through the established secure program channel. Say the pharmacy must complete its checks before shipment can be confirmed. Keep language calm and concise; do not promise a delivery date or recommend treatment.",
+                "type": "Communication guide",
+                "score": 0.0720363017583664,
+                "title": "Patient-friendly status communication",
+                "caseId": "FUL-3091",
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Suggested content",
+                "version": "1.0",
+                "sourceId": "PATIENT-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.PATIENT-01.2",
+                "rank": 2,
+                "text": "The synthetic patient message reads: “I filled out the enrollment form. Does that mean it is on the way?” This is a question, not a shipping confirmation.",
+                "type": "Communication guide",
+                "score": 0.0714285714285714,
+                "title": "Patient-friendly status communication",
+                "caseId": "FUL-3091",
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Recorded patient question",
+                "version": "1.0",
+                "sourceId": "PATIENT-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.STATUS-3091.1",
+                "rank": 3,
+                "text": "For synthetic case FUL-3091, Willow Support enrollment is received and Birch Specialty Pharmacy has recorded prescription intake. The consent form is missing its required signature. The case is not dispense-ready. No dispense release, shipment confirmation, carrier handoff or tracking number is recorded.",
+                "type": "Status record",
+                "score": 0.0698447893569845,
+                "title": "FUL-3091 · Fulfillment status",
+                "caseId": "FUL-3091",
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Current stage",
+                "version": "1.0",
+                "sourceId": "STATUS-3091",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.STATUS-3091.2",
+                "rank": 4,
+                "text": "The missing item is the signed consent form. Jordan can explain how to complete consent through the established secure program channel and ask the intake team to confirm receipt and completeness. No real channel address or patient record belongs in this demo.",
+                "type": "Status record",
+                "score": 0.0692389006342495,
+                "title": "FUL-3091 · Fulfillment status",
+                "caseId": "FUL-3091",
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Next administrative item",
+                "version": "1.0",
+                "sourceId": "STATUS-3091",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.FUL-ESC.1",
+                "rank": 5,
+                "text": "Contact the specialty pharmacy intake team if consent receipt is unclear, intake details conflict, or the patient reports a shipment that is absent from the record. Ask the pharmacy to confirm the administrative stage and missing items. Clinical or medication questions belong with the treating clinician or pharmacist.",
+                "type": "Escalation guide",
+                "score": 0.0657210401891253,
+                "title": "Pharmacy escalation and support limits",
+                "caseId": null,
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Escalation",
+                "version": "1.0",
+                "sourceId": "FUL-ESC",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.SHIP-01.2",
+                "rank": 6,
+                "text": "This synthetic Knowledge Pack provides no shipment date, delivery estimate, processing turnaround guarantee or deadline for FUL-3091 consent. Only the pharmacy or carrier can confirm its own actual status; the support program must not promise delivery.",
+                "type": "Status glossary",
+                "score": 0.0652173913043478,
+                "title": "Pharmacy shipment-status glossary",
+                "caseId": null,
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Dates and promises",
+                "version": "1.0",
+                "sourceId": "SHIP-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.FUL-ESC.2",
+                "rank": 7,
+                "text": "Pathway cannot promise dispensing, financial-assistance eligibility, delivery or clinical outcomes. Drafts are generated for review and never sent. There is no automatic outreach or actual pharmacy integration.",
+                "type": "Escalation guide",
+                "score": 0.063386524822695,
+                "title": "Pharmacy escalation and support limits",
+                "caseId": null,
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Authority",
+                "version": "1.0",
+                "sourceId": "FUL-ESC",
+                "synthetic": true,
+                "includedInGeneration": true
+              },
+              {
+                "id": "fulfillment.ENROLL-01.1",
+                "rank": 8,
+                "text": "A completed enrollment form and the required signed consent are administrative prerequisites for advancing the synthetic support enrollment. A submitted or received form is not necessarily complete. Missing consent must be resolved and its receipt checked; do not claim that resolution alone guarantees dispensing.",
+                "type": "Program terms",
+                "score": 0.0622222222222222,
+                "title": "Enrollment and consent prerequisites",
+                "caseId": null,
+                "packId": "fulfillment",
+                "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+                "status": "current",
+                "section": "Consent requirement",
+                "version": "1.0",
+                "sourceId": "ENROLL-01",
+                "synthetic": true,
+                "includedInGeneration": true
+              }
+            ],
+            "question": "Draft a patient-friendly status update.",
+            "citations": [
+              {
+                "number": 1,
+                "passageId": "fulfillment.PATIENT-01.1"
+              },
+              {
+                "number": 2,
+                "passageId": "fulfillment.STATUS-3091.1"
+              },
+              {
+                "number": 3,
+                "passageId": "fulfillment.STATUS-3091.2"
+              }
+            ]
+          },
+          "usage": {
+            "model": "gpt-5-mini",
+            "requests": 1,
+            "latencyMs": 8380,
+            "inputTokens": 2160,
+            "outputTokens": 615,
+            "estimatedCostUsd": 0.00177,
+            "cachedInputTokens": 0,
+            "embeddingRequests": 0,
+            "unmeasuredRequests": 0,
+            "embeddingInputTokens": 0
+          },
+          "packId": "fulfillment",
+          "status": "complete",
+          "attempt": 1,
+          "feedback": null,
+          "question": "Draft a patient-friendly status update.",
+          "response": {
+            "answer": "Below is a patient-friendly status update you can review and send.",
+            "citations": [
+              "fulfillment.PATIENT-01.1",
+              "fulfillment.STATUS-3091.1",
+              "fulfillment.STATUS-3091.2"
+            ],
+            "workProduct": {
+              "body": "Hello Taylor,\n\nThanks for completing the enrollment form. We have received your enrollment and Birch Specialty Pharmacy has recorded the prescription intake. One item is still needed before the pharmacy can finish its administrative checks: the consent form is missing a signature.\n\nPlease complete the consent signature using the program’s established secure channel. Once the pharmacy receives and verifies the signed consent, they will complete their checks; only then can they confirm whether the prescription is dispense-ready and arrange shipment. At this time there is no dispense release, shipment confirmation, carrier handoff, or tracking number recorded.\n\nIf you have clinical questions about your medication, please contact your treating clinician or the pharmacy pharmacist. If you’re unsure how to complete consent through the secure channel, let me know and I can explain the next steps.\n\nBest regards,\nJordan Rivera\nWillow Support",
+              "type": "email",
+              "status": "generated_not_sent",
+              "subject": "Update on your enrollment and next step"
+            },
+            "retrievalContext": "Drafting a patient-friendly status update for synthetic case FUL-3091: enrollment received, prescription intake recorded, consent signature missing, no dispense release or shipment confirmation.",
+            "suggestedFollowups": [
+              "Please confirm whether the patient prefers the established secure program channel for completing consent or needs instructions.",
+              "Would you like me to draft a shorter or warmer version of this message?"
+            ]
+          },
+          "createdAt": "2026-09-12T14:48:11.365Z"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "complete": true,
+    "retrievedCitations": true,
+    "canonicalText": true,
+    "isolated": true
+  },
+  "assistantReview": {
+    "targetedCorrectionsPass": 2,
+    "access": "Requests only a legible card or confirmed member identifier; no invented identity-field list.",
+    "fulfillment": "Uses the established secure program channel without assuming a prior enrollment channel; describes the missing consent signature.",
+    "remainingLimitation": "Drafts can still use prospective wording such as we will continue or they will complete their checks. Review and edit commitments before using a draft. No message was sent, and no payer, clinical or delivery outcome is promised.",
+    "independentHumanReview": false
+  },
+  "metrics": {
+    "inputTokens": 4305,
+    "cachedInputTokens": 0,
+    "outputTokens": 1160,
+    "embeddingInputTokens": 0,
+    "requests": 2,
+    "embeddingRequests": 0,
+    "estimatedCostUsd": 0.00339625
+  }
+}

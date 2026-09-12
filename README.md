@@ -2,6 +2,7 @@
 
 The current public product is a synthetic pharmaceutical-support conversation experience: three scenarios, chat/email, exact Sources used, Knowledge Pack switching, and measured live evaluation. It uses server-side GPT-5 mini with low reasoning and `text-embedding-3-small`, PostgreSQL/pgvector, and the existing free Render services.
 
+- [Delivered report and screenshots](docs/rebuild/final-report.md)
 - [Rebuild charter](docs/rebuild/charter.md)
 - [Live conversation results and limitations](docs/rebuild/conversation-review-2026-09-12.md)
 - [Interface and browser verification](docs/rebuild/interface-and-browser.md)

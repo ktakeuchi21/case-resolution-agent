@@ -24,7 +24,7 @@ Conversation was measured at 375/768/1024/1440 pixels: no horizontal overflow, c
 
 The final local script's evaluation assertion initially ran before its hash navigation rendered. Waiting for the destination heading verified the real metrics; this was a test synchronization issue. Page-layout measurements and screenshots are retained under `output/playwright/rebuild-*`. The only intentional browser console error in the flow is the injected 503; the first static preview also returned a harmless 404 for its absent health endpoint.
 
-Live public verification is recorded after deployment. Local UI replay does not qualify that final gate.
+Live public verification is complete and recorded in [the final report](final-report.md): ten live turns plus two focused corrected-draft checks, a fresh browser on the final revision, exact sources, mobile recovery and all three scenarios. Local UI replay is separately labeled.
 
 ## Security and limitations
 
