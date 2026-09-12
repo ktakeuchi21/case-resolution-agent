@@ -1,0 +1,116 @@
+{
+  "kind": "public live verification",
+  "checks": [
+    {
+      "name": "live GPT-5 mini and existing limits",
+      "pass": true
+    },
+    {
+      "name": "public work stage delivered while waiting",
+      "pass": true
+    },
+    {
+      "name": "public answer completes",
+      "pass": true
+    },
+    {
+      "name": "persisted actual stages",
+      "pass": true
+    },
+    {
+      "name": "progress adds no model calls",
+      "pass": true
+    },
+    {
+      "name": "completed activity collapsed",
+      "pass": true
+    },
+    {
+      "name": "retrieval counts visible",
+      "pass": true
+    },
+    {
+      "name": "activity expansion survives format switch",
+      "pass": true
+    },
+    {
+      "name": "public reload retains stages",
+      "pass": true
+    },
+    {
+      "name": "public mobile composer and no overflow",
+      "pass": true
+    }
+  ],
+  "observedStage": "Preparing your answer\u2026",
+  "observedAfterMs": 3130,
+  "statusReads": 2,
+  "sendHeadersAfterMs": 6415,
+  "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+  "stages": [
+    {
+      "stage": "searching",
+      "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+      "attempt": 1,
+      "message": "Searching Alder documentation\u2026",
+      "sequence": 1,
+      "elapsedMs": 16
+    },
+    {
+      "stage": "retrieved",
+      "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+      "attempt": 1,
+      "message": "Found 8 passages across 5 documents.",
+      "sequence": 2,
+      "elapsedMs": 115
+    },
+    {
+      "stage": "generating",
+      "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+      "attempt": 1,
+      "message": "Preparing your answer\u2026",
+      "sequence": 3,
+      "elapsedMs": 160
+    },
+    {
+      "stage": "checking",
+      "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+      "attempt": 1,
+      "message": "Checking response format and source references\u2026",
+      "sequence": 4,
+      "elapsedMs": 6112
+    },
+    {
+      "stage": "complete",
+      "turnId": "ebecf0df-9be8-447e-80e6-0922dbf36acd",
+      "attempt": 1,
+      "message": "Answer ready.",
+      "sequence": 5,
+      "elapsedMs": 6223
+    }
+  ],
+  "usage": {
+    "model": "gpt-5-mini",
+    "requests": 1,
+    "latencyMs": 6208,
+    "inputTokens": 2070,
+    "outputTokens": 337,
+    "estimatedCostUsd": 0.0007595,
+    "cachedInputTokens": 1920,
+    "embeddingRequests": 0,
+    "unmeasuredRequests": 0,
+    "embeddingInputTokens": 0
+  },
+  "session": {
+    "model": "gpt-5-mini",
+    "live": true,
+    "limits": {
+      "dailyRequests": 1000,
+      "sessionRequests": 40
+    }
+  },
+  "commit": "ab135510c8f00c301fc410ebb9af9f50b89f5ca1",
+  "backendDeploy": "dep-daisclh594qs73a0dhvg",
+  "frontendDeploy": "dep-daisd95g1s2s738j4lag",
+  "publicAssetHashesMatchBuild": true
+}
