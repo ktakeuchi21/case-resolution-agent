@@ -1,0 +1,68 @@
+{
+  "suite": "rag-conversation-v1",
+  "mode": "critical",
+  "runLabel": "cheap-v1",
+  "startedAt": "2026-09-12T13:12:01.865Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "live": true,
+  "results": [
+    {
+      "id": "alder-01",
+      "category": "direct",
+      "reviewCriterion": "Identifies signed office note, not cover sheet.",
+      "expected": [
+        "alder.N-101.1",
+        "alder.INV-1042.1"
+      ],
+      "recall": 0,
+      "isolated": false,
+      "citationMembership": true,
+      "citationExact": false,
+      "latencyMs": 5608,
+      "humanReview": null,
+      "turn": {
+        "id": "146d8b5d-7868-4059-896e-fa3ef32084a5",
+        "question": "What document is missing?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T13:12:02.369Z",
+        "status": "failed",
+        "response": null,
+        "trace": null,
+        "usage": {
+          "model": "gpt-4.1-mini",
+          "inputTokens": 3933,
+          "cachedInputTokens": 0,
+          "outputTokens": 382,
+          "requests": 2,
+          "latencyMs": 5439,
+          "estimatedCostUsd": 0.0021844,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": "I couldn’t complete that answer. Your message is saved—please try again.",
+        "feedback": null,
+        "attempt": 1
+      }
+    }
+  ],
+  "limitations": "Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.",
+  "stopped": "A live turn failed; retained for diagnosis before further paid calls.",
+  "error": "LIVE_TURN_FAILED",
+  "metrics": {
+    "cases": 1,
+    "meanExpectedPassageRecall": 0,
+    "packIsolation": 0,
+    "medianLatencyMs": 5608,
+    "maxLatencyMs": 5608,
+    "inputTokens": 3933,
+    "cachedInputTokens": 0,
+    "outputTokens": 382,
+    "embeddingInputTokens": 0,
+    "generationRequests": 2,
+    "embeddingRequests": 0,
+    "unmeasuredRequests": 0,
+    "estimatedCostUsd": 0.0021844,
+    "costScope": "Includes reported corpus/query preparation and turn generation/embedding usage in this run. Cached query vectors were charged when first prepared. Missing provider usage is unknown, not zero."
+  }
+}

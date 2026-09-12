@@ -14,7 +14,9 @@ import { OpenAIConversation } from './provider.ts';
 // Inactive unless the operator explicitly authorizes and configures an acceptance day.
 // The exception expires automatically at the next UTC day; counters are never reset.
 export function providerDailyCeiling(today=new Date().toISOString().slice(0,10),configuredLimit=100) {
- return process.env.PATHWAY_RAG_ACCEPTANCE_DAY===today?250:Math.min(configuredLimit,100);
+ // The 400 ceiling is a prepared, inactive option requiring separate operator approval.
+ // Existing acceptance deployments remain at 250 unless this exact setting is added.
+ return process.env.PATHWAY_RAG_ACCEPTANCE_DAY===today?(process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS==='400'?400:250):Math.min(configuredLimit,100);
 }
 export class RagService {
  readonly db:Database;readonly sessions:Sessions;

@@ -65,10 +65,14 @@ test('provider passage-ID markers become stable user citations without changing 
 
 test('the inactive acceptance allowance requires an exact configured UTC date and expires automatically',()=>{
  const before=process.env.PATHWAY_RAG_ACCEPTANCE_DAY;
+ const beforeRequests=process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;
  try{
+  delete process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;
   delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;assert.equal(providerDailyCeiling('2026-09-12'),100);
   process.env.PATHWAY_RAG_ACCEPTANCE_DAY='2026-09-12';assert.equal(providerDailyCeiling('2026-09-12'),250);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
- }finally{if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;}
+  process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS='400';assert.equal(providerDailyCeiling('2026-09-12'),400);assert.equal(providerDailyCeiling('2026-09-13'),100);assert.equal(providerDailyCeiling('2026-09-13',20),20);
+  process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS='9999';assert.equal(providerDailyCeiling('2026-09-12'),250);
+ }finally{if(before===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_DAY;else process.env.PATHWAY_RAG_ACCEPTANCE_DAY=before;if(beforeRequests===undefined)delete process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS;else process.env.PATHWAY_RAG_ACCEPTANCE_REQUESTS=beforeRequests;}
 });
 
 test('a work-product source list is valid without repeating all references in its brief introduction',()=>{

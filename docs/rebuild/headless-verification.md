@@ -33,7 +33,9 @@ Frozen live retrieval completed: 36/36 pack/case/status isolation checks and exa
 
 Live conversations and knowledge switching must be reviewed before UI implementation.
 
-## Model configuration and pricing basis
+## Initial model configuration and pricing basis
+
+This section records the initial checkpoint. The current cheaper candidate is GPT-5 mini; its actual results and unresolved quality issues are in [the live review](live-review-2026-09-12.md). Full GPT-5.4 is no longer allowed by the rebuilt application.
 
 Default generation: `PATHWAY_RAG_MODEL=gpt-5.4-mini`; supported optional comparison `gpt-5.4`; `PATHWAY_RAG_REASONING=none` unless evaluation supports low. Server-only Responses API with structured output, `store:false`, 2,400 output tokens and a 30-second deadline. Embeddings: `text-embedding-3-small`, 1,536 dimensions. No Pro model is accepted.
 
