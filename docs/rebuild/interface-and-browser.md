@@ -2,7 +2,9 @@
 
 The replacement entry point is `web/index.html`, with `rag-app.js` and `rag.css`. The existing interface files remain preserved and unused by the new entry point. The static catalog is generated from the canonical `src/rag/corpus.ts` at build time. The public frontend uses its existing same-origin API rewrite, so no new origin, credential transport or hosting resource is needed. NDJSON progress is displayed when the proxy streams it; a clear waiting message remains visible when it buffers.
 
-## Experience decisions
+The subsequent [compact workspace update](compact-workspace.md) moves persistent context into a sidebar/mobile drawer and consolidates answer tools. The original acceptance record below remains as historical evidence.
+
+## Original experience decisions
 
 - Landing has three directly launchable scenarios and a recommended Alder card. No safety attestation, mode form or Continue step precedes the conversation.
 - The active Knowledge Pack determines the visible user identity, agent role and case. A knowledge change preserves all earlier turn/source snapshots. The orientation's detailed role, case and coverage explanation is an expandable disclosure so mobile users can reach a question sooner.

@@ -4,6 +4,9 @@ import { analyticsWebsiteId } from './analytics-config.js';
 const $ = selector => document.querySelector(selector);
 const analytics = createPageAnalytics({ websiteId: analyticsWebsiteId });
 const state = { catalog: null, conversation: null, session: null, busy: false, connecting: false, error: '', draft: '', selectedPack: 'alder', route: 'home', epoch: 0 };
+const evidencePanels = new Map();
+const compactViewport = matchMedia('(max-width: 1023px)');
+let contextOpen = false;
 const pack = id => state.catalog.packs.find(p => p.id === id);
 const active = () => pack(state.conversation?.packId || state.selectedPack);
 const initials = name => name.split(' ').map(n => n[0]).slice(0,2).join('');
@@ -29,7 +32,7 @@ const disclosure = (label, key, children, cls = '') => el('details', { class: cl
 function toast(text) { const n = $('#notice'); n.textContent = text; n.hidden = false; clearTimeout(toast.timer); toast.timer = setTimeout(() => { n.hidden = true; }, 4500); }
 function announce(text) { $('#announcement').textContent = text; }
 function go(hash) { if (location.hash === hash) void route(); else location.hash = hash; }
-function focusComposer() { $('#question')?.focus({ preventScroll: true }); }
+function focusComposer() { if (!contextOpen) $('#question')?.focus({ preventScroll: true }); }
 function lastMessage() { const node = [...document.querySelectorAll('.turn')].at(-1); (node?.querySelector('.agent-message') || node)?.scrollIntoView({ block: 'start', behavior: 'instant' }); }
 async function api(path, input, onStage) {
   const response = await fetch('/api/rag/' + path, { method: input ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store',
@@ -71,34 +74,117 @@ function home() {
     el('div', { class: 'proof-strip' }, p('ASK NATURALLY', 'eyebrow'), p('Follow the conversation.'), p('Inspect the exact passages.'), link('Explore the Knowledge Packs →', '#knowledge')), footer());
 }
 function orientation(item) {
-  const briefs = {alder:'Request N-101 is open against the submitted documentation package. No payer decision is recorded.',access:'Benefit verification is incomplete. The submitted insurance card’s member identifier is unreadable.',fulfillment:'Enrollment and prescription intake are recorded. The consent form still needs a signature.'};
   return el('section', { class: 'orientation' }, p('YOUR SCENARIO IS READY', 'eyebrow'),
     el('h2', {}, 'Welcome, ' + item.user.name.split(' ')[0] + '.'), p(item.description),
-    p(briefs[item.id], 'small muted'),
     el('div', { class: 'prompt-grid', 'aria-label': 'Example questions' }, item.prompts.map(text => button(text + ' ↗', () => send(text), 'prompt', { disabled: state.connecting || state.busy || !state.conversation?.id }))),
-    disclosure('Your role & available knowledge', 'orientation-'+item.id, [p('You are '+item.user.name+', '+item.user.role+'. Pathway is your '+item.agentRole+'.'),p(item.caseContext),p('Grounded in '+item.name+'.'),p(item.covers.join(' · '),'small muted')], 'orientation-details'),
     p('Administrative support only. No clinical, payer or delivery decisions. Drafts are never sent.', 'small muted'));
+}
+function icon(name) {
+  const paths = {
+    copy: ['M9 9h11v11H9z', 'M5 15H3V3h12v2'],
+    regenerate: ['M20 7v5h-5', 'M20 12a8 8 0 1 0-2.3 5.7'],
+    helpful: ['M7 10H3v11h4z', 'M7 10l5-8c3 0 2 5 1 7h6a2 2 0 0 1 2 2l-2 8a2 2 0 0 1-2 2H7'],
+    notHelpful: ['M7 14H3V3h4z', 'M7 14l5 8c3 0 2-5 1-7h6a2 2 0 0 0 2-2l-2-8a2 2 0 0 0-2-2H7'],
+    refine: ['M14 4l6 6', 'M3 21l4-1L21 6a2 2 0 0 0-4-4L3 16z'],
+    more: ['M5 11v2', 'M12 11v2', 'M19 11v2'],
+    close: ['M6 6l12 12', 'M18 6L6 18'],
+    context: ['M3 4h18v16H3z', 'M9 4v16'],
+  };
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  for (const [key,value] of Object.entries({viewBox:'0 0 24 24',width:'18',height:'18',fill:'none',stroke:'currentColor','stroke-width':'1.6','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true',focusable:'false'})) svg.setAttribute(key,value);
+  for (const d of paths[name]) { const path=document.createElementNS(svg.namespaceURI,'path');path.setAttribute('d',d);svg.append(path); }
+  return svg;
+}
+function iconButton(name, label, action, attrs={}) {
+  return button(icon(name), action, 'button icon-button', {'aria-label':label,title:label,...attrs});
+}
+function openContext() {
+  if (!compactViewport.matches) return;
+  document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover());
+  contextOpen=true; $('#context-toggle')?.setAttribute('aria-expanded','true'); $('#context-drawer')?.showModal();
+}
+function closeContext() {
+  contextOpen=false; $('#context-drawer')?.close(); $('#context-toggle')?.setAttribute('aria-expanded','false');
+  (compactViewport.matches ? $('#context-toggle') : $('#main'))?.focus({preventScroll:true});
+}
+function inspectKnowledge(item) { closeContext(); state.selectedPack=item.id; go('#knowledge'); }
+function contextContents(item) {
+  const docs=state.catalog.documents.filter(d=>d.packId===item.id);
+  const eligible=docs.filter(d=>d.status==='current'&&(!d.caseId||d.caseId===item.caseId));
+  return [
+    el('section', {class:'context-section'}, el('h2', {}, 'Your role'), p(item.user.name,'context-name'), p(item.user.role,'context-role'), p(item.description,'small muted')),
+    el('section', {class:'context-section'}, el('h2', {}, 'Case snapshot'), p('SYNTHETIC CASE · '+item.caseId,'eyebrow'), p(item.caseSummary,'small'), p('Recorded scenario · Not updated by chat','snapshot-note')),
+    el('section', {class:'context-section context-blocker'}, el('h2', {}, 'Where things are stuck'), p(item.blocker,'small')),
+    el('section', {class:'context-section'}, el('h2', {}, 'Available knowledge'), p(item.shortName,'context-name'), p('Version '+item.version+' · '+eligible.length+' applicable documents','small muted'),
+      el('ul', {class:'context-coverage'}, item.covers.map(text=>el('li',{},text))),
+      button('Inspect knowledge ↗',()=>inspectKnowledge(item),'button knowledge-link',{disabled:state.busy||state.connecting})),
+    el('div',{class:'context-tools'},
+      button('New conversation',()=>{closeContext();go('#scenario/'+item.id);},'button secondary',{disabled:state.busy||state.connecting}),
+      link('Change scenario','#home','button'),
+      button('Change knowledge',()=>inspectKnowledge(item),'button',{disabled:state.busy||state.connecting}))
+  ];
+}
+function contextDrawer(item) {
+  return el('dialog',{id:'context-drawer',class:'context-drawer','aria-labelledby':'context-heading',
+    onkeydown:e=>{
+      if(e.key!=='Tab')return;
+      const controls=[...e.currentTarget.querySelectorAll('button:not(:disabled),a[href]')].filter(n=>n.checkVisibility());
+      const target=e.shiftKey&&document.activeElement===controls[0]?controls.at(-1):!e.shiftKey&&document.activeElement===controls.at(-1)?controls[0]:null;
+      if(target){e.preventDefault();target.focus();}
+    },
+    oncancel:e=>{e.preventDefault();closeContext();},onclick:e=>{if(e.target===e.currentTarget)closeContext();}},
+    el('div',{class:'drawer-heading'},el('h2',{id:'context-heading'},'Case context'),iconButton('close','Close case context',closeContext,{id:'context-close',autofocus:true})),
+    el('div',{class:'drawer-content'},contextContents(item)));
 }
 function emailFields(from, to, subject, stamp) {
   return el('div', { class: 'email-fields' }, el('dl', {},
     el('dt', {}, 'From'), el('dd', {}, from), el('dt', {}, 'To'), el('dd', {}, to), el('dt', {}, 'Subject'), el('dd', { class: 'email-subject' }, subject)),
     el('time', { datetime: stamp, class: 'small muted' }, time(stamp)));
 }
-function sources(turn) {
-  const trace = turn.trace, ids = turn.response.citations;
-  const chosen = ids.map(id => trace?.passages.find(source => source.id === id)).filter(Boolean);
-  return el('div', { class: 'evidence' }, disclosure('Sources used · ' + chosen.length, turn.id + '-sources', [
-    p('Supporting passages for this answer · ' + (trace?.packName || pack(turn.packId).name), 'small muted'),
-    ...chosen.map((source, index) => el('article', { class: 'source' }, p('[' + (index+1) + '] ' + source.title, 'source-title'),
-      p(source.section + ' · Version ' + source.version, 'small muted'), el('blockquote', {}, source.text), p(source.reason, 'small muted'))),
-    !chosen.length ? p('This reply cites no source passage. It should not be treated as a new case fact.', 'small muted') : null], 'source-disclosure'),
-    trace ? disclosure('How this answer was grounded', turn.id + '-trace', [
-      el('dl', { class: 'trace-fields' }, el('dt', {}, 'Your question'), el('dd', {}, trace.question), el('dt', {}, 'Question with conversation context'), el('dd', {}, trace.query),
-        el('dt', {}, 'Available knowledge'), el('dd', {}, trace.packName + ' · ' + trace.caseId)),
-      p('Only current sources for this pack and case were searched. Earlier conversation helps resolve references; it is not source evidence.', 'small muted'),
-      ...trace.passages.map(source => disclosure('Rank ' + source.rank + ' · ' + source.title, turn.id + '-rank-' + source.rank, [
-        p(source.section, 'small'), el('blockquote', {}, source.text), p(source.reason, 'small muted'),
-        p('Included in generation: ' + (source.includedInGeneration ? 'Yes' : 'No') + ' · ' + (ids.includes(source.id) ? 'Cited as [' + (ids.indexOf(source.id)+1) + ']' : 'Not cited'), 'small')], 'retrieved-source'))], 'grounding') : null);
+function toggleEvidence(turnId, panel) {
+  evidencePanels.set(turnId,evidencePanels.get(turnId)===panel?null:panel);render();
+}
+function closeAnswerMenu(turnId) {
+  const menu=document.getElementById('answer-menu-'+turnId);
+  if(menu?.matches(':popover-open')){menu.hidePopover();document.getElementById('more-'+turnId)?.focus({preventScroll:true});}
+}
+function positionAnswerMenu(menu, turnId) {
+  const trigger=document.getElementById('more-'+turnId), open=menu.matches(':popover-open');
+  trigger?.setAttribute('aria-expanded',String(open));
+  if(!open||!trigger)return;
+  const anchor=trigger.getBoundingClientRect(),box=menu.getBoundingClientRect();
+  menu.style.left=Math.max(8,Math.min(anchor.right-box.width,innerWidth-box.width-8))+'px';
+  menu.style.top=Math.max(8,Math.min(anchor.top-box.height-8,innerHeight-box.height-8))+'px';
+}
+function answerTools(turn) {
+  const trace=turn.trace, ids=turn.response.citations, work=turn.response.workProduct;
+  const chosen=ids.map(id=>trace?.passages.find(source=>source.id===id)).filter(Boolean);
+  const selected=evidencePanels.get(turn.id);
+  const inactive=state.busy||turn.packId!==state.conversation.packId;
+  const refinable=!inactive&&turn.id===state.conversation.turns.filter(t=>t.packId===turn.packId&&t.response?.workProduct).at(-1)?.id;
+  const action=(fn)=>()=>{closeAnswerMenu(turn.id);return fn();};
+  const extraActions=(menu=false)=>[
+    [ 'regenerate','Regenerate',()=>send(turn.question),{disabled:inactive,title:turn.packId!==state.conversation.packId?'Return to this Knowledge Pack to regenerate.':'Generate another answer to this question'} ],
+    ...(work?[['refine','Refine draft',()=>{state.draft='Make it warmer and shorter.';render();focusComposer();},{disabled:!refinable}]]:[]),
+    ...[['helpful','Helpful','helpful'],['notHelpful','Not helpful','not_helpful']].map(([name,label,value])=>[name,label,()=>feedback(turn,value),{'aria-pressed':String(turn.feedback===value),'data-feedback-turn':turn.id,'data-feedback':value,disabled:state.busy}])
+  ].map(([name,label,fn,attrs])=>menu?button([icon(name),label],action(fn),'button',attrs):iconButton(name,label,action(fn),attrs));
+  return el('div',{class:'answer-tools'},
+    el('div',{class:'answer-actions',role:'group','aria-label':'Answer actions'},
+      button('Sources · '+chosen.length,()=>toggleEvidence(turn.id,'sources'),'button evidence-toggle',{id:'sources-toggle-'+turn.id,'aria-expanded':String(selected==='sources'),'aria-controls':'sources-'+turn.id,'aria-label':'Sources used · '+chosen.length}),
+      trace?button('Grounding',()=>toggleEvidence(turn.id,'grounding'),'button evidence-toggle',{id:'grounding-toggle-'+turn.id,'aria-expanded':String(selected==='grounding'),'aria-controls':'grounding-'+turn.id,'aria-label':'How this answer was grounded'}):null,
+      iconButton('copy',work?'Copy draft':'Copy',()=>copy(work?.body||turn.response.answer)),
+      el('div',{class:'answer-extra'},extraActions()),
+      el('div',{class:'answer-more'},
+        iconButton('more','More answer actions',()=>{},{id:'more-'+turn.id,popovertarget:'answer-menu-'+turn.id,'aria-expanded':'false','aria-controls':'answer-menu-'+turn.id}),
+        el('div',{id:'answer-menu-'+turn.id,class:'answer-menu',popover:'auto','aria-label':'Additional answer actions',ontoggle:e=>positionAnswerMenu(e.currentTarget,turn.id)},extraActions(true)))),
+    el('section',{id:'sources-'+turn.id,class:'evidence evidence-panel source-disclosure',hidden:selected!=='sources','aria-label':'Sources used'},
+      p('Supporting passages for this answer · '+(trace?.packName||pack(turn.packId).name),'small muted'),
+      ...chosen.map((source,index)=>el('article',{class:'source'},p('['+(index+1)+'] '+source.title,'source-title'),p(source.section+' · Version '+source.version,'small muted'),el('blockquote',{},source.text),p(source.reason,'small muted'))),
+      !chosen.length?p('This reply cites no source passage. It should not be treated as a new case fact.','small muted'):null),
+    trace?el('section',{id:'grounding-'+turn.id,class:'evidence evidence-panel grounding',hidden:selected!=='grounding','aria-label':'How this answer was grounded'},
+      el('dl',{class:'trace-fields'},el('dt',{},'Your question'),el('dd',{},trace.question),el('dt',{},'Question with conversation context'),el('dd',{},trace.query),el('dt',{},'Available knowledge'),el('dd',{},trace.packName+' · '+trace.caseId)),
+      p('Only current sources for this pack and case were searched. Earlier conversation helps resolve references; it is not source evidence.','small muted'),
+      ...trace.passages.map(source=>disclosure('Rank '+source.rank+' · '+source.title,turn.id+'-rank-'+source.rank,[p(source.section,'small'),el('blockquote',{},source.text),p(source.reason,'small muted'),p('Included in generation: '+(source.includedInGeneration?'Yes':'No')+' · '+(ids.includes(source.id)?'Cited as ['+(ids.indexOf(source.id)+1)+']':'Not cited'),'small')],'retrieved-source'))):null);
 }
 async function copy(text) { try { await navigator.clipboard.writeText(text); toast('Copied to clipboard.'); } catch { toast('Clipboard is unavailable. You can select and copy the text.'); } }
 async function feedback(turn, value) {
@@ -111,9 +197,7 @@ function workProduct(turn, item) {
   return el('article', { class: 'work-product', 'aria-label': work.type === 'email' ? 'Generated email draft' : 'Generated case briefing' },
     el('div', { class: 'draft-heading' }, badge(work.type === 'email' ? 'Email draft' : 'Case briefing'), el('span', { class: 'small muted' }, 'Generated · Not sent')),
     emailFields(item.user.name + ' <' + item.user.email + '>', work.type === 'email' ? item.recipient.name + ' <' + item.recipient.email + '>' : 'Your review notes', work.subject, turn.createdAt),
-    el('div', { class: 'prose email-body' }, work.body),
-    el('div', { class: 'draft-actions' }, button('Copy draft', () => copy(work.body)), button('Refine draft', () => { state.draft = 'Make it warmer and shorter.'; render(); focusComposer(); }, 'button', { disabled: state.busy || turn.packId !== state.conversation.packId || turn.id !== state.conversation.turns.filter(t=>t.packId===turn.packId&&t.response?.workProduct).at(-1)?.id }),
-      state.conversation.channel === 'email' ? button('Return to chat', () => configure({ channel: 'chat' })) : button('View email thread', () => configure({ channel: 'email' })))) ;
+    el('div', { class: 'prose email-body' }, work.body));
 }
 function turnView(turn) {
   const item = pack(turn.packId), email = state.conversation.channel === 'email';
@@ -126,10 +210,7 @@ function turnView(turn) {
     if (email && !turn.response.workProduct) reply.append(emailFields('Pathway · ' + item.agentRole, item.user.name, 'Re: ' + item.caseId + ' support', turn.createdAt));
     reply.append(turn.response.workProduct ? p('Your draft is ready to review.', 'draft-intro') : el('div', { class: 'prose answer-text' }, turn.response.answer));
     if (turn.response.workProduct) reply.append(workProduct(turn, item));
-    reply.append(sources(turn), el('div', { class: 'answer-actions', 'aria-label': 'Answer actions' },
-      button('Copy', () => copy(turn.response.workProduct?.body || turn.response.answer)),
-      button('Regenerate', () => send(turn.question), 'button', { disabled: state.busy || turn.packId !== state.conversation.packId, title: turn.packId !== state.conversation.packId ? 'Return to this Knowledge Pack to regenerate.' : 'Generate another answer to this question' }),
-      ...[['Helpful','helpful'],['Not helpful','not_helpful']].map(([label,value]) => button(label, () => feedback(turn,value), 'button', { 'aria-pressed': String(turn.feedback === value), 'data-feedback-turn': turn.id, 'data-feedback': value, disabled: state.busy }))));
+    reply.append(answerTools(turn));
   } else if (turn.status === 'pending' && state.busy) reply.append(p('Waiting for Pathway…', 'progress'), p('Preparing your answer with the selected knowledge.', 'small muted'));
   else reply.append(el('div', { class: 'recovery', role: 'alert' }, p('I couldn’t complete that answer. Your message is saved.'),
     button('Retry', () => send(turn.question,turn.id,true), 'button secondary', { disabled: state.busy || turn.packId !== state.conversation.packId }),
@@ -139,13 +220,12 @@ function turnView(turn) {
 function conversation() {
   const item = active(), convo = state.conversation, complete = convo?.turns.filter(t=>t.status==='complete').at(-1);
   return el('main', { id: 'main', tabindex: '-1', class: 'conversation' },
-    el('section', { class: 'conversation-bar', 'aria-label': 'Conversation context' },
-      el('div', { class: 'conversation-title' }, el('div', {}, p('SYNTHETIC CASE · ' + item.caseId, 'eyebrow'), el('h1', {}, item.agentRole)),
-        el('div', { class: 'channel-switch', 'aria-label': 'Conversation format' }, ...['chat','email'].map(channel => button(channel === 'chat' ? 'Chat' : 'Email', () => configure({ channel }), 'button', { disabled: state.connecting || state.busy, 'aria-pressed': String((convo?.channel || item.defaultChannel) === channel) })))),
-      el('div', { class: 'context-line' }, p('You’re ' + item.user.name + ' · ' + item.user.role, 'small'),
-        button('Grounded in ' + item.shortName + ' ↗', () => { state.selectedPack = item.id; go('#knowledge'); }, 'knowledge-link', { disabled: state.busy || state.connecting })),
-      el('div', { class: 'conversation-tools' }, button('New conversation', () => go('#scenario/' + item.id), 'button', { disabled: state.busy || state.connecting }),
-        link('Change scenario', '#home'), button('Change knowledge', () => { state.selectedPack = item.id; go('#knowledge'); }, 'button', { disabled: state.busy || state.connecting }))),
+    el('aside',{class:'context-sidebar','aria-label':'Case context'},contextContents(item)),
+    el('section',{class:'conversation-panel','aria-label':item.agentRole+' conversation'},
+    el('header', { class: 'conversation-bar' },
+      el('div',{class:'conversation-identity'},el('h1',{},item.agentRole),
+        button([icon('context'),'Case context'],openContext,'button context-toggle',{id:'context-toggle','aria-haspopup':'dialog','aria-expanded':String(contextOpen),'aria-controls':'context-drawer'})),
+      el('div', { class: 'channel-switch', 'aria-label': 'Conversation format' }, ...['chat','email'].map(channel => button(channel === 'chat' ? 'Chat' : 'Email', () => configure({ channel }), 'button', { disabled: state.connecting || state.busy, 'aria-pressed': String((convo?.channel || item.defaultChannel) === channel) })))),
     el('div', { class: 'thread-scroll' }, el('div', { class: 'thread-content' },
       state.error ? el('div', { class: 'recovery', role: 'alert' }, p(state.error), button('Retry connection', () => connect(item.id, state.conversation?.id || (location.hash.startsWith('#conversation/') ? location.hash.split('/')[1] : null)))) : null,
       !convo?.turns.length ? orientation(item) : null,
@@ -157,7 +237,7 @@ function conversation() {
         oninput: e => { state.draft = e.target.value; $('#send').disabled = !state.draft.trim() || state.busy || state.connecting || !state.conversation?.id; },
         onkeydown: e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); void send(state.draft); } } }),
         el('button', { id: 'send', type: 'submit', class: 'send', disabled: !state.draft.trim() || state.busy || state.connecting || !convo?.id, 'aria-label': 'Send message to Pathway' }, state.busy ? '…' : '↑')),
-      el('div', { class: 'composer-caption' }, p(state.connecting ? 'Connecting to your private demo session…' : state.busy ? 'Pathway is preparing an answer…' : 'Synthetic case · Drafts are never sent', 'small muted'), p('Enter to send · Shift + Enter for a new line', 'small muted keyboard-hint')))));
+      el('div', { class: 'composer-caption' }, p(state.connecting ? 'Connecting to your private demo session…' : state.busy ? 'Pathway is preparing an answer…' : 'Synthetic case · Drafts are never sent', 'small muted'), p('Enter to send · Shift + Enter for a new line', 'small muted keyboard-hint'))))), contextDrawer(item));
 }
 function knowledge() {
   const item = pack(state.selectedPack), docs = state.catalog.documents.filter(d=>d.packId===item.id);
@@ -195,10 +275,14 @@ function render() {
   const open = new Set([...document.querySelectorAll('details[open]')].map(d=>d.dataset.disclosure));
   const focused = document.activeElement?.id, selection = focused === 'question' ? [$('#question').selectionStart,$('#question').selectionEnd] : null;
   const oldScroll = $('.thread-scroll')?.scrollTop;
+  const contextScroll = $('.context-sidebar')?.scrollTop, drawerScroll = $('.drawer-content')?.scrollTop;
+  if (state.route!=='conversation' || !compactViewport.matches) contextOpen=false;
   $('#app').replaceChildren(header(), state.route === 'conversation' ? conversation() : state.route === 'knowledge' ? knowledge() : state.route === 'evaluation' ? evaluation() : home());
   document.body.classList.toggle('in-conversation',state.route==='conversation');
   document.querySelectorAll('details').forEach(d=>{ if(open.has(d.dataset.disclosure)) d.open=true; });
   if(oldScroll !== undefined && $('.thread-scroll')) $('.thread-scroll').scrollTop=oldScroll;
+  if(contextScroll!==undefined&&$('.context-sidebar'))$('.context-sidebar').scrollTop=contextScroll;
+  if(contextOpen){$('#context-drawer').showModal();if(drawerScroll!==undefined)$('.drawer-content').scrollTop=drawerScroll;}
   if(focused && document.getElementById(focused)) { document.getElementById(focused).focus({preventScroll:true}); if(selection) $('#question').setSelectionRange(...selection); }
   document.title = state.route==='conversation' ? active().agentRole+' · Pathway' : 'Pathway · Support grounded in knowledge';
   analytics.view(state.route === 'conversation' ? 'agent' : state.route);
@@ -242,6 +326,8 @@ async function send(text, requestId = crypto.randomUUID(), retry = false) {
 }
 $('.skip').addEventListener('click',event=>{event.preventDefault();$('#main')?.focus();});
 window.addEventListener('hashchange',()=>void route());
+compactViewport.addEventListener('change',()=>{if(contextOpen&&!compactViewport.matches)closeContext();});
+window.addEventListener('resize',()=>document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover()));
 window.addEventListener('pagehide',()=>analytics.pause());
 window.addEventListener('pageshow',e=>{if(e.persisted)analytics.resume();});
 try {

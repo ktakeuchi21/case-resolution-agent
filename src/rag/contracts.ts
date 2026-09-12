@@ -11,7 +11,7 @@ export type Passage = z.infer<typeof Passage>;
 export interface KnowledgePack {
  id: PackId; name: string; shortName: string; version: string; scenario: string; description: string;
  user: { name: string; role: string; email: string }; agentRole: string;
- caseId: string; caseContext: string; covers: string[]; prompts: string[]; workProduct: string;
+ caseId: string; caseContext: string; caseSummary: string; blocker: string; covers: string[]; prompts: string[]; workProduct: string;
  recipient: { name: string; email: string }; defaultChannel: 'chat' | 'email';
 }
 export const WorkProduct = z.strictObject({ type: z.enum(['email', 'summary']), subject: z.string().max(200), body: z.string().min(1).max(7000), status: z.literal('generated_not_sent') });

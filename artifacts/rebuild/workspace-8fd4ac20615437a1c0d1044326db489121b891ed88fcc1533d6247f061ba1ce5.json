@@ -1,0 +1,841 @@
+{
+  "kind": "compact workspace local UI replay verification",
+  "synthetic": true,
+  "providerCalls": 0,
+  "checksPassed": 126,
+  "reports": [
+    {
+      "kind": "local UI replay only",
+      "checks": [
+        {
+          "name": "alder persistent context",
+          "pass": true
+        },
+        {
+          "name": "alder Chat layout 375",
+          "pass": true
+        },
+        {
+          "name": "alder Chat layout 768",
+          "pass": true
+        },
+        {
+          "name": "alder Chat layout 1024",
+          "pass": true
+        },
+        {
+          "name": "alder desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "alder Chat layout 1440",
+          "pass": true
+        },
+        {
+          "name": "alder desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "alder Email layout 375",
+          "pass": true
+        },
+        {
+          "name": "alder Email layout 768",
+          "pass": true
+        },
+        {
+          "name": "alder Email layout 1024",
+          "pass": true
+        },
+        {
+          "name": "alder desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "alder Email layout 1440",
+          "pass": true
+        },
+        {
+          "name": "alder desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "alder context snapshot unchanged by question",
+          "pass": true
+        },
+        {
+          "name": "alder sources open",
+          "pass": true
+        },
+        {
+          "name": "alder exact source text",
+          "pass": true
+        },
+        {
+          "name": "alder grounding replaces sources",
+          "pass": true
+        },
+        {
+          "name": "alder feedback persists",
+          "pass": true
+        },
+        {
+          "name": "alder evidence survives feedback",
+          "pass": true
+        },
+        {
+          "name": "alder exact answer copied",
+          "pass": true
+        },
+        {
+          "name": "alder regeneration retains earlier answer",
+          "pass": true
+        },
+        {
+          "name": "answer completes: Draft a short email requesting the document.",
+          "pass": true
+        },
+        {
+          "name": "alder draft displayed",
+          "pass": true
+        },
+        {
+          "name": "alder duplicate draft footer removed",
+          "pass": true
+        },
+        {
+          "name": "alder exact draft copied",
+          "pass": true
+        },
+        {
+          "name": "alder refinement composes without sending",
+          "pass": true
+        },
+        {
+          "name": "alder mobile modal open",
+          "pass": true
+        },
+        {
+          "name": "alder drawer initial focus",
+          "pass": true
+        },
+        {
+          "name": "alder drawer traps reverse focus",
+          "pass": true
+        },
+        {
+          "name": "alder drawer traps forward focus",
+          "pass": true
+        },
+        {
+          "name": "alder drawer focus restored",
+          "pass": true
+        },
+        {
+          "name": "alder unsent text retained",
+          "pass": true
+        },
+        {
+          "name": "alder resize closes modal",
+          "pass": true
+        },
+        {
+          "name": "alder reload retains history and feedback",
+          "pass": true
+        },
+        {
+          "name": "access persistent context",
+          "pass": true
+        },
+        {
+          "name": "access Chat layout 375",
+          "pass": true
+        },
+        {
+          "name": "access Chat layout 768",
+          "pass": true
+        },
+        {
+          "name": "access Chat layout 1024",
+          "pass": true
+        },
+        {
+          "name": "access desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "access Chat layout 1440",
+          "pass": true
+        },
+        {
+          "name": "access desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "access Email layout 375",
+          "pass": true
+        },
+        {
+          "name": "access Email layout 768",
+          "pass": true
+        },
+        {
+          "name": "access Email layout 1024",
+          "pass": true
+        },
+        {
+          "name": "access desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "access Email layout 1440",
+          "pass": true
+        },
+        {
+          "name": "access desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "access context snapshot unchanged by question",
+          "pass": true
+        },
+        {
+          "name": "access sources open",
+          "pass": true
+        },
+        {
+          "name": "access exact source text",
+          "pass": true
+        },
+        {
+          "name": "access grounding replaces sources",
+          "pass": true
+        },
+        {
+          "name": "access feedback persists",
+          "pass": true
+        },
+        {
+          "name": "access evidence survives feedback",
+          "pass": true
+        },
+        {
+          "name": "access exact answer copied",
+          "pass": true
+        },
+        {
+          "name": "access regeneration retains earlier answer",
+          "pass": true
+        },
+        {
+          "name": "answer completes: Summarize this case for my next office conversation.",
+          "pass": true
+        },
+        {
+          "name": "access draft displayed",
+          "pass": true
+        },
+        {
+          "name": "access duplicate draft footer removed",
+          "pass": true
+        },
+        {
+          "name": "access exact draft copied",
+          "pass": true
+        },
+        {
+          "name": "access refinement composes without sending",
+          "pass": true
+        },
+        {
+          "name": "access mobile modal open",
+          "pass": true
+        },
+        {
+          "name": "access drawer initial focus",
+          "pass": true
+        },
+        {
+          "name": "access drawer traps reverse focus",
+          "pass": true
+        },
+        {
+          "name": "access drawer traps forward focus",
+          "pass": true
+        },
+        {
+          "name": "access drawer focus restored",
+          "pass": true
+        },
+        {
+          "name": "access unsent text retained",
+          "pass": true
+        },
+        {
+          "name": "access resize closes modal",
+          "pass": true
+        },
+        {
+          "name": "access reload retains history and feedback",
+          "pass": true
+        },
+        {
+          "name": "fulfillment persistent context",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Chat layout 375",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Chat layout 768",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Chat layout 1024",
+          "pass": true
+        },
+        {
+          "name": "fulfillment desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Chat layout 1440",
+          "pass": true
+        },
+        {
+          "name": "fulfillment desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Email layout 375",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Email layout 768",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Email layout 1024",
+          "pass": true
+        },
+        {
+          "name": "fulfillment desktop dimensions 1024",
+          "pass": true
+        },
+        {
+          "name": "fulfillment Email layout 1440",
+          "pass": true
+        },
+        {
+          "name": "fulfillment desktop dimensions 1440",
+          "pass": true
+        },
+        {
+          "name": "fulfillment context snapshot unchanged by question",
+          "pass": true
+        },
+        {
+          "name": "fulfillment sources open",
+          "pass": true
+        },
+        {
+          "name": "fulfillment exact source text",
+          "pass": true
+        },
+        {
+          "name": "fulfillment grounding replaces sources",
+          "pass": true
+        },
+        {
+          "name": "fulfillment feedback persists",
+          "pass": true
+        },
+        {
+          "name": "fulfillment evidence survives feedback",
+          "pass": true
+        },
+        {
+          "name": "fulfillment exact answer copied",
+          "pass": true
+        },
+        {
+          "name": "fulfillment regeneration retains earlier answer",
+          "pass": true
+        },
+        {
+          "name": "answer completes: Draft a patient-friendly status update.",
+          "pass": true
+        },
+        {
+          "name": "fulfillment draft displayed",
+          "pass": true
+        },
+        {
+          "name": "fulfillment duplicate draft footer removed",
+          "pass": true
+        },
+        {
+          "name": "fulfillment exact draft copied",
+          "pass": true
+        },
+        {
+          "name": "fulfillment refinement composes without sending",
+          "pass": true
+        },
+        {
+          "name": "fulfillment mobile modal open",
+          "pass": true
+        },
+        {
+          "name": "fulfillment drawer initial focus",
+          "pass": true
+        },
+        {
+          "name": "fulfillment drawer traps reverse focus",
+          "pass": true
+        },
+        {
+          "name": "fulfillment drawer traps forward focus",
+          "pass": true
+        },
+        {
+          "name": "fulfillment drawer focus restored",
+          "pass": true
+        },
+        {
+          "name": "fulfillment unsent text retained",
+          "pass": true
+        },
+        {
+          "name": "fulfillment resize closes modal",
+          "pass": true
+        },
+        {
+          "name": "fulfillment reload retains history and feedback",
+          "pass": true
+        }
+      ],
+      "layouts": [
+        {
+          "id": "alder",
+          "channel": "Chat",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Chat",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Chat",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Chat",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Email",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Email",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Email",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "alder",
+          "channel": "Email",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Chat",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Chat",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Chat",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Chat",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Email",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Email",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Email",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "access",
+          "channel": "Email",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Chat",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Chat",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Chat",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Chat",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Email",
+          "width": 375,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 86,
+          "sidebarWidth": 0,
+          "composerBottom": 890,
+          "composerLeft": 12,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Email",
+          "width": 768,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 80,
+          "sidebarWidth": 0,
+          "composerBottom": 886,
+          "composerLeft": 32,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Email",
+          "width": 1024,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 332,
+          "toolbarOneLine": true,
+          "small": 0
+        },
+        {
+          "id": "fulfillment",
+          "channel": "Email",
+          "width": 1440,
+          "overflow": false,
+          "globalHeight": 56,
+          "barHeight": 64,
+          "sidebarWidth": 300,
+          "composerBottom": 886,
+          "composerLeft": 422,
+          "toolbarOneLine": true,
+          "small": 0
+        }
+      ]
+    },
+    {
+      "kind": "local UI replay only",
+      "checks": [
+        {
+          "name": "knowledge switch changes current sidebar",
+          "pass": true
+        },
+        {
+          "name": "old answer remains unchanged",
+          "pass": true
+        },
+        {
+          "name": "historical sources remain Alder",
+          "pass": true
+        },
+        {
+          "name": "historical regeneration disabled",
+          "pass": true
+        },
+        {
+          "name": "expanded sources survive format switch",
+          "pass": true
+        },
+        {
+          "name": "pending state disables send",
+          "pass": true
+        },
+        {
+          "name": "drawer remains usable during generation",
+          "pass": true
+        },
+        {
+          "name": "drawer survives completed-answer rerender",
+          "pass": true
+        },
+        {
+          "name": "focus remains within drawer after rerender",
+          "pass": true
+        },
+        {
+          "name": "close button restores trigger",
+          "pass": true
+        },
+        {
+          "name": "failed question retained once",
+          "pass": true
+        },
+        {
+          "name": "retry does not duplicate question",
+          "pass": true
+        },
+        {
+          "name": "narrow menu actions visible",
+          "pass": true
+        },
+        {
+          "name": "menu fits reduced-height transcript",
+          "pass": true
+        },
+        {
+          "name": "Escape closes More and restores focus",
+          "pass": true
+        },
+        {
+          "name": "keyboard opens sources",
+          "pass": true
+        },
+        {
+          "name": "Shift Enter retains newline",
+          "pass": true
+        },
+        {
+          "name": "drawer knowledge navigation closes modal",
+          "pass": true
+        },
+        {
+          "name": "navigation preserves unsent text",
+          "pass": true
+        },
+        {
+          "name": "reduced motion applied",
+          "pass": true
+        }
+      ]
+    },
+    {
+      "kind": "local UI replay only",
+      "checks": [
+        {
+          "name": "sidebar scroll leaves transcript unchanged",
+          "pass": true
+        },
+        {
+          "name": "transcript scroll leaves sidebar unchanged",
+          "pass": true
+        },
+        {
+          "name": "composer stays visible during independent scrolling",
+          "pass": true
+        },
+        {
+          "name": "context focus ring stays within its control",
+          "pass": true
+        }
+      ]
+    }
+  ]
+}
