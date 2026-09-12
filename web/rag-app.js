@@ -204,7 +204,7 @@ function render() {
   analytics.view(state.route === 'conversation' ? 'agent' : state.route);
 }
 async function connect(scenarioId, conversationId) {
-  const epoch = ++state.epoch; state.connecting = true; state.error = ''; render();
+  const epoch = ++state.epoch; state.connecting = true; state.error = ''; render(); if(!conversationId && $('.thread-scroll')) $('.thread-scroll').scrollTop=0;
   try {
     state.session = await api('session');
     const convo = conversationId ? await api('conversation?id='+encodeURIComponent(conversationId)) : await api('start',{scenarioId});
@@ -212,7 +212,7 @@ async function connect(scenarioId, conversationId) {
     state.conversation=convo; state.selectedPack=convo.packId;
     history.replaceState(null,'','#conversation/'+convo.id); try { sessionStorage.setItem('pathway.rag.last',convo.id); } catch { /* Server history is sufficient when local storage is unavailable. */ }
   } catch (error) { if(epoch!==state.epoch)return; state.error = error.status===404 && conversationId ? 'This conversation has expired or belongs to another browser session. Choose a scenario to start again.' : 'The demo could not connect. Please retry; the free service may take a moment to wake up.'; }
-  finally { if(epoch===state.epoch) {state.connecting=false;render();focusComposer();if(state.conversation?.turns.length)lastMessage();} }
+  finally { if(epoch===state.epoch) {state.connecting=false;render();focusComposer();if(state.conversation?.turns.length)lastMessage();else if($('.thread-scroll'))$('.thread-scroll').scrollTop=0;} }
 }
 async function route() {
   const [name,id] = location.hash.replace(/^#/,'').split('/');
