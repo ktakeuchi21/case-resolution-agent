@@ -6,7 +6,7 @@ import type { Session, Sessions } from '../app/session.ts';
 import { HttpError } from '../app/session.ts';
 import { providerConfiguration, reserveProviderRequest } from '../agent/runtime.ts';
 import { PackId, SendInput, RagError, recoveryMessage } from './contracts.ts';
-import type { Conversation, Turn } from './contracts.ts';
+import type { ActivityEvent, ActivityStage, Conversation, Turn } from './contracts.ts';
 import { getPack } from './corpus.ts';
 import { PersistentRetrieval } from './retrieval.ts';
 import { OpenAIConversation } from './provider.ts';
@@ -68,7 +68,7 @@ export class RagService {
    try{return await fn();}finally{await c.query('SELECT pg_advisory_unlock(hashtextextended($1,0))',[key]);}
   }finally{c.release();}
  }
- async send(session:Session,input:unknown,stage:(text:string)=>void=()=>{}) {
+ async send(session:Session,input:unknown,stage:(event:ActivityEvent)=>void=()=>{}) {
   const data=SendInput.parse(input);
   return this.lock(session,data.conversationId,async()=>{
    const conversation=await this.read(session,data.conversationId),existing=conversation.turns.find(t=>t.id===data.requestId);
@@ -78,23 +78,37 @@ export class RagService {
    if(existing&&existing.attempt>=3)throw new HttpError(429,'This message has reached its retry limit. Try a new question later.');
    if(!existing&&conversation.turns.length>=40)throw new HttpError(429,'Start a new conversation to keep the context focused.');
    const turn:Turn={id:data.requestId,question:data.text,packId:conversation.packId,createdAt:existing?.createdAt??new Date().toISOString(),status:'pending',response:null,trace:null,usage:null,error:null,feedback:null,attempt:(existing?.attempt??0)+1};
+   const started=performance.now();
+   turn.activity={startedAt:new Date().toISOString(),elapsedMs:0,events:[]};
    const save=async()=>{const saved=await this.scoped(session,c=>c.query(`INSERT INTO rag.turns(id,conversation_id,session_hash,body) VALUES($1,$2,$3,$4)
     ON CONFLICT(id) DO UPDATE SET body=EXCLUDED.body WHERE rag.turns.session_hash=EXCLUDED.session_hash AND rag.turns.conversation_id=EXCLUDED.conversation_id`,[turn.id,conversation.id,session.token_hash,JSON.stringify(turn)]));if(!saved.rowCount)throw new HttpError(409,'Choose a new request identifier.');};
-   await save();stage('Looking through the selected knowledge…');
+   const progress=async(phase:ActivityStage,message:string)=>{
+    const activity=turn.activity!;
+    activity.elapsedMs=Math.round(performance.now()-started);
+    const event:ActivityEvent={turnId:turn.id,attempt:turn.attempt,sequence:activity.events.length+1,stage:phase,message,elapsedMs:activity.elapsedMs};
+    activity.events.push(event);
+    if(phase==='complete'||phase==='failed')activity.finishedAt=new Date().toISOString();
+    // Persist before publishing so the existing conversation read can recover buffered streams.
+    await save();stage(event);
+   };
+   await save();
    let provider:OpenAIConversation|undefined;
    try {
     provider=this.provider(session);const currentProvider=provider,retrieval=new PersistentRetrieval(this.db,texts=>currentProvider.embed(texts));
     const history=conversation.turns.filter(t=>t.id!==turn.id);
+    await progress('searching','Searching '+getPack(conversation.packId).shortName+'…');
     const trace=await retrieval.search(data.text,conversation.packId,history);
-    stage('Preparing an answer with its sources…');
-    const {response,usage}=await provider.generate(data.text,getPack(conversation.packId),trace,history);
+    const documentCount=new Set(trace.passages.map(p=>p.sourceId)).size;
+    await progress('retrieved',`Found ${trace.passages.length} passages across ${documentCount} document${documentCount===1?'':'s'}.`);
+    const labels={generating:'Preparing your answer…',checking:'Checking response format and source references…',repairing:'Preparing the answer again to correct its format or source references…'};
+    const {response,usage}=await provider.generate(data.text,getPack(conversation.packId),trace,history,phase=>progress(phase,labels[phase]));
     trace.citations=response.citations.map((passageId,i)=>({number:i+1,passageId}));
     turn.status='complete';turn.response=response;turn.trace=trace;turn.usage=usage;
    } catch(e) {
     turn.status='failed';turn.error=recoveryMessage;turn.usage=provider?.usageSnapshot()??null;
     console.error(JSON.stringify({event:'rag_turn_failed',turnId:turn.id,code:e instanceof RagError?e.code:'SERVICE_FAILURE'}));
    }
-   await save();return turn;
+   await progress(turn.status==='complete'?'complete':'failed',turn.status==='complete'?'Answer ready.':'The answer could not be completed.');return turn;
   });
  }
  async feedback(session:Session,input:unknown){

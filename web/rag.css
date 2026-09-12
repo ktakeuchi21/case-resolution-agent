@@ -58,3 +58,24 @@ main:focus{outline:none}
 
 .in-conversation #announcement{top:0;left:0}
 .context-toggle:focus-visible{outline-offset:-3px}
+
+/* Observed request activity stays inside the conversation column. */
+.activity-panel{margin:0 0 18px 44px;border:1px solid var(--line);border-radius:12px;background:var(--wash);font-size:13px;overflow:hidden}
+.activity-panel>summary{display:flex;align-items:center;gap:10px;min-height:44px;padding:10px 12px;list-style:none;color:var(--muted)}
+.activity-panel>summary::-webkit-details-marker{display:none}
+.activity-panel>summary:after{content:'⌄';margin-left:2px;flex:none}
+.activity-panel[open]>summary:after{transform:rotate(180deg)}
+.activity-panel>summary:focus-visible{outline-offset:-3px}
+.activity-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);flex:none;opacity:.55}
+.is-working .activity-dot{animation:breathe 1.8s ease-in-out infinite;opacity:1}
+.activity-label{min-width:0;flex:1;overflow-wrap:anywhere;line-height:1.45}
+.activity-elapsed{flex:none;font-variant-numeric:tabular-nums;font-size:12px}
+.activity-history{border-top:1px solid var(--line);padding:10px 14px;max-height:160px;overflow:auto;overscroll-behavior:contain}
+.activity-history ol{list-style:none;margin:0;padding:0}
+.activity-history li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:4px 0}
+.activity-history p{margin:0;font-size:12px;line-height:1.55}
+.activity-history li p{min-width:0;overflow-wrap:anywhere}
+.activity-history li span{flex:none;font-variant-numeric:tabular-nums}
+.activity-history>p:last-child{margin-top:6px}
+@media(max-width:650px){.activity-panel{margin-left:0}.activity-history{max-height:130px}}
+@media(prefers-reduced-motion:reduce){.is-working .activity-dot{animation:none}}

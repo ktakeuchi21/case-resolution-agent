@@ -7,6 +7,7 @@ import { HttpError } from '../app/session.ts';
 import { providerConfiguration } from '../agent/runtime.ts';
 import { defaultConversationModel } from './provider.ts';
 import { providerDailyCeiling } from './service.ts';
+import type { ActivityEvent } from './contracts.ts';
 
 export async function ragHttp(req:IncomingMessage,res:ServerResponse,url:URL,service:RagService,body:(req:IncomingMessage,limit?:number)=>Promise<unknown>,json:(res:ServerResponse,status:number,value:unknown)=>void){
  const path=url.pathname.slice('/api/rag'.length);
@@ -29,7 +30,11 @@ export async function ragHttp(req:IncomingMessage,res:ServerResponse,url:URL,ser
  if(path==='/feedback'){json(res,200,await service.feedback(s,input));return;}
  if(path==='/send'){
   if(req.headers.accept==='application/x-ndjson'){
-   const stage=(message:string)=>{if(!res.headersSent)res.writeHead(200,{'Content-Type':'application/x-ndjson','Cache-Control':'no-store','X-Accel-Buffering':'no'});if(!res.destroyed)res.write(JSON.stringify({type:'stage',message})+'\n');};
+   const stage=(event:ActivityEvent)=>{
+    if(res.destroyed)return;
+    if(!res.headersSent){res.writeHead(200,{'Content-Type':'application/x-ndjson','Cache-Control':'no-store','X-Accel-Buffering':'no'});res.flushHeaders();}
+    res.write(JSON.stringify({type:'stage',...event})+'\n');
+   };
    const turn=await service.send(s,input,stage);
    if(!res.headersSent)res.writeHead(200,{'Content-Type':'application/x-ndjson','Cache-Control':'no-store'});
    res.end(JSON.stringify({type:'result',turn})+'\n');

@@ -89,7 +89,7 @@ export class OpenAIConversation {
   const result=await new OpenAIEmbeddingProvider({provider:'openai',model:embeddingModel,dimensions,revision:'rag-v1',normalization:'none-v1'},this.key,this.transport).embed(texts);
   this.embeddingInputTokens+=result.inputTokens;this.unmeasuredRequests--;return result.vectors;
  }
- async generate(question:string,pack:KnowledgePack,trace:RetrievalTrace,history:Turn[]):Promise<{response:Answer;usage:Usage}> {
+ async generate(question:string,pack:KnowledgePack,trace:RetrievalTrace,history:Turn[],progress:(stage:'generating'|'checking'|'repairing')=>Promise<void>=async()=>{}):Promise<{response:Answer;usage:Usage}> {
   const usage:Usage={model:this.model,inputTokens:0,cachedInputTokens:0,outputTokens:0,requests:0,latencyMs:0,estimatedCostUsd:null};
   this.#generationUsage=usage;
   const schema=z.toJSONSchema(Answer); delete schema.$schema;
@@ -117,6 +117,7 @@ export class OpenAIConversation {
   let repair='';
   for(let attempt=0;attempt<2;attempt++){
    await this.reserve();usage.requests++;this.unmeasuredRequests++;
+   await progress('generating');
    const res=await this.transport('https://api.openai.com/v1/responses',{method:'POST',headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},signal:AbortSignal.timeout(30000),
     body:JSON.stringify({model:this.model,store:false,instructions,...(modelSettings[this.model]!.reasoning?{reasoning:{effort:process.env.PATHWAY_RAG_REASONING??'low'}}:{}),max_output_tokens:2400,input:input+repair,
      text:{format:{type:'json_schema',name:'pathway_rag_answer',strict:true,schema}}})});
@@ -128,6 +129,7 @@ export class OpenAIConversation {
     usage.inputTokens+=measured.data.input_tokens;usage.cachedInputTokens+=measured.data.input_tokens_details?.cached_tokens??0;usage.outputTokens+=measured.data.output_tokens;this.unmeasuredRequests--;
    }
    if(payload.status!=='completed')throw new RagError('PROVIDER_INCOMPLETE');
+   await progress('checking');
    const output=payload.output?.filter((o:any)=>o.type==='message').flatMap((o:any)=>o.content??[]).filter((p:any)=>p.type==='output_text').map((p:any)=>p.text).join('');
    try {
     const response=numberCitations(JSON.parse(output),trace);
@@ -136,6 +138,7 @@ export class OpenAIConversation {
     const code=e instanceof RagError?e.code:e instanceof z.ZodError?'ANSWER_SCHEMA':'ANSWER_JSON';
     console.error(JSON.stringify({event:'rag_answer_format',attempt:attempt+1,code}));
     if(attempt===1)throw new RagError('ANSWER_FORMAT');
+    await progress('repairing');
     repair='\nA prior attempt did not match the answer schema or source references. Produce a fresh valid object using the same supplied evidence. Put the supporting passage IDs only in citations. Do not put citation markers or IDs in answer or workProduct.body. For a draft or summary, provide one short introduction in answer and the complete content in workProduct. Do not introduce new evidence or expand the prose to mention every retrieved passage.';
    }
   }

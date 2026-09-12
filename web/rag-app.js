@@ -1,10 +1,13 @@
 import { createPageAnalytics } from './analytics.js';
 import { analyticsWebsiteId } from './analytics-config.js';
+import { ActivityRun, activityTimeoutMs, readRagStream } from './rag-activity.js';
 
 const $ = selector => document.querySelector(selector);
 const analytics = createPageAnalytics({ websiteId: analyticsWebsiteId });
 const state = { catalog: null, conversation: null, session: null, busy: false, connecting: false, error: '', draft: '', selectedPack: 'alder', route: 'home', epoch: 0 };
 const evidencePanels = new Map();
+const activityPanels = new Map();
+let activityRun = null, activityTimer = null;
 const compactViewport = matchMedia('(max-width: 1023px)');
 let contextOpen = false;
 const pack = id => state.catalog.packs.find(p => p.id === id);
@@ -34,16 +37,13 @@ function announce(text) { $('#announcement').textContent = text; }
 function go(hash) { if (location.hash === hash) void route(); else location.hash = hash; }
 function focusComposer() { if (!contextOpen) $('#question')?.focus({ preventScroll: true }); }
 function lastMessage() { const node = [...document.querySelectorAll('.turn')].at(-1); (node?.querySelector('.agent-message') || node)?.scrollIntoView({ block: 'start', behavior: 'instant' }); }
-async function api(path, input, onStage) {
+async function api(path, input, onStage, signal) {
   const response = await fetch('/api/rag/' + path, { method: input ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store',
     headers: input ? { 'Content-Type': 'application/json', 'X-CSRF-Token': state.session?.csrf || '', ...(onStage ? { Accept: 'application/x-ndjson' } : {}) } : {},
-    ...(input ? { body: JSON.stringify(input) } : {}), signal: AbortSignal.timeout(90000) });
+    ...(input ? { body: JSON.stringify(input) } : {}), signal: signal ? AbortSignal.any([signal,AbortSignal.timeout(90000)]) : AbortSignal.timeout(90000) });
   if (!response.ok) { const error = new Error('Request failed'); error.status = response.status; throw error; }
   if (onStage && response.headers.get('content-type')?.includes('application/x-ndjson')) {
-    const reader = response.body.getReader(), decoder = new TextDecoder(); let buffer = '', turn;
-    const parse = line => { if (!line.trim()) return; const message = JSON.parse(line); if (message.type === 'stage') onStage(message.message); if (message.type === 'result') turn = message.turn; };
-    for (;;) { const { value, done } = await reader.read(); if (done) break; buffer += decoder.decode(value, { stream: true }); let index; while ((index = buffer.indexOf('\n')) >= 0) { parse(buffer.slice(0,index)); buffer = buffer.slice(index+1); } }
-    buffer += decoder.decode(); if (buffer.trim()) parse(buffer); if (!turn) throw new Error('Incomplete response'); return turn;
+    return readRagStream(response.body,onStage);
   }
   return response.json();
 }
@@ -199,6 +199,55 @@ function workProduct(turn, item) {
     emailFields(item.user.name + ' <' + item.user.email + '>', work.type === 'email' ? item.recipient.name + ' <' + item.recipient.email + '>' : 'Your review notes', work.subject, turn.createdAt),
     el('div', { class: 'prose email-body' }, work.body));
 }
+const activityKey = turn => turn.id+'-'+turn.attempt;
+const activitySeconds = milliseconds => Math.max(0,Math.floor(milliseconds/1000))+'s';
+function activityLabel(turn) {
+  return turn.status==='pending'&&state.busy ? turn.activity.events.at(-1)?.message || 'Connecting to Pathway…' : 'Activity';
+}
+function activityHistory(turn) {
+  const events=turn.activity.events;
+  return [events.length ? el('ol',{},...events.map(event=>el('li',{},p(event.message),el('span',{class:'small muted'},activitySeconds(event.elapsedMs))))) : p('Waiting for Pathway to begin.','small muted'),
+    events.some(event=>event.stage==='retrieved') ? p('Retrieved documents inform preparation. The final cited sources appear under Sources.','small muted') : null];
+}
+function activityView(turn) {
+  if (!turn.activity) return null;
+  const key=activityKey(turn),pending=turn.status==='pending'&&state.busy;
+  if(!activityPanels.has(key))activityPanels.set(key,pending);
+  return el('details',{class:'activity-panel'+(pending?' is-working':''),'data-activity':key,open:activityPanels.get(key),ontoggle:event=>{if(event.currentTarget.isConnected)activityPanels.set(key,event.currentTarget.open);}},
+    el('summary',{id:'activity-'+key},el('span',{class:'activity-dot','aria-hidden':'true'}),el('span',{class:'activity-label'},activityLabel(turn)),
+      el('span',{class:'activity-elapsed'},'· '+activitySeconds(activityRun?.turn===turn?activityRun.elapsed():turn.activity.elapsedMs))),
+    el('div',{class:'activity-history'},activityHistory(turn)));
+}
+function updateActivity(run,event) {
+  if(activityRun!==run)return;
+  const panel=document.querySelector(`[data-activity="${activityKey(run.turn)}"]`);
+  if(panel){
+    panel.querySelector('.activity-elapsed').textContent='· '+activitySeconds(run.elapsed());
+    if(event){panel.querySelector('.activity-label').textContent=activityLabel(run.turn);panel.querySelector('.activity-history').replaceChildren(...activityHistory(run.turn).filter(Boolean));}
+  }
+  if(event)announce(event.message);
+}
+function stopActivity() {
+  clearInterval(activityTimer);activityTimer=null;activityRun?.stop();activityRun=null;
+}
+function watchActivity(convo,turn) {
+  stopActivity();state.busy=true;
+  const run=new ActivityRun(turn,{
+    read:async signal=>(await api('conversation?id='+encodeURIComponent(convo.id),undefined,undefined,signal)).turns.find(t=>t.id===turn.id),
+    update:event=>updateActivity(run,event),
+    finish:()=>{
+      if(activityRun!==run)return;
+      clearInterval(activityTimer);activityTimer=null;activityPanels.set(activityKey(turn),false);state.busy=false;
+      render();
+      announce(turn.status==='complete'?'Pathway’s answer is ready. Sources used: '+turn.response.citations.length+'.':'The answer could not be completed. Your message is saved. Retry is available.');
+    }
+  });
+  activityRun=run;activityTimer=setInterval(()=>void run.tick(),1000);return run;
+}
+function resumeActivity(convo) {
+  const pending=convo.turns.find(t=>t.status==='pending'&&t.activity&&Date.now()-Date.parse(t.activity.startedAt)<activityTimeoutMs);
+  if(pending&&(!activityRun||activityRun.stopped))watchActivity(convo,pending);
+}
 function turnView(turn) {
   const item = pack(turn.packId), email = state.conversation.channel === 'email';
   const question = el('div', { class: 'user-message ' + (email ? 'email-message' : '') },
@@ -206,12 +255,13 @@ function turnView(turn) {
     el('div', { class: 'prose' }, turn.question));
   const reply = el('div', { class: 'agent-message' }, el('div', { class: 'message-heading' }, el('span', { class: 'pathway-avatar', 'aria-hidden': 'true' }, 'p'),
     el('strong', {}, 'Pathway'), p(item.shortName, 'small muted')));
+  const activity=activityView(turn);if(activity)reply.append(activity);
   if (turn.status === 'complete' && turn.response) {
     if (email && !turn.response.workProduct) reply.append(emailFields('Pathway · ' + item.agentRole, item.user.name, 'Re: ' + item.caseId + ' support', turn.createdAt));
     reply.append(turn.response.workProduct ? p('Your draft is ready to review.', 'draft-intro') : el('div', { class: 'prose answer-text' }, turn.response.answer));
     if (turn.response.workProduct) reply.append(workProduct(turn, item));
     reply.append(answerTools(turn));
-  } else if (turn.status === 'pending' && state.busy) reply.append(p('Waiting for Pathway…', 'progress'), p('Preparing your answer with the selected knowledge.', 'small muted'));
+  } else if (turn.status === 'pending' && state.busy) { if(!activity)reply.append(p('Waiting for Pathway…','progress')); }
   else reply.append(el('div', { class: 'recovery', role: 'alert' }, p('I couldn’t complete that answer. Your message is saved.'),
     button('Retry', () => send(turn.question,turn.id,true), 'button secondary', { disabled: state.busy || turn.packId !== state.conversation.packId }),
     turn.packId !== state.conversation.packId ? p('Return to this answer’s Knowledge Pack to retry.', 'small muted') : null));
@@ -279,7 +329,7 @@ function render() {
   if (state.route!=='conversation' || !compactViewport.matches) contextOpen=false;
   $('#app').replaceChildren(header(), state.route === 'conversation' ? conversation() : state.route === 'knowledge' ? knowledge() : state.route === 'evaluation' ? evaluation() : home());
   document.body.classList.toggle('in-conversation',state.route==='conversation');
-  document.querySelectorAll('details').forEach(d=>{ if(open.has(d.dataset.disclosure)) d.open=true; });
+  document.querySelectorAll('details[data-disclosure]').forEach(d=>{ if(open.has(d.dataset.disclosure)) d.open=true; });
   if(oldScroll !== undefined && $('.thread-scroll')) $('.thread-scroll').scrollTop=oldScroll;
   if(contextScroll!==undefined&&$('.context-sidebar'))$('.context-sidebar').scrollTop=contextScroll;
   if(contextOpen){$('#context-drawer').showModal();if(drawerScroll!==undefined)$('.drawer-content').scrollTop=drawerScroll;}
@@ -288,21 +338,25 @@ function render() {
   analytics.view(state.route === 'conversation' ? 'agent' : state.route);
 }
 async function connect(scenarioId, conversationId) {
+  stopActivity();state.busy=false;
   const epoch = ++state.epoch; state.connecting = true; state.error = ''; render(); if(!conversationId && $('.thread-scroll')) $('.thread-scroll').scrollTop=0;
   try {
     state.session = await api('session');
     const convo = conversationId ? await api('conversation?id='+encodeURIComponent(conversationId)) : await api('start',{scenarioId});
     if(epoch!==state.epoch) return;
     state.conversation=convo; state.selectedPack=convo.packId;
+    resumeActivity(convo);
     history.replaceState(null,'','#conversation/'+convo.id); try { sessionStorage.setItem('pathway.rag.last',convo.id); } catch { /* Server history is sufficient when local storage is unavailable. */ }
   } catch (error) { if(epoch!==state.epoch)return; state.error = error.status===404 && conversationId ? 'This conversation has expired or belongs to another browser session. Choose a scenario to start again.' : 'The demo could not connect. Please retry; the free service may take a moment to wake up.'; }
   finally { if(epoch===state.epoch) {state.connecting=false;render();focusComposer();if(state.conversation?.turns.length)lastMessage();else if($('.thread-scroll'))$('.thread-scroll').scrollTop=0;} }
 }
 async function route() {
+  // Browser back/forward can navigate even while ordinary navigation links are disabled.
+  if(activityRun&&!activityRun.stopped&&location.hash!=='#conversation/'+state.conversation?.id){stopActivity();state.busy=false;}
   const [name,id] = location.hash.replace(/^#/,'').split('/');
   state.error='';
   if(name==='scenario' && pack(id)) { state.route='conversation';state.selectedPack=id;state.conversation=null;state.draft='';await connect(id); }
-  else if(name==='conversation' && /^[0-9a-f-]{36}$/.test(id||'')) { state.route='conversation'; if(state.conversation?.id===id){render();focusComposer();} else await connect(null,id); }
+  else if(name==='conversation' && /^[0-9a-f-]{36}$/.test(id||'')) { state.route='conversation'; if(state.conversation?.id===id){resumeActivity(state.conversation);render();focusComposer();} else await connect(null,id); }
   else { state.epoch++; state.connecting=false;state.route=['knowledge','evaluation'].includes(name)?name:'home';render();$('#main')?.focus({preventScroll:true});window.scrollTo(0,0); }
 }
 async function configure(changes, returnToConversation=false) {
@@ -317,19 +371,26 @@ async function send(text, requestId = crypto.randomUUID(), retry = false) {
   text = text.trim(); if(!text||text.length>2500||state.busy||state.connecting||!state.conversation?.id)return;
   const convo=state.conversation, existing=convo.turns.find(t=>t.id===requestId);
   const turn=existing||{id:requestId,question:text,packId:convo.packId,createdAt:new Date().toISOString(),response:null,trace:null,feedback:null};
-  turn.status='pending'; if(!existing)convo.turns.push(turn); state.busy=true;state.draft='';render();lastMessage();focusComposer();announce('Pathway is preparing your answer.');
+  turn.recordedAttempt=turn.recordedAttempt??turn.attempt??0;
+  turn.status='pending';turn.attempt=turn.recordedAttempt+1;delete turn.activity;activityPanels.delete(activityKey(turn));
+  if(!existing)convo.turns.push(turn);
+  const run=watchActivity(convo,turn);
+  state.draft='';render();lastMessage();focusComposer();announce('Pathway is preparing your answer.');
   try {
-    const result=await api('send',{conversationId:convo.id,requestId,text,retry},message=>{ const progress=$('.progress');if(progress)progress.textContent=message;announce(message); });
-    Object.assign(turn,result);
-  } catch { turn.status='failed'; }
-  finally {state.busy=false;render();lastMessage();focusComposer();announce(turn.status==='complete'?'Pathway’s answer is ready. Sources used: '+turn.response.citations.length+'.':'The answer could not be completed. Your message is saved. Retry is available.');}
+    const result=await api('send',{conversationId:convo.id,requestId,text,retry},event=>run.stage(event),run.controller.signal);
+    run.snapshot(result);
+    if(!run.stopped)run.fail();
+  } catch {
+    // A completed turn may already have been saved before a transport interruption.
+    if(!run.stopped){try{run.snapshot(await run.read(run.controller.signal));}catch{} if(!run.stopped)run.fail();}
+  }
 }
 $('.skip').addEventListener('click',event=>{event.preventDefault();$('#main')?.focus();});
 window.addEventListener('hashchange',()=>void route());
 compactViewport.addEventListener('change',()=>{if(contextOpen&&!compactViewport.matches)closeContext();});
 window.addEventListener('resize',()=>document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover()));
-window.addEventListener('pagehide',()=>analytics.pause());
-window.addEventListener('pageshow',e=>{if(e.persisted)analytics.resume();});
+window.addEventListener('pagehide',()=>{analytics.pause();stopActivity();});
+window.addEventListener('pageshow',e=>{if(e.persisted){analytics.resume();if(state.route==='conversation')void connect(null,state.conversation?.id);}});
 try {
   const response=await fetch('/rag-catalog.json',{cache:'no-cache'});if(!response.ok)throw new Error('Catalog unavailable');state.catalog=await response.json();await route();
   void fetch('/healthz',{cache:'no-store',signal:AbortSignal.timeout(90000)}).catch(()=>{});

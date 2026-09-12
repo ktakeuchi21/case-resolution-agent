@@ -21,3 +21,12 @@ test('RAG API authenticates sessions, rejects cross-origin and forged configurat
  const session=await request('session');assert(!JSON.stringify(session.body).includes(visitors[0]!.token));assert.equal(session.headers.get('cache-control'),'no-store');
  const config=providerConfiguration();assert.deepEqual(session.body.limits,{dailyRequests:providerDailyCeiling(undefined,config.daily),sessionRequests:Math.min(config.perSession,40)});
 });
+test('NDJSON sends structured persisted activity with the legacy message field and a final result',async()=>{
+ const created=await request('start',{scenarioId:'alder'}),v=visitors[0]!;
+ const response=await fetch(origin+'/api/rag/send',{method:'POST',headers:{Cookie:'pathway_session='+v.token,'X-CSRF-Token':v.csrf,Origin:origin,'Content-Type':'application/json',Accept:'application/x-ndjson'},body:JSON.stringify({conversationId:created.body.id,requestId:randomUUID(),text:'What document is missing?'})});
+ assert.equal(response.headers.get('content-type'),'application/x-ndjson');assert.equal(response.headers.get('cache-control'),'no-store');
+ const messages=(await response.text()).trim().split('\n').map(line=>JSON.parse(line)),stage=messages[0],turn=messages.at(-1).turn;
+ assert.equal(stage.type,'stage');assert.equal(stage.stage,'failed');assert.equal(stage.turnId,turn.id);assert.equal(stage.attempt,1);assert.equal(stage.sequence,1);assert.equal(typeof stage.message,'string');
+ assert.deepEqual(turn.activity.events,[Object.fromEntries(Object.entries(stage).filter(([key])=>key!=='type'))]);assert.equal(messages.at(-1).type,'result');
+ assert.deepEqual((await request('conversation?id='+created.body.id)).body.turns[0],turn);
+});
