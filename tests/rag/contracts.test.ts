@@ -4,7 +4,7 @@ import { Passage, SendInput } from '../../src/rag/contracts.ts';
 import type { RetrievalTrace, Turn } from '../../src/rag/contracts.ts';
 import { packs, passages, documents } from '../../src/rag/corpus.ts';
 import { contextualQuery, eligible, lexicalControl } from '../../src/rag/retrieval.ts';
-import { validateAnswer, OpenAIConversation } from '../../src/rag/provider.ts';
+import { validateAnswer, numberCitations, OpenAIConversation } from '../../src/rag/provider.ts';
 import { evaluationCases } from '../../src/rag/evaluation-cases.ts';
 const trace:RetrievalTrace={question:'missing?',query:'signed note',packId:'alder',packName:'Alder',caseId:'ALD-1042',method:'hybrid',passages:lexicalControl('signed office note',passages,'alder'),citations:[]};
 const valid={answer:'The signed office note is requested. [1]',citations:['alder.N-101.1'],suggestedFollowups:['Why?'],workProduct:null,retrievalContext:'Signed office note N-101'};
@@ -53,4 +53,11 @@ test('failed bounded repairs retain measured usage; missing provider usage remai
  assert.equal(model.usageSnapshot().requests,2);assert.equal(model.usageSnapshot().inputTokens,200);assert.equal(model.usageSnapshot().outputTokens,40);assert.equal(model.usageSnapshot().unmeasuredRequests,0);assert(model.usageSnapshot().estimatedCostUsd!>0);
  const unavailable=new OpenAIConversation('fixture',async()=>{},'gpt-5.4-mini',(async()=>new Response('{}',{status:503})) as typeof fetch);
  await assert.rejects(unavailable.generate('missing?',packs[0]!,trace,[]));assert.equal(unavailable.usageSnapshot().requests,1);assert.equal(unavailable.usageSnapshot().unmeasuredRequests,1);assert.equal(unavailable.usageSnapshot().estimatedCostUsd,null);
+});
+
+test('provider passage-ID markers become stable user citations without changing claim text',()=>{
+ const source={...valid,answer:'The signed office note is requested. [alder.N-101.1]'};
+ assert.deepEqual(numberCitations(source,trace),valid);
+ assert.throws(()=>numberCitations({...source,answer:'A fact. [access.BV-2086.1]'},trace));
+ assert.throws(()=>numberCitations({...source,workProduct:{type:'email',subject:'Note',body:'Please send it. [alder.N-101.1]',status:'generated_not_sent'}},trace));
 });

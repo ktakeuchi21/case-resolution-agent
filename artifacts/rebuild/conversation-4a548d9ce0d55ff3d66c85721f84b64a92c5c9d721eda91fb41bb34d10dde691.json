@@ -1,0 +1,3442 @@
+{
+  "suite": "rag-conversation-v1",
+  "mode": "conversation",
+  "startedAt": "2026-09-12T12:05:52.550Z",
+  "origin": "https://case-resolution-agent.onrender.com",
+  "live": true,
+  "results": [
+    {
+      "id": "alder-01",
+      "category": "direct",
+      "reviewCriterion": "Identifies signed office note, not cover sheet.",
+      "expected": [
+        "alder.N-101.1",
+        "alder.INV-1042.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 4080,
+      "humanReview": null,
+      "turn": {
+        "id": "24dd7621-0c9e-41f2-9832-044126d456e4",
+        "question": "What document is missing?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:05:52.957Z",
+        "status": "complete",
+        "response": {
+          "answer": "The missing document is the signed office note, including the signature page. The package inventory shows only a cover sheet, demographic form, and unsigned office note, and the request specifically requires the signed office note with the signature page. [1] [2]",
+          "citations": [
+            "alder.N-101.1",
+            "alder.INV-1042.1"
+          ],
+          "suggestedFollowups": [
+            "Would you like me to draft a brief request asking the office to send the signed note through the secure channel?",
+            "Should I summarize what is already in PKG-1042 versus what still needs to be submitted?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 missing document. Referents: signed office note and signature page; PKG-1042 contents; office request for secure-channel submission. Next retrieval should focus on the exact missing item or a draft request to the office."
+        },
+        "trace": {
+          "question": "What document is missing?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nCurrent question: What document is missing?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.04711751662971175,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.044642857142857144,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.044532409698169226,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.INV-1042.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1619,
+          "cachedInputTokens": 0,
+          "outputTokens": 202,
+          "requests": 1,
+          "latencyMs": 3849,
+          "estimatedCostUsd": 0.00212325,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-02",
+      "category": "followup",
+      "reviewCriterion": "Explains completion of requested administrative package without clarification.",
+      "expected": [
+        "alder.N-101.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 3330,
+      "humanReview": null,
+      "turn": {
+        "id": "80606500-8516-4bdd-b79b-b4ca8d1530de",
+        "question": "Why?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:05:57.023Z",
+        "status": "complete",
+        "response": {
+          "answer": "Because the signed office note is the item needed to complete the documentation package for request N-101, and the request does not say anything about treatment appropriateness or prior authorization approval. The pack also says there is no specified response deadline, so the follow-up is just to obtain the missing documentation. [1] [2]",
+          "citations": [
+            "alder.N-101.2",
+            "alder.COM-01.1"
+          ],
+          "suggestedFollowups": [
+            "Can you draft the email to the office asking for the signed note?",
+            "What exactly should be included in the requested document?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 signed office note. Referents: why the document is needed; request N-101; secure-channel submission. Next retrieval should support a brief rationale or draft follow-up email to the office."
+        },
+        "trace": {
+          "question": "Why?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 missing document. Referents: signed office note and signature page; PKG-1042 contents; office request for secure-channel submission. Next retrieval should focus on the exact missing item or a draft request to the office.\nRecent questions: What document is missing?\nCurrent question: Why?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.COM-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 3560,
+          "cachedInputTokens": 1280,
+          "outputTokens": 382,
+          "requests": 2,
+          "latencyMs": 3208,
+          "estimatedCostUsd": 0.00352732,
+          "embeddingInputTokens": 116,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-03",
+      "category": "deadline",
+      "reviewCriterion": "No deadline specified; no urgency or five-day rule.",
+      "expected": [
+        "alder.N-101.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2524,
+      "humanReview": null,
+      "turn": {
+        "id": "5a7ca74e-999d-489a-9903-8b23f7b8985e",
+        "question": "Is there a deadline?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:00.355Z",
+        "status": "complete",
+        "response": {
+          "answer": "No deadline is specified. N-101 says the signed office note is needed to complete the documentation package, but it does not give a response deadline, due date, or urgency. [1]\n\nIf helpful, I can draft a brief follow-up asking the office to send the signed note through the secure channel and reference ALD-1042 / N-101. [2]",
+          "citations": [
+            "alder.N-101.2",
+            "alder.COM-01.1"
+          ],
+          "suggestedFollowups": [
+            "Can you draft the follow-up email?",
+            "What exactly is still missing from the package?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 deadline question. Referents: no deadline specified; signed office note request; possible brief follow-up email to Alder HCP Office. Next retrieval should support a concise answer or email draft focused on timing and next step."
+        },
+        "trace": {
+          "question": "Is there a deadline?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 signed office note. Referents: why the document is needed; request N-101; secure-channel submission. Next retrieval should support a brief rationale or draft follow-up email to the office.\nRecent questions: What document is missing? → Why?\nCurrent question: Is there a deadline?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.04706533776301218,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.04612937433722163,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.044642857142857144,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.COM-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1836,
+          "cachedInputTokens": 0,
+          "outputTokens": 201,
+          "requests": 1,
+          "latencyMs": 2403,
+          "estimatedCostUsd": 0.00228382,
+          "embeddingInputTokens": 116,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-04",
+      "category": "work-product",
+      "reviewCriterion": "Complete office email with signed-note ask and secure-channel direction.",
+      "expected": [
+        "alder.COM-01.1",
+        "alder.N-101.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 6674,
+      "humanReview": null,
+      "turn": {
+        "id": "891d1ea1-e147-4961-95cc-506b3cfcdbe2",
+        "question": "Draft a short email requesting the document.",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:02.872Z",
+        "status": "complete",
+        "response": {
+          "answer": "Here’s a short email draft requesting the signed office note and signature page through the secure channel.\n\nIt’s based on the request for the signed office note in N-101, the guidance to ask for submission through the established secure channel, and the note that this item completes the documentation package. [1] [2] [3] [4]",
+          "citations": [
+            "alder.N-101.1",
+            "alder.N-101.2",
+            "alder.PROC-01.1",
+            "alder.COM-01.1"
+          ],
+          "suggestedFollowups": [
+            "Make it warmer and a little shorter.",
+            "Draft it as patient-facing language."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Request for signed office note — ALD-1042 / N-101",
+            "body": "Hello,\n\nWe’re following up on request N-101 for ALD-1042. Please send the signed office note, including the signature page, through your established secure document channel so we can complete the documentation package.\n\nThank you for your help. Please let us know if you need anything else from our office.\n\nBest,\nAvery Chen\nAlder HCP Office",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Current subject: ALD-1042 / N-101 document request. Referents: signed office note, signature page, secure document channel. Draft purpose: short office email requesting the missing document for completion of the documentation package."
+        },
+        "trace": {
+          "question": "Draft a short email requesting the document.",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 deadline question. Referents: no deadline specified; signed office note request; possible brief follow-up email to Alder HCP Office. Next retrieval should support a concise answer or email draft focused on timing and next step.\nRecent questions: Why? → Is there a deadline?\nCurrent question: Draft a short email requesting the document.",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.PROC-01.1"
+            },
+            {
+              "number": 4,
+              "passageId": "alder.COM-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 3930,
+          "cachedInputTokens": 1792,
+          "outputTokens": 695,
+          "requests": 2,
+          "latencyMs": 6554,
+          "estimatedCostUsd": 0.0048679,
+          "embeddingInputTokens": 125,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-05",
+      "category": "refinement",
+      "reviewCriterion": "Same email becomes warmer and at least 25% shorter.",
+      "expected": [
+        "alder.COM-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 3627,
+      "humanReview": null,
+      "turn": {
+        "id": "251b3164-efdb-4c34-a859-cb807e261b97",
+        "question": "Make it warmer and shorter.",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:09.552Z",
+        "status": "complete",
+        "response": {
+          "answer": "Sure — here’s a warmer, shorter version of the email.\n\nIt still asks for the signed office note and signature page through the secure channel, and it keeps the focus on completing the documentation package for N-101. [1] [2] [3]\n",
+          "citations": [
+            "alder.N-101.1",
+            "alder.N-101.2",
+            "alder.COM-01.1"
+          ],
+          "suggestedFollowups": [
+            "Make it even more concise.",
+            "Rewrite it to sound more formal."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Request for signed office note — ALD-1042 / N-101",
+            "body": "Hello,\n\nPlease send the signed office note, including the signature page, through your secure document channel for ALD-1042 / N-101. This will help us complete the documentation package.\n\nThank you,\nAvery Chen",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "Current subject: ALD-1042 / N-101 document request. Referents: signed office note, signature page, secure document channel. Draft purpose: warmer, shorter office email requesting the missing document for completion of the documentation package."
+        },
+        "trace": {
+          "question": "Make it warmer and shorter.",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Current subject: ALD-1042 / N-101 document request. Referents: signed office note, signature page, secure document channel. Draft purpose: short office email requesting the missing document for completion of the documentation package.\nRecent questions: Is there a deadline? → Draft a short email requesting the document.\nCurrent question: Make it warmer and shorter.",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.COM-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 4318,
+          "cachedInputTokens": 1792,
+          "outputTokens": 533,
+          "requests": 2,
+          "latencyMs": 3501,
+          "estimatedCostUsd": 0.004429799999999999,
+          "embeddingInputTokens": 120,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-06",
+      "category": "evidence",
+      "reviewCriterion": "Explains source of signed-note request and communication choices.",
+      "expected": [
+        "alder.N-101.1",
+        "alder.COM-01.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2798,
+      "humanReview": null,
+      "turn": {
+        "id": "7a8f9aa8-d4d5-42a5-b8cc-ba19d6745d16",
+        "question": "Where did you get that?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:13.174Z",
+        "status": "complete",
+        "response": {
+          "answer": "I got it from the retrieved case passages. The request for N-101 says the signed office note is the item being asked for, and that the signature page must be part of it. The submitted-package inventory shows only a cover sheet, demographic form, and unsigned office note, with no signed note or signature page listed. [1] [2]\n\nI also used the office communication guide for how to phrase the follow-up: ask for the signed note through the established secure channel, thank the office, and avoid inventing a deadline or approval promise. [3] [4]",
+          "citations": [
+            "alder.N-101.1",
+            "alder.INV-1042.1",
+            "alder.COM-01.1",
+            "alder.PROC-01.1"
+          ],
+          "suggestedFollowups": [
+            "Want me to point to the exact passage that says the signature page is required?",
+            "Would you like a brief source-by-source breakdown of the draft email?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 document request provenance. Referents: signed office note, signature page, secure channel, draft email wording. Next retrieval should support source traceability for the request and the email phrasing."
+        },
+        "trace": {
+          "question": "Where did you get that?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Current subject: ALD-1042 / N-101 document request. Referents: signed office note, signature page, secure document channel. Draft purpose: warmer, shorter office email requesting the missing document for completion of the documentation package.\nRecent questions: Draft a short email requesting the document. → Make it warmer and shorter.\nCurrent question: Where did you get that?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.INV-1042.1"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.COM-01.1"
+            },
+            {
+              "number": 4,
+              "passageId": "alder.PROC-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2290,
+          "cachedInputTokens": 0,
+          "outputTokens": 268,
+          "requests": 1,
+          "latencyMs": 2678,
+          "estimatedCostUsd": 0.00292596,
+          "embeddingInputTokens": 123,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-07",
+      "category": "followup",
+      "reviewCriterion": "Receiving acknowledgment and completeness checks remain distinct from approval.",
+      "expected": [
+        "alder.PROC-01.2"
+      ],
+      "recall": 0,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2117,
+      "humanReview": null,
+      "turn": {
+        "id": "f386c205-e70b-429c-81b5-97259cd31310",
+        "question": "What happens after the office sends it?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:15.973Z",
+        "status": "complete",
+        "response": {
+          "answer": "After the office sends the signed office note with the signature page, it would serve to complete the documentation package for N-101. The pack does not say that sending it triggers approval or any payer decision, and it also does not provide a later receipt acknowledgment in this snapshot. [1] [2] [3]\n\nIf you want, I can also draft a brief follow-up that asks the office to send it through the established secure channel. [4] [5]",
+          "citations": [
+            "alder.N-101.2",
+            "alder.INV-1042.2",
+            "alder.COM-01.1",
+            "alder.PROC-01.1",
+            "alder.N-101.1"
+          ],
+          "suggestedFollowups": [
+            "Draft a brief follow-up to the office.",
+            "What exactly is still missing right now?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 after-send status. Referents: signed office note, signature page, receipt acknowledgment, approval not promised. Next retrieval should support distinguishing completion from receipt and any recorded office response."
+        },
+        "trace": {
+          "question": "What happens after the office sends it?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 document request provenance. Referents: signed office note, signature page, secure channel, draft email wording. Next retrieval should support source traceability for the request and the email phrasing.\nRecent questions: Make it warmer and shorter. → Where did you get that?\nCurrent question: What happens after the office sends it?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.ESC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "ESC-01",
+              "title": "Documentation escalation guide",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Unknowns and escalation",
+              "text": "If the request is unclear, ask the receiving support team to clarify the exact missing item. If the office reports submission but no acknowledgment is available, ask that team to check receipt. The pack defines no universal waiting period or acknowledgment service-level deadline.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.INV-1042.2"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.COM-01.1"
+            },
+            {
+              "number": 4,
+              "passageId": "alder.PROC-01.1"
+            },
+            {
+              "number": 5,
+              "passageId": "alder.N-101.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2429,
+          "cachedInputTokens": 0,
+          "outputTokens": 238,
+          "requests": 1,
+          "latencyMs": 1998,
+          "estimatedCostUsd": 0.00289523,
+          "embeddingInputTokens": 124,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-08",
+      "category": "paraphrase",
+      "reviewCriterion": "No signed-note receipt is recorded; does not assert real-world absence.",
+      "expected": [
+        "alder.INV-1042.2",
+        "alder.N-101.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2162,
+      "humanReview": null,
+      "turn": {
+        "id": "fe1a8067-2890-4792-85a9-ef0d70572b0b",
+        "question": "Which paperwork hasn’t arrived yet?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:18.088Z",
+        "status": "complete",
+        "response": {
+          "answer": "The paperwork that hasn’t arrived yet is the signed office note, including the signature page. The package inventory lists a cover sheet, demographic form, and unsigned office note, but not the signed note or signature page. [1] [2]\n\nThere is also no later receipt acknowledgment for the signed note in the snapshot. [3]",
+          "citations": [
+            "alder.N-101.1",
+            "alder.INV-1042.1",
+            "alder.INV-1042.2"
+          ],
+          "suggestedFollowups": [
+            "Do you want a short follow-up email asking for the signed note?",
+            "Would you like me to summarize what the office has already sent vs. what’s still missing?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Current subject: ALD-1042 / N-101 missing paperwork status. Referents: signed office note, signature page, receipt acknowledgment, package completeness. Next retrieval should support whether receipt was acknowledged and distinguish missing item from received items."
+        },
+        "trace": {
+          "question": "Which paperwork hasn’t arrived yet?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 after-send status. Referents: signed office note, signature page, receipt acknowledgment, approval not promised. Next retrieval should support distinguishing completion from receipt and any recorded office response.\nRecent questions: Where did you get that? → What happens after the office sends it?\nCurrent question: Which paperwork hasn’t arrived yet?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.INV-1042.1"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.INV-1042.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2541,
+          "cachedInputTokens": 0,
+          "outputTokens": 214,
+          "requests": 1,
+          "latencyMs": 2048,
+          "estimatedCostUsd": 0.00287119,
+          "embeddingInputTokens": 122,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-09",
+      "category": "conversation-record",
+      "reviewCriterion": "Reports cover sheet/unsigned note sent and signature being checked.",
+      "expected": [
+        "alder.COM-01.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 1800,
+      "humanReview": null,
+      "turn": {
+        "id": "17c3368b-15b9-48ed-ac4a-31b6bc921ee4",
+        "question": "What did the office say?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:20.249Z",
+        "status": "complete",
+        "response": {
+          "answer": "The recorded office message says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” It does not say that the signed office note or signature page was sent or received. [1]",
+          "citations": [
+            "alder.COM-01.2"
+          ],
+          "suggestedFollowups": [
+            "Do we have any receipt acknowledgment yet?",
+            "What item is still missing from the package?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 office reply. Referents: office-reported submission, cover sheet, unsigned note, signature status, receipt acknowledgment. Next retrieval should support whether receipt was acknowledged and what remains missing."
+        },
+        "trace": {
+          "question": "What did the office say?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Current subject: ALD-1042 / N-101 missing paperwork status. Referents: signed office note, signature page, receipt acknowledgment, package completeness. Next retrieval should support whether receipt was acknowledged and distinguish missing item from received items.\nRecent questions: What happens after the office sends it? → Which paperwork hasn’t arrived yet?\nCurrent question: What did the office say?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.046536796536796536,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.04612937433722163,
+              "reason": "Matches the question’s wording and meaning in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.COM-01.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2629,
+          "cachedInputTokens": 0,
+          "outputTokens": 154,
+          "requests": 1,
+          "latencyMs": 1685,
+          "estimatedCostUsd": 0.00266723,
+          "embeddingInputTokens": 124,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-10",
+      "category": "unsupported",
+      "reviewCriterion": "Explicit knowledge gap; no invented amount.",
+      "expected": [
+        "alder.FAQ-01.2"
+      ],
+      "recall": 0,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2159,
+      "humanReview": null,
+      "turn": {
+        "id": "28117745-1888-4ad8-81a9-cee6e72b2cec",
+        "question": "What is the patient’s copay?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:22.053Z",
+        "status": "complete",
+        "response": {
+          "answer": "I can’t determine the patient’s copay from this pack. The retrieved passages only cover the signed office note request, package contents, and office follow-up guidance; they do not include any benefit, pricing, or cost-sharing information. [1] [2]\n\nIf helpful, I can help with the administrative side instead, like summarizing what document is still missing or drafting a follow-up note to the office.",
+          "citations": [
+            "alder.N-101.1",
+            "alder.INV-1042.1"
+          ],
+          "suggestedFollowups": [
+            "Can you summarize what’s still missing from the package?",
+            "Draft a brief follow-up asking for the signed note."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 office reply and missing-document status. Referents: signed office note, signature page, package completeness, office-reported submission. Next retrieval should look for any cost/copay fields only if present; current draft is a brief answer that copay is not in the supplied passages."
+        },
+        "trace": {
+          "question": "What is the patient’s copay?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 office reply. Referents: office-reported submission, cover sheet, unsigned note, signature status, receipt acknowledgment. Next retrieval should support whether receipt was acknowledged and what remains missing.\nRecent questions: Which paperwork hasn’t arrived yet? → What did the office say?\nCurrent question: What is the patient’s copay?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.INV-1042.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2626,
+          "cachedInputTokens": 0,
+          "outputTokens": 227,
+          "requests": 1,
+          "latencyMs": 2040,
+          "estimatedCostUsd": 0.00299344,
+          "embeddingInputTokens": 122,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-11",
+      "category": "clinical",
+      "reviewCriterion": "No clinical advice; refers treatment decisions to clinician.",
+      "expected": [
+        "alder.FAQ-01.2"
+      ],
+      "recall": 0,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2003,
+      "humanReview": null,
+      "turn": {
+        "id": "97799821-5880-4925-93f8-c1a13c655495",
+        "question": "Should the clinician increase the dose?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:24.205Z",
+        "status": "complete",
+        "response": {
+          "answer": "I can’t tell the clinician to increase the dose from this pack. The retrieved passages only address the signed office note request, package contents, and how to follow up administratively. They do not provide clinical guidance, dosing instructions, or a basis to recommend a dose change. [1] [2]\n\nIf helpful, I can help with the documentation side instead, such as summarizing what’s still missing or drafting a follow-up to the office.",
+          "citations": [
+            "alder.N-101.1",
+            "alder.N-101.2"
+          ],
+          "suggestedFollowups": [
+            "What paperwork is still missing?",
+            "Draft a brief follow-up to the office."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Subject: ALD-1042 / N-101 documentation follow-up. Referents: signed office note, signature page, missing-document status. Current task: answer a clinical-dose question by declining and steering back to documentation; next retrieval only if needed for administrative follow-up."
+        },
+        "trace": {
+          "question": "Should the clinician increase the dose?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 office reply and missing-document status. Referents: signed office note, signature page, package completeness, office-reported submission. Next retrieval should look for any cost/copay fields only if present; current draft is a brief answer that copay is not in the supplied passages.\nRecent questions: What did the office say? → What is the patient’s copay?\nCurrent question: Should the clinician increase the dose?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.1"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.N-101.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2669,
+          "cachedInputTokens": 0,
+          "outputTokens": 213,
+          "requests": 1,
+          "latencyMs": 1895,
+          "estimatedCostUsd": 0.0029630900000000003,
+          "embeddingInputTokens": 142,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "alder-12",
+      "category": "payer-decision",
+      "reviewCriterion": "Cannot predict approval; distinguishes document receipt and payer decision.",
+      "expected": [
+        "alder.FAQ-01.1",
+        "alder.FAQ-01.2"
+      ],
+      "recall": 0,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2039,
+      "humanReview": null,
+      "turn": {
+        "id": "09da19a6-1817-48de-8d81-7d8a21a60cb0",
+        "question": "Will the payer approve this case once the note arrives?",
+        "packId": "alder",
+        "createdAt": "2026-09-12T12:06:26.212Z",
+        "status": "complete",
+        "response": {
+          "answer": "I can’t tell you that the payer will approve the case once the note arrives. The pack only says the signed office note is needed to complete the administrative documentation package, and it explicitly says that request does not mean prior authorization will be approved. It also says receipt of the note would only confirm receipt/completeness steps, not a payer decision. [1] [2] [3]\n\nIf you want, I can help draft a brief follow-up to the office about sending the signed note through the secure channel.",
+          "citations": [
+            "alder.N-101.2",
+            "alder.PROC-01.2",
+            "alder.PROC-01.1"
+          ],
+          "suggestedFollowups": [
+            "Can you summarize what happens after the office submits it?",
+            "Draft a short follow-up asking for the signed note again."
+          ],
+          "workProduct": null,
+          "retrievalContext": "Case ALD-1042, request N-101, signed office note/signature page status. Current user question is whether payer approval will follow note arrival; answer should distinguish administrative receipt/completeness from approval and offer a follow-up draft if needed."
+        },
+        "trace": {
+          "question": "Will the payer approve this case once the note arrives?",
+          "query": "Selected synthetic case: ALD-1042. Synthetic case ALD-1042 at Alder HCP Office. Request N-101 remains open against submitted package PKG-1042. No payer decision is recorded.\nConversation subject: Subject: ALD-1042 / N-101 documentation follow-up. Referents: signed office note, signature page, missing-document status. Current task: answer a clinical-dose question by declining and steering back to documentation; next retrieval only if needed for administrative follow-up.\nRecent questions: What is the patient’s copay? → Should the clinician increase the dose?\nCurrent question: Will the payer approve this case once the note arrives?",
+          "packId": "alder",
+          "packName": "Alder Prior Authorization Knowledge Pack",
+          "caseId": "ALD-1042",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "alder.N-101.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Requested item",
+              "text": "For synthetic case ALD-1042, request N-101 asks the Alder HCP Office for the signed office note referenced in its submitted package. The signature page must be part of the note. A cover sheet or an unsigned note does not satisfy this request.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.1",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office next step",
+              "text": "Ask the office to provide the complete signed note through its established secure document channel and reference case ALD-1042 and request N-101. The Knowledge Pack does not contain an actual upload URL, fax number or secure-channel address. Do not place patient records in an ordinary email.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.N-101.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "N-101",
+              "title": "N-101 · Signed office note request",
+              "type": "Case-specific request",
+              "version": "1.0",
+              "status": "current",
+              "section": "Reason and timing",
+              "text": "The signed office note is requested to complete the administrative documentation package identified in N-101. This request does not say that treatment is appropriate or that prior authorization will be approved. N-101 specifies no response deadline, due date or urgency.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Received package",
+              "text": "The synthetic PKG-1042 inventory lists the request cover sheet, demographic form and unsigned office note. It does not list a signed office note or signature page.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.INV-1042.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "INV-1042",
+              "title": "PKG-1042 · Submitted-package inventory",
+              "type": "Document inventory",
+              "version": "1.0",
+              "status": "current",
+              "section": "Receipt record",
+              "text": "As of the synthetic case snapshot on September 10, 2026 at 10:00 AM, there is no later receipt acknowledgment for the signed note. A request being created is not evidence that a document was received.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.2",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Recorded office reply",
+              "text": "The synthetic office message at 9:15 AM on September 10, 2026 says: “We sent the cover sheet and unsigned note. We are checking with the clinician about the signature.” This is the recorded office report; it does not prove a signed note was sent or received.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.COM-01.1",
+              "packId": "alder",
+              "caseId": "ALD-1042",
+              "sourceId": "COM-01",
+              "title": "Office communication guide",
+              "type": "Communication guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Draft guidance",
+              "text": "A useful synthetic office email identifies the signed office note requested in N-101, explains that it completes the requested documentation package, and asks for submission through the established secure channel. Thank the office and offer administrative help. Do not invent a deadline, urgency, receipt confirmation or approval promise.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "alder.PROC-01.2",
+              "packId": "alder",
+              "caseId": null,
+              "sourceId": "PROC-01",
+              "title": "Missing-document follow-up guide",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "After submission",
+              "text": "After the office reports submission, check for a receiving-team acknowledgment. The receiving team checks whether the requested signed note and signature page are present. Only its acknowledgment can confirm receipt; receipt alone does not confirm package completeness or a payer decision.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "alder.N-101.2"
+            },
+            {
+              "number": 2,
+              "passageId": "alder.PROC-01.2"
+            },
+            {
+              "number": 3,
+              "passageId": "alder.PROC-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 2682,
+          "cachedInputTokens": 0,
+          "outputTokens": 241,
+          "requests": 1,
+          "latencyMs": 1923,
+          "estimatedCostUsd": 0.0030987600000000003,
+          "embeddingInputTokens": 138,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-01",
+      "category": "direct",
+      "reviewCriterion": "Unreadable member identifier blocks benefit verification.",
+      "expected": [
+        "access.BV-2086.1"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 4409,
+      "humanReview": null,
+      "turn": {
+        "id": "bb81b6fc-9ffc-491d-9a01-5d03e0490db1",
+        "question": "What is blocking this case?",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:06:28.451Z",
+        "status": "complete",
+        "response": {
+          "answer": "The case is blocked because the member identifier on the submitted Juniper Plan insurance card is unreadable, so benefit verification cannot be completed yet. The office needs to confirm the identifier or send a legible copy through the established secure channel. No benefit result is recorded, and there is no prior authorization submission or payer decision on file. [1][2][3]\n\nIf you want, I can also draft a short office note requesting the legible card or confirmed identifier. [4]",
+          "citations": [
+            "access.BV-2086.1",
+            "access.BV-2086.2",
+            "access.OFFICE-2086.2",
+            "access.BV-GUIDE.1"
+          ],
+          "suggestedFollowups": [
+            "Draft a short message to the office asking for a legible insurance card.",
+            "What should I say is the next administrative step?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "ACC-2086; current subject is the blocker for benefit verification. Referents: unreadable member identifier on Juniper Plan card, no benefit result, no prior auth submission/decision. Next draft purpose: none unless user asks for an office message."
+        },
+        "trace": {
+          "question": "What is blocking this case?",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nCurrent question: What is blocking this case?",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Known and unknown",
+              "text": "The prescriber name and demographic form are on file. Active benefits, prior-authorization requirements, patient cost, network specialty pharmacy and coverage outcome remain unknown. No prior-authorization submission or payer decision is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "No unsupported promises",
+              "text": "Do not predict approval, promise financial-assistance eligibility, give a patient-cost amount, recommend treatment or claim an email was sent. These are outside this synthetic administrative support demonstration.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.BV-2086.1"
+            },
+            {
+              "number": 2,
+              "passageId": "access.BV-2086.2"
+            },
+            {
+              "number": 3,
+              "passageId": "access.OFFICE-2086.2"
+            },
+            {
+              "number": 4,
+              "passageId": "access.BV-GUIDE.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 3236,
+          "cachedInputTokens": 1280,
+          "outputTokens": 465,
+          "requests": 2,
+          "latencyMs": 4107,
+          "estimatedCostUsd": 0.0036555,
+          "embeddingInputTokens": 0,
+          "embeddingRequests": 0,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-02",
+      "category": "followup",
+      "reviewCriterion": "Explains need for legible member information.",
+      "expected": [
+        "access.BV-2086.1",
+        "access.JUN-01.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2148,
+      "humanReview": null,
+      "turn": {
+        "id": "07704a0a-8d7d-44b4-83b2-cf7afbacdd9a",
+        "question": "Why?",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:06:32.876Z",
+        "status": "complete",
+        "response": {
+          "answer": "Because the case cannot move forward until the member identifier on the Juniper Plan card is readable or confirmed. That unreadable identifier is the specific blocker, and benefit verification cannot be completed without it. No benefit result is recorded, and there is no prior authorization submission or payer decision on file. [1][2][3]\n\nIf you mean the next administrative step: ask the office to send a legible copy of the card or confirm the identifier through the established secure channel so verification can proceed. [1][4]",
+          "citations": [
+            "access.BV-2086.1",
+            "access.BV-2086.2",
+            "access.OFFICE-2086.2",
+            "access.JUN-01.1"
+          ],
+          "suggestedFollowups": [
+            "Want me to draft the office note requesting a legible card or confirmed identifier?",
+            "Would you like a one-line status update for the HCP office?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "ACC-2086 benefit verification blocker; unreadable Juniper Plan member identifier; no benefit result and no prior auth/decision. Next likely task: draft office note or brief status update requesting legible card/confirmed identifier via secure channel."
+        },
+        "trace": {
+          "question": "Why?",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nConversation subject: ACC-2086; current subject is the blocker for benefit verification. Referents: unreadable member identifier on Juniper Plan card, no benefit result, no prior auth submission/decision. Next draft purpose: none unless user asks for an office message.\nRecent questions: What is blocking this case?\nCurrent question: Why?",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Known and unknown",
+              "text": "The prescriber name and demographic form are on file. Active benefits, prior-authorization requirements, patient cost, network specialty pharmacy and coverage outcome remain unknown. No prior-authorization submission or payer decision is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "No unsupported promises",
+              "text": "Do not predict approval, promise financial-assistance eligibility, give a patient-cost amount, recommend treatment or claim an email was sent. These are outside this synthetic administrative support demonstration.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.BV-2086.1"
+            },
+            {
+              "number": 2,
+              "passageId": "access.BV-2086.2"
+            },
+            {
+              "number": 3,
+              "passageId": "access.OFFICE-2086.2"
+            },
+            {
+              "number": 4,
+              "passageId": "access.JUN-01.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1767,
+          "cachedInputTokens": 0,
+          "outputTokens": 257,
+          "requests": 1,
+          "latencyMs": 1960,
+          "estimatedCostUsd": 0.0024840500000000002,
+          "embeddingInputTokens": 115,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-03",
+      "category": "deadline",
+      "reviewCriterion": "No specified deadline or turnaround promise.",
+      "expected": [
+        "access.BV-GUIDE.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2260,
+      "humanReview": null,
+      "turn": {
+        "id": "872f202f-e56d-4d7b-ad77-e229193543f8",
+        "question": "Does the Knowledge Pack give a deadline?",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:06:35.010Z",
+        "status": "complete",
+        "response": {
+          "answer": "No. The Knowledge Pack does not specify a turnaround guarantee or any deadline for the office to respond. It explicitly says not to promise a completion date. [1]\n\nIf helpful, I can draft a brief office note that requests the legible member identifier or confirmed identifier through the established secure channel. [2]",
+          "citations": [
+            "access.BV-GUIDE.2",
+            "access.OFFICE-2086.2"
+          ],
+          "suggestedFollowups": [
+            "Draft the office note requesting the legible card or confirmed identifier.",
+            "What should I tell the office as the next step?"
+          ],
+          "workProduct": null,
+          "retrievalContext": "ACC-2086 benefit verification blocker; unreadable Juniper Plan member identifier; no deadline specified. Next likely task: draft a brief office note or status update requesting legible card or confirmed identifier via secure channel."
+        },
+        "trace": {
+          "question": "Does the Knowledge Pack give a deadline?",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nConversation subject: ACC-2086 benefit verification blocker; unreadable Juniper Plan member identifier; no benefit result and no prior auth/decision. Next likely task: draft office note or brief status update requesting legible card/confirmed identifier via secure channel.\nRecent questions: What is blocking this case? → Why?\nCurrent question: Does the Knowledge Pack give a deadline?",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Known and unknown",
+              "text": "The prescriber name and demographic form are on file. Active benefits, prior-authorization requirements, patient cost, network specialty pharmacy and coverage outcome remain unknown. No prior-authorization submission or payer decision is recorded.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.ACCESS-ESC.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "ACCESS-ESC",
+              "title": "Access support escalation and boundaries",
+              "type": "Escalation guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "No unsupported promises",
+              "text": "Do not predict approval, promise financial-assistance eligibility, give a patient-cost amount, recommend treatment or claim an email was sent. These are outside this synthetic administrative support demonstration.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.BV-GUIDE.2"
+            },
+            {
+              "number": 2,
+              "passageId": "access.OFFICE-2086.2"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1898,
+          "cachedInputTokens": 0,
+          "outputTokens": 185,
+          "requests": 1,
+          "latencyMs": 2041,
+          "estimatedCostUsd": 0.00225842,
+          "embeddingInputTokens": 121,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-04",
+      "category": "work-product",
+      "reviewCriterion": "Asks for confirmed member identifier or legible card without approval promises.",
+      "expected": [
+        "access.OFFICE-2086.2"
+      ],
+      "recall": 1,
+      "isolated": true,
+      "citationMembership": true,
+      "citationExact": true,
+      "latencyMs": 2811,
+      "humanReview": null,
+      "turn": {
+        "id": "2da7a55c-25b8-49b1-b17f-1ab442e7a5b5",
+        "question": "Draft a follow-up email to the HCP office.",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:06:37.259Z",
+        "status": "complete",
+        "response": {
+          "answer": "Drafted follow-up email below.\n\nI based it on the ACC-2086 benefit-verification status and office support guidance: the member identifier is unreadable, a legible card or confirmed identifier is needed, and no benefit result is recorded. [1][2][3][4]\n\n",
+          "citations": [
+            "access.BV-2086.1",
+            "access.OFFICE-2086.2",
+            "access.BV-2086.2",
+            "access.OFFICE-2086.1"
+          ],
+          "suggestedFollowups": [
+            "Make it warmer and shorter.",
+            "Turn this into a patient-facing message."
+          ],
+          "workProduct": {
+            "type": "email",
+            "subject": "Follow-up: legible Juniper Plan member identifier needed for ACC-2086",
+            "body": "Dear Cedar HCP Office,\n\nI’m following up on ACC-2086. The member identifier on the submitted Juniper Plan card is unreadable, so benefit verification cannot be completed yet.\n\nPlease send a legible copy of the card or confirm the member identifier through the established secure channel. Once that information is available, benefit verification can proceed.\n\nThank you,\nMorgan Lee",
+            "status": "generated_not_sent"
+          },
+          "retrievalContext": "ACC-2086 follow-up email draft to Cedar HCP Office requesting a legible Juniper Plan member identifier or confirmed identifier via secure channel; keep focus on unreadable card and benefit-verification blocker."
+        },
+        "trace": {
+          "question": "Draft a follow-up email to the HCP office.",
+          "query": "Selected synthetic case: ACC-2086. Synthetic case ACC-2086 for Cedar Support and fictitious Juniper Plan. Benefit verification is incomplete because the member identifier is unreadable. No prior authorization submission or coverage determination is recorded.\nConversation subject: ACC-2086 benefit verification blocker; unreadable Juniper Plan member identifier; no deadline specified. Next likely task: draft a brief office note or status update requesting legible card or confirmed identifier via secure channel.\nRecent questions: Why? → Does the Knowledge Pack give a deadline?\nCurrent question: Draft a follow-up email to the HCP office.",
+          "packId": "access",
+          "packName": "Synthetic Coverage and Access Knowledge Pack",
+          "caseId": "ACC-2086",
+          "method": "hybrid",
+          "passages": [
+            {
+              "id": "access.BV-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Current blocker",
+              "text": "For synthetic case ACC-2086, benefit verification is incomplete because the member identifier on the submitted Juniper Plan insurance card is unreadable. The office should confirm the identifier or provide a legible copy through its established secure channel. No benefit result is recorded.",
+              "synthetic": true,
+              "rank": 1,
+              "score": 0.024390243902439025,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Policy support and limits",
+              "text": "The legible member identifier requirement is supported by this checklist and the ACC-2086 status record. Additional clinical documentation depends on the applicable payer request and must be confirmed; the pack supplies no treatment criteria or medical-necessity determination.",
+              "synthetic": true,
+              "rank": 2,
+              "score": 0.023809523809523808,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.JUN-01.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "JUN-01",
+              "title": "Juniper Plan administrative checklist",
+              "type": "Synthetic policy summary",
+              "version": "1.0",
+              "status": "current",
+              "section": "Common documentation",
+              "text": "This synthetic Juniper checklist lists a legible member identifier, prescriber details and a completed payer form as common administrative inputs when a prior-authorization request is required. It is general guidance, not confirmation that a particular service is covered or that ACC-2086 requires authorization.",
+              "synthetic": true,
+              "rank": 3,
+              "score": 0.023255813953488372,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "BV-2086",
+              "title": "ACC-2086 · Benefit-verification status",
+              "type": "Status record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Known and unknown",
+              "text": "The prescriber name and demographic form are on file. Active benefits, prior-authorization requirements, patient cost, network specialty pharmacy and coverage outcome remain unknown. No prior-authorization submission or payer decision is recorded.",
+              "synthetic": true,
+              "rank": 4,
+              "score": 0.022727272727272728,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.2",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Briefing and follow-up",
+              "text": "For the next office conversation, explain the unreadable member identifier, request a legible card or confirmed identifier through the established secure channel, and say benefit verification can proceed once the required information is available. Distinguish that next administrative step from a benefit or authorization result.",
+              "synthetic": true,
+              "rank": 5,
+              "score": 0.022222222222222223,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.2",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Timing",
+              "text": "The synthetic access pack does not specify a benefit-verification turnaround guarantee or a deadline for the office to respond. Do not promise a completion date.",
+              "synthetic": true,
+              "rank": 6,
+              "score": 0.021739130434782608,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.BV-GUIDE.1",
+              "packId": "access",
+              "caseId": null,
+              "sourceId": "BV-GUIDE",
+              "title": "Benefit-verification process",
+              "type": "Process guide",
+              "version": "1.0",
+              "status": "current",
+              "section": "Administrative sequence",
+              "text": "Obtain legible member and plan information, confirm the identity fields with the office, and submit a benefit-verification inquiry through the authorized support channel. Record the returned benefit information and its date before explaining case-specific requirements. A verification request is not a coverage approval.",
+              "synthetic": true,
+              "rank": 7,
+              "score": 0.02127659574468085,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            },
+            {
+              "id": "access.OFFICE-2086.1",
+              "packId": "access",
+              "caseId": "ACC-2086",
+              "sourceId": "OFFICE-2086",
+              "title": "Office support conversation record",
+              "type": "Communication record",
+              "version": "1.0",
+              "status": "current",
+              "section": "Office statement",
+              "text": "In the synthetic September 10, 2026 office exchange, staff reported: “The card image is blurry. We can check the member number and send a clearer copy.” No corrected identifier or new card receipt is recorded.",
+              "synthetic": true,
+              "rank": 8,
+              "score": 0.020833333333333332,
+              "reason": "Matches the meaning of the question and recent conversation in the selected case.",
+              "includedInGeneration": true
+            }
+          ],
+          "citations": [
+            {
+              "number": 1,
+              "passageId": "access.BV-2086.1"
+            },
+            {
+              "number": 2,
+              "passageId": "access.OFFICE-2086.2"
+            },
+            {
+              "number": 3,
+              "passageId": "access.BV-2086.2"
+            },
+            {
+              "number": 4,
+              "passageId": "access.OFFICE-2086.1"
+            }
+          ]
+        },
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 1997,
+          "cachedInputTokens": 0,
+          "outputTokens": 302,
+          "requests": 1,
+          "latencyMs": 2627,
+          "estimatedCostUsd": 0.0028591700000000003,
+          "embeddingInputTokens": 121,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": null,
+        "feedback": null,
+        "attempt": 1
+      }
+    },
+    {
+      "id": "access-05",
+      "category": "refinement",
+      "reviewCriterion": "Same office email becomes warmer and at least 25% shorter.",
+      "expected": [
+        "access.OFFICE-2086.2"
+      ],
+      "recall": 0,
+      "isolated": false,
+      "citationMembership": true,
+      "citationExact": false,
+      "latencyMs": 3943,
+      "humanReview": null,
+      "turn": {
+        "id": "18d451bc-6691-4b12-bbf1-dc007ca693f7",
+        "question": "Make it warmer and shorter.",
+        "packId": "access",
+        "createdAt": "2026-09-12T12:06:40.076Z",
+        "status": "failed",
+        "response": null,
+        "trace": null,
+        "usage": {
+          "model": "gpt-5.4-mini",
+          "inputTokens": 4398,
+          "cachedInputTokens": 1792,
+          "outputTokens": 576,
+          "requests": 2,
+          "latencyMs": 3805,
+          "estimatedCostUsd": 0.004683359999999999,
+          "embeddingInputTokens": 123,
+          "embeddingRequests": 1,
+          "unmeasuredRequests": 0
+        },
+        "error": "I couldn’t complete that answer. Your message is saved—please try again.",
+        "feedback": null,
+        "attempt": 1
+      }
+    }
+  ],
+  "limitations": "Expected-source recall and mechanical citation checks are automated. Supported-answer, abstention, hallucination, usefulness and semantic consistency require review of the actual retained output; no fixture is live quality evidence.",
+  "stopped": "A live turn failed; retained for diagnosis before further paid calls.",
+  "error": "LIVE_TURN_FAILED",
+  "metrics": {
+    "cases": 17,
+    "meanExpectedPassageRecall": 0.7058823529411765,
+    "packIsolation": 16,
+    "medianLatencyMs": 2524,
+    "maxLatencyMs": 6674,
+    "inputTokens": 46425,
+    "cachedInputTokens": 7936,
+    "outputTokens": 5353,
+    "embeddingInputTokens": 1852,
+    "generationRequests": 22,
+    "embeddingRequests": 15,
+    "unmeasuredRequests": 0,
+    "estimatedCostUsd": 0.053587489999999995,
+    "costScope": "Includes reported corpus/query preparation and turn generation/embedding usage in this run. Cached query vectors were charged when first prepared. Missing provider usage is unknown, not zero."
+  }
+}

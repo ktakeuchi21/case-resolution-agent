@@ -45,26 +45,37 @@ export class PersistentRetrieval {
    } finally {await c.query('SELECT pg_advisory_unlock(2026091201)');}
   } finally {c.release();}
  }
- async warmQueries(queries:Array<{packId:PackId;text:string}>) {
+ async vectors(queries:string[]) {
+  const unique=[...new Set(queries)],result=new Map<string,string>();
   const missing:Array<{query:string;key:string}>=[];
-  for(const item of queries){const query=contextualQuery(item.text,item.packId,[]),key=fingerprint(embeddingModel+'\n'+query);if(!(await this.db.pool.query('SELECT 1 FROM rag.query_vectors WHERE key=$1',[key])).rowCount)missing.push({query,key});}
-  if(missing.length){const vectors=await this.embed(missing.map(x=>x.query));for(let i=0;i<missing.length;i++)await this.db.pool.query('INSERT INTO rag.query_vectors(key,embedding) VALUES($1,$2::vector) ON CONFLICT DO NOTHING',[missing[i]!.key,JSON.stringify(vectors[i])]);}
-  return {queries:queries.length,newVectors:missing.length};
+  for(const query of unique){const key=fingerprint(embeddingModel+'\n'+query),row=(await this.db.pool.query('SELECT embedding::text AS vector FROM rag.query_vectors WHERE key=$1',[key])).rows[0];if(row)result.set(query,row.vector);else missing.push({query,key});}
+  for(let start=0;start<missing.length;start+=48){
+   const batch=missing.slice(start,start+48),vectors=await this.embed(batch.map(x=>x.query));
+   for(let i=0;i<batch.length;i++){const vector=JSON.stringify(vectors[i]);await this.db.pool.query('INSERT INTO rag.query_vectors(key,embedding) VALUES($1,$2::vector) ON CONFLICT DO NOTHING',[batch[i]!.key,vector]);result.set(batch[i]!.query,vector);}
+  }
+  return {result,newVectors:missing.length};
+ }
+ async warmQueries(queries:Array<{packId:PackId;text:string}>) {
+  const {newVectors}=await this.vectors(queries.flatMap(item=>[contextualQuery(item.text,item.packId,[]),item.text]));
+  return {queries:queries.length,newVectors};
  }
  async search(question:string,packId:PackId,history:Turn[]=[]):Promise<RetrievalTrace> {
-  const pack=getPack(packId),query=contextualQuery(question,packId,history),key=fingerprint(embeddingModel+'\n'+query);
+  const pack=getPack(packId),query=contextualQuery(question,packId,history);
   if((await this.db.pool.query('SELECT count(*)::int n FROM rag.passages WHERE pack_id=$1 AND embedding IS NULL',[packId])).rows[0].n)await this.ensureEmbeddings();
-  let vector=(await this.db.pool.query('SELECT embedding::text AS vector FROM rag.query_vectors WHERE key=$1',[key])).rows[0]?.vector as string|undefined;
-  if(!vector){vector=JSON.stringify((await this.embed([query]))[0]);await this.db.pool.query('INSERT INTO rag.query_vectors(key,embedding) VALUES($1,$2::vector) ON CONFLICT DO NOTHING',[key,vector]);}
+  // A separate current-question vector prevents a detailed earlier subject from hiding a new topic.
+  // Very short follow-ups depend on the contextual vector instead of an uninformative "Why?" vector.
+  const direct=question.trim().split(/\s+/).length>=4;
+  const {result}=await this.vectors(direct?[query,question]:[query]),vector=result.get(query)!;
   const rows=(await this.db.pool.query(`WITH eligible AS (
    SELECT *,row_number() OVER(ORDER BY embedding <=> $3::vector,id) AS vr,
+   row_number() OVER(ORDER BY embedding <=> $6::vector,id) AS qr,
    row_number() OVER(ORDER BY ts_rank_cd(search,websearch_to_tsquery('english',$4)) DESC,id) AS lr,
    ts_rank_cd(search,websearch_to_tsquery('english',$4)) AS lex,
    1-(embedding <=> $3::vector) AS cosine
    FROM rag.passages WHERE pack_id=$1 AND source_status='current' AND (case_id IS NULL OR case_id=$2)
    AND embedding_model=$5
-  ) SELECT body,content_hash,cosine,lex,1.0/(40+vr)+CASE WHEN lex>0 THEN 1.0/(40+lr) ELSE 0 END AS score
-  FROM eligible ORDER BY score DESC,body->>'id' LIMIT 8`,[packId,pack.caseId,vector,question,embeddingModel])).rows;
+  ) SELECT body,content_hash,cosine,lex,1.0/(40+vr)+$7::float/(40+qr)+CASE WHEN lex>0 THEN 1.0/(40+lr) ELSE 0 END AS score
+  FROM eligible ORDER BY score DESC,body->>'id' LIMIT 8`,[packId,pack.caseId,vector,question,embeddingModel,result.get(question)??vector,direct?2:0])).rows;
   const retrieved:RetrievedPassage[]=rows.map((r,i)=>{
    const p=Passage.parse(r.body);if(!eligible(p,packId)||hash(p)!==r.content_hash)throw new RagError('PASSAGE_INTEGRITY');
    return {...p,rank:i+1,score:Number(r.score),reason:Number(r.lex)>0?'Matches the question’s wording and meaning in the selected case.':'Matches the meaning of the question and recent conversation in the selected case.',includedInGeneration:true};

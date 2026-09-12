@@ -23,11 +23,15 @@ Every embedding and generation request reserves the existing shared provider all
 
 Observed and corrected during local review: canonical JSONB hashing mismatch; possible global request-ID collision silently failing to save a turn; test-only HTTP header typing. No known critical issue remains in the reviewed headless paths. Live model grounding and UI rendering remain unqualified until their acceptance runs.
 
-## Pending external gate
+## Approved headless deployment
 
-Candidate source is committed locally in the deployment checkout at `8a4d7f7` (implementation `12f81e3`). Automatic approval review rejected the push because it requires trusted explicit authorization for `ktakeuchi21/case-resolution-agent` and its `main` branch. A precise approval request is pending. No alternative path was used to bypass the rejection.
+The user explicitly approved the precise repository/main push, preservation branch publication and existing-service deployment on September 12. Both branches were pushed successfully. Render deployed revision `c0685b20f30c8ab7480800cc1c1ffa6cca8c50b9` in deployment `dep-daijvm1594qs7392n9kg`; the dashboard reported Live after 40.8 seconds. The public synthetic catalog returns three packs and 38 passages.
 
-After approval: push the reviewed candidate and preservation branch; deploy the existing Free Render backend; run frozen live retrieval; inspect failures; run live multi-turn conversations; review all actual outputs before UI implementation. Keep every failed attempt as evidence.
+The initial automatic approval rejection was respected; no alternative path bypassed it. The retry followed new explicit user authorization.
+
+Frozen live retrieval completed: 36/36 pack/case/status isolation checks and exact passage checks passed. Mean expected-passage recall is 98.61%, compared with 87.5% in the frozen lexical control. The one miss is the secondary milestone glossary for Alder's payer-approval question; retrieved evidence still contains the explicit payer-decision boundary. Corpus/query preparation used two embedding calls, 4,376 tokens, estimated $0.00008752. Retrieval median 85 ms, maximum 186 ms excludes preparation. Artifact: `artifacts/rebuild/retrieval-3b7b7f4513dd375d625cff7ed00b6bf30f6bb7dc2655bd41459089637a74fd78.json`.
+
+Live conversations and knowledge switching must be reviewed before UI implementation.
 
 ## Model configuration and pricing basis
 
@@ -36,7 +40,7 @@ Default generation: `PATHWAY_RAG_MODEL=gpt-5.4-mini`; supported optional compari
 Official model documentation: [GPT-5.4 mini](https://developers.openai.com/api/docs/models/gpt-5.4-mini), [structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs), [embedding model](https://developers.openai.com/api/docs/models/text-embedding-3-small). Mini estimates use $0.75/M input, $0.075/M cached input and $4.50/M output; embeddings use $0.02/M tokens. Estimates are not bills and exclude other account traffic.
 
 
-## Continuation verification — September 12
+## Earlier local continuation verification — September 12
 
 The initial goal turn made concrete implementation progress. This continuation inspected the actual checkout and confirmed it is still ahead of the deployment remote; the requested repository approval has not arrived. It did not retry the rejected push.
 
@@ -44,6 +48,14 @@ Independent improvements now retain token/request measurements on failed bounded
 
 A frozen six-step knowledge-switching supplement exercises Alder → fulfillment → Alder, repeats the same missing-document question, drafts/refines a fulfillment message and verifies historical citation snapshots. Its manifest is `artifacts/rebuild/boundary-frozen-a819d6c1bb4de703e7a5f4fd4109d09158545467e60ab6e386dcfc84ef4b6073.json`. This is an unexecuted live-test definition, not a result. Local PostgreSQL tests separately prove unchanged historical answer/source snapshots across switches.
 
-Current independent checks: 15/15 RAG tests; type check, 260-file production build and secret hygiene pass. Live retrieval, live conversation, browser UI and deployment gates remain incomplete. The original 36-case frozen suite is unchanged.
+Independent checks at that checkpoint: 15/15 RAG tests; type check, 260-file production build and secret hygiene pass. Live retrieval, live conversation, browser UI and deployment gates remain incomplete. The original 36-case frozen suite is unchanged.
 
 Read-only public verification returned HTTP 401 for `/api/rag/catalog`; the new candidate route returns the public synthetic catalog before session authentication, so the candidate is not live. No provider request or session creation was made by this check.
+
+## First live conversation findings
+
+The first run stopped at access-05 after its bounded format repair failed. Sixteen completed turns and one failed turn are retained unchanged in `artifacts/rebuild/conversation-4a548d9ce0d55ff3d66c85721f84b64a92c5c9d721eda91fb41bb34d10dde691.json`. It used 22 generation and 15 embedding requests, estimated $0.05358749. This candidate did not qualify the conversation gate.
+
+Review found that a long earlier document subject crowded out evidence for new topics; Alder's after-submission answer missed the receipt/completeness passage and blurred those milestones. The paraphrase answer also opened with an unsupported assertion that the note had not arrived before qualifying the recorded status. Email shortening was achieved but warmth was weak. Runtime logs identified the failed access refinement as `ANSWER_FORMAT`; the original implementation did not retain the individual validation category, so its precise subtype is unknown.
+
+The correction ranks a separate current-question vector alongside the contextual vector (batched embedding request, cached independently). Very short follow-ups rely on context. Filtering still precedes ranking and the limit remains eight passages. Generation now references passage IDs directly in claim text; the server converts validated IDs to readable numbers. This removes model arithmetic from citation formatting without changing prose or evidence. Bounded diagnostic categories identify future format failures without logging request text or model output. Instructions explicitly distinguish unrecorded receipt from proven absence and require an appreciative tone when warming a draft. New actual live results are required; these fixes are not yet model-quality evidence.
