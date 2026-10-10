@@ -1,6 +1,7 @@
 import { createPageAnalytics } from './analytics.js';
 import { analyticsWebsiteId } from './analytics-config.js';
 import { ActivityRun, activityTimeoutMs, readRagStream } from './rag-activity.js';
+import { createWalkthrough } from './rag-walkthrough.js';
 
 const $ = selector => document.querySelector(selector);
 const analytics = createPageAnalytics({ websiteId: analyticsWebsiteId });
@@ -10,6 +11,7 @@ const activityPanels = new Map();
 let activityRun = null, activityTimer = null;
 const compactViewport = matchMedia('(max-width: 1023px)');
 let contextOpen = false;
+const walkthrough = createWalkthrough();
 const pack = id => state.catalog.packs.find(p => p.id === id);
 const active = () => pack(state.conversation?.packId || state.selectedPack);
 const initials = name => name.split(' ').map(n => n[0]).slice(0,2).join('');
@@ -47,8 +49,60 @@ function agentAvatar(item, size = 'message', lazy = false) {
 function toast(text) { const n = $('#notice'); n.textContent = text; n.hidden = false; clearTimeout(toast.timer); toast.timer = setTimeout(() => { n.hidden = true; }, 4500); }
 function announce(text) { $('#announcement').textContent = text; }
 function go(hash) { if (location.hash === hash) void route(); else location.hash = hash; }
-function focusComposer() { if (!contextOpen) $('#question')?.focus({ preventScroll: true }); }
-function lastMessage() { const node = [...document.querySelectorAll('.turn')].at(-1); (node?.querySelector('.agent-message') || node)?.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+function focusComposer() { if (!contextOpen && !walkthrough.active) $('#question')?.focus({ preventScroll: true }); }
+function lastMessage() { if(walkthrough.active)return; const node = [...document.querySelectorAll('.turn')].at(-1); (node?.querySelector('.agent-message') || node)?.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+function walkthroughButton() {
+  return button([icon('guide'), 'Walkthrough'], startWalkthrough, 'button walkthrough-trigger', {id:'walkthrough-trigger', 'aria-haspopup':'dialog'});
+}
+function startWalkthrough() {
+  if(contextOpen)closeContext();
+  document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover());
+  const step=(target,title,body)=>({target,title,body});
+  let steps, title;
+  if(state.route==='home') {
+    title='Scenarios walkthrough';
+    steps=[
+      step(()=>$(innerHeight<600?'.hero .eyebrow':'.hero h1'),'Support that starts with sources','Pathway answers administrative questions using a selected collection of documents. Explore with the supplied fictional cases; drafts are never sent.'),
+      step('.scenario-card .card-title','Choose a situation','Try documentation, coverage and access, or pharmacy fulfillment. Each scenario pairs a different Pathway AI role with its own case and knowledge.'),
+      step('.scenario-card .persona','This is the role you play','The name and job here are your role in the scenario. The portrait above illustrates Pathway’s AI agent, not a real support worker.'),
+      step('.scenario-card > a','Enter when you’re ready','Try this scenario opens a conversation with example questions and the case context ready to inspect. You can use Chat or Email inside.'),
+      step('.header a[href="#knowledge"]','Look inside the knowledge','Browse the documents behind each scenario. The conversation has its own walkthrough for case context, questions, and sources.')
+    ];
+  } else if(state.route==='conversation') {
+    title='Conversation walkthrough';
+    const contextTarget=selector=>()=>$(compactViewport.matches?'#context-toggle':'.context-sidebar '+selector);
+    steps=compactViewport.matches ? [
+      step(contextTarget('[data-tour="case"]'),'Your case, at a glance','Open Case context after the tour to see your role, the recorded case, what is stuck, and the available knowledge. Chat does not change this recorded snapshot.')
+    ] : [
+      step(contextTarget('[data-tour="role"]'),'Know whose seat you’re in','This is your role and objective for the synthetic scenario. Pathway is the support agent you can ask for help.'),
+      step(contextTarget('[data-tour="blocker"]'),'Find the sticking point','The case snapshot and this blocker describe the recorded situation. They do not change when you discuss a possible next step.'),
+      step(contextTarget('[data-tour="knowledge"]'),'See what Pathway can draw on','This pack supplies the evidence for new answers. Inspect its documents or change knowledge below; earlier answers keep their original sources.')
+    ];
+    steps.push(
+      step('.channel-switch','Choose Chat or Email','Switch how the conversation is presented. You can ask for a draft in either format; no email or other message is sent.'),
+      step('.composer-input','Ask, follow up, or refine','Ask about this case or request a draft. Follow up with “Why?” or “Make it shorter.” Review drafts before using them.')
+    );
+    const answer=[...document.querySelectorAll('.answer-actions')].at(-1);
+    if(answer) {
+      const turnId=answer.closest('.turn').dataset.turn;
+      steps.push(step(()=>document.querySelector(`[data-turn="${turnId}"] .answer-actions`),'Inspect and work with an answer','Sources shows the cited passages. Grounding explains retrieval. Copy, regenerate, or leave feedback here; smaller screens keep extra actions under More. Drafts also offer Refine when eligible.'));
+    }
+    const activity=[...document.querySelectorAll('.activity-panel')].at(-1);
+    if(activity) {
+      const turnId=activity.closest('.turn').dataset.turn;
+      steps.push(step(()=>document.querySelector(`[data-turn="${turnId}"] .activity-panel > summary`),'Follow the work','Activity shows actual application steps, such as searching documents and preparing an answer, with elapsed time. Reopen it to see completed steps.'));
+    }
+  } else if(state.route==='knowledge') {
+    title='Knowledge walkthrough';
+    steps=[
+      step('.pack-choices','Browse the available packs','Each pack covers a different support scenario. Selecting a tab lets you inspect it without changing your current conversation.'),
+      step('.pack-summary h2','Know the evidence boundary','The pack lists its role, case, topics, version, and source counts. Only current documents that apply to the selected case can support a new answer.'),
+      step('.knowledge-document > summary','Read the source material','Expand a document to inspect its sections and exact wording. Archived and other-case documents stay visible, but are excluded from new answers.'),
+      step('.pack-summary > button','Apply a pack deliberately','Use this Knowledge Pack changes the evidence for future answers, or starts a conversation if you haven’t opened one. Earlier answers retain their original case and citations.')
+    ];
+  } else return;
+  walkthrough.start({title,steps,trigger:$('#walkthrough-trigger')});
+}
 async function api(path, input, onStage, signal) {
   const response = await fetch('/api/rag/' + path, { method: input ? 'POST' : 'GET', credentials: 'same-origin', cache: 'no-store',
     headers: input ? { 'Content-Type': 'application/json', 'X-CSRF-Token': state.session?.csrf || '', ...(onStage ? { Accept: 'application/x-ndjson' } : {}) } : {},
@@ -76,6 +130,7 @@ function home() {
   let resume=state.conversation?.id;try{resume ||= sessionStorage.getItem('pathway.rag.last');}catch{}
   const titles = { alder: 'A missing note.\nA clear next step.', access: 'An access roadblock.\nA useful briefing.', fulfillment: 'A status question.\nA reassuring reply.' };
   return el('main', { id: 'main', tabindex: '-1', class: 'page home' },
+    el('div',{class:'page-tools'},walkthroughButton()),
     el('section', { class: 'hero' }, p('A KNOWLEDGE-GROUNDED SUPPORT WORKER', 'eyebrow'), el('h1', {}, 'Support that knows', el('br'), el('em', {}, 'its sources.')),
       p('Pathway answers administrative questions and prepares next steps using only the knowledge selected for your conversation.', 'lede'),
       el('div', { class: 'hero-note' }, el('span', { class: 'signal', 'aria-hidden': 'true' }), 'Three synthetic scenarios. Real retrieval. Useful conversations.'),
@@ -104,6 +159,7 @@ function icon(name) {
     more: ['M5 11v2', 'M12 11v2', 'M19 11v2'],
     close: ['M6 6l12 12', 'M18 6L6 18'],
     context: ['M3 4h18v16H3z', 'M9 4v16'],
+    guide: ['M9 3H3v18h18V3h-6', 'M9 3h6v5l-3-2-3 2z', 'M7 12h10', 'M7 16h6'],
   };
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   for (const [key,value] of Object.entries({viewBox:'0 0 24 24',width:'18',height:'18',fill:'none',stroke:'currentColor','stroke-width':'1.6','stroke-linecap':'round','stroke-linejoin':'round','aria-hidden':'true',focusable:'false'})) svg.setAttribute(key,value);
@@ -127,10 +183,10 @@ function contextContents(item) {
   const docs=state.catalog.documents.filter(d=>d.packId===item.id);
   const eligible=docs.filter(d=>d.status==='current'&&(!d.caseId||d.caseId===item.caseId));
   return [
-    el('section', {class:'context-section'}, el('h2', {}, 'Your role'), p(item.user.name,'context-name'), p(item.user.role,'context-role'), p(item.description,'small muted')),
-    el('section', {class:'context-section'}, el('h2', {}, 'Case snapshot'), p('SYNTHETIC CASE · '+item.caseId,'eyebrow'), p(item.caseSummary,'small'), p('Recorded scenario · Not updated by chat','snapshot-note')),
-    el('section', {class:'context-section context-blocker'}, el('h2', {}, 'Where things are stuck'), p(item.blocker,'small')),
-    el('section', {class:'context-section'}, el('h2', {}, 'Available knowledge'), p(item.shortName,'context-name'), p('Version '+item.version+' · '+eligible.length+' applicable documents','small muted'),
+    el('section', {class:'context-section','data-tour':'role'}, el('h2', {}, 'Your role'), p(item.user.name,'context-name'), p(item.user.role,'context-role'), p(item.description,'small muted')),
+    el('section', {class:'context-section','data-tour':'case'}, el('h2', {}, 'Case snapshot'), p('SYNTHETIC CASE · '+item.caseId,'eyebrow'), p(item.caseSummary,'small'), p('Recorded scenario · Not updated by chat','snapshot-note')),
+    el('section', {class:'context-section context-blocker','data-tour':'blocker'}, el('h2', {}, 'Where things are stuck'), p(item.blocker,'small')),
+    el('section', {class:'context-section','data-tour':'knowledge'}, el('h2', {}, 'Available knowledge'), p(item.shortName,'context-name'), p('Version '+item.version+' · '+eligible.length+' applicable documents','small muted'),
       el('ul', {class:'context-coverage'}, item.covers.map(text=>el('li',{},text))),
       button('Inspect knowledge ↗',()=>inspectKnowledge(item),'button knowledge-link',{disabled:state.busy||state.connecting})),
     el('div',{class:'context-tools'},
@@ -289,7 +345,7 @@ function conversation() {
     el('section',{class:'conversation-panel','aria-label':item.agentRole+' conversation'},
     el('header', { class: 'conversation-bar' },
       el('div',{class:'conversation-identity'},el('div',{class:'conversation-agent'},agentAvatar(item,'header'),el('h1',{},item.agentRole)),
-        button([icon('context'),'Case context'],openContext,'button context-toggle',{id:'context-toggle','aria-haspopup':'dialog','aria-expanded':String(contextOpen),'aria-controls':'context-drawer'})),
+        el('div',{class:'conversation-help'},button([icon('context'),'Case context'],openContext,'button context-toggle',{id:'context-toggle','aria-haspopup':'dialog','aria-expanded':String(contextOpen),'aria-controls':'context-drawer'}),walkthroughButton())),
       el('div', { class: 'channel-switch', 'aria-label': 'Conversation format' }, ...['chat','email'].map(channel => button(channel === 'chat' ? 'Chat' : 'Email', () => configure({ channel }), 'button', { disabled: state.connecting || state.busy, 'aria-pressed': String((convo?.channel || item.defaultChannel) === channel) })))),
     el('div', { class: 'thread-scroll' }, el('div', { class: 'thread-content' },
       state.error ? el('div', { class: 'recovery', role: 'alert' }, p(state.error), button('Retry connection', () => connect(item.id, state.conversation?.id || (location.hash.startsWith('#conversation/') ? location.hash.split('/')[1] : null)))) : null,
@@ -308,7 +364,7 @@ function knowledge() {
   const item = pack(state.selectedPack), docs = state.catalog.documents.filter(d=>d.packId===item.id);
   const applicable = docs.filter(d=>d.status==='current'&&(!d.caseId||d.caseId===item.caseId));
   return el('main', { id: 'main', tabindex: '-1', class: 'page knowledge-page' },
-    state.conversation?.id ? link('← Return to conversation', '#conversation/' + state.conversation.id, 'back-link') : link('← Scenarios', '#home', 'back-link'),
+    el('div',{class:'page-tools knowledge-tools'},state.conversation?.id ? link('← Return to conversation', '#conversation/' + state.conversation.id, 'back-link') : link('← Scenarios', '#home', 'back-link'),walkthroughButton()),
     p('AVAILABLE KNOWLEDGE', 'eyebrow'), el('h1', {}, 'Know what Pathway knows.'), p('Case records, practical checklists and communication examples. Every answer starts with the Knowledge Pack you select.', 'lede'),
     el('div', { class: 'pack-choices', 'aria-label': 'Knowledge Packs' }, state.catalog.packs.map(item => button(item.shortName, () => { state.selectedPack=item.id; render(); }, 'button secondary', { 'aria-pressed': String(item.id===state.selectedPack) }))),
     el('section', { class: 'pack-summary' }, el('div', {}, badge('Curated synthetic knowledge'), el('h2', {}, item.name), p(item.agentRole + ' · Case ' + item.caseId), p(item.covers.join(' · '), 'muted'),
@@ -351,7 +407,8 @@ function render() {
   if(oldScroll !== undefined && $('.thread-scroll')) $('.thread-scroll').scrollTop=oldScroll;
   if(contextScroll!==undefined&&$('.context-sidebar'))$('.context-sidebar').scrollTop=contextScroll;
   if(contextOpen){$('#context-drawer').showModal();if(drawerScroll!==undefined)$('.drawer-content').scrollTop=drawerScroll;}
-  if(focused && document.getElementById(focused)) { document.getElementById(focused).focus({preventScroll:true}); if(selection) $('#question').setSelectionRange(...selection); }
+  if(!walkthrough.active && focused && document.getElementById(focused)) { document.getElementById(focused).focus({preventScroll:true}); if(selection) $('#question').setSelectionRange(...selection); }
+  walkthrough.refresh();
   document.title = state.route==='conversation' ? active().agentRole+' · Pathway' : 'Pathway · Support grounded in knowledge';
   analytics.view(state.route === 'conversation' ? 'agent' : state.route);
 }
@@ -369,6 +426,7 @@ async function connect(scenarioId, conversationId) {
   finally { if(epoch===state.epoch) {state.connecting=false;render();focusComposer();if(state.conversation?.turns.length)lastMessage();else if($('.thread-scroll'))$('.thread-scroll').scrollTop=0;} }
 }
 async function route() {
+  walkthrough.close({restoreFocus:false});
   // Browser back/forward can navigate even while ordinary navigation links are disabled.
   if(activityRun&&!activityRun.stopped&&location.hash!=='#conversation/'+state.conversation?.id){stopActivity();state.busy=false;}
   const [name,id] = location.hash.replace(/^#/,'').split('/');
@@ -407,7 +465,7 @@ $('.skip').addEventListener('click',event=>{event.preventDefault();$('#main')?.f
 window.addEventListener('hashchange',()=>void route());
 compactViewport.addEventListener('change',()=>{if(contextOpen&&!compactViewport.matches)closeContext();});
 window.addEventListener('resize',()=>document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover()));
-window.addEventListener('pagehide',()=>{analytics.pause();stopActivity();});
+window.addEventListener('pagehide',()=>{walkthrough.close({restoreFocus:false});analytics.pause();stopActivity();});
 window.addEventListener('pageshow',e=>{if(e.persisted){analytics.resume();if(state.route==='conversation')void connect(null,state.conversation?.id);}});
 try {
   const response=await fetch('/rag-catalog.json',{cache:'no-cache'});if(!response.ok)throw new Error('Catalog unavailable');state.catalog=await response.json();await route();

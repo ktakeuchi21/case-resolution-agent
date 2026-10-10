@@ -62,6 +62,8 @@ All case identities, organizations, plans, cases and documents are fictional. Ea
 
 ## Try a conversation
 
+Use **Walkthrough** on Scenarios, inside a conversation, or on Knowledge for a short guide to the controls. A light fade and teal outline keep the page visible. Tours are optional, work with a keyboard, and never submit a question or change the selected knowledge.
+
 1. Open the demo and choose **HCP office documentation support**.
 2. Ask **“What document is missing?”**, then **“Why is it being requested?”**
 3. Ask **“Draft a short email requesting the document.”** Follow with **“Make it warmer and shorter.”**
