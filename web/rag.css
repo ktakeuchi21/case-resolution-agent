@@ -101,7 +101,7 @@ main:focus{outline:none}
 
 /* Optional guided tours: a pale veil keeps the surrounding page readable. */
 .page-tools{display:flex;justify-content:flex-end;align-items:center;gap:16px;margin-bottom:8px}
-.home>.page-tools{margin-top:-32px}.knowledge-tools{justify-content:space-between;margin-top:-16px;margin-bottom:24px}.knowledge-tools .back-link{margin:0}
+.knowledge-tools{justify-content:space-between;margin-top:-16px;margin-bottom:24px}.knowledge-tools .back-link{margin:0}
 .walkthrough-trigger{color:var(--teal);white-space:nowrap;border:1px solid var(--line);font-size:12px;padding:8px 12px}
 .conversation-identity{display:flex;align-items:center;gap:16px;flex:1}
 .conversation-help{display:flex;align-items:center;gap:8px;flex:none;margin-left:auto}
@@ -122,7 +122,6 @@ main:focus{outline:none}
 .walkthrough-controls .button{min-height:44px;padding:10px 18px;font-size:13px}
 .walkthrough-controls .button:disabled{cursor:default}
 @media(max-width:1100px) and (min-width:1024px){.conversation-bar{padding-inline:20px;gap:10px}.conversation-identity{gap:8px}.conversation-help .walkthrough-trigger{padding-inline:8px}.conversation-bar h1{font-size:18px}}
-@media(max-width:1023px){.conversation-identity{display:block}.conversation-help{margin-left:0;gap:8px}.conversation-help .walkthrough-trigger{font-size:11px;padding:4px 8px}.conversation-help .context-toggle{padding:4px 8px 4px 0}.home>.page-tools{margin-top:-24px}}
-@media(max-width:540px){.page-tools{gap:8px}.home>.page-tools{margin-top:-20px}.knowledge-tools{margin-top:-12px}.knowledge-tools .back-link{font-size:12px}.walkthrough-trigger{font-size:11px;padding:8px}.conversation-help{gap:4px}.conversation-help .button{gap:5px}.conversation-help svg{width:16px;height:16px}.walkthrough-card{padding:16px}.walkthrough-title{font-size:20px}.walkthrough-body{font-size:13px}.walkthrough-controls{margin-top:16px}}
+@media(max-width:1023px){.conversation-identity{display:block}.conversation-help{margin-left:0;gap:8px}.conversation-help .walkthrough-trigger{font-size:11px;padding:4px 8px}.conversation-help .context-toggle{padding:4px 8px 4px 0}}
+@media(max-width:540px){.page-tools{gap:8px}.knowledge-tools{margin-top:-12px}.knowledge-tools .back-link{font-size:12px}.walkthrough-trigger{font-size:11px;padding:8px}.conversation-help{gap:4px}.conversation-help .button{gap:5px}.conversation-help svg{width:16px;height:16px}.walkthrough-card{padding:16px}.walkthrough-title{font-size:20px}.walkthrough-body{font-size:13px}.walkthrough-controls{margin-top:16px}}
 @media(max-height:500px){.walkthrough-card{padding:12px 16px}.walkthrough-topline{margin-bottom:0}.walkthrough-progress{margin-bottom:4px}.walkthrough-body{margin-top:8px;line-height:1.5}.walkthrough-controls{margin-top:12px}}
-@media(max-height:600px){.home .hero>.eyebrow{max-width:240px}}

@@ -59,16 +59,7 @@ function startWalkthrough() {
   document.querySelectorAll('.answer-menu:popover-open').forEach(menu=>menu.hidePopover());
   const step=(target,title,body)=>({target,title,body});
   let steps, title;
-  if(state.route==='home') {
-    title='Scenarios walkthrough';
-    steps=[
-      step(()=>$(innerHeight<600?'.hero .eyebrow':'.hero h1'),'Support that starts with sources','Pathway answers administrative questions using a selected collection of documents. Explore with the supplied fictional cases; drafts are never sent.'),
-      step('.scenario-card .card-title','Choose a situation','Try documentation, coverage and access, or pharmacy fulfillment. Each scenario pairs a different Pathway AI role with its own case and knowledge.'),
-      step('.scenario-card .persona','This is the role you play','The name and job here are your role in the scenario. The portrait above illustrates Pathway’s AI agent, not a real support worker.'),
-      step('.scenario-card > a','Enter when you’re ready','Try this scenario opens a conversation with example questions and the case context ready to inspect. You can use Chat or Email inside.'),
-      step('.header a[href="#knowledge"]','Look inside the knowledge','Browse the documents behind each scenario. The conversation has its own walkthrough for case context, questions, and sources.')
-    ];
-  } else if(state.route==='conversation') {
+  if(state.route==='conversation') {
     title='Conversation walkthrough';
     const contextTarget=selector=>()=>$(compactViewport.matches?'#context-toggle':'.context-sidebar '+selector);
     steps=compactViewport.matches ? [
@@ -130,7 +121,6 @@ function home() {
   let resume=state.conversation?.id;try{resume ||= sessionStorage.getItem('pathway.rag.last');}catch{}
   const titles = { alder: 'A missing note.\nA clear next step.', access: 'An access roadblock.\nA useful briefing.', fulfillment: 'A status question.\nA reassuring reply.' };
   return el('main', { id: 'main', tabindex: '-1', class: 'page home' },
-    el('div',{class:'page-tools'},walkthroughButton()),
     el('section', { class: 'hero' }, p('A KNOWLEDGE-GROUNDED SUPPORT WORKER', 'eyebrow'), el('h1', {}, 'Support that knows', el('br'), el('em', {}, 'its sources.')),
       p('Pathway answers administrative questions and prepares next steps using only the knowledge selected for your conversation.', 'lede'),
       el('div', { class: 'hero-note' }, el('span', { class: 'signal', 'aria-hidden': 'true' }), 'Three synthetic scenarios. Real retrieval. Useful conversations.'),

@@ -1,10 +1,10 @@
 # Optional page walkthroughs
 
-Scenarios, conversations, and Knowledge each offer a Walkthrough button. Tours use a pale 18% paper-colored veil and teal target outline. They are informational: they do not activate the highlighted controls, submit questions, apply knowledge, or call a model.
+Conversations and Knowledge each offer a Walkthrough button. The homepage walkthrough was subsequently removed at the owner’s request. Tours use a pale 18% paper-colored veil and teal target outline. They are informational: they do not activate the highlighted controls, submit questions, apply knowledge, or call a model.
 
 Conversation steps adapt to desktop case context or the mobile Case context button. Existing answers add evidence and activity explanations. Native dialogs contain keyboard focus, support Escape, and restore the trigger and independent scroll positions. The dialog lives outside the rerendered app; incoming answers preserve the current step. Overflowing explanations remain keyboard scrollable on short screens. Navigation closes the tour.
 
-## Local verification
+## Original local verification
 
 - Type checking, 89 core tests, 32 RAG tests, production build, syntax checks, and hygiene checks passed.
 - Browser matrix: 48 tours, 186 steps. Scenarios, Knowledge, and all three conversation scenarios in Chat and Email at 375×760, 768×900, 1024×768, 1440×900, 375×500, and 740×375.
