@@ -13,6 +13,12 @@ let contextOpen = false;
 const pack = id => state.catalog.packs.find(p => p.id === id);
 const active = () => pack(state.conversation?.packId || state.selectedPack);
 const initials = name => name.split(' ').map(n => n[0]).slice(0,2).join('');
+// Presentation only: portraits identify AI roles, never the user or case participants.
+const agentPortraits = {
+  alder: { file: 'documentation', credit: 'Ifeyinka Adeyemo', source: 'https://www.pexels.com/photo/professional-corporate-headshot-of-smiling-woman-29852895/' },
+  access: { file: 'access', credit: 'Augusto Carneiro Junior', source: 'https://www.pexels.com/photo/professional-headshot-of-a-young-businesswoman-30468665/' },
+  fulfillment: { file: 'fulfillment', credit: 'Mikhail Nilov', source: 'https://www.pexels.com/photo/headshot-of-a-man-smiling-7625294/' },
+};
 const time = value => new Date(value).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 function el(tag, attributes = {}, ...children) {
   const node = document.createElement(tag);
@@ -32,6 +38,12 @@ const button = (text, action, cls = 'button', attrs = {}) => el('button', { type
 const link = (text, href, cls = '') => el('a', { href, class: cls, onclick: e => { if (state.busy || state.connecting) { e.preventDefault(); toast('Please wait for the current request to finish.'); } } }, text);
 const badge = text => el('span', { class: 'badge' }, text);
 const disclosure = (label, key, children, cls = '') => el('details', { class: cls, 'data-disclosure': key }, el('summary', {}, label), ...children);
+function agentAvatar(item, size = 'message', lazy = false) {
+  const portrait = agentPortraits[item.id];
+  return el('span', { class: 'agent-avatar agent-avatar--' + size, 'data-agent': item.id, 'aria-hidden': 'true', title: 'Illustrative stock portrait · Pathway AI agent' },
+    el('span', { class: 'agent-avatar-fallback' }, 'p'),
+    portrait ? el('img', { src: '/images/agents/' + portrait.file + '.webp', alt: '', width: '256', height: '256', decoding: 'async', loading: lazy ? 'lazy' : 'eager', onerror: event => { event.currentTarget.hidden = true; } }) : null);
+}
 function toast(text) { const n = $('#notice'); n.textContent = text; n.hidden = false; clearTimeout(toast.timer); toast.timer = setTimeout(() => { n.hidden = true; }, 4500); }
 function announce(text) { $('#announcement').textContent = text; }
 function go(hash) { if (location.hash === hash) void route(); else location.hash = hash; }
@@ -52,10 +64,13 @@ function header() {
     el('nav', { 'aria-label': 'Main navigation' }, link('Scenarios', '#home'), link('Knowledge', '#knowledge'), link('Evaluation', '#evaluation')));
 }
 function footer() {
-  return el('footer', { class: 'footer' }, p('A synthetic portfolio demonstration. All people, cases and sources are fictional. No messages are sent.'),
-    disclosure('Privacy & session', 'privacy', [p('Conversations are isolated to this browser session and expire after four hours. Please use only the supplied synthetic cases.'),
+  return el('footer', { class: 'footer' }, p('A synthetic portfolio demonstration. All cases, role-play identities and knowledge sources are fictional. No messages are sent.'),
+    el('div', { class: 'footer-details' }, disclosure('Privacy & session', 'privacy', [p('Conversations are isolated to this browser session and expire after four hours. Please use only the supplied synthetic cases.'),
       p('Optional visitor analytics count pages, never conversation text, documents or case details. Browser privacy preferences are respected.'),
-      button(analytics.excluded() ? 'Analytics excluded in this browser' : 'Exclude this browser from analytics', () => toast(analytics.exclude() ? 'This browser is excluded from analytics.' : 'Enable Do Not Track in your browser to opt out.'))]));
+      button(analytics.excluded() ? 'Analytics excluded in this browser' : 'Exclude this browser from analytics', () => toast(analytics.exclude() ? 'This browser is excluded from analytics.' : 'Enable Do Not Track in your browser to opt out.'))]),
+      disclosure('Portrait credits', 'portrait-credits', [p('Stock portraits illustrate Pathway’s AI agents. The people pictured are not staff or endorsers.'),
+        el('ul', { class: 'portrait-credits' }, Object.entries(agentPortraits).map(([id, photo]) => el('li', {}, link(pack(id).agentRole + ' · ' + photo.credit, photo.source)))),
+        link('Photos used under the Pexels license ↗', 'https://www.pexels.com/license/')])));
 }
 function home() {
   let resume=state.conversation?.id;try{resume ||= sessionStorage.getItem('pathway.rag.last');}catch{}
@@ -67,7 +82,7 @@ function home() {
       /^[0-9a-f-]{36}$/.test(resume||'') ? link('Resume your conversation →','#conversation/'+resume,'button secondary resume') : null),
     el('section', { 'aria-labelledby': 'scenarios-heading' }, el('div', { class: 'section-line' }, el('h2', { id: 'scenarios-heading' }, 'Choose a seat at the table.'), p('Start with a question. The knowledge is ready.', 'muted')),
       el('div', { class: 'scenario-grid' }, state.catalog.packs.map((item, i) => el('article', { class: 'scenario-card ' + (i === 0 ? 'recommended' : '') },
-        el('div', { class: 'card-top' }, el('span', { class: 'scenario-number' }, '0' + (i+1)), i === 0 ? badge('Recommended first') : p(item.defaultChannel === 'email' ? 'Email + chat' : 'Chat + email', 'small muted')),
+        el('div', { class: 'card-top' }, el('div', { class: 'card-agent' }, agentAvatar(item, 'card', true), p('Pathway AI', 'small')), i === 0 ? badge('Recommended first') : p(item.defaultChannel === 'email' ? 'Email + chat' : 'Chat + email', 'small muted')),
         p(item.scenario, 'eyebrow'), el('h3', { class: 'card-title' }, titles[item.id]), p(item.description, 'muted'),
         el('div', { class: 'persona' }, el('span', { class: 'avatar', 'aria-hidden': 'true' }, initials(item.user.name)), el('div', {}, el('strong', {}, item.user.name), p(item.user.role, 'small muted'))),
         link('Try this scenario ↗', '#scenario/' + item.id, 'button ' + (i === 0 ? 'primary' : 'secondary')))))),
@@ -253,8 +268,8 @@ function turnView(turn) {
   const question = el('div', { class: 'user-message ' + (email ? 'email-message' : '') },
     email ? emailFields(item.user.name, 'Pathway · ' + item.agentRole, 'Re: ' + item.caseId + ' support', turn.createdAt) : p(item.user.name, 'message-author'),
     el('div', { class: 'prose' }, turn.question));
-  const reply = el('div', { class: 'agent-message' }, el('div', { class: 'message-heading' }, el('span', { class: 'pathway-avatar', 'aria-hidden': 'true' }, 'p'),
-    el('strong', {}, 'Pathway'), p(item.shortName, 'small muted')));
+  const reply = el('div', { class: 'agent-message' }, el('div', { class: 'message-heading' }, agentAvatar(item),
+    el('strong', {}, 'Pathway', el('span', { class: 'agent-ai-label' }, ' · AI')), p(item.shortName, 'small muted')));
   const activity=activityView(turn);if(activity)reply.append(activity);
   if (turn.status === 'complete' && turn.response) {
     if (email && !turn.response.workProduct) reply.append(emailFields('Pathway · ' + item.agentRole, item.user.name, 'Re: ' + item.caseId + ' support', turn.createdAt));
@@ -273,7 +288,7 @@ function conversation() {
     el('aside',{class:'context-sidebar','aria-label':'Case context'},contextContents(item)),
     el('section',{class:'conversation-panel','aria-label':item.agentRole+' conversation'},
     el('header', { class: 'conversation-bar' },
-      el('div',{class:'conversation-identity'},el('h1',{},item.agentRole),
+      el('div',{class:'conversation-identity'},el('div',{class:'conversation-agent'},agentAvatar(item,'header'),el('h1',{},item.agentRole)),
         button([icon('context'),'Case context'],openContext,'button context-toggle',{id:'context-toggle','aria-haspopup':'dialog','aria-expanded':String(contextOpen),'aria-controls':'context-drawer'})),
       el('div', { class: 'channel-switch', 'aria-label': 'Conversation format' }, ...['chat','email'].map(channel => button(channel === 'chat' ? 'Chat' : 'Email', () => configure({ channel }), 'button', { disabled: state.connecting || state.busy, 'aria-pressed': String((convo?.channel || item.defaultChannel) === channel) })))),
     el('div', { class: 'thread-scroll' }, el('div', { class: 'thread-content' },

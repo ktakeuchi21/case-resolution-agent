@@ -79,3 +79,22 @@ main:focus{outline:none}
 .activity-history>p:last-child{margin-top:6px}
 @media(max-width:650px){.activity-panel{margin-left:0}.activity-history{max-height:130px}}
 @media(prefers-reduced-motion:reduce){.is-working .activity-dot{animation:none}}
+
+/* Small, same-origin stock portraits keep agent identities consistent across views. */
+.agent-avatar{position:relative;display:inline-grid;place-items:center;width:28px;height:28px;flex:none;overflow:hidden;border-radius:50%;background:var(--teal);color:var(--white);box-shadow:0 0 0 1px var(--line)}
+.agent-avatar-fallback{font-family:Georgia,serif;font-size:22px;line-height:1}
+.agent-avatar img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
+.agent-avatar[data-agent=fulfillment] img{object-position:50% 25%}
+.agent-avatar--card{width:80px;height:80px;box-shadow:0 0 0 4px var(--white),0 0 0 5px var(--line)}
+.agent-avatar--card .agent-avatar-fallback{font-size:48px}
+.card-agent{display:flex;flex-direction:column;align-items:center;gap:10px;flex:none}
+.card-agent p{font-size:11px;line-height:1.4;font-weight:600;color:var(--teal)}
+.card-top{align-items:flex-start;min-height:106px;margin-bottom:22px}
+.card-top>.badge,.card-top>p{margin-top:4px}
+.agent-avatar--header{width:36px;height:36px}
+.conversation-agent{display:flex;align-items:center;gap:12px;min-width:0}
+.agent-ai-label{font-size:11px;font-weight:400;color:var(--muted)}
+.footer-details{min-width:0;max-width:420px;flex:0 1 340px}
+.portrait-credits{padding-left:18px}.portrait-credits a{display:inline-flex;align-items:center;min-height:44px}.portrait-credits li+li{margin-top:4px}
+@media(max-width:800px){.card-top{grid-column:1/-1}.footer-details{flex:auto}}
+@media(max-width:540px){.conversation-agent{gap:8px}.agent-avatar--header{width:28px;height:28px}}
