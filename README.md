@@ -2,9 +2,17 @@
 
 **Support that knows its sources.**
 
-Pathway is an AI support agent for non-clinical pharmaceutical access and patient-support work. Choose a synthetic case, ask a question, prepare an email or case briefing, and inspect the knowledge behind the answer.
+Pathway is a RAG chatbot for non-clinical pharmaceutical access and patient-support work. Choose a fictional case, ask a question, prepare an email or case briefing, and inspect the documents behind the answer.
 
 **[Try the live demo](https://case-resolution-frontend.onrender.com/)** · [Explore the knowledge](https://case-resolution-frontend.onrender.com/#knowledge) · [View evaluation](https://case-resolution-frontend.onrender.com/#evaluation)
+
+## Why I built Pathway
+
+I kept seeing avatar-based AI agents marketed with expensive licenses, and I wanted to try building one myself. For this experiment, I started with a chatbot that uses **retrieval-augmented generation (RAG)**: it finds relevant passages in a selected knowledge base, gives them to the language model, and shows the sources alongside the answer.
+
+I try to learn a different tool with each project. Here, I chose **Render** to host the frontend and application server, and **Supabase** for PostgreSQL and pgvector. Building and deploying Pathway gave me a way to learn how those pieces work together.
+
+The three support roles have illustrative stock portraits. The interaction happens through Chat and Email, with source inspection and drafts for review. The people in the portraits are not staff or endorsers; [photo credits and licensing](docs/stock-portraits.md) are included.
 
 ![Pathway’s desktop workspace, with the user’s role, case snapshot, blocker and available knowledge alongside a chat answer and its sources](docs/screenshots/pathway-workspace.png)
 
@@ -36,11 +44,13 @@ The sidebar describes the scenario’s recorded snapshot. Conversation text does
 
 <img src="docs/screenshots/pathway-mobile.png" alt="Mobile conversation with an anchored composer" width="320"> <img src="docs/screenshots/pathway-context.png" alt="Mobile case-context drawer showing the role, recorded case, blocker and available knowledge" width="320">
 
-Screenshots show the public demo with a saved synthetic answer.
+Conversation screenshots show the current interface replaying retained synthetic answers locally, without new model calls. The scenario cards below were captured from the public demo. [Capture details](docs/screenshots/README.md).
 
 </details>
 
 ## Three scenarios
+
+![Three Pathway AI support roles with stock portraits: documentation support, coverage and access, and specialty pharmacy fulfillment](docs/screenshots/pathway-agents.png)
 
 | Scenario | Your role | Recorded blocker | Useful output |
 | --- | --- | --- | --- |
@@ -48,7 +58,7 @@ Screenshots show the public demo with a saved synthetic answer.
 | **Coverage & access** · ACC-2086 | Morgan Lee, field reimbursement manager | An unreadable Juniper Plan member identifier blocks benefit verification. | An HCP-office briefing or follow-up email. |
 | **Specialty pharmacy fulfillment** · FUL-3091 | Jordan Rivera, patient-support case manager | The consent signature is missing; intake is recorded, but no dispense release or carrier handoff is recorded. | A patient-friendly administrative status message. |
 
-All people, organizations, plans, cases and documents are fictional. Each Knowledge Pack contains 14 documents: 12 applicable sources, one superseded source and one record for another case. The complete corpus contains **42 documents and 110 passages**, including practical checklists, troubleshooting, handoff worksheets and communication examples. The guides explain fictional procedures without adding events to the recorded cases. Excluded documents are inspectable in the knowledge browser but cannot support a new answer. See the [Knowledge Pack guide and verification](docs/knowledge-packs.md).
+All case identities, organizations, plans, cases and documents are fictional. Each Knowledge Pack contains 14 documents: 12 applicable sources, one superseded source and one record for another case. The complete corpus contains **42 documents and 110 passages**, including practical checklists, troubleshooting, handoff worksheets and communication examples. The guides explain fictional procedures without adding events to the recorded cases. Excluded documents are inspectable in the knowledge browser but cannot support a new answer. See the [Knowledge Pack guide and verification](docs/knowledge-packs.md).
 
 ## Try a conversation
 

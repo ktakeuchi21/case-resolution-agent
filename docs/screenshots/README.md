@@ -1,5 +1,19 @@
 # Verified application screenshots
 
+## Current Pathway interface · October 9, 2026
+
+These browser captures show the web assets from release `080145a0eae678a1ce4faa4056163e29c0208009`, including the three illustrative agent portraits, compact conversation workspace, and Knowledge Pack version 1.1.
+
+- `pathway-agents.png` (1160 × 523): the three scenario cards, captured directly from the [public frontend](https://case-resolution-frontend.onrender.com/).
+- `pathway-workspace.png` (1440 × 900): documentation-support chat with recorded case context and a sourced answer.
+- `pathway-sources.png` (1440 × 900): the same answer with its supporting passages expanded.
+- `pathway-activity.png` (1440 × 900): expanded application activity above the answer.
+- `pathway-mobile.png` and `pathway-context.png` (375 × 812): the mobile conversation and case-context drawer.
+
+Conversation views were captured from the current web assets running locally against retained synthetic answer fixtures. They demonstrate the interface, not a new live-model evaluation. Activity timings belong to the replay and are not production latency measurements. No model calls were made for these captures. Images were visually inspected and copied without pixel edits. The portfolio reuses the scenario-card and workspace images with the same provenance.
+
+Portrait photography is credited in [stock-portraits.md](../stock-portraits.md). The photographed people illustrate AI roles; they are not case participants, staff or endorsers.
+
 ## Public deployment — September 8, 2026
 
 The `hosted-20260908-*.png` images were captured from [the live Pathway Agent application](https://case-resolution-agent.onrender.com), deployed from commit `22db28a290a7b5a8e84e2e0d0e56c07105d2c65c`. These are actual public HTTPS browser captures, visually inspected after exercising the application against its durable synthetic state.
